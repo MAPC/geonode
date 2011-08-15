@@ -12,6 +12,7 @@ from django.utils.translation import ugettext as _
 import json
 import re
 import unicodedata
+from urllib import urlencode
 
 from django.conf import settings
 
