@@ -23,9 +23,15 @@ Ext.onReady(function(){
      handler: function(){ window.location = "{% url geonode.maps.views.newmap %}"; }
   });
 
+  var exploreVisualizationButton = new Ext.Button({
+     renderTo: 'explore_visualization', 
+     text: '{% trans "Explore Visualizations" %}',
+     handler: function(){ window.location = "{% url weave-search %}"; }
+  });
+
   var createVisualizationButton = new Ext.Button({
      renderTo: 'create_visualization', 
-     text: '{% trans "Create Data Visualization" %}',
+     text: '{% trans "Create Visualization" %}',
      handler: function(){ window.location = "{% url weave-new %}"; }
   });
 
@@ -55,6 +61,18 @@ Ext.onReady(function(){
   </p>
   </div>
   <div class="block">
+    <h2> {% trans "Visualizations" %} </h2>
+    <p>
+    {% blocktrans %} 
+        Create and share compelling data visualizations with <strong>Weave</strong>.
+    {% endblocktrans %} 
+  </p>
+    <div class="selfclear">
+      <div id="explore_visualization" class="content-button"></div>
+      <div id="create_visualization" class="content-button"></div>
+    </div>
+  </div>
+  <div class="block">
     <h2> {% trans "Maps" %} </h2>
     <p>
     {% blocktrans %} 
@@ -66,17 +84,6 @@ Ext.onReady(function(){
     <div class="selfclear">
       <div id="explore_map" class="content-button"></div>
       <div id="create_map" class="content-button"></div>
-    </div>
-  </div>
-  <div class="block">
-    <h2> {% trans "Visualizations" %} </h2>
-    <p>
-    {% blocktrans %} 
-        Create and share compelling data visualizations with <strong>Weave</strong>.
-    {% endblocktrans %} 
-  </p>
-    <div class="selfclear">
-      <div id="create_visualization" class="content-button"></div>
     </div>
   </div>
   <div id="data_block" class="block">
