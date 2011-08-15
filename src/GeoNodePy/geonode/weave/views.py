@@ -241,7 +241,8 @@ def _search(query, start, limit, sort_field, sort_dir):
 	for keyword in keywords:
 		visualizations = visualizations.filter(
 			  Q(title__icontains=keyword)
-			| Q(abstract__icontains=keyword))
+			| Q(abstract__icontains=keyword)
+			| Q(sessionstate__icontains=keyword))
 
 	if sort_field:
 		order_by = ("" if sort_dir == "ASC" else "-") + sort_field
