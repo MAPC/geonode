@@ -65,13 +65,14 @@
 {% block main %}
 
 <div class="twocol">
+	<h3>{{ visualization.title }}</h3>
+	<p><strong>{% trans "Abstract:" %}</strong> {{ visualization.abstract }}</p>
 	<div id="weavediv">
 		{% include "weave/object.html" %}
 	</div>
+	<p><strong>{% trans "Contact:" %}</strong> <a href="{{ visualization.owner.get_profile.get_absolute_url }}">{% firstof visualization.owner.get_profile.name visualization.owner.username %}</a></p>
 </div>
 <div class="threecol">
-	<h3>{{ visualization.title }}</h3>
-	<p>{{ visualization.abstract }}</p>
 	<h3>Manage</h3>
 	<ul>
 		<li><a href="{{ visualization.get_absolute_url }}">View or edit this Visualization</a></li>
