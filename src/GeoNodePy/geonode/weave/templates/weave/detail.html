@@ -7,6 +7,7 @@
 {% include "geonode/ext_header.html" %}
 {% include "geonode/app_header.html" %}
 {{ block.super }}
+<script type="text/javascript" src="{{ STATIC_URL }}weave/GeoNode.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}weave/utils.js"></script>
 <script type="text/javascript">
 	var weaveReady = function(weave) {
@@ -32,6 +33,15 @@
 			height: 400,
 			width: 600
 		});
+		
+		// remove trailing slash of siteurl and concatenate
+		var visUrl = "{{ SITEURL }}".substr(0, "{{ SITEURL }}".length - 1) + "{{ visualization.get_absolute_url }}";
+		// render button for visualization embed code
+		var embedVisualizationCode = new GeoNode.VisualizationEmbedCode({
+			embedText: "Embed this Visualization",
+	        visUrl: visUrl
+	    });
+		embedVisualizationCode.renderLink();
 		
 	{% if user.is_authenticated %}
 		{% has_obj_perm user visualization "weave.change_visualization_permissions" as can_change_permissions %}
@@ -65,6 +75,7 @@
 	<h3>Manage</h3>
 	<ul>
 		<li><a href="{{ visualization.get_absolute_url }}">View or edit this Visualization</a></li>
+		<li><a id="embed_code" href="#"></a></li>
 	</ul>
 		{% has_obj_perm user visualization "weave.change_visualization_permissions" as can_change_permissions %}
 		{% if can_change_permissions %}

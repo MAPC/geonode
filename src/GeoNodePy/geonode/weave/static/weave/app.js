@@ -153,41 +153,10 @@ var initMetadataForm = function(weave, options) {
 		});
 	}
 	
-	// embed button
-	var embedVisualizationButton = new Ext.Button({
-		renderTo: "embed_code",
-		text: "Embed Visualization",
-		handler: function() {
-			// embed code
-			var embedCodeWin = new Ext.Window({
-				title: "Copy the code below to embed your Visualization",
-				width: 340,
-				height: 160,
-				x: Ext.get(document.body).getWidth()/2 - 170,
-				y: 140,
-				layout: "fit",
-				border: false,
-				closable: true,
-				items: [{
-					xtype: "form",
-					id: "embedCodeForm",
-					bodyStyle:"padding:10px",
-					hideLabels: true,
-					items: [{
-						xtype: "textarea",
-						id: "embedcode",
-						height: 110,
-						width: 306,
-						value: getEmbedCode(visUrl)
-					}]
-				}]
-			}).show();
-		}
-	});
+	// render button for visualization embed code
+	var embedVisualizationCode = new GeoNode.VisualizationEmbedCode({
+        visUrl: visUrl
+    });
+	embedVisualizationCode.renderButton();
 }
 
-// little helper to compile the embed string
-var getEmbedCode = function(visUrl) {
-	embedCode = "<iframe width='500' height='350' frameborder='0' scrolling='no' marginheight='0' marginwidth='0' src='" + visUrl + "embed'></iframe><br /><small><a href='" + visUrl + "'>View Larger Visualization</a></small>";
-	return embedCode;
-}

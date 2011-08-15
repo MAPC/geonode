@@ -1,8 +1,65 @@
 /*
- * Extending the GeoNode client
+ * Extending the GeoNode client prototype
  */
 
-// based on GeoNode.MapSearchTable, only modified doLayout method
+// Helper for rendering visualization embed functionality. 
+// 'visUrl' should be set on instantiation
+Ext.namespace("GeoNode");
+GeoNode.VisualizationEmbedCode = Ext.extend(Ext.util.Observable, {
+    embedText: "Embed Visualization",
+    embedElement: "embed_code",
+    constructor: function(config) {
+        Ext.apply(this, config);
+    },
+    renderButton: function() {
+		var showEmbedWin = this.showEmbedWin;
+		var embedVisualizationButton = new Ext.Button({
+			renderTo: this.embedElement,
+			text: this.embedText,
+			visUrl: this.visUrl,
+			handler: function() {
+				showEmbedWin(this.visUrl);
+			}
+		});
+	},
+	renderLink: function() {	
+		var el = Ext.get(this.embedElement);
+		el.update(this.embedText);
+		var visUrl = this.visUrl
+		var showEmbedWin = this.showEmbedWin;
+		el.on('click', function() {
+			showEmbedWin(visUrl);
+		});
+	},
+	showEmbedWin: function(visUrl) {
+		var embedCode = "<iframe width='500' height='350' frameborder='0' scrolling='no' marginheight='0' marginwidth='0' src='" + visUrl + "embed'></iframe><br /><small><a href='" + visUrl + "'>View Larger Visualization</a></small>";
+		var embedCodeWin = new Ext.Window({
+			title: "Copy the code below to embed your Visualization",
+			width: 340,
+			height: 160,
+			x: Ext.get(document.body).getWidth()/2 - 170,
+			y: 140,
+			layout: "fit",
+			border: false,
+			closable: true,
+			items: [{
+				xtype: "form",
+				id: "embedCodeForm",
+				bodyStyle:"padding:10px",
+				hideLabels: true,
+				items: [{
+					xtype: "textarea",
+					id: "embedcode",
+					height: 110,
+					width: 306,
+					value: embedCode
+				}]
+			}]
+		}).show();
+	}
+});
+
+// based on GeoNode.MapSearchTable, 'doLayout' method has been modified
 Ext.namespace("GeoNode");
 GeoNode.VisualizationSearchTable = Ext.extend(Ext.util.Observable, {
     autoExpandColumn: 'title',

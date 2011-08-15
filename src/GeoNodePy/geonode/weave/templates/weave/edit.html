@@ -9,6 +9,7 @@
 {{ block.super }}
 {% has_obj_perm user visualization "weave.view_visualization" as can_copy %}
 {% has_obj_perm user visualization "weave.change_visualization" as can_change %}
+<script type="text/javascript" src="{{ STATIC_URL }}weave/GeoNode.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}weave/app.js"></script>
 <script type="text/javascript">
 	var weaveReady = function(weave) {
