@@ -19,6 +19,7 @@ from django.conf import settings
 from geonode.maps.views import _split_query
 
 from geonode.core.models import AUTHENTICATED_USERS, ANONYMOUS_USERS
+from geonode.maps.models import Contact
 from geonode.weave.models import Visualization
 
 def index(request):
@@ -252,7 +253,7 @@ def _search(query, start, limit, sort_field, sort_dir):
 		try:
 			owner_name = Contact.objects.get(user=visualization.owner).name
 		except:
-			owner_name = visualization.owner.first_name + " " + visualization.owner.last_name
+			owner_name = visualization.owner.username
 
 		visualizationdict = {
 			'id' : visualization.id,
