@@ -8,7 +8,7 @@ Ext.onReady(function() {
 
 var initWeave = function(weave) {	
 	// load existing or default sessionstate
-	var sessionstateUrl = window.location.href + "sessionstate";
+	var sessionstateUrl = "sessionstate";
 	Ext.Ajax.request({
 		url: sessionstateUrl,
 		method: 'GET',

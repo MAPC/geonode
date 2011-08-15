@@ -3,6 +3,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from django.db import transaction
+from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
@@ -10,8 +11,11 @@ from django.utils.translation import ugettext as _
 
 import json
 import re
+import unicodedata
 
 from django.conf import settings
+
+from geonode.maps.views import _split_query
 
 from geonode.core.models import AUTHENTICATED_USERS, ANONYMOUS_USERS
 from geonode.weave.models import Visualization
@@ -104,6 +108,9 @@ def edit(request, visid):
 			)
 
 def sessionstate(request, visid=1):
+	"""
+	Returns a JSON session state for given visualization.
+	"""
 	# visualization 1 is the default visualization
 	visualization = get_object_or_404(Visualization, pk=visid)
 	# check permissions
@@ -157,7 +164,8 @@ def embed(request, visid):
 	return render_to_response("weave/embed.html", locals(), 
 		context_instance=RequestContext(request))	
 
-
+DEFAULT_VISUALIZATION_SEARCH_BATCH_SIZE = 10
+MAX_VISUALIZATION_SEARCH_BATCH_SIZE = 25
 def search(request):
 	"""
 	Should follow GeoNode's map search concept:
@@ -192,8 +200,106 @@ def search(request):
 	  ...
 	]}
 	"""
-	return HttpResponse("gut")
+	if request.method == 'GET':
+		params = request.GET
+	elif request.method == 'POST':
+		params = request.POST
+	else:
+		return HttpResponse(status=405)
+
+	# grab params directly to implement defaults as
+	# opposed to panicy django forms behavior.
+	query = params.get('q', '')
+	try:
+		start = int(params.get('start', '0'))
+	except:
+		start = 0
 	
+	try:
+		limit = min(int(params.get('limit', DEFAULT_VISUALIZATION_SEARCH_BATCH_SIZE)),
+					MAX_VISUALIZATION_SEARCH_BATCH_SIZE)
+	except: 
+		limit = DEFAULT_VISUALIZATION_SEARCH_BATCH_SIZE
+
+
+	sort_field = params.get('sort', u'')
+	sort_field = unicodedata.normalize('NFKD', sort_field).encode('ascii','ignore')	 
+	sort_dir = params.get('dir', 'ASC')
+	result = _search(query, start, limit, sort_field, sort_dir)
+
+	result['success'] = True
+	return HttpResponse(json.dumps(result), mimetype="application/json")
+	
+
+def _search(query, start, limit, sort_field, sort_dir):
+
+	keywords = _split_query(query)
+
+	visualizations = Visualization.objects
+	for keyword in keywords:
+		visualizations = visualizations.filter(
+			  Q(title__icontains=keyword)
+			| Q(abstract__icontains=keyword))
+
+	if sort_field:
+		order_by = ("" if sort_dir == "ASC" else "-") + sort_field
+		visualizations = visualizations.order_by(order_by)
+
+	visualizations_list = []
+
+	for visualization in visualizations.all()[start:start+limit]:
+		try:
+			owner_name = Contact.objects.get(user=visualization.owner).name
+		except:
+			owner_name = visualization.owner.first_name + " " + visualization.owner.last_name
+
+		visualizationdict = {
+			'id' : visualization.id,
+			'title' : visualization.title,
+			'abstract' : visualization.abstract,
+			'detail' : reverse('geonode.weave.views.detail', args=(visualization.id,)),
+			'owner' : owner_name,
+			'owner_detail' : reverse('profiles.views.profile_detail', args=(visualization.owner.username,)),
+			'last_modified' : visualization.last_modified.isoformat()
+			}
+		visualizations_list.append(visualizationdict)
+
+	result = {'rows': visualizations_list, 
+			  'total': visualizations.count()}
+
+	result['query_info'] = {
+		'start': start,
+		'limit': limit,
+		'q': query
+	}
+	if start > 0: 
+		prev = max(start - limit, 0)
+		params = urlencode({'q': query, 'start': prev, 'limit': limit})
+		result['prev'] = reverse('geonode.weave.views.search') + '?' + params
+
+	next = start + limit + 1
+	if next < visualizations.count():
+		 params = urlencode({'q': query, 'start': next - 1, 'limit': limit})
+		 result['next'] = reverse('geonode.weave.views.search') + '?' + params
+
+	return result
+
+
+@csrf_exempt    
+def search_page(request):
+    # for non-ajax requests, render a generic search page
+
+    if request.method == 'GET':
+        params = request.GET
+    elif request.method == 'POST':
+        params = request.POST
+    else:
+        return HttpResponse(status=405)
+
+    return render_to_response('weave/search.html', RequestContext(request, {
+        'init_search': json.dumps(params or {}),
+         "site" : settings.SITEURL
+    }))
 
 def ajax_visualization_permissions(request, visid):
 	visualization = get_object_or_404(Visualization, pk=visid)
