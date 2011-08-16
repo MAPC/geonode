@@ -4,16 +4,15 @@ from geonode.weave import views
 from django.conf import settings
 
 urlpatterns = patterns('',
-	# url(r'^$', views.index, name='weave-index'),
 	url(r'^$', views.index, name='weave-index'),
 	url(r'^new$', views.new, name='weave-new'),
-	url(r'sessionstate$', views.sessionstate, name='weave-sessionstate'),
+	url(r'^sessionstate$', views.sessionstate, name='weave-sessionstate'),
 	url(r'^(?P<visid>\d+)/$', views.edit, name='weave-edit'),
 	url(r'^(?P<visid>\d+)/detail$', views.detail, name='weave-detail'),
 	url(r'^(?P<visid>\d+)/embed$', views.embed, name='weave-embed'),
 	url(r'^(?P<visid>\d+)/sessionstate$', views.sessionstate, name='weave-sessionstate'),
 	url(r'^(?P<visid>\d+)/ajax-permissions$', views.ajax_visualization_permissions, name='ajax_visualization_permissions'),
-	url(r'^search/?$', views.search, name='weave-search'),
-	# url(r'^weaveStyle.css', direct_to_template, {'template': 'weaveStyle.css','mimetype': 'text/css'}),
+	url(r'^search/?$', views.search_page, name='weave-search'),
+	url(r'^search/api/?$', views.search, name='weave-search-api'),
 )
 
