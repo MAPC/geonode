@@ -1,0 +1,62 @@
+{% extends "mbdc/page_layout.html" %}
+{% load i18n %}
+
+{% block title %} {% trans "Browse Datastories" %} - {{ block.super }} {% endblock %}
+
+{% block head %}
+{% include "geonode/ext_header.html" %}
+{% include "geonode/app_header.html" %}
+{{ block.super }}
+<script type="text/javascript">
+Ext.onReady(function(){
+
+{% autoescape off %}
+  var submitForm = function() {
+      Ext.query('#search_form form')[0].submit();
+  };
+  var searchButton = new Ext.Button({renderTo: 'submit_search', text: '{% trans "Search" %}',
+                                     handler: submitForm});
+  var searchInput = new Ext.form.TextField({applyTo: 'search_query', width: 350});
+{% endautoescape %}
+
+});
+</script> 
+{% endblock %}
+
+{% block main %}
+<div class="twocol">
+
+  <div id="search_form" class="block">
+    <h2>{% trans "Search" %} <span class="subtitle">{% trans "for datastories" %}</span></h2>
+
+    <form action="{% url datastories-search %}" method="POST">
+      {% csrf_token %}
+      <table>
+        <tr>
+          <td>
+            <input type="text" id="search_query" name="q" />
+          </td>
+          <td>
+            <div id="submit_search"></div>
+          </td>
+        </tr>
+      </table>
+      <p>
+        <a href="{% url datastories-search %}">{% trans "All Datastories" %}</a> |
+        <a href="{% url datastories-search %}?sort=last_modified&dir=DESC">{% trans "New Datastories" %}</a>
+      </p>
+    </form>
+  </div>
+  
+  <div id="create" class="block">
+    <h2>{% trans "What is a Datastory?" %}</h2>
+    <p>{% trans "Context and relations of indicators and data sets are often difficult to understand. A Datastory follows the simple approach of a  step-by-step walk through complex themes and topics. Datastories show you descriptions, visualizations and maps and help you understand how data sets connect and often correlate." %}
+    </p>
+  </div>
+
+</div>
+{% endblock %}
+
+{% block sidebar %}
+{% endblock %}
+
