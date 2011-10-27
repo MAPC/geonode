@@ -3,7 +3,7 @@ import pkg_resources
 import sys, os
 
 name='GeoNodePy'
-version = "1.0.1"
+version = "1.1"
 req = pkg_resources.Requirement.parse(name)
 
 setup(name=name,
@@ -21,9 +21,8 @@ setup(name=name,
       include_package_data=True,
       install_requires = [
           "gsconfig.py",
-          "OWSLib>0.3.1",
+          "OWSLib==0.4.0",
           "Django>=1.1",
-          "ReportLab",
           "PIL",
           "simplejson",
           "django-extensions",
