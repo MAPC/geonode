@@ -1,123 +1,416 @@
-{% extends "mbdc/page_layout.html" %}
-{% load i18n %}
+{% extends "mbdc/base.html" %}
 
-{% block title %} {% trans "Welcome!" %} - {{ block.super }} {% endblock %}
-{% block indexclass %} class="here" {% endblock %}
 
-{% block head %} 
-{% include "geonode/ext_header.html" %}
-{{ block.super }}
-<script type="text/javascript">
-Ext.onReady(function(){
-{% autoescape off %}
+{% block body %}
 
-  var exploreMapButton = new Ext.Button({
-     renderTo: 'explore_map', 
-     text: '{% trans "Explore Maps" %}',
-     handler: function(){ window.location = "{% url geonode.maps.views.maps_search_page %}"; }
-  });
-
-  var createMapButton = new Ext.Button({
-     renderTo: 'create_map', 
-     text: '{% trans "Create Map" %}',
-     handler: function(){ window.location = "{% url geonode.maps.views.newmap %}"; }
-  });
-
-  var exploreVisualizationButton = new Ext.Button({
-     renderTo: 'explore_visualization', 
-     text: '{% trans "Explore Visualizations" %}',
-     handler: function(){ window.location = "{% url weave-search %}"; }
-  });
-
-  var createVisualizationButton = new Ext.Button({
-     renderTo: 'create_visualization', 
-     text: '{% trans "Create Visualization" %}',
-     handler: function(){ window.location = "{% url weave-new %}"; }
-  });
-
-  var submitForm = function() {
-      Ext.query('#data_block form')[0].submit();
-  };
-
-  var searchButton = new Ext.Button({renderTo: 'submit_search', text: '{% trans "Search" %}',
-                                     handler: submitForm});
-
-  var searchInput = new Ext.form.TextField({applyTo: 'search_query', width: 350});
-
-{% endautoescape %}
-});
-</script>
-{% endblock %}
-
-{% block main %} 
-<div class="twocol">
-<!-- TODO: i18n on the text here -->
-  <div class="block">
-    <h2> {% trans "Welcome" %} </h2>
-    <p>
-    {% blocktrans %}
-  The MetroBoston DataCommon is an open source platform for sharing geospatial data and maps.  If you have any questions about the software or service, join our mailing list by emailing <em>geonode@librelist.com</em>.
-    {% endblocktrans %} 
-  </p>
-  </div>
-  <div class="block">
-    <h2> {% trans "Visualizations" %} </h2>
-    <p>
-    {% blocktrans %} 
-        Create and share compelling data visualizations with <strong>Weave</strong>.
-    {% endblocktrans %} 
-  </p>
-    <div class="selfclear">
-      <div id="explore_visualization" class="content-button"></div>
-      <div id="create_visualization" class="content-button"></div>
+        <!-- home_slider -->
+    <div class="home_slider">
+      <div class="home_slide">
+        <div class="home_slide_box">
+          <div class="home_slide_box_img">
+            <img src="http://dummyimage.com/320x220/f0f2d1/000" alt="FPO" />
+          </div>
+          <div class="home_slide_box_content">
+            <div class="home_slide_box_content_pad">
+              <div class="home_slide_box_nav_title">Link <span class="home_slide_box_nav_subtitle">Sub title here</span></div>
+              <a class="home_slide_box_title" href="javascript:;">
+                Content title
+              </a>
+              <div class="home_slide_box_subtitle">Subtitle Goes here</div>
+              <div class="home_slide_box_text page_content">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce fringilla augue vel risus consectetur eu venenatis est pellentesque. Donec sed placerat arcu. Morbi nec lacus est.
+              </div>
+            </div>
+          </div>
+          <div class="clear"></div>
+        </div>
+        <div class="home_slide_box">
+          <div class="home_slide_box_img">
+            <img src="http://dummyimage.com/320x220/f0f2d1/000" alt="FPO" />
+          </div>
+          <div class="home_slide_box_content">
+            <div class="home_slide_box_content_pad">
+              <div class="home_slide_box_nav_title">Navigation Title <span class="home_slide_box_nav_subtitle">Sub title here</span></div>
+              <a class="home_slide_box_title">
+                Content title
+              </a>
+              <div class="home_slide_box_subtitle">Subtitle Goes here</div>
+              <div class="home_slide_box_text page_content">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce fringilla augue vel risus consectetur eu venenatis est pellentesque. Donec sed placerat arcu. Morbi nec lacus est.
+              </div>
+            </div>
+          </div>
+          <div class="clear"></div>
+        </div>
+        <div class="home_slide_box">
+          <div class="home_slide_box_img">
+            <img src="http://dummyimage.com/320x220/f0f2d1/000" alt="FPO" />
+          </div>
+          <div class="home_slide_box_content">
+            <div class="home_slide_box_content_pad">
+              <div class="home_slide_box_nav_title">Navigation Title <span class="home_slide_box_nav_subtitle">Sub title here</span></div>
+              <a class="home_slide_box_title">
+                Content title
+              </a>
+              <div class="home_slide_box_subtitle">Subtitle Goes here</div>
+              <div class="home_slide_box_text page_content">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce fringilla augue vel risus consectetur eu venenatis est pellentesque. Donec sed placerat arcu. Morbi nec lacus est.
+              </div>
+            </div>
+          </div>
+          <div class="clear"></div>
+        </div>
+        <div class="home_slide_box">
+          <div class="home_slide_box_img">
+            <img src="http://dummyimage.com/320x220/f0f2d1/000" alt="FPO" />
+          </div>
+          <div class="home_slide_box_content">
+            <div class="home_slide_box_content_pad">
+              <div class="home_slide_box_nav_title">Navigation Title with two lines <span class="home_slide_box_nav_subtitle">Sub title here</span></div>
+              <a class="home_slide_box_title">
+                Content title
+              </a>
+              <div class="home_slide_box_subtitle">Subtitle Goes here</div>
+              <div class="home_slide_box_text page_content">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce fringilla augue vel risus consectetur eu venenatis est pellentesque. Donec sed placerat arcu. Morbi nec lacus est.</p><p>Lorem ipsum dolor <strong>sit amet,</strong> consectetur adipiscing elit. Fusce fringilla augue vel risus consectetur eu venenatis est pellentesque. Donec sed placerat arcu. Morbi nec lacus est.</p>
+              </div>
+            </div>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="block">
-    <h2> {% trans "Maps" %} </h2>
-    <p>
-    {% blocktrans %} 
-  GeoNode lets you compose and share maps.  <strong>Create</strong>
-      a map with our cartography tool, or <strong>explore</strong> maps
-      shared by others.
-    {% endblocktrans %} 
-  </p>
-    <div class="selfclear">
-      <div id="explore_map" class="content-button"></div>
-      <div id="create_map" class="content-button"></div>
-    </div>
-  </div>
-  <div id="data_block" class="block">
-    <h2> {% trans "Data" %} </h2>
-    <p>
-    {% blocktrans %} 
-  GeoNode lets you upload, manage, and browse data.  
-      <strong>Search</strong> for data that is valuable to you, or 
-      <strong>upload</strong> your own data.
-    {% endblocktrans %} 
-    </p>
-
-    <!-- Data search text box and button -->
-
-    <form action="{% url search %}" method="POST">
-      {% csrf_token %}
-        <table>
-          <tr>
-            <td>
-              <input type="text" id="search_query" name="q" />
-            </td>
-            <td>
-              <div id="submit_search"></div>
-            </td>
-          </tr>
-        </table>
-        <a href="{% url search %}">{% trans "Advanced Search" %}</a>
-    </form>
-  
-    <!-- Links to specialized views of data -->
-    <!-- Upload data button (link?) -->
-    <a class="layer-upload-link" href="{% url geonode.maps.views.upload_layer%}">{% trans "Upload data"  %}</a>
+    <!-- /home_slider -->
+    
+<!-- data_search_bar -->
+<div class="data_search_bar">
+  <div class="data_search_bar_pad">
+    <span class="title">Start A Data Search:</span>
+    
+    <label>Topic:</label>
+    <select><option>All</option></select>
+    
+    <label>Geographic Data Level:</label>
+    <select><option>All</option></select>
+    <input type="image" src="{{ STATIC_URL }}mbdc/img/Global/header_search.png" />
+    
   </div>
 </div>
-{% endblock %}
-{% block sidebar %}
-{% endblock %}
+<!-- /data_search_bar -->
+
+    
+    <!-- home_weave -->
+    <div class="home_weave">
+      <div class="home_weave_pad">
+        <!-- home_weave_nav -->
+        <div class="home_weave_nav">
+          <div class="home_weave_nav_heading">Explore Data by Topics:</div>
+          <ul>
+            <li class="first">
+              <a href="javascript:;"><span class="topic_icon topic_demographics"></span>Demographics</a>
+            </li>
+            <li>
+              <a href="javascript:;"><span class="topic_icon topic_artsCulture"></span>Arts &amp; Culture</a>
+            </li>
+            <li>
+              <a href="javascript:;"><span class="topic_icon topic_civicVitality"></span>Civic Vitality</a>
+            </li>
+            <li>
+              <a href="javascript:;"><span class="topic_icon topic_economy"></span>Economy</a>
+            </li>
+            <li>
+              <a href="javascript:;"><span class="topic_icon topic_education"></span>Education</a>
+            </li>
+            <li>
+              <a href="javascript:;"><span class="topic_icon topic_environmentEnergy"></span>Environment &amp; Energy</a>
+            </li>
+            <li>
+              <a href="javascript:;"><span class="topic_icon topic_housing"></span>Housing</a>
+            </li>
+            <li>
+              <a href="javascript:;"><span class="topic_icon topic_landUseZoning"></span>Land Use &amp; Zoning</a>
+            </li>
+            <li>
+              <a href="javascript:;"><span class="topic_icon topic_publicHealth"></span>Public Health</a>
+            </li>
+            <li>
+              <a href="javascript:;"><span class="topic_icon topic_publicSafety"></span>Public Safety</a>
+            </li>
+            <li>
+              <a href="javascript:;"><span class="topic_icon topic_technology"></span>Technology</a>
+            </li>
+            <li>
+              <a href="javascript:;"><span class="topic_icon topic_transportation"></span>Transportation</a>
+            </li>
+            <li class="last">
+              <a href="javascript:;"><span class="topic_icon topic_geographicBoundaries"></span>Geographic Boundaries</a>
+            </li>
+          </ul>
+        </div>
+        <!-- /home_weave_nav -->
+        <!-- home_weave_content -->
+        <div class="home_weave_content">
+          <!-- home_weave_intro -->
+          <div class="home_weave_intro">
+            <h1>Introducing WEAVE...</h1>
+            <div class="home_weave_intro_image">
+              <img src="http://dummyimage.com/130x60/f0f2d1/000" />
+            </div>
+            <div class="home_weave_intro_text page_content">
+              A web-based visualization platform designed  to enable visualization of any available data by anyone for any purpose.  WEAVE is in development by the Open Indicators Consortium (OIC) To learn more about WEAVE, check out <a href="javascript:;">http://www.openindicators.org</a>.
+            </div>
+          </div>
+          <!-- /home_weave_intro -->
+          
+          <!-- home_weave_featured -->
+          <div class="home_weave_featured">
+            <div class="col col_1">
+              <div class="home_weave_rotator_wrap">
+                <div class="home_weave_rotator_header">
+                  <div class="rotator_nav">
+                    <a href="javascript:;" class="nav_prev">prev</a> |
+                    <a href="javascript:;" class="nav_next">next</a>
+                  </div>
+                  <div class="home_weave_rotator_title">Featured Weave Visualizations: <a href="javascript:;">View More</a></div>
+                  <div class="clear"></div>
+                </div>
+                <div class="home_weave_rotator">
+                  
+                  <!-- data_vis -->
+                  <div class="data_vis">
+                    <div class="data_vis_pad">
+                      <div class="data_vis_header">
+                        <div class="title"><a href="javascript:;">Data Set Title Here</a></div>
+                        <div class="info">Year(s): 2000  <span class="spacer">&#8226;</span>  Source: <a>Source Title</a></div>
+                      </div>
+                      <div class="data_vis_tabs">
+                          <ul>
+                            <li><a href="#tabs-1" style="background-image: url({{ STATIC_URL }}mbdc/img/vis_icons/pie-chart.gif);"></a></li>
+                            <li><a href="#tabs-2" style="background-image: url({{ STATIC_URL }}mbdc/img/vis_icons/bar-chart.gif);"></a></li>
+                            <li><a href="#tabs-3" style="background-image: url({{ STATIC_URL }}mbdc/img/vis_icons/scatter-plot.gif);"></a></li>
+                            <li><a href="#tabs-3" style="background-image: url({{ STATIC_URL }}mbdc/img/vis_icons/thinbar-chart.gif);"></a></li>
+                            <li><a href="#tabs-3" style="background-image: url({{ STATIC_URL }}mbdc/img/vis_icons/grid-box.gif);"></a></li>
+                            <li><a href="#tabs-3" style="background-image: url({{ STATIC_URL }}mbdc/img/vis_icons/line-chart.gif);"></a></li>
+                            <li><a href="#tabs-3" style="background-image: url({{ STATIC_URL }}mbdc/img/vis_icons/star.gif);"></a></li>
+                            <li><a  href="#tabs-3" style="background-image: url({{ STATIC_URL }}mbdc/img/vis_icons/pin.gif);"></a></li>
+                          </ul>
+                        <div id="tabs-1">
+                          <img src="http://dummyimage.com/455x315/eee/fff&text=1" width="100%" />
+                        </div>
+                        <div id="tabs-2">
+                          <img src="http://dummyimage.com/455x315/eee/fff&text=2" width="100%" />
+                        </div>
+                        <div id="tabs-3">
+                          <img src="http://dummyimage.com/455x315/eee/fff&text=3" width="100%" />
+                        </div>
+                      </div>
+                      <ul class="data_vis_topics">
+                        <li><a href="javascript:;"><span class="topic_icon topic_education"></span>Education</a></li>
+                      </ul>
+                      <div class="data_vis_rating">
+                        <div class="comments"><span class="num">15</span>comments</div>
+                        <div class="rate">
+                          <div class="stars">
+                            <a class="star rated"></a>
+                            <a class="star rated"></a>
+                            <a class="star"></a>
+                            <a class="star"></a>
+                            <a class="star"></a>
+                          </div>
+                          (25 people rated this)
+                        </div>
+                      </div>
+                      <div class="clear"></div>
+                    </div>
+                  </div>
+                  <!-- /data_vis -->
+                  <!-- data_vis -->
+                  <div class="data_vis">
+                    <div class="data_vis_pad">
+                      <div class="data_vis_header">
+                        <div class="title"><a href="javascript:;">Data Set Title Here</a></div>
+                        <div class="info">Year(s): 2000  <span class="spacer">&#8226;</span>  Source: <a>Source Title</a></div>
+                      </div>
+                      <div class="data_vis_tabs">
+                          <ul>
+                            <li><a href="#tabs-1" style="background-image: url({{ STATIC_URL }}mbdc/img/vis_icons/pie-chart.gif);"></a></li>
+                            <li><a href="#tabs-2" style="background-image: url({{ STATIC_URL }}mbdc/img/vis_icons/bar-chart.gif);"></a></li>
+                            <li><a href="#tabs-3" style="background-image: url({{ STATIC_URL }}mbdc/img/vis_icons/scatter-plot.gif);"></a></li>
+                            <li><a href="#tabs-3" style="background-image: url({{ STATIC_URL }}mbdc/img/vis_icons/thinbar-chart.gif);"></a></li>
+                            <li><a href="#tabs-3" style="background-image: url({{ STATIC_URL }}mbdc/img/vis_icons/grid-box.gif);"></a></li>
+                            <li><a href="#tabs-3" style="background-image: url({{ STATIC_URL }}mbdc/img/vis_icons/line-chart.gif);"></a></li>
+                            <li><a href="#tabs-3" style="background-image: url({{ STATIC_URL }}mbdc/img/vis_icons/star.gif);"></a></li>
+                            <li><a  href="#tabs-3" style="background-image: url({{ STATIC_URL }}mbdc/img/vis_icons/pin.gif);"></a></li>
+                          </ul>
+                        <div id="tabs-1">
+                          <img src="http://dummyimage.com/455x315/eee/fff&text=1" width="100%" />
+                        </div>
+                        <div id="tabs-2">
+                          <img src="http://dummyimage.com/455x315/eee/fff&text=2" width="100%" />
+                        </div>
+                        <div id="tabs-3">
+                          <img src="http://dummyimage.com/455x315/eee/fff&text=3" width="100%" />
+                        </div>
+                      </div>
+                      <ul class="data_vis_topics">
+                        <li><a href="javascript:;"><span class="topic_icon topic_education"></span>Education</a></li>
+                      </ul>
+                      <div class="data_vis_rating">
+                        <div class="comments"><span class="num">15</span>comments</div>
+                        <div class="rate">
+                          <div class="stars">
+                            <a class="star rated"></a>
+                            <a class="star rated"></a>
+                            <a class="star"></a>
+                            <a class="star"></a>
+                            <a class="star"></a>
+                          </div>
+                          (25 people rated this)
+                        </div>
+                      </div>
+                      <div class="clear"></div>
+                    </div>
+                  </div>
+                  <!-- /data_vis -->
+                </div>
+                
+              </div>
+              
+            </div>
+            <div class="col col_2">
+              <div class="home_weave_training">
+                <div class="home_weave_training_heading">Do It Yourself, Getting Started...</div>
+                <div class="home_weave_training_image">
+                  
+                  <img src="http://dummyimage.com/253x142/000/fff" />
+                  
+                </div>
+                <div class="home_weave_training_text page_content">
+                  <h3>Hands-on Training Available</h3>
+                  <p>MetroBoston DataCommon user trainings are held every month at offices of the <a href="javascript:;">Metropolitan Area Planning Council</a> in downtown Boston. Attendees include town planners, government employees, staff from non-profit organizations and private research organizations, and others. Participants receive an orientation to the various components of the website, and complete a hands-on tutorial of the DataMap Tool to create their own customized maps.</p>
+                </div>
+                <a class="home_weave_training_reg" href="http://mbdc.eventbrite.com" title="Register for MetroBoston DataCommon Hands-on Training in Boston, MA  on Eventbrite">Register for a Training</a>
+              </div>
+            </div>
+            <div class="clear"></div>
+          </div>
+          <!-- /home_weave_featured -->
+        </div>
+        <!-- /home_weave_content -->
+        <div class="clear"></div>
+      </div>
+    </div>
+    <!-- /home_weave -->
+    
+    <!-- home_featured_maps -->
+    <div class="home_featured_maps">
+      <div class="home_featured_maps_pad">
+        <div class="home_featured_maps_rotator_wrap">
+          <div class="home_featured_maps_heading">
+            <span class="home_featured_heading_info">Join the Community: <a href="javascript:;">Learn More</a></span>
+            <div class="title">Featured Maps from the Gallery:</div>
+            <a class="home_gallery_link" href="javascript:;">Map Gallery</a>
+          </div>
+
+          <div class="rotator_nav">
+            <a href="javascript:;" class="nav_prev">prev</a> |
+            <a href="javascript:;" class="nav_next">next</a>
+          </div>
+          <ul class="home_featured_maps_rotator" id="FeaturedMapsRotator">
+            
+            <li class="home_featured_maps_slide">
+              <a class="slide_title" href="javascript:;">Title Here</a>,<span class="slide_year">with year</span>
+              <div class="slide_location">location</div>
+              <div class="slide_image">
+                <img src="http://dummyimage.com/200x150/000/fff" />
+              </div>
+              <div class="slide_credit">
+                Creator: <a href="javascript:;">User name here</a>
+              </div>
+            </li>
+            
+            <li class="home_featured_maps_slide">
+              <a class="slide_title" href="javascript:;">Title Here</a>,<span class="slide_year">with year</span>
+              <div class="slide_location">location</div>
+              <div class="slide_image">
+                <img src="http://dummyimage.com/200x150/000/fff" />
+              </div>
+              <div class="slide_credit">
+                Creator: <a href="javascript:;">User name here</a>
+              </div>
+            </li>
+            
+            <li class="home_featured_maps_slide">
+              <a class="slide_title" href="javascript:;">Title Here</a>,<span class="slide_year">with year</span>
+              <div class="slide_location">location</div>
+              <div class="slide_image">
+                <img src="http://dummyimage.com/200x150/000/fff" />
+              </div>
+              <div class="slide_credit">
+                Creator: <a href="javascript:;">User name here</a>
+              </div>
+            </li>
+            
+            <li class="home_featured_maps_slide">
+              <a class="slide_title" href="javascript:;">Title Here</a>,<span class="slide_year">with year</span>
+              <div class="slide_location">location</div>
+              <div class="slide_image">
+                <img src="http://dummyimage.com/200x150/000/fff" />
+              </div>
+              <div class="slide_credit">
+                Creator: <a href="javascript:;">User name here</a>
+              </div>
+            </li>
+            
+            <li class="home_featured_maps_slide">
+              <a class="slide_title" href="javascript:;">Title Here</a>,<span class="slide_year">with year</span>
+              <div class="slide_location">location</div>
+              <div class="slide_image">
+                <img src="http://dummyimage.com/200x150/000/fff" />
+              </div>
+              <div class="slide_credit">
+                Creator: <a href="javascript:;">User name here</a>
+              </div>
+            </li>
+            
+            <li class="home_featured_maps_slide">
+              <a class="slide_title" href="javascript:;">Title Here</a>,<span class="slide_year">with year</span>
+              <div class="slide_location">location</div>
+              <div class="slide_image">
+                <img src="http://dummyimage.com/200x150/000/fff" />
+              </div>
+              <div class="slide_credit">
+                Creator: <a href="javascript:;">User name here</a>
+              </div>
+            </li>
+            
+          </ul>
+          <div class="clear"></div>
+        </div>
+        
+        <div class="home_lastest_data">
+          <div class="home_lastest_data_pad">
+            <div class="home_lastest_data_heading">Latest Data Sets:</div>
+            <div class="home_latest_data_item">
+              <span class="topic_icon topic_geographicBoundaries"></span>
+              <a class="data_link" href="javascript:;">Population Estimates for the state, counties and municipalities.</a>
+              <div class="info">Year(s): 2000  <span class="spacer">&#8226;</span>  Source: <a>Source Title</a></div>
+            </div>
+            <div class="home_latest_data_item">
+              <span class="topic_icon topic_housing"></span>
+              <a class="data_link" href="javascript:;">Census Building Permits for Residential, Single Family, and Multi-Family Family Housing.</a>
+              <div class="info">Year(s): 2000  <span class="spacer">&#8226;</span>  Source: <a>Source Title</a></div>
+            </div>
+            <div class="home_latest_data_item">
+              <span class="topic_icon topic_publicHealth"></span>
+              <a class="data_link" href="javascript:;">Hospitalization Rates for Angina, Asthma, COPD, Diabetes, Heart Failure and Hypertension.</a>
+              <div class="info">Year(s): 2000  <span class="spacer">&#8226;</span>  Source: <a>Source Title</a></div>
+            </div>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+    <!-- /home_featured_maps -->
+
+{% endblock body %}
