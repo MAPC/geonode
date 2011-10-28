@@ -44,4 +44,10 @@ nosetests.xml
 
 man/man1/nosetests.1
 
+# private
+notes.md
 .gitignore
+
+# packages
+shared/Alpha-1
+shared/package
