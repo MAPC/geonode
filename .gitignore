@@ -42,6 +42,10 @@ pip-log.txt
 .coverage
 nosetests.xml
 
+#local development
+*hero_img*
+*jcs_caching*
+
 man/man1/nosetests.1
 
 # private
