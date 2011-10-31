@@ -17,6 +17,9 @@
 
 </head>
 <body>
+
+<!-- FIXME: WHY IS THE ENTIRE PAGE WRAPPED IN A FORM TAG -->
+
 <form name="Form1" method="post" action="Home.aspx" id="Form1" class="main_form">
 <div>
 <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTE3MzUxODg4NjJkZC+RQ/iduUeEVXQrbsyp5vakCAws" />
@@ -70,7 +73,7 @@
 <div id="site_head">
 	<div class="site_head_pad">
 		<div class="features">
-			<div class="search"><span class="search_box"><input type="text" name="gsearch" class="ignore"/><select name="asearch" class="ignore"><option>entire site</option></select></span> <input type="image" src="{{ STATIC_URL }}mbdc/img/Global/header_search.png" /></div>
+			<div class="search"><span class="search_box"><input type="text" name="gsearch" class="ignore"/></span> <input type="image" src="{{ STATIC_URL }}mbdc/img/Global/header_search.png" /></div>
 			<div class="account">
 			{% if user.is_authenticated %}
 				<a href="{% if user.get_profile %}{{ user.get_profile.get_absolute_url }}{% else %}{% url profiles_create_profile %}{% endif %}">{{ user.username}}</a> ({% if user.is_staff %}<a class="" id="adminLink" href="/admin/">{% trans "Admin" %}</a> | {% endif %}<a class="" id="profileLink" href="{% url profiles_profile_detail user.username %}">{% trans "Profile" %}</a> | <a href="{% url auth_logout %}">{% trans "Log out" %}</a>)
