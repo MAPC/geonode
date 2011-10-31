@@ -11,7 +11,7 @@
   
           <div class="home_slide_box">
           <div class="home_slide_box_img">
-            <img src="{{ hero_entry.image.url }}" alt="{{ hero_entry.title }}" />
+            <img src="{{ hero_entry.image.url }}" alt="{{ hero_entry.title }}" width="320" height="220" />
           </div>
           <div class="home_slide_box_content">
             <div class="home_slide_box_content_pad">
@@ -104,10 +104,10 @@
           <div class="home_weave_intro">
             <h1>Introducing WEAVE...</h1>
             <div class="home_weave_intro_image">
-              <img src="http://dummyimage.com/130x60/f0f2d1/000" />
+              <img src="{{ STATIC_URL }}mbdc/img/oic-logo.png" width="130" height="60" />
             </div>
             <div class="home_weave_intro_text page_content">
-              A web-based visualization platform designed  to enable visualization of any available data by anyone for any purpose.  WEAVE is in development by the Open Indicators Consortium (OIC) To learn more about WEAVE, check out <a href="javascript:;">http://www.openindicators.org</a>.
+              A web-based visualization platform designed  to enable visualization of any available data by anyone for any purpose.  WEAVE is in development by the Open Indicators Consortium (OIC) To learn more about WEAVE, check out <a href="http://www.openindicators.org">http://www.openindicators.org</a>.
             </div>
           </div>
           <!-- /home_weave_intro -->
@@ -118,10 +118,10 @@
               <div class="home_weave_rotator_wrap">
                 <div class="home_weave_rotator_header">
                   <div class="rotator_nav">
-                    <a href="javascript:;" class="nav_prev">prev</a> |
+                    <a href="javascript:;" class="nav_prev">prev</a>
                     <a href="javascript:;" class="nav_next">next</a>
                   </div>
-                  <div class="home_weave_rotator_title">Featured Weave Visualizations: <a href="javascript:;">View More</a></div>
+                  <div class="home_weave_rotator_title">Featured Weave Visualizations</div>
                   <div class="clear"></div>
                 </div>
                 <div class="home_weave_rotator">
@@ -263,7 +263,7 @@
           </div>
 
           <div class="rotator_nav">
-            <a href="javascript:;" class="nav_prev">prev</a> |
+            <a href="javascript:;" class="nav_prev">prev</a>
             <a href="javascript:;" class="nav_next">next</a>
           </div>
           <ul class="home_featured_maps_rotator" id="FeaturedMapsRotator">
