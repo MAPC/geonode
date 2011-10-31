@@ -24,4 +24,16 @@ class Hero(models.Model):
 
 	def __unicode__(self):
 	 	return self.title
+
+class Featured(models.Model):
+	""" Weave Visualizations shown on homepage """
+	visualization = models.ForeignKey('weave.Visualization')
+	order = models.IntegerField(blank=True, null=True)
+
+	class Meta:
+		ordering = ['order']
+		verbose_name_plural = _('Featured visualizations')
+
+	def __unicode__(self):
+	 	return self.visualization.title
     
