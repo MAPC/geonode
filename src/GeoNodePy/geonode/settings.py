@@ -94,6 +94,7 @@ STATIC_URL = "/media/"
 # Additional directories which hold static files
 STATICFILES_DIRS = [
     os.path.join(PROJECT_ROOT, "media"),
+    os.path.join(PROJECT_ROOT, "mbdc/static"),
     os.path.join(PROJECT_ROOT, "weave/static"),
 ]
 
