@@ -6,78 +6,28 @@
         <!-- home_slider -->
     <div class="home_slider">
       <div class="home_slide">
-        <div class="home_slide_box">
+
+{% for hero_entry in hero_entries %}
+  
+          <div class="home_slide_box">
           <div class="home_slide_box_img">
-            <img src="http://dummyimage.com/320x220/f0f2d1/000" alt="FPO" />
+            <img src="{{ hero_entry.image.url }}" alt="{{ hero_entry.title }}" />
           </div>
           <div class="home_slide_box_content">
             <div class="home_slide_box_content_pad">
-              <div class="home_slide_box_nav_title">Link <span class="home_slide_box_nav_subtitle">Sub title here</span></div>
-              <a class="home_slide_box_title" href="javascript:;">
-                Content title
-              </a>
-              <div class="home_slide_box_subtitle">Subtitle Goes here</div>
+              <div class="home_slide_box_nav_title">{{ hero_entry.navtitle }} <span class="home_slide_box_nav_subtitle">{{ hero_entry.navsubtitle }}</span></div>
+              <span class="home_slide_box_title">{{ hero_entry.title }}</span>
+              <div class="home_slide_box_subtitle">{{ hero_entry.subtitle }}</div>
               <div class="home_slide_box_text page_content">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce fringilla augue vel risus consectetur eu venenatis est pellentesque. Donec sed placerat arcu. Morbi nec lacus est.
+                {{ hero_entry.content }}
               </div>
             </div>
           </div>
           <div class="clear"></div>
         </div>
-        <div class="home_slide_box">
-          <div class="home_slide_box_img">
-            <img src="http://dummyimage.com/320x220/f0f2d1/000" alt="FPO" />
-          </div>
-          <div class="home_slide_box_content">
-            <div class="home_slide_box_content_pad">
-              <div class="home_slide_box_nav_title">Navigation Title <span class="home_slide_box_nav_subtitle">Sub title here</span></div>
-              <a class="home_slide_box_title">
-                Content title
-              </a>
-              <div class="home_slide_box_subtitle">Subtitle Goes here</div>
-              <div class="home_slide_box_text page_content">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce fringilla augue vel risus consectetur eu venenatis est pellentesque. Donec sed placerat arcu. Morbi nec lacus est.
-              </div>
-            </div>
-          </div>
-          <div class="clear"></div>
-        </div>
-        <div class="home_slide_box">
-          <div class="home_slide_box_img">
-            <img src="http://dummyimage.com/320x220/f0f2d1/000" alt="FPO" />
-          </div>
-          <div class="home_slide_box_content">
-            <div class="home_slide_box_content_pad">
-              <div class="home_slide_box_nav_title">Navigation Title <span class="home_slide_box_nav_subtitle">Sub title here</span></div>
-              <a class="home_slide_box_title">
-                Content title
-              </a>
-              <div class="home_slide_box_subtitle">Subtitle Goes here</div>
-              <div class="home_slide_box_text page_content">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce fringilla augue vel risus consectetur eu venenatis est pellentesque. Donec sed placerat arcu. Morbi nec lacus est.
-              </div>
-            </div>
-          </div>
-          <div class="clear"></div>
-        </div>
-        <div class="home_slide_box">
-          <div class="home_slide_box_img">
-            <img src="http://dummyimage.com/320x220/f0f2d1/000" alt="FPO" />
-          </div>
-          <div class="home_slide_box_content">
-            <div class="home_slide_box_content_pad">
-              <div class="home_slide_box_nav_title">Navigation Title with two lines <span class="home_slide_box_nav_subtitle">Sub title here</span></div>
-              <a class="home_slide_box_title">
-                Content title
-              </a>
-              <div class="home_slide_box_subtitle">Subtitle Goes here</div>
-              <div class="home_slide_box_text page_content">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce fringilla augue vel risus consectetur eu venenatis est pellentesque. Donec sed placerat arcu. Morbi nec lacus est.</p><p>Lorem ipsum dolor <strong>sit amet,</strong> consectetur adipiscing elit. Fusce fringilla augue vel risus consectetur eu venenatis est pellentesque. Donec sed placerat arcu. Morbi nec lacus est.</p>
-              </div>
-            </div>
-          </div>
-          <div class="clear"></div>
-        </div>
+
+{% endfor %}
+
       </div>
     </div>
     <!-- /home_slider -->

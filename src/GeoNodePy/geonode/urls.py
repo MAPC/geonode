@@ -21,7 +21,7 @@ sitemaps = {
 urlpatterns = patterns('',
     # Example:
     # (r'^geonode/', include('geonode.foo.urls')),
-    (r'^(?:index/?)?$', 'geonode.views.index'),
+    (r'^(?:index/?)?$', 'geonode.mbdc.views.index'),
     (r'^(?P<page>help)/?$', 'geonode.views.static'),
     (r'^developer/?$', 'geonode.views.developer'),
     url(r'^lang\.js$', 'django.views.generic.simple.direct_to_template',
@@ -58,3 +58,11 @@ urlpatterns += proxy_urlpatterns
 # Extra static file endpoint for development use
 if settings.SERVE_MEDIA:
     urlpatterns += staticfiles_urlpatterns()
+
+from django.conf import settings
+
+# serve media during development
+urlpatterns += patterns('',
+    (r'^site_media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
+)
+
