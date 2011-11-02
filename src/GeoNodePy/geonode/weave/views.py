@@ -237,10 +237,16 @@ def _search(query, start, limit, sort_field, sort_dir):
 
 	keywords = _split_query(query)
 
-	visualizations = Visualization.objects
+	# catching an empty search
+	if len(keywords) == 0:
+		# session state #1 is the default one and should not show up in search
+		visualizations = Visualization.objects.filter(Q(pk__gt=1))
+	else:
+		visualizations = Visualization.objects
 	for keyword in keywords:
 		visualizations = visualizations.filter(
-			  Q(title__icontains=keyword)
+			 Q(pk__gt=1),
+			 Q(title__icontains=keyword)
 			| Q(abstract__icontains=keyword)
 			| Q(sessionstate__icontains=keyword))
 
