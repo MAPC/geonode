@@ -59,6 +59,9 @@ var initMetadataForm = function(weave, options) {
 			}, {
 				xtype: "hidden",
 				id: "sessionstate"
+			}, {
+				xtype: "hidden",
+				id: "thumbnail"
 			}],
 			buttons:[{
 				text: "Cancel",
@@ -76,7 +79,8 @@ var initMetadataForm = function(weave, options) {
 		handler: function() {
 			// update sessionstate in metadataform
 			Ext.getCmp("metadataForm").getForm().setValues({
-				"sessionstate": JSON.stringify(weave.getSessionState([]))
+				"sessionstate": JSON.stringify(weave.getSessionState([])),
+				"thumbnail": weave.evaluateExpression(null, 'getBase64Image(Application.application)', null, ['weave.utils.BitmapUtils', 'mx.core.Application']),
 			});
 			// open metadata window
 			metadataWin.show();

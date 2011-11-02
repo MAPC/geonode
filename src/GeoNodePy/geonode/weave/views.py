@@ -14,6 +14,9 @@ import re
 import unicodedata
 from urllib import urlencode
 
+import base64
+import Image
+
 from django.conf import settings
 
 from geonode.maps.views import _split_query
@@ -21,6 +24,24 @@ from geonode.maps.views import _split_query
 from geonode.core.models import AUTHENTICATED_USERS, ANONYMOUS_USERS
 from geonode.maps.models import Contact
 from geonode.weave.models import Visualization
+
+def save_thumbnail(data, visid):
+	"""
+	Saves a base64 Weave visualization image file to the directory 'weave_thumbnails' in the media root.
+	"""
+
+	# save visualization image
+	visimg_data = base64.b64decode(data)
+	visimg_filename = '%s/weave_thumbnails/%i.png' % (settings.MEDIA_ROOT, visid)
+	visimg_file = open(visimg_filename,'wb+')
+	visimg_file.write(visimg_data)
+	visimg_file.close()
+	
+	# save thumbnails
+	size = 455, 315
+	tn = Image.open(visimg_filename)
+	tn.thumbnail(size, Image.ANTIALIAS)
+	tn.save('%s/weave_thumbnails/%i_featured.png' % (settings.MEDIA_ROOT, visid), 'PNG')
 
 def index(request):
 	"""
@@ -52,8 +73,11 @@ def new(request):
 				status=401
 			)
 		try: 
-			# save new visualization
+			# instantiate new visualization
 			visualization = Visualization(owner=request.user)
+			# save visualization thumbnail
+			save_thumbnail(data=request.POST.get('thumbnail'), visid=visualization.id)
+
 			visualization.save()
 			visualization.set_default_permissions()
 			visualization.update_from_viewer(request.POST)
@@ -97,6 +121,10 @@ def edit(request, visid):
 					mimetype="text/plain",
 					status=401)
 		try:
+			
+			# save visualization thumbnail
+			save_thumbnail(data=request.POST.get('thumbnail'), visid=visualization.id)
+
 			# update existing visualization
 			visualization.update_from_viewer(request.POST)
 			transaction.commit()
