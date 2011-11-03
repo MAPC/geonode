@@ -37,11 +37,12 @@ def save_thumbnail(data, visid):
 	visimg_file.write(visimg_data)
 	visimg_file.close()
 	
-	# save thumbnails
-	size = 455, 315
-	tn = Image.open(visimg_filename)
-	tn.thumbnail(size, Image.ANTIALIAS)
-	tn.save('%s/weave_thumbnails/%i_featured.png' % (settings.MEDIA_ROOT, visid), 'PNG')
+	# save visualization thumbnails
+	tn_sizes = dict(featured=(455, 315), gallery=(200,150))
+	for tn_type in tn_sizes:
+		tn = Image.open(visimg_filename)
+		tn.thumbnail(tn_sizes[tn_type], Image.ANTIALIAS)
+		tn.save('%s/weave_thumbnails/%i_%s.png' % (settings.MEDIA_ROOT, visid, tn_type), 'PNG')
 
 def index(request):
 	"""
