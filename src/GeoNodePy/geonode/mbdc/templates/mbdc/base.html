@@ -13,6 +13,16 @@
 <link href="{{ STATIC_URL }}mbdc/css/GlobalStyle.css" rel="stylesheet" type="text/css" />
 <script language="JavaScript" src="{{ STATIC_URL }}mbdc/js/jquery-library.js" type="text/javascript"></script>
 <script language="JavaScript" src="{{ STATIC_URL }}mbdc/js/GlobalJavascript.js" type="text/javascript"></script>
+<script type="text/javascript">
+  /*
+   * Global MBDC object
+   */
+  var MBDC = {
+  	weave_url: "{{ WEAVE_URL }}",
+    sessionstate: {}
+  }
+</script>
+
 <!-- /header_include -->
 
 </head>
@@ -331,5 +341,8 @@
 <!-- /site_foot -->
 
 </form>
+
+{% block extra_javascript %}{% endblock extra_javascript %}
+
 </body>
 </html>

@@ -126,34 +126,23 @@
                 </div>
                 <div class="home_weave_rotator">
                   
-                  <!-- data_vis -->
+                  <!-- featured data_vis -->
+
+{% for featured in featured_visualizations %}
+
                   <div class="data_vis">
                     <div class="data_vis_pad">
                       <div class="data_vis_header">
-                        <div class="title"><a href="javascript:;">Data Set Title Here</a></div>
-                        <div class="info">Year(s): 2000  <span class="spacer">&#8226;</span>  Source: <a>Source Title</a></div>
+                        <div class="title"><a href="{{ featured.visualization.get_absolute_url }}">{{ featured.visualization.title }}</a></div>
+                        <div class="info">By <a href="{{ featured.visualization.owner.get_profile.get_absolute_url }}">{% firstof featured.visualization.owner.get_profile.name featured.visualization.owner.username %}</a></div>
                       </div>
-                      <div class="data_vis_tabs">
-                          <ul>
-                            <li><a href="#tabs-1" style="background-image: url({{ STATIC_URL }}mbdc/img/vis_icons/pie-chart.gif);"></a></li>
-                            <li><a href="#tabs-2" style="background-image: url({{ STATIC_URL }}mbdc/img/vis_icons/bar-chart.gif);"></a></li>
-                            <li><a href="#tabs-3" style="background-image: url({{ STATIC_URL }}mbdc/img/vis_icons/scatter-plot.gif);"></a></li>
-                            <li><a href="#tabs-3" style="background-image: url({{ STATIC_URL }}mbdc/img/vis_icons/thinbar-chart.gif);"></a></li>
-                            <li><a href="#tabs-3" style="background-image: url({{ STATIC_URL }}mbdc/img/vis_icons/grid-box.gif);"></a></li>
-                            <li><a href="#tabs-3" style="background-image: url({{ STATIC_URL }}mbdc/img/vis_icons/line-chart.gif);"></a></li>
-                            <li><a href="#tabs-3" style="background-image: url({{ STATIC_URL }}mbdc/img/vis_icons/star.gif);"></a></li>
-                            <li><a  href="#tabs-3" style="background-image: url({{ STATIC_URL }}mbdc/img/vis_icons/pin.gif);"></a></li>
-                          </ul>
-                        <div id="tabs-1">
-                          <img src="http://dummyimage.com/455x315/eee/fff&text=1" width="100%" />
-                        </div>
-                        <div id="tabs-2">
-                          <img src="http://dummyimage.com/455x315/eee/fff&text=2" width="100%" />
-                        </div>
-                        <div id="tabs-3">
-                          <img src="http://dummyimage.com/455x315/eee/fff&text=3" width="100%" />
+
+                      <div class="data_vis_tabs ui-tabs ui-widget ui-widget-content ui-corner-all">
+                        <div id="featured-{{ featured.visualization.id }}" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
+                          <img src="{{ MEDIA_URL }}weave_thumbnails/{{ featured.visualization.id }}_featured.png" alt="{{ featured.visualization.title }} - Click to activate" class="data_vis_tn">
                         </div>
                       </div>
+
                       <ul class="data_vis_topics">
                         <li><a href="javascript:;"><span class="topic_icon topic_education"></span>Education</a></li>
                       </ul>
@@ -173,55 +162,11 @@
                       <div class="clear"></div>
                     </div>
                   </div>
-                  <!-- /data_vis -->
-                  <!-- data_vis -->
-                  <div class="data_vis">
-                    <div class="data_vis_pad">
-                      <div class="data_vis_header">
-                        <div class="title"><a href="javascript:;">Data Set Title Here</a></div>
-                        <div class="info">Year(s): 2000  <span class="spacer">&#8226;</span>  Source: <a>Source Title</a></div>
-                      </div>
-                      <div class="data_vis_tabs">
-                          <ul>
-                            <li><a href="#tabs-1" style="background-image: url({{ STATIC_URL }}mbdc/img/vis_icons/pie-chart.gif);"></a></li>
-                            <li><a href="#tabs-2" style="background-image: url({{ STATIC_URL }}mbdc/img/vis_icons/bar-chart.gif);"></a></li>
-                            <li><a href="#tabs-3" style="background-image: url({{ STATIC_URL }}mbdc/img/vis_icons/scatter-plot.gif);"></a></li>
-                            <li><a href="#tabs-3" style="background-image: url({{ STATIC_URL }}mbdc/img/vis_icons/thinbar-chart.gif);"></a></li>
-                            <li><a href="#tabs-3" style="background-image: url({{ STATIC_URL }}mbdc/img/vis_icons/grid-box.gif);"></a></li>
-                            <li><a href="#tabs-3" style="background-image: url({{ STATIC_URL }}mbdc/img/vis_icons/line-chart.gif);"></a></li>
-                            <li><a href="#tabs-3" style="background-image: url({{ STATIC_URL }}mbdc/img/vis_icons/star.gif);"></a></li>
-                            <li><a  href="#tabs-3" style="background-image: url({{ STATIC_URL }}mbdc/img/vis_icons/pin.gif);"></a></li>
-                          </ul>
-                        <div id="tabs-1">
-                          <img src="http://dummyimage.com/455x315/eee/fff&text=1" width="100%" />
-                        </div>
-                        <div id="tabs-2">
-                          <img src="http://dummyimage.com/455x315/eee/fff&text=2" width="100%" />
-                        </div>
-                        <div id="tabs-3">
-                          <img src="http://dummyimage.com/455x315/eee/fff&text=3" width="100%" />
-                        </div>
-                      </div>
-                      <ul class="data_vis_topics">
-                        <li><a href="javascript:;"><span class="topic_icon topic_education"></span>Education</a></li>
-                      </ul>
-                      <div class="data_vis_rating">
-                        <div class="comments"><span class="num">15</span>comments</div>
-                        <div class="rate">
-                          <div class="stars">
-                            <a class="star rated"></a>
-                            <a class="star rated"></a>
-                            <a class="star"></a>
-                            <a class="star"></a>
-                            <a class="star"></a>
-                          </div>
-                          (25 people rated this)
-                        </div>
-                      </div>
-                      <div class="clear"></div>
-                    </div>
-                  </div>
-                  <!-- /data_vis -->
+
+{% endfor %}
+
+                  <!-- /featured data_vis -->
+
                 </div>
                 
               </div>
@@ -364,3 +309,56 @@
     <!-- /home_featured_maps -->
 
 {% endblock body %}
+
+
+{% block extra_javascript %}
+
+<script type="text/javascript">
+
+  /* 
+   * Called when Weave instance is done loading.
+   */ 
+  var weaveReady = function(weave) { 
+    
+    weaveId = weave.attributes['id'].value;
+    // main session state
+    weave.setSessionState([], MBDC.sessionstate[weaveId])
+
+    // session state cosmetics
+    weave.setSessionState(['WeaveProperties'], { 
+      backgroundColor: "16777215", // white
+      dashboardMode: true, 
+      enableMenuBar: false,
+      enableToolControls: false  
+    });
+  }
+
+  jQuery(document).ready(function($) {
+
+    // Click on featured visualization image turns it into interactive Weave
+    $('.data_vis_tn')
+      .click(function() {
+
+        var visid = $(this).parent().attr("id").split("-")[1];
+        var that = $(this);
+        // get session state, add weave and remove that image
+        $.getJSON("/visualizations/" + visid + "/sessionstate", function(sessionstate) {
+
+          MBDC.sessionstate["weave-" + visid] = sessionstate;
+          // TODO: 
+          var weave = $('<object id="weave-'+ visid +'" name="weave-'+ visid +'" type="application/x-shockwave-flash" data="' + MBDC.weave_url + 'weave.swf" width="455" height="315"><param name="quality" value="high"><param name="bgcolor" value="#ffffff"><param name="allowfullscreen" value="true"><param name="allowscriptaccess" value="always"><param name="base" value="' + MBDC.weave_url + '"><param name="wmode" value="transparent"></object>');
+          weave.appendTo(that.parent());
+          that.remove(); 
+        });
+        
+      })
+      .hover(function() {
+        $(this).css('cursor','pointer');
+      }, function() {
+        $(this).css('cursor','auto');
+      });
+  });
+
+</script>
+
+{% endblock extra_javascript %}
