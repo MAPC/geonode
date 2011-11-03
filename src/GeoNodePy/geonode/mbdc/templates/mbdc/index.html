@@ -202,82 +202,30 @@
       <div class="home_featured_maps_pad">
         <div class="home_featured_maps_rotator_wrap">
           <div class="home_featured_maps_heading">
-            <span class="home_featured_heading_info">Join the Community: <a href="javascript:;">Learn More</a></span>
-            <div class="title">Featured Maps from the Gallery:</div>
-            <a class="home_gallery_link" href="javascript:;">Map Gallery</a>
+            <span class="home_featured_heading_info">Visit the <a href="javascript:;">Visualization Gallery</a></span>
+            <div class="title">Recent Data Visualizations from our Community:</div>
           </div>
 
           <div class="rotator_nav">
             <a href="javascript:;" class="nav_prev">prev</a>
             <a href="javascript:;" class="nav_next">next</a>
-          </div>
+          </div>      
+
           <ul class="home_featured_maps_rotator" id="FeaturedMapsRotator">
             
+{% for visualization in gallery_visualizations %}
+
             <li class="home_featured_maps_slide">
-              <a class="slide_title" href="javascript:;">Title Here</a>,<span class="slide_year">with year</span>
-              <div class="slide_location">location</div>
+              <a class="slide_title" href="{{ visualization.get_absolute_url }}">{{ visualization.title }}</a>
               <div class="slide_image">
-                <img src="http://dummyimage.com/200x150/000/fff" />
+                <a href="{{ visualization.get_absolute_url }}" title="{{ visualization.title }}"><img src="{{ MEDIA_URL }}weave_thumbnails/{{ visualization.id }}_gallery.png" alt="{{ visualization.title }}" /></a>
               </div>
               <div class="slide_credit">
-                Creator: <a href="javascript:;">User name here</a>
+                By <a href="{{ visualization.owner.get_profile.get_absolute_url }}">{% firstof visualization.owner.get_profile.name visualization.owner.username %}</a>
               </div>
             </li>
             
-            <li class="home_featured_maps_slide">
-              <a class="slide_title" href="javascript:;">Title Here</a>,<span class="slide_year">with year</span>
-              <div class="slide_location">location</div>
-              <div class="slide_image">
-                <img src="http://dummyimage.com/200x150/000/fff" />
-              </div>
-              <div class="slide_credit">
-                Creator: <a href="javascript:;">User name here</a>
-              </div>
-            </li>
-            
-            <li class="home_featured_maps_slide">
-              <a class="slide_title" href="javascript:;">Title Here</a>,<span class="slide_year">with year</span>
-              <div class="slide_location">location</div>
-              <div class="slide_image">
-                <img src="http://dummyimage.com/200x150/000/fff" />
-              </div>
-              <div class="slide_credit">
-                Creator: <a href="javascript:;">User name here</a>
-              </div>
-            </li>
-            
-            <li class="home_featured_maps_slide">
-              <a class="slide_title" href="javascript:;">Title Here</a>,<span class="slide_year">with year</span>
-              <div class="slide_location">location</div>
-              <div class="slide_image">
-                <img src="http://dummyimage.com/200x150/000/fff" />
-              </div>
-              <div class="slide_credit">
-                Creator: <a href="javascript:;">User name here</a>
-              </div>
-            </li>
-            
-            <li class="home_featured_maps_slide">
-              <a class="slide_title" href="javascript:;">Title Here</a>,<span class="slide_year">with year</span>
-              <div class="slide_location">location</div>
-              <div class="slide_image">
-                <img src="http://dummyimage.com/200x150/000/fff" />
-              </div>
-              <div class="slide_credit">
-                Creator: <a href="javascript:;">User name here</a>
-              </div>
-            </li>
-            
-            <li class="home_featured_maps_slide">
-              <a class="slide_title" href="javascript:;">Title Here</a>,<span class="slide_year">with year</span>
-              <div class="slide_location">location</div>
-              <div class="slide_image">
-                <img src="http://dummyimage.com/200x150/000/fff" />
-              </div>
-              <div class="slide_credit">
-                Creator: <a href="javascript:;">User name here</a>
-              </div>
-            </li>
+{% endfor %}
             
           </ul>
           <div class="clear"></div>
