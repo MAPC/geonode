@@ -266,6 +266,7 @@ INSTALLED_APPS = (
     'geonode.mbdc',
     'geonode.weave',
     'geonode.datastories',
+    'geonode.snapshots',
     'geonode'
 )
 

@@ -1,0 +1,419 @@
+{% extends "mbdc/base.html" %}
+
+
+{% block body %}
+
+
+
+
+		
+<!-- breadcrumb -->
+<div class="breadcrumb">
+	<span class="breadcrumb_title">You are here:</span>
+    <a class="breadcrumb_link" href="/">Home</a>
+    <a class="breadcrumb_link" href="/snapshots/">Snapshots and Profiles</a>
+    <a class="breadcrumb_link" href="/snapshots/{{ regiontype.slug }}">{{ regiontype.name }}</a>
+    <span class="breadcrumb_current">{{ regionalunit.name }}</span>
+</div>
+<!-- /breadcrumb -->
+
+		
+<!-- data_search_bar -->
+<div class="data_search_bar">
+	<div class="data_search_bar_pad">
+		<span class="title">Start A Data Search:</span>
+		
+		<label>Topic:</label>
+		<select><option>All</option></select>
+		
+		<label>Geographic Data Level:</label>
+		<select><option>All</option></select>
+		<input type="image" src="/_Images/Global/header_search.png" />
+		
+	</div>
+</div>
+<!-- /data_search_bar -->
+
+		
+		<!-- site_body -->
+		<div class="site_body">
+			<div class="site_body_pad">
+				<!-- location_content -->
+				<div class="location_content">
+					<div class="location_content_media">
+						
+						<img src="http://dummyimage.com/380x275/f0f2d1/000" />
+						
+					</div>
+					<div class="location_content_text page_content">
+						
+						<h1>{{ regionalunit.name }}</h1>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam at suscipit lectus. Nulla id blandit massa. <a href="javascript:;">Praesent facilisis</a> nunc eu mauris scelerisque interdum.</p> 
+						<p><a href="javascript:;">View the Community Map Gallery for this Location &raquo;</a></p>
+						
+					</div>
+					<div class="clear"></div>
+				</div>
+				<!-- /location_content -->
+				
+				
+				<!-- save_pdf -->
+				<div class="save_pdf">
+				<a href="javascript:;">Save this View as a PDF</a>
+				</div>
+				<!-- save_pdf -->
+				
+				<!-- data_set_listing -->
+				<div class="data_set_listing">
+					<div class="data_set_listing_pad">
+						
+						<div class="data_set_list_item">
+							<div class="data_set_list_item_header">
+								<span class="title">Land Use</span> <a href="javascript:;" class="link">View All</a>
+							</div>
+							<!-- data_vis -->
+							<div class="data_vis">
+								<div class="data_vis_pad">
+									<div class="data_vis_header">
+										<div class="title"><a href="javascript:;">Data Set Title Here</a></div>
+										<div class="info">Year(s): 2000  <span class="spacer">&#8226;</span>  Source: <a>Source Title</a></div>
+									</div>
+									<div class="data_vis_tabs">
+										<ul>
+											<li><a href="#tabs-1">img</a></li>
+											<li><a href="#tabs-2">img</a></li>
+											<li><a href="#tabs-3">img</a></li>
+										</ul>
+										<div id="tabs-1">
+											<img src="http://dummyimage.com/528x400/eee/fff&text=1" width="100%" />
+										</div>
+										<div id="tabs-2">
+											<img src="http://dummyimage.com/528x400/eee/fff&text=2" width="100%" />
+										</div>
+										<div id="tabs-3">
+											<img src="http://dummyimage.com/528x400/eee/fff&text=3" width="100%" />
+										</div>
+									</div>
+									<div class="data_vis_selection"><select><option>Choose Data Sets (1-5)</option></select></div>
+									<div class="data_vis_rating">
+										<div class="comments"><span class="num">15</span>comments</div>
+										<div class="rate">
+											<div class="stars">
+												<a class="star rated"></a>
+												<a class="star rated"></a>
+												<a class="star"></a>
+												<a class="star"></a>
+												<a class="star"></a>
+											</div>
+											(25 people rated this)
+										</div>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</div>
+							<!-- /data_vis -->
+						</div>
+						
+						<div class="data_set_list_item">
+							<div class="data_set_list_item_header">
+								<span class="title">Land Use</span> <a href="javascript:;" class="link">View All</a>
+							</div>
+							<!-- data_vis -->
+							<div class="data_vis">
+								<div class="data_vis_pad">
+									<div class="data_vis_header">
+										<div class="title"><a href="javascript:;">Data Set Title Here</a></div>
+										<div class="info">Year(s): 2000  <span class="spacer">&#8226;</span>  Source: <a>Source Title</a></div>
+									</div>
+									<div class="data_vis_tabs">
+										<ul>
+											<li><a href="#tabs-1">img</a></li>
+											<li><a href="#tabs-2">img</a></li>
+											<li><a href="#tabs-3">img</a></li>
+										</ul>
+										<div id="tabs-1">
+											<img src="http://dummyimage.com/528x400/eee/fff&text=1" width="100%" />
+										</div>
+										<div id="tabs-2">
+											<img src="http://dummyimage.com/528x400/eee/fff&text=2" width="100%" />
+										</div>
+										<div id="tabs-3">
+											<img src="http://dummyimage.com/528x400/eee/fff&text=3" width="100%" />
+										</div>
+									</div>
+									<div class="data_vis_selection"><select><option>Choose Data Sets (1-5)</option></select></div>
+									<div class="data_vis_rating">
+										<div class="comments"><span class="num">15</span>comments</div>
+										<div class="rate">
+											<div class="stars">
+												<a class="star rated"></a>
+												<a class="star rated"></a>
+												<a class="star"></a>
+												<a class="star"></a>
+												<a class="star"></a>
+											</div>
+											(25 people rated this)
+										</div>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</div>
+							<!-- /data_vis -->
+						</div>
+						
+						<div class="data_set_list_item">
+							<div class="data_set_list_item_header">
+								<span class="title">Land Use</span> <a href="javascript:;" class="link">View All</a>
+							</div>
+							<!-- data_vis -->
+							<div class="data_vis">
+								<div class="data_vis_pad">
+									<div class="data_vis_header">
+										<div class="title"><a href="javascript:;">Data Set Title Here</a></div>
+										<div class="info">Year(s): 2000  <span class="spacer">&#8226;</span>  Source: <a>Source Title</a></div>
+									</div>
+									<div class="data_vis_tabs">
+										<ul>
+											<li><a href="#tabs-1">img</a></li>
+											<li><a href="#tabs-2">img</a></li>
+											<li><a href="#tabs-3">img</a></li>
+										</ul>
+										<div id="tabs-1">
+											<img src="http://dummyimage.com/528x400/eee/fff&text=1" width="100%" />
+										</div>
+										<div id="tabs-2">
+											<img src="http://dummyimage.com/528x400/eee/fff&text=2" width="100%" />
+										</div>
+										<div id="tabs-3">
+											<img src="http://dummyimage.com/528x400/eee/fff&text=3" width="100%" />
+										</div>
+									</div>
+									<div class="data_vis_selection"><select><option>Choose Data Sets (1-5)</option></select></div>
+									<div class="data_vis_rating">
+										<div class="comments"><span class="num">15</span>comments</div>
+										<div class="rate">
+											<div class="stars">
+												<a class="star rated"></a>
+												<a class="star rated"></a>
+												<a class="star"></a>
+												<a class="star"></a>
+												<a class="star"></a>
+											</div>
+											(25 people rated this)
+										</div>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</div>
+							<!-- /data_vis -->
+						</div>
+						
+						<div class="data_set_list_item">
+							<div class="data_set_list_item_header">
+								<span class="title">Land Use</span> <a href="javascript:;" class="link">View All</a>
+							</div>
+							<!-- data_vis -->
+							<div class="data_vis">
+								<div class="data_vis_pad">
+									<div class="data_vis_header">
+										<div class="title"><a href="javascript:;">Data Set Title Here</a></div>
+										<div class="info">Year(s): 2000  <span class="spacer">&#8226;</span>  Source: <a>Source Title</a></div>
+									</div>
+									<div class="data_vis_tabs">
+										<ul>
+											<li><a href="#tabs-1">img</a></li>
+											<li><a href="#tabs-2">img</a></li>
+											<li><a href="#tabs-3">img</a></li>
+										</ul>
+										<div id="tabs-1">
+											<img src="http://dummyimage.com/528x400/eee/fff&text=1" width="100%" />
+										</div>
+										<div id="tabs-2">
+											<img src="http://dummyimage.com/528x400/eee/fff&text=2" width="100%" />
+										</div>
+										<div id="tabs-3">
+											<img src="http://dummyimage.com/528x400/eee/fff&text=3" width="100%" />
+										</div>
+									</div>
+									<div class="data_vis_selection"><select><option>Choose Data Sets (1-5)</option></select></div>
+									<div class="data_vis_rating">
+										<div class="comments"><span class="num">15</span>comments</div>
+										<div class="rate">
+											<div class="stars">
+												<a class="star rated"></a>
+												<a class="star rated"></a>
+												<a class="star"></a>
+												<a class="star"></a>
+												<a class="star"></a>
+											</div>
+											(25 people rated this)
+										</div>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</div>
+							<!-- /data_vis -->
+						</div>
+						
+						<div class="data_set_list_item">
+							<div class="data_set_list_item_header">
+								<span class="title">Land Use</span> <a href="javascript:;" class="link">View All</a>
+							</div>
+							<!-- data_vis -->
+							<div class="data_vis">
+								<div class="data_vis_pad">
+									<div class="data_vis_header">
+										<div class="title"><a href="javascript:;">Data Set Title Here</a></div>
+										<div class="info">Year(s): 2000  <span class="spacer">&#8226;</span>  Source: <a>Source Title</a></div>
+									</div>
+									<div class="data_vis_tabs">
+										<ul>
+											<li><a href="#tabs-1">img</a></li>
+											<li><a href="#tabs-2">img</a></li>
+											<li><a href="#tabs-3">img</a></li>
+										</ul>
+										<div id="tabs-1">
+											<img src="http://dummyimage.com/528x400/eee/fff&text=1" width="100%" />
+										</div>
+										<div id="tabs-2">
+											<img src="http://dummyimage.com/528x400/eee/fff&text=2" width="100%" />
+										</div>
+										<div id="tabs-3">
+											<img src="http://dummyimage.com/528x400/eee/fff&text=3" width="100%" />
+										</div>
+									</div>
+									<div class="data_vis_selection"><select><option>Choose Data Sets (1-5)</option></select></div>
+									<div class="data_vis_rating">
+										<div class="comments"><span class="num">15</span>comments</div>
+										<div class="rate">
+											<div class="stars">
+												<a class="star rated"></a>
+												<a class="star rated"></a>
+												<a class="star"></a>
+												<a class="star"></a>
+												<a class="star"></a>
+											</div>
+											(25 people rated this)
+										</div>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</div>
+							<!-- /data_vis -->
+						</div>
+						
+						<div class="data_set_list_item">
+							<div class="data_set_list_item_header">
+								<span class="title">Land Use</span> <a href="javascript:;" class="link">View All</a>
+							</div>
+							<!-- data_vis -->
+							<div class="data_vis">
+								<div class="data_vis_pad">
+									<div class="data_vis_header">
+										<div class="title"><a href="javascript:;">Data Set Title Here</a></div>
+										<div class="info">Year(s): 2000  <span class="spacer">&#8226;</span>  Source: <a>Source Title</a></div>
+									</div>
+									<div class="data_vis_tabs">
+										<ul>
+											<li><a href="#tabs-1">img</a></li>
+											<li><a href="#tabs-2">img</a></li>
+											<li><a href="#tabs-3">img</a></li>
+										</ul>
+										<div id="tabs-1">
+											<img src="http://dummyimage.com/528x400/eee/fff&text=1" width="100%" />
+										</div>
+										<div id="tabs-2">
+											<img src="http://dummyimage.com/528x400/eee/fff&text=2" width="100%" />
+										</div>
+										<div id="tabs-3">
+											<img src="http://dummyimage.com/528x400/eee/fff&text=3" width="100%" />
+										</div>
+									</div>
+									<div class="data_vis_selection"><select><option>Choose Data Sets (1-5)</option></select></div>
+									<div class="data_vis_rating">
+										<div class="comments"><span class="num">15</span>comments</div>
+										<div class="rate">
+											<div class="stars">
+												<a class="star rated"></a>
+												<a class="star rated"></a>
+												<a class="star"></a>
+												<a class="star"></a>
+												<a class="star"></a>
+											</div>
+											(25 people rated this)
+										</div>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</div>
+							<!-- /data_vis -->
+						</div>
+						
+						<div class="data_set_list_item">
+							<div class="data_set_list_item_header">
+								<span class="title">Land Use</span> <a href="javascript:;" class="link">View All</a>
+							</div>
+							<!-- data_vis -->
+							<div class="data_vis">
+								<div class="data_vis_pad">
+									<div class="data_vis_header">
+										<div class="title"><a href="javascript:;">Data Set Title Here</a></div>
+										<div class="info">Year(s): 2000  <span class="spacer">&#8226;</span>  Source: <a>Source Title</a></div>
+									</div>
+									<div class="data_vis_tabs">
+										<ul>
+											<li><a href="#tabs-1">img</a></li>
+											<li><a href="#tabs-2">img</a></li>
+											<li><a href="#tabs-3">img</a></li>
+										</ul>
+										<div id="tabs-1">
+											<img src="http://dummyimage.com/528x400/eee/fff&text=1" width="100%" />
+										</div>
+										<div id="tabs-2">
+											<img src="http://dummyimage.com/528x400/eee/fff&text=2" width="100%" />
+										</div>
+										<div id="tabs-3">
+											<img src="http://dummyimage.com/528x400/eee/fff&text=3" width="100%" />
+										</div>
+									</div>
+									<div class="data_vis_selection"><select><option>Choose Data Sets (1-5)</option></select></div>
+									<div class="data_vis_rating">
+										<div class="comments"><span class="num">15</span>comments</div>
+										<div class="rate">
+											<div class="stars">
+												<a class="star rated"></a>
+												<a class="star rated"></a>
+												<a class="star"></a>
+												<a class="star"></a>
+												<a class="star"></a>
+											</div>
+											(25 people rated this)
+										</div>
+									</div>
+									<div class="clear"></div>
+								</div>
+							</div>
+							<!-- /data_vis -->
+						</div>
+						
+						<div class="clear"></div>
+					</div>
+				</div>
+				<!-- /data_set_listing -->
+				
+				
+				
+				
+				<!-- save_pdf -->
+				<div class="save_pdf_bottom">
+				<a href="javascript:;">Save this View as a PDF</a>
+				</div>
+				<!-- save_pdf -->
+			</div>
+		</div>
+		<!-- /site_body -->
+	</div>
+	<!-- /wrapper -->
+	
+
+{% endblock body %}
