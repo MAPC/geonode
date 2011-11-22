@@ -1,0 +1,132 @@
+<!-- site_foot -->
+<div id="site_foot">
+		<!-- wrapper -->
+		<div class="wrapper">
+			<!-- sitemap -->
+			<div class="sitemap">
+				<div class="sitemap_cols">
+					<div class="sitemap_col first">
+						<div class="sitemap_col_pad">
+							<ul>
+								<li>About MBDC
+									<ul>
+									{% for page in about_pages %}
+										<li><a href="{{ page.get_absolute_url }}">{{ page.title }}</a></li>
+									{% endfor %}
+									</ul>
+								</li>
+							</ul>
+							
+							<!-- site_foot_social -->
+							<div class="site_foot_social">
+								<a href="javascript:;" class="twitter"></a>
+								<a href="javascript:;" class="facebook"></a>
+								<a href="javascript:;" class="linkedin"></a>
+							</div>
+							<!-- /site_foot_social -->
+						</div>
+					</div>
+					<div class="sitemap_col second">
+						<div class="sitemap_col_pad">
+							<ul>
+								<li>Find Data
+									<div class="second_cols">
+										<div class="second_col">
+											<div class="second_col_pad">
+												<div class="second_col_title">By Topic:</div>
+												<ul>
+												{% for topic in topics %}
+													<li><a href="/topics/{{ topic.0 }}">{{ topic.1 }}</a></li>
+												{% endfor %}
+												</ul>
+											</div>
+										</div>
+										<div class="second_col">
+											<div class="second_col_pad">
+												<div class="second_col_title">By Geographic Data Layer:</div>
+												<ul class="complete_index">
+													<li><a href="javascript:;">Complete Index</a></li>
+												</ul>
+												<ul>
+													<li><a href="javascript:;">link</a></li>
+													<li><a href="javascript:;">link</a></li>
+													<li><a href="javascript:;">link</a></li>
+													<li><a href="javascript:;">link</a></li>
+													<li><a href="javascript:;">link</a></li>
+													<li><a href="javascript:;">link</a></li>
+												</ul> 
+											</div>
+										</div>
+										<div class="clear"></div>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="sitemap_col third">
+						<div class="sitemap_col_pad">
+							<ul>
+								<li>Snapshots &amp; Profiles
+									<ul>
+									{% for snapshot_type in snapshot_types %}
+										<li><a href="/snapshots/{{ snapshot_type.slug }}" title="For {{ snapshot_type.name }}">For {{ snapshot_type.name }}</a></li>
+									{% endfor %}
+									</ul>
+								</li>
+							</ul>
+							<ul>
+								<li><a href="javascript:;">Do It Yourself</a>
+									<ul>
+										<li><a href="javascript:;">link</a></li>
+									</ul>
+								</li>
+							</ul>
+							<ul>
+								<li><a href="javascript:;">Resources</a>
+									<ul>
+										<li><a href="javascript:;">link</a></li>
+										<li><a href="javascript:;">link</a></li>
+										<li><a href="javascript:;">link</a></li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="sitemap_col fourth">
+						<div class="sitemap_col_pad">
+							<ul>
+								<li><a href="javascript:;">Community</a>
+									<ul>
+										<li><a href="javascript:;">link</a></li>
+										<li><a href="javascript:;">link</a></li>
+										<li><a href="javascript:;">link</a></li>
+										<li><a href="javascript:;">link</a></li>
+										<li><a href="javascript:;">link</a></li>
+									</ul>
+								</li>
+							</ul>
+							<ul>
+								<li><a href="javascript:;">Blog</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+			<!-- /sitemap -->
+			<!-- site_foot_content -->
+			<div class="site_foot_content">
+				<div class="logos">
+					<a href="http://www.mapc.org" title="Metropolitan Area Planning Council"><img src="{{ STATIC_URL }}mbdc/img/logo-mapc.png" width="100" height="55" alt="MAPC" /></a>
+					<a><img src="http://dummyimage.com/200x45/000/fff" /></a>
+					<a><img src="http://dummyimage.com/128x45/000/fff" /></a>
+				</div>
+				<div>60 Temple Place Boston, MA 02111   Main Tel: 617-451-2770  |  FAX: 617-451-2770</div>
+				<div><a href="javascipt:;">Data Disclaimer</a> | <a href="javascipt:;">Credits</a> | <a href="javascipt:;">Site Map</a></div>
+				<div class="clear"></div>
+			</div>
+			<!-- /site_foot_content -->
+		</div>
+		<!-- /wrapper -->
+</div>
+<!-- /site_foot -->

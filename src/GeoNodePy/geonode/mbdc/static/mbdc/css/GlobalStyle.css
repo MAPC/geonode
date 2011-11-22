@@ -202,9 +202,9 @@ input[type='radio'] { border:none !important; }
 .sitemap_col.second .second_cols { clear:both; margin: 3px 0 0; }
 .sitemap_col.second .second_col { float:left; width:160px; }
 .sitemap_col.second .second_col_pad { padding:4px 24px 0 0; }
-.sitemap_col.second .second_col:nth-child(2) .second_col_pad {
+/*.sitemap_col.second .second_col:nth-child(2) .second_col_pad {
 padding:18px 24px 0 0;
-}
+}*/
 .sitemap_col.second .second_col_title { color:#666666; font-size:10px; line-height:10px; font-style:italic; font-weight:normal; }
 .sitemap_col.second .complete_index { position:absolute; top:0; margin-left:-8px; }
 .sitemap_col.third { width:180px; }

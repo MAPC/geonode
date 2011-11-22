@@ -1,6 +1,8 @@
 from django import template
 
-from geonode.mbdc.models import Page
+from django.conf import settings
+
+from geonode.mbdc.models import Page, TOPICS
 from geonode.snapshots.models import Regiontype
 
 register = template.Library()
@@ -21,4 +23,17 @@ def get_header_primarynav():
 
 	return {
 		'snapshot_types': snapshot_types,
+	}
+
+@register.inclusion_tag('mbdc/_footer.html')
+def get_footer():
+
+	about_pages = Page.objects.filter(section='about')	
+	snapshot_types = Regiontype.objects.all()
+
+	return {
+		'about_pages': about_pages,
+		'topics': TOPICS[:-1],
+		'snapshot_types': snapshot_types,
+		'STATIC_URL': settings.STATIC_URL
 	}
