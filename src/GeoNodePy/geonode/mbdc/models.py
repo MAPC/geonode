@@ -12,20 +12,20 @@ SECTION_CHOICES = (
 	('about', 'About the Project'),
 )
 
-CATEGORIES = (
-	('dem', 'Demographics'),
-	('art', 'Arts & Culture'),
-	('cvc', 'Civic Vitality'),
-	('ecn', 'Economy'),
-	('edu', 'Education'),
-	('env', 'Environment & Energy'),
-	('hsg', 'Housing'),
-	('lus', 'Land Use & Zoning'),
-	('pbh', 'Public Health'),
-	('pbs', 'Public Safety'),
-	('tec', 'Technology'),
-	('tra', 'Transportation'),
-	('geo', 'Geographic Boundaries'),
+TOPICS = (
+	('demographics', 'Demographics'),
+	('arts-culture', 'Arts & Culture'),
+	('civic-vitality', 'Civic Vitality'),
+	('economy', 'Economy'),
+	('education', 'Education'),
+	('environment-energy', 'Environment & Energy'),
+	('housing', 'Housing'),
+	('land-use-zoning', 'Land Use & Zoning'),
+	('public-health', 'Public Health'),
+	('public-safety', 'Public Safety'),
+	('technology', 'Technology'),
+	('transportation', 'Transportation'),
+	('geographic-boundaries', 'Geographic Boundaries'),
 )
 
 class Hero(models.Model):
