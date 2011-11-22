@@ -1,0 +1,77 @@
+<!-- primary_nav -->
+<div class="primary_nav">
+	<ul>
+		<li class="pri_nav explore">
+			<a href="javascript:;" class="pri_nav_link">Expore Data:</a>
+			<span class="pri_nav_sub">By Topic &amp; Geography</span>
+			<div class="drop_nav">
+				<div class="drop_nav_pad">
+					<ul>
+						<li><a>By Topic</a></li>
+						<li><a>By Geography</a></li>
+					</ul>
+				</div>
+			</div>
+		</li>
+		<li class="pri_nav snapshots">
+			<a href="{% url snapshots-index %}" class="pri_nav_link">Snapshots and Profiles:</a>
+			<span class="pri_nav_sub">Regional trends and current conditions</span>
+			<div class="drop_nav">
+				<div class="drop_nav_pad">
+					<ul>
+ 					{% for snapshot_type in snapshot_types %}
+						<li><a href="/snapshots/{{ snapshot_type.slug }}" title="For {{ snapshot_type.name }}">For {{ snapshot_type.name }}</a></li>
+					{% endfor %}
+					</ul>
+				</div>
+			</div>
+		</li>
+		<li class="pri_nav doit">
+			<a href="javascript:;" class="pri_nav_link">Do-It-Yourself:</a>
+			<span class="pri_nav_sub">Create Your Own Charts &amp; Maps</span>
+			<div class="drop_nav">
+				<div class="drop_nav_pad">
+					<ul>
+						<li>Drop Nav Title</li>
+						<li><a>Drop Nav Link</a></li>
+						<li><a>Drop Nav Link</a></li>
+						<li><a>Drop Nav Link</a></li>
+						<li><a>Drop Nav Link</a></li>
+					</ul>
+				</div>
+			</div>
+		</li>
+		<li class="pri_nav resources">
+			<a href="javascript:;" class="pri_nav_link">Resources:</a>
+			<span class="pri_nav_sub">User Guides &amp; More</span>
+			<div class="drop_nav">
+				<div class="drop_nav_pad">
+					<ul>
+						<li>Drop Nav Title</li>
+						<li><a>Drop Nav Link</a></li>
+						<li><a>Drop Nav Link</a></li>
+						<li><a>Drop Nav Link</a></li>
+						<li><a>Drop Nav Link</a></li>
+					</ul>
+				</div>
+			</div>
+		</li>
+		<li class="pri_nav learning">
+			<a href="javascript:;" class="pri_nav_link">Learning Community:</a>
+			<span class="pri_nav_sub">Get Involved</span>
+			<div class="drop_nav">
+				<div class="drop_nav_pad">
+					<ul>
+						<li>Drop Nav Title</li>
+						<li><a>Drop Nav Link</a></li>
+						<li><a>Drop Nav Link</a></li>
+						<li><a>Drop Nav Link</a></li>
+						<li><a>Drop Nav Link</a></li>
+					</ul>
+				</div>
+			</div>
+		</li>
+	</ul>
+	<div class="clear"></div>
+</div>
+<!-- /primary_nav -->

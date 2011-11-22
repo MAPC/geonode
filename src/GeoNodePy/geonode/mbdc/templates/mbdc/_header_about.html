@@ -1,0 +1,32 @@
+<!-- utility_nav -->
+<div class="utility_nav">
+	<div class="wrapper">
+		<ul class="utility_nav_items">
+			<li class="utility_nav_item">
+				<a href="javascript:;" class="utility_nav_link">About The Project</a>
+				<div class="dropdown">
+					<div class="dropdown_pad">
+						<div class="dropdown_content">
+							<div class="dropdown_title">MetroBoston DataCommon is an online mapping tool.</div>
+							<div class="page_content">
+								<p>The MetroBoston DataCommon, a partnership between the Metropolitan Area Planning Council (MAPC) and the Boston Indicators Project, is an interactive data portal and mapping tool with information about the region’s people, neighborhoods, infrastructure, and environmental resources. It is a resource for all those seeking to better understand how the region and its communities are changing, and help <strong>residents</strong>, <strong>planners</strong>, <strong>city and town officials</strong>, <strong>educators</strong>, and <strong>journalists</strong> explore options and make informed decisions.</p> 
+								
+								<p>We invite you to <a>explore data</a>, <a>explore community snapshots</a> or <a>maps</a>, and <a>create your own maps</a>.</p>
+							
+							</div>
+						</div>
+						<div class="dropdown_nav">
+							<ul>
+							{% for page in about_pages %}
+									<li><a href="{{ page.get_absolute_url }}">{{ page.title }}</a></li>
+							{% endfor %}
+							</ul>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+<!-- utility_nav -->

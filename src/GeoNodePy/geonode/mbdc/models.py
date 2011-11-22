@@ -1,8 +1,32 @@
 from django.utils.translation import ugettext as _
 from django.db import models
+from django.db.models import permalink
+
+from markupfield.fields import MarkupField
+
 
 # limit order from 1-4
 HERO_ORDER_CHOICES = tuple((i, i) for i in range(1,5))
+
+SECTION_CHOICES = (
+	('about', 'About the Project'),
+)
+
+CATEGORIES = (
+	('dem', 'Demographics'),
+	('art', 'Arts & Culture'),
+	('cvc', 'Civic Vitality'),
+	('ecn', 'Economy'),
+	('edu', 'Education'),
+	('env', 'Environment & Energy'),
+	('hsg', 'Housing'),
+	('lus', 'Land Use & Zoning'),
+	('pbh', 'Public Health'),
+	('pbs', 'Public Safety'),
+	('tec', 'Technology'),
+	('tra', 'Transportation'),
+	('geo', 'Geographic Boundaries'),
+)
 
 class Hero(models.Model):
 	""" Content to be showin in the homepage hero (slider) """
@@ -36,4 +60,28 @@ class Featured(models.Model):
 
 	def __unicode__(self):
 	 	return self.visualization.title
+
+
+class Page(models.Model):
+	""" Content for flat pages organized by sections """
+
+	title = models.CharField(max_length=100)
+	slug = models.SlugField(max_length=100)
+	section = models.CharField(max_length=20, null=True, blank=True, choices=SECTION_CHOICES)
+	order = models.IntegerField(blank=True, null=True)
+	content = MarkupField(default_markup_type='markdown', null=True, blank=True)
+
+	class Meta:
+		verbose_name = _('Page')
+		verbose_name_plural = _('Pages')
+		ordering = ['section', 'order', ]
+
+	def __unicode__(self):
+		return self.title
+      
+	@permalink
+	def get_absolute_url(self):
+		return ("mbdc-page", None, { "slug": self.slug, })
+
+    
     

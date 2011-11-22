@@ -139,7 +139,34 @@
 
                       <div class="data_vis_tabs ui-tabs ui-widget ui-widget-content ui-corner-all">
                         <div id="featured-{{ featured.visualization.id }}" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
-                          <img src="{{ MEDIA_URL }}weave_thumbnails/{{ featured.visualization.id }}_featured.png" alt="{{ featured.visualization.title }} - Click to activate" class="data_vis_tn">
+
+
+<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" id="weave-{{ featured.visualization.id }}" name="weave-{{ featured.visualization.id }}" width="455" height="315">
+  <param name="movie" value="{{ WEAVE_URL }}weave.swf" />
+  <param name="quality" value="high" />
+  <param name="bgcolor" value="#ffffff" />
+  <param name="allowscriptaccess" value="always">
+  <param name="base" value="{{ WEAVE_URL }}">
+  <param name="wmode" value="transparent">
+  <!--[if !IE]>-->
+  <object type="application/x-shockwave-flash" data="{{ WEAVE_URL }}weave.swf" id="weave-{{ featured.visualization.id }}" name="weave-{{ featured.visualization.id }}" width="455" height="315">
+    <param name="quality" value="high" />
+    <param name="bgcolor" value="#ffffff" />
+    <param name="allowscriptaccess" value="always" />
+    <param name="base" value="{{ WEAVE_URL }}" />
+    <param name="wmode" value="transparent" />
+  <!--<![endif]-->
+      <img src="{{ MEDIA_URL }}weave_thumbnails/{{ featured.visualization.id }}_featured.png" alt="{{ featured.visualization.title }} - Click to activate" class="data_vis_tn">
+  <!--[if !IE]>-->
+  </object>
+  <!--<![endif]-->
+</object>
+
+
+
+
+
+
                         </div>
                       </div>
 
@@ -267,7 +294,7 @@
    * Called when Weave instance is done loading.
    */ 
   var weaveReady = function(weave) { 
-    
+    console.log(weave);
     weaveId = weave.attributes['id'].value;
     // main session state
     weave.setSessionState([], MBDC.sessionstate[weaveId])
