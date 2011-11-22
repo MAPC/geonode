@@ -1,3 +1,5 @@
+{% load mbdc_extras %}
+
 <!-- site_foot -->
 <div id="site_foot">
 		<!-- wrapper -->
@@ -36,7 +38,7 @@
 												<div class="second_col_title">By Topic:</div>
 												<ul>
 												{% for topic in topics %}
-													<li><a href="/topics/{{ topic.0 }}">{{ topic.1 }}</a></li>
+													<li><a href="{{ topic.0|get_topic_url }}">{{ topic.1 }}</a></li>
 												{% endfor %}
 												</ul>
 											</div>

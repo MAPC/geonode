@@ -1,4 +1,5 @@
 from django import template
+from django.template.defaultfilters import stringfilter
 
 from django.conf import settings
 
@@ -6,6 +7,13 @@ from geonode.mbdc.models import Page, TOPICS
 from geonode.snapshots.models import Regiontype
 
 register = template.Library()
+
+
+@register.filter
+@stringfilter
+def get_topic_url(value):
+    return '/topics/%s' % (value)
+
 
 @register.inclusion_tag('mbdc/_header_about.html')
 def get_header_about():
