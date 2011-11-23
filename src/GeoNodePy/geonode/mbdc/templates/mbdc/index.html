@@ -128,26 +128,18 @@
                         <div id="featured-{{ featured.visualization.id }}" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
 
 
-<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" id="weave-{{ featured.visualization.id }}" name="weave-{{ featured.visualization.id }}" width="455" height="315">
-  <param name="movie" value="{{ WEAVE_URL }}weave.swf" />
-  <param name="quality" value="high" />
-  <param name="bgcolor" value="#ffffff" />
-  <param name="allowscriptaccess" value="always">
-  <param name="base" value="{{ WEAVE_URL }}">
-  <param name="wmode" value="transparent">
-  <!--[if !IE]>-->
+
   <object type="application/x-shockwave-flash" data="{{ WEAVE_URL }}weave.swf" id="weave-{{ featured.visualization.id }}" name="weave-{{ featured.visualization.id }}" width="455" height="315">
     <param name="quality" value="high" />
     <param name="bgcolor" value="#ffffff" />
     <param name="allowscriptaccess" value="always" />
     <param name="base" value="{{ WEAVE_URL }}" />
     <param name="wmode" value="transparent" />
-  <!--<![endif]-->
+
       <img src="{{ MEDIA_URL }}weave_thumbnails/{{ featured.visualization.id }}_featured.png" alt="{{ featured.visualization.title }} - Click to activate" class="data_vis_tn">
-  <!--[if !IE]>-->
+
   </object>
-  <!--<![endif]-->
-</object>
+
 
 
 
@@ -281,45 +273,25 @@
    * Called when Weave instance is done loading.
    */ 
   var weaveReady = function(weave) { 
-    console.log(weave);
-    weaveId = weave.attributes['id'].value;
-    // main session state
-    weave.setSessionState([], MBDC.sessionstate[weaveId])
+    
+    var weaveId = weave.attributes['id'].value;
+    var visId = weaveId.split("-")[1];
 
-    // session state cosmetics
-    weave.setSessionState(['WeaveProperties'], { 
-      backgroundColor: "16777215", // white
-      dashboardMode: true, 
-      enableMenuBar: false,
-      enableToolControls: false  
-    });
-  }
-
-  jQuery(document).ready(function($) {
-
-    // Click on featured visualization image turns it into interactive Weave
-    $('.data_vis_tn')
-      .click(function() {
-
-        var visid = $(this).parent().attr("id").split("-")[1];
-        var that = $(this);
-        // get session state, add weave and remove that image
-        $.getJSON("/visualizations/" + visid + "/sessionstate", function(sessionstate) {
-
-          MBDC.sessionstate["weave-" + visid] = sessionstate;
-          // TODO: 
-          var weave = $('<object id="weave-'+ visid +'" name="weave-'+ visid +'" type="application/x-shockwave-flash" data="' + MBDC.weave_url + 'weave.swf" width="455" height="315"><param name="quality" value="high"><param name="bgcolor" value="#ffffff"><param name="allowfullscreen" value="true"><param name="allowscriptaccess" value="always"><param name="base" value="' + MBDC.weave_url + '"><param name="wmode" value="transparent"></object>');
-          weave.appendTo(that.parent());
-          that.remove(); 
-        });
-        
-      })
-      .hover(function() {
-        $(this).css('cursor','pointer');
-      }, function() {
-        $(this).css('cursor','auto');
+     // load weave session state
+    jQuery.getJSON("/visualizations/" + visId + "/sessionstate", function(sessionstate) {
+      // update session state
+      weave.setSessionState([], sessionstate);
+       // session state cosmetics
+      weave.setSessionState(['WeaveProperties'], { 
+        backgroundColor: "16777215", // white
+        dashboardMode: true, 
+        enableMenuBar: false,
+        enableToolControls: false  
       });
-  });
+
+    });
+
+  }
 
 </script>
 
