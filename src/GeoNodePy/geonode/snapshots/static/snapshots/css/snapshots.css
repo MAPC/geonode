@@ -1,0 +1,10 @@
+
+/* Chosen overrides */
+
+select.chzn-select {
+	width: 100%;
+}
+
+.chzn-container .chzn-results .highlighted {
+  background: #3B5486;
+}
