@@ -1,0 +1,18 @@
+<!-- data_search_bar -->
+<div class="data_search_bar">
+  <div class="data_search_bar_pad">
+    <span class="title">Start A Data Search:</span>
+    
+    <label>Topic:</label>
+    <select>
+    	<option>All</option>
+    	{% for topic in topics %}<option value="{{ topic.0 }}">{{ topic.1 }}</option>{% endfor %}
+    </select>
+    
+    <label>Geographic Data Level:</label>
+    <select><option>All</option></select>
+    <input type="image" src="{{ STATIC_URL }}mbdc/img/Global/header_search.png" />
+    
+  </div>
+</div>
+<!-- /data_search_bar -->

@@ -43,5 +43,12 @@ def get_footer():
 		'about_pages': about_pages,
 		'topics': TOPICS[:-1],
 		'snapshot_types': snapshot_types,
-		'STATIC_URL': settings.STATIC_URL
+		'STATIC_URL': settings.STATIC_URL,
+	}
+
+@register.inclusion_tag('mbdc/_data_search_bar.html')
+def get_data_search_bar():
+	return {
+		'topics': TOPICS[:-1],
+		'STATIC_URL': settings.STATIC_URL,
 	}
