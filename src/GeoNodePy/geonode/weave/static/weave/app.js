@@ -80,7 +80,7 @@ var initMetadataForm = function(weave, options) {
 			// update sessionstate in metadataform
 			Ext.getCmp("metadataForm").getForm().setValues({
 				"sessionstate": JSON.stringify(weave.getSessionState([])),
-				"thumbnail": weave.evaluateExpression(null, 'getBase64Image(Application.application.visDesktop)', null, ['weave.utils.BitmapUtils', 'mx.core.Application']),
+				"thumbnail": weave.evaluateExpression(null, 'getBase64Image(Application.application.visDesktop)', null, ['weave.utils.BitmapUtils', 'mx.core.Application'])
 			});
 			// open metadata window
 			metadataWin.show();
