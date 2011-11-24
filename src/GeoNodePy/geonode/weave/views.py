@@ -28,6 +28,7 @@ from geonode.weave.models import Visualization
 def save_thumbnail(data, visid):
 	"""
 	Saves a base64 Weave visualization image file to the directory 'weave_thumbnails' in the media root.
+	TODO: save in database, otherwise the image bypasses the security architecture
 	"""
 
 	# save visualization image
