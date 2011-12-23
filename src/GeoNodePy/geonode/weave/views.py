@@ -76,13 +76,15 @@ def new(request):
 		try: 
 			# instantiate new visualization
 			visualization = Visualization(owner=request.user)
-			# save visualization thumbnail
-			save_thumbnail(data=request.POST.get('thumbnail'), visid=visualization.id)
 
 			visualization.save()
 			visualization.set_default_permissions()
 			visualization.update_from_viewer(request.POST)
 			transaction.commit()
+
+			# save visualization thumbnail
+			save_thumbnail(data=request.POST.get('thumbnail'), visid=visualization.id)
+
 			return HttpResponse(
 				'{"visid": %i}' % (visualization.id),
 				status=201,
