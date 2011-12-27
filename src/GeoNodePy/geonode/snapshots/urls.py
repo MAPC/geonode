@@ -7,6 +7,11 @@ from django.conf import settings
 
 urlpatterns = patterns('',
 	url(r'^$', views.index, name='snapshots-index'),
-	url(r'^(?P<regiontype_slug>[-\w]+)/$', views.regiontype, name='snapshots-regiontype'),
-	url(r'^(?P<regiontype_slug>[-\w]+)/(?P<regionalunit_slug>[-\w]+)/$', views.regionalunit, name='snapshots-regionalunit'),
+	url(r'^(?P<regiontype_slug>[-\w]+)/$', views.get_regiontype, name='snapshots-regiontype'),
+	url(r'^(?P<regiontype_slug>[-\w]+)/(?P<regionalunit_slug>[-\w]+)/$', views.get_regionalunit, name='snapshots-regionalunit'),
+	url(r'^(?P<regiontype_slug>[-\w]+)/(?P<regionalunit_slug>[-\w]+)/(?P<visid>\d+)/$', views.get_visualization, name='snapshots-visualization'),
+
+	# regiontype/regionalunit/topic/visid
+	# regiontype/regionalunit/datasource
+
 )
