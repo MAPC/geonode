@@ -26,7 +26,7 @@ def get_regiontype(request, regiontype_slug):
 def get_regionalunit(request, regiontype_slug, regionalunit_slug):
 
 	# snapshot types
-	snapshot_types = Regiontype.objects.all()
+	# snapshot_types = Regiontype.objects.all()
 
 	regiontype = get_object_or_404(Regiontype, slug__iexact=regiontype_slug)
 	regionalunit = get_object_or_404(Regionalunit, regiontype=regiontype, slug__iexact=regionalunit_slug)
@@ -34,11 +34,13 @@ def get_regionalunit(request, regiontype_slug, regionalunit_slug):
 	# show all categories except the last one ("Geographic Boundaries")
 	topics = TOPICS[:-1]
 
+	visualizations = Visualization.objects.all()
+
 	return render_to_response('snapshots/regionalunit.html', locals(), context_instance=RequestContext(request))
 
 
-def get_visualization(request, regiontype_slug, regionalunit_slug, visid):
-	""" Get predefined visualization for give regional unit """
+def get_sessionstate(request, regiontype_slug, regionalunit_slug, visid):
+	""" Get predefined session state as XML template for given visualization and regional unit """
 
 	visualization = get_object_or_404(Visualization, pk=visid)
 	regiontype = get_object_or_404(Regiontype, slug__iexact=regiontype_slug)

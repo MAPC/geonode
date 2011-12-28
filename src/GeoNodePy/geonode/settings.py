@@ -7,7 +7,7 @@ _ = lambda x: x
 
 DEBUG = True
 SITENAME = "GeoNode"
-SITEURL = "http://127.0.0.1:8000/"
+SITEURL = "http://localhost:8000/"
 TEMPLATE_DEBUG = DEBUG
 
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))

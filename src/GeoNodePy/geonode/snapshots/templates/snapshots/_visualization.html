@@ -1,0 +1,53 @@
+
+						{% if visualizations.0 %}
+
+						<div class="data_set_list_item">
+							<div class="data_set_list_item_header">
+								<span class="title">{{ topic.1 }}</span> <a href="{{ topic.0 }}" class="link">View All</a>
+							</div>
+							
+							<!-- data_vis -->
+							<div class="data_vis">
+								<div class="data_vis_pad">
+									<div class="data_vis_header">
+										<div class="title"><a href="">{{ visualizations.0.title }}</a></div>
+										<div class="info">Year(s): {{ visualizations.0.year }}  <span class="spacer">&#8226;</span>  Source: {% for source in visualizations.0.source.all %}<a href="{{ source.url }}">{{ source.title }}</a>{% endfor %}</div>
+									</div>
+									<div class="data_vis_tabs">
+										<div id="tabs-1">
+
+											  <object type="application/x-shockwave-flash" data="{{ WEAVE_URL }}weave.swf" id="vis-{{ visualizations.0.pk }}" name="vis-{{ visualizations.0.pk }}" width="333" height="252">
+											    <param name="quality" value="high" />
+											    <param name="bgcolor" value="#ffffff" />
+											    <param name="allowscriptaccess" value="always" />
+											    <param name="base" value="{{ WEAVE_URL }}" />
+											    <param name="wmode" value="transparent" />
+											    <param name=FlashVars value="file={{ SITEURL|slice:':-1' }}{% url geonode.snapshots.views.get_sessionstate regiontype.slug regionalunit.slug visualizations.0.id %}" />
+
+											      <!-- TODO: add thumbnail -->
+											      <p>You need to install Adobe Flash to be able to see this visualization.</p>
+
+											  </object>
+
+										</div>
+									</div>
+
+									
+
+									<div class="data_vis_selection">
+										<select>
+											<option>Choose Visualization</option>
+											{% for visualization in visualizations %}<option>{{ visualization.title }}</option>{% endfor %}
+										</select>
+									</div>
+
+									
+
+									<div class="clear"></div>
+								</div>
+							</div>
+							<!-- /data_vis -->
+
+						</div>
+
+						{% endif %}

@@ -39,7 +39,7 @@ class Regionalunit(models.Model):
 	# unitid = models.IntegerField()
 	name = models.CharField(max_length=100)
 	slug = models.SlugField()
-	regiontype = models.ForeignKey('regiontype', blank=True, null=True)
+	regiontype = models.ForeignKey('Regiontype', blank=True, null=True)
 	geometry = models.MultiPolygonField(srid=26986)
 
 	objects = models.GeoManager()
@@ -53,25 +53,32 @@ class Regionalunit(models.Model):
 	 	return self.name
 
 class Visualization(models.Model):
-	""" Visualizations for Snapshot pages """
+	""" Visualizations for Snapshot pages 
+		TODO: add thumbnail flag, slug
+	"""
 
 	# title, topic, session state, year, source
 	title = models.CharField(max_length=100)
 	topic = models.CharField(max_length=20, choices=TOPICS)
 
-	# sessionstate = models.TextField(_('Session State'), help_text='Weave session state XML incl. Django template variables')
-	sessionstate = models.FileField(_('Session State'), upload_to='snapshots/visualizations', storage=TEMPLATE_PATH, help_text='Weave session state XML incl. Django template variable {{ regionalunit.unitid }}')
-	# sessionstate = models.FilePathField(max_length=200, path="/home/vagrant/dev/mbdc/src/GeoNodePy/geonode/snapshots/templates/snapshots/visualizations", match=".xml", recursive=True)
+	regiontype = models.ForeignKey('Regiontype', default=1)
 
-	year = models.CharField(max_length=20)
-	source = models.ManyToManyField('Datasource')
+	sessionstate = models.FileField(_('Session State'), upload_to='snapshots/visualizations', storage=TEMPLATE_PATH, help_text='Weave session state XML incl. Django template variable {{ regionalunit.unitid }}')
+
+	year = models.CharField(max_length=20, blank=True, null=True)
+	source = models.ManyToManyField('Datasource', blank=True, null=True)
 
 	def __unicode__(self):
 	 	return self.title
 
-	# @permalink
-	# def get_absolute_url(self):
-	# 	return ("mbdc-page", None, { "slug": self.slug, })
+	@permalink
+	def get_sessionstate_url(self, regiontype_slug, regionalunit_slug):
+
+	 	return ('snapshots-sessionstate', None, { 
+	 			'visid': self.id, 
+	 			'regiontype_slug': regiontype_slug,
+	 			'regionalunit_slug': regionalunit_slug,
+	 		})
 
 class Datasource(models.Model):
 	""" Possible data sources """

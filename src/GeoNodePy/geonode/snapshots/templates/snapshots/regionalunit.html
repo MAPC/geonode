@@ -1,6 +1,7 @@
 {% extends "mbdc/base.html" %}
 
 {% load mbdc_extras %}
+{% load snapshots_extras %}
 
 {% block body %}
 
@@ -56,52 +57,7 @@
 						
 					{% for topic in topics %}
 						
-						<div class="data_set_list_item">
-							<div class="data_set_list_item_header">
-								<span class="title">{{ topic.1 }}</span> <a href="{{ topic.0 }}" class="link">View All</a>
-							</div>
-							<!-- data_vis -->
-							<div class="data_vis">
-								<div class="data_vis_pad">
-									<div class="data_vis_header">
-										<div class="title"><a href="javascript:;">Data Set Title Here</a></div>
-										<div class="info">Year(s): 2000  <span class="spacer">&#8226;</span>  Source: <a>Source Title</a></div>
-									</div>
-									<div class="data_vis_tabs">
-										<ul>
-											<li><a href="#tabs-1">img</a></li>
-											<li><a href="#tabs-2">img</a></li>
-											<li><a href="#tabs-3">img</a></li>
-										</ul>
-										<div id="tabs-1">
-											<img src="http://dummyimage.com/528x400/eee/fff&text=1" width="100%" />
-										</div>
-										<div id="tabs-2">
-											<img src="http://dummyimage.com/528x400/eee/fff&text=2" width="100%" />
-										</div>
-										<div id="tabs-3">
-											<img src="http://dummyimage.com/528x400/eee/fff&text=3" width="100%" />
-										</div>
-									</div>
-									<div class="data_vis_selection"><select><option>Choose Data Sets (1-5)</option></select></div>
-									<div class="data_vis_rating">
-										<div class="comments"><span class="num">15</span>comments</div>
-										<div class="rate">
-											<div class="stars">
-												<a class="star rated"></a>
-												<a class="star rated"></a>
-												<a class="star"></a>
-												<a class="star"></a>
-												<a class="star"></a>
-											</div>
-											(25 people rated this)
-										</div>
-									</div>
-									<div class="clear"></div>
-								</div>
-							</div>
-							<!-- /data_vis -->
-						</div>
+						{% get_visualizations topic regiontype regionalunit %}
 
 					{% endfor %}
 						
