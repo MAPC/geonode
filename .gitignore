@@ -44,7 +44,9 @@ nosetests.xml
 
 #local development
 *hero_img*
+*weave_thumbnails*
 *jcs_caching*
+*logs*
 
 man/man1/nosetests.1
 
@@ -55,3 +57,10 @@ notes.md
 # packages
 shared/Alpha-1
 shared/package
+
+# data
+*.shp
+*.shx
+*.dbf
+*.prj
+*migrations*
