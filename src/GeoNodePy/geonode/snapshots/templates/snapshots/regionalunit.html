@@ -3,12 +3,16 @@
 {% load mbdc_extras %}
 {% load snapshots_extras %}
 
+{% block head_javascript %}
+
+{{ block.super }}
+
+{% include "weave/_swfobject.html" %}
+
+{% endblock head_javascript %}
+
 {% block body %}
-
-
-
-
-		
+	
 <!-- breadcrumb -->
 <div class="breadcrumb">
 	<span class="breadcrumb_title">You are here:</span>
@@ -54,42 +58,19 @@
 				<!-- data_set_listing -->
 				<div class="data_set_listing">
 					<div class="data_set_listing_pad">
-						
+
 					{% for topic in topics %}
 						
 						{% get_visualizations topic regiontype regionalunit %}
 
 					{% endfor %}
 
-					<script type="text/javascript">
-
-						  /* 
-						   * Change Session State URL in FlashVars to load new visualization
-						   */ 
-
-							jQuery(".vis_change").change(function() {
-							  var option_val = jQuery("option:selected", this).val();
-							  
-							  // flash object id, FlashVars value
-							  var vis_param = option_val.split("|")
-
-							  // update FlashVars with new session state url
-							  jQuery("#" + vis_param[0] + " param[name=FlashVars]").attr("value", vis_param[1]);
-
-							  // TODO: update title, years and source
-							  // start using swfobject... to reload Flash object
-
-							});
-						  
-					</script>
+					
 						
 						<div class="clear"></div>
 					</div>
 				</div>
 				<!-- /data_set_listing -->
-				
-				
-				
 				
 				<!-- save_pdf -->
 				<div class="save_pdf_bottom">
@@ -102,5 +83,58 @@
 	</div>
 	<!-- /wrapper -->
 	
-
 {% endblock body %}
+
+{% block extra_javascript %}
+
+{{ block.super }}
+
+{% include "weave/_swfobject.html" %}
+
+<script type="text/javascript">
+
+jQuery(document).ready(function($) {
+
+	/* 
+	* Render selected visualization
+	*/
+	$(".vis_change").change(function() {
+
+		// only if something other than the first (empty) is selected
+		if ($(this).prop("selectedIndex") !== 0) {
+
+			// flash-object-id|FlashVars-file-value|title|year|sources
+			var vis_args = $("option:selected", this)
+				.val()
+				.split("|");
+
+			var weave = swfobject.getObjectById(vis_args[0]);
+
+			$.get(vis_args[1], function(data){
+
+				var sessionstate = weave.convertSessionStateXMLToObject(data);
+				weave.setSessionState([], sessionstate);
+
+				// session state cosmetics
+				weave.setSessionState(['WeaveProperties'], { 
+					backgroundColor: "16777215", // white
+					dashboardMode: true, 
+					enableMenuBar: false,
+					enableToolControls: false ,
+					showCopyright: false
+				});
+
+				// update title, years and source
+				$("#" + vis_args[0] + "-meta .title")
+					.html("<a href=''>" + vis_args[2] + "</a>");
+				$("#" + vis_args[0] + "-meta .info")
+				 	.html("Year(s): " + vis_args[3] + "  <span class='spacer'>&#8226;</span>  Source: " + vis_args[4]);		
+			});
+		}
+	});
+
+});
+	  
+</script>
+
+{% endblock extra_javascript %}
