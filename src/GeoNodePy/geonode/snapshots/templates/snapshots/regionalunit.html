@@ -60,6 +60,28 @@
 						{% get_visualizations topic regiontype regionalunit %}
 
 					{% endfor %}
+
+					<script type="text/javascript">
+
+						  /* 
+						   * Change Session State URL in FlashVars to load new visualization
+						   */ 
+
+							jQuery(".vis_change").change(function() {
+							  var option_val = jQuery("option:selected", this).val();
+							  
+							  // flash object id, FlashVars value
+							  var vis_param = option_val.split("|")
+
+							  // update FlashVars with new session state url
+							  jQuery("#" + vis_param[0] + " param[name=FlashVars]").attr("value", vis_param[1]);
+
+							  // TODO: update title, years and source
+							  // start using swfobject... to reload Flash object
+
+							});
+						  
+					</script>
 						
 						<div class="clear"></div>
 					</div>

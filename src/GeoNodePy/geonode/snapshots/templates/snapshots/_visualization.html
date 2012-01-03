@@ -16,13 +16,13 @@
 									<div class="data_vis_tabs">
 										<div id="tabs-1">
 
-											  <object type="application/x-shockwave-flash" data="{{ WEAVE_URL }}weave.swf" id="vis-{{ visualizations.0.pk }}" name="vis-{{ visualizations.0.pk }}" width="333" height="252">
+											  <object type="application/x-shockwave-flash" data="{{ WEAVE_URL }}weave.swf" id="{{ topic.0 }}" name="{{ topic.0 }}" width="333" height="252">
 											    <param name="quality" value="high" />
 											    <param name="bgcolor" value="#ffffff" />
 											    <param name="allowscriptaccess" value="always" />
 											    <param name="base" value="{{ WEAVE_URL }}" />
 											    <param name="wmode" value="transparent" />
-											    <param name=FlashVars value="file={{ SITEURL|slice:':-1' }}{% url geonode.snapshots.views.get_sessionstate regiontype.slug regionalunit.slug visualizations.0.id %}" />
+											    <param name="FlashVars" value="file={{ SITEURL|slice:':-1' }}{% url geonode.snapshots.views.get_sessionstate regiontype.slug regionalunit.slug visualizations.0.id %}" />
 
 											      <!-- TODO: add thumbnail -->
 											      <p>You need to install Adobe Flash to be able to see this visualization.</p>
@@ -32,16 +32,12 @@
 										</div>
 									</div>
 
-									
-
 									<div class="data_vis_selection">
-										<select>
+										<select class="vis_change">
 											<option>Choose Visualization</option>
-											{% for visualization in visualizations %}<option>{{ visualization.title }}</option>{% endfor %}
+											{% for visualization in visualizations %}<option value="{{ topic.0 }}|file={{ SITEURL|slice:':-1' }}{% url geonode.snapshots.views.get_sessionstate regiontype.slug regionalunit.slug visualization.id %}">{{ visualization.title }}</option>{% endfor %}
 										</select>
 									</div>
-
-									
 
 									<div class="clear"></div>
 								</div>
