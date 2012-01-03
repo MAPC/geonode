@@ -3,9 +3,18 @@
 {% load mbdc_extras %}
 {% load snapshots_extras %}
 
-{% block body %}
 
-		
+{% block head_javascript %}
+
+{{ block.super }}
+
+{% include "weave/_swfobject.html" %}
+
+{% endblock head_javascript %}
+
+
+{% block body %}
+	
 <!-- breadcrumb -->
 <div class="breadcrumb">
 	<span class="breadcrumb_title">You are here:</span>
@@ -56,23 +65,42 @@
 								<div class="data_vis_pad">
 									<div class="data_vis_header">
 										<div class="title"><a href="">{{ visualization.title }}</a></div>
-										<div class="info">Year(s): {{ visualizations.0.year }}  <span class="spacer">&#8226;</span>  Source: {% for source in visualization.source.all %}<a href="{{ source.url }}">{{ source.title }}</a>{% endfor %}</div>
+										<div class="info">Year(s): {{ visualization.year }}  <span class="spacer">&#8226;</span>  Source: {% for source in visualization.source.all %}<a href="{{ source.url }}">{{ source.title }}</a>{% endfor %}</div>
 									</div>
 									<div class="data_vis_tabs">
 										<div id="tabs-1">
 
-											  <object type="application/x-shockwave-flash" data="{{ WEAVE_URL }}weave.swf" id="vis-{{ visualizations.0.pk }}" name="vis-{{ visualizations.0.pk }}" width="333" height="252">
-											    <param name="quality" value="high" />
-											    <param name="bgcolor" value="#ffffff" />
-											    <param name="allowscriptaccess" value="always" />
-											    <param name="base" value="{{ WEAVE_URL }}" />
-											    <param name="wmode" value="transparent" />
-											    <param name=FlashVars value="file={{ SITEURL|slice:':-1' }}{% url geonode.snapshots.views.get_sessionstate regiontype.slug regionalunit.slug visualization.id %}" />
+											<div id="vis-{{ visualization.id }}">
+												<!-- TODO: add thumbnail -->
+												<p>Please install Adobe Flash to be able to see this visualization.</p>
+											</div>
 
-											      <!-- TODO: add thumbnail -->
-											      <p>You need to install Adobe Flash to be able to see this visualization.</p>
+											<script type="text/javascript">
 
-											  </object>
+												// FlashVars and attributes
+												MBDC.swfobject.vis["vis-{{ visualization.id }}"] = {
+													flashvars: {
+														file: "{{ SITEURL|slice:':-1' }}{% url geonode.snapshots.views.get_sessionstate regiontype.slug regionalunit.slug visualization.id %}"
+													},
+													attributes: {
+														id: "vis-{{ visualization.id }}",
+														name: "vis-{{ visualization.id }}"
+													}
+												};
+
+												// add Flash object
+												swfobject.embedSWF(
+													"{{ WEAVE_URL }}weave.swf", 
+													"vis-{{ visualization.id }}", 
+													"333", "252", 
+													"10.0.0",
+													"expressInstall.swf", 
+													MBDC.swfobject.vis["vis-{{ visualization.id }}"].flashvars, 
+													MBDC.swfobject.params, 
+													MBDC.swfobject.vis["vis-{{ visualization.id }}"].attributes
+												);
+
+											</script>
 
 										</div>
 									</div>
