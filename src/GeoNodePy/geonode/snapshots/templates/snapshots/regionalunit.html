@@ -110,8 +110,20 @@ jQuery(document).ready(function($) {
 
 			var weave = swfobject.getObjectById(vis_args[0]);
 
-			$.get(vis_args[1], function(data){
+			$.get(vis_args[1], function(xmlData){
 
+				// XML to string conversion
+				// TODO make function globally available
+				function XMLToString(oXML) {
+					if (window.ActiveXObject) {
+						return oXML.xml;
+					} else {
+						return (new XMLSerializer()).serializeToString(oXML);
+					}
+				}
+
+				// Weave API method only accepts strings
+				var data = XMLToString(xmlData);
 				var sessionstate = weave.convertSessionStateXMLToObject(data);
 				weave.setSessionState([], sessionstate);
 

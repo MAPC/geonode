@@ -45,8 +45,9 @@ def get_sessionstate(request, regiontype_slug, regionalunit_slug, visid):
 	visualization = get_object_or_404(Visualization, pk=visid)
 	regiontype = get_object_or_404(Regiontype, slug__iexact=regiontype_slug)
 	regionalunit = get_object_or_404(Regionalunit, regiontype=regiontype, slug__iexact=regionalunit_slug)
-
-	return render_to_response(visualization.sessionstate.name, locals(), context_instance=RequestContext(request))
+	
+	# TODO: change to correct mimetype 'application/xml' once http://bugs.oicweave.org/issues/755 is resolved
+	return render_to_response(visualization.sessionstate.name, locals(), context_instance=RequestContext(request), mimetype='application/xml')
 
 
 def get_topic(request, regiontype_slug, regionalunit_slug, topic_slug):
