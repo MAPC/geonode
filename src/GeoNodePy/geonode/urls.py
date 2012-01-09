@@ -53,6 +53,8 @@ urlpatterns = patterns('',
     (r'^accounts/', include('registration.urls')),
     (r'^profiles/', include('profiles.urls')),
     (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
+    url(r'^crossdomain\.xml$', 'django.views.generic.simple.direct_to_template',
+               {'template': 'weave/crossdomain.xml', 'mimetype': 'application/xml'},),
     )
 
 urlpatterns += proxy_urlpatterns
