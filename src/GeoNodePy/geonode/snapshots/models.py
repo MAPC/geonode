@@ -66,7 +66,7 @@ class Visualization(models.Model):
 	sessionstate = models.FileField(_('Session State'), upload_to='snapshots/visualizations', storage=TEMPLATE_PATH, help_text='Weave session state XML incl. Django template variable {{ regionalunit.unitid }}')
 
 	year = models.CharField(max_length=20, blank=True, null=True)
-	source = models.ManyToManyField('Datasource', blank=True, null=True)
+	source = models.ManyToManyField('mbdc.Datasource', blank=True, null=True)
 
 	def __unicode__(self):
 	 	return self.title
@@ -79,19 +79,3 @@ class Visualization(models.Model):
 	 			'regiontype_slug': regiontype_slug,
 	 			'regionalunit_slug': regionalunit_slug,
 	 		})
-
-class Datasource(models.Model):
-	""" Possible data sources """
-
-	title = models.CharField(max_length=100)
-	slug = models.SlugField()
-
-	url = models.URLField(blank=True, null=True)
-	description = models.TextField(blank=True, null=True)
-
-	def __unicode__(self):
-	 	return self.title
-
-	# @permalink
-	# def get_absolute_url(self):
-	# 	return ("mbdc-page", None, { "slug": self.slug, })

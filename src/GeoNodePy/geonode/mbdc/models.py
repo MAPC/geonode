@@ -12,6 +12,7 @@ SECTION_CHOICES = (
 	('about', 'About the Project'),
 )
 
+# DataCommon topics (data categories): ('slug', 'verbose title')
 TOPICS = (
 	('demographics', 'Demographics'),
 	('arts-culture', 'Arts & Culture'),
@@ -83,5 +84,20 @@ class Page(models.Model):
 	def get_absolute_url(self):
 		return ("mbdc-page", None, { "slug": self.slug, })
 
-    
-    
+class Datasource(models.Model):
+	""" 
+	Data sources picklist to be used accross the project. 
+	"""
+
+	title = models.CharField(max_length=100)
+	slug = models.SlugField()
+
+	url = models.URLField(blank=True, null=True)
+	description = models.TextField(blank=True, null=True)
+
+	def __unicode__(self):
+	 	return self.title
+
+	# @permalink
+	# def get_absolute_url(self):
+	# 	return ("mbdc-page", None, { "slug": self.slug, })

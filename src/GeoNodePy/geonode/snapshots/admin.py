@@ -1,6 +1,7 @@
 from django.contrib.gis import admin
 
-from geonode.snapshots.models import Regionalunit, Regiontype, Visualization, Datasource
+from geonode.snapshots.models import Regionalunit, Regiontype, Visualization
+
 
 class RegionalunitAdmin(admin.OSMGeoAdmin):    
     list_filter = ['regiontype', ]
@@ -12,11 +13,6 @@ class RegionalunitAdmin(admin.OSMGeoAdmin):
 class RegiontypeAdmin(admin.ModelAdmin):
 	prepopulated_fields = {'slug': ('name',)}
 
-class DatasourceAdmin(admin.ModelAdmin):
-	list_display = ('title', )
-	prepopulated_fields = {'slug': ('title',)}
-
 admin.site.register(Regionalunit, RegionalunitAdmin)
 admin.site.register(Regiontype, RegiontypeAdmin)
 admin.site.register(Visualization, admin.ModelAdmin)
-admin.site.register(Datasource, DatasourceAdmin)
