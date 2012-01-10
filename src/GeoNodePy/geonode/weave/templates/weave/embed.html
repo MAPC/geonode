@@ -1,36 +1,80 @@
-{% load i18n %}
-{% load geonode_auth %}
 <!doctype html >
 <html>
 <head>
 <title>{{ visualization.title }}</title>
 
-{% include "geonode/ext_header.html" %}
+<script language="JavaScript" src="{{ STATIC_URL }}mbdc/js/jquery-library.js" type="text/javascript"></script>
 
-<script type="text/javascript" src="{{ STATIC_URL }}weave/utils.js"></script>
+
+
 <script type="text/javascript">
-	var weaveReady = function(weave) {
-		Ext.Ajax.request({
-			url: "{{ visualization.get_absolute_url }}sessionstate",
-			method: "GET",
-			success: function(xhr) {
-				var sessionstate = Ext.decode(xhr.responseText);
-				sessionstate = embedWeave(sessionstate);
-				weave.setSessionState([], sessionstate);
-			},
-			failure: function(xhr) {
-				console.log("Failure!\n" + xhr.responseText);
-			}
-		});
+	/*
+	* Global MBDC object
+	*/
+	var MBDC = {
+		weave_url: "{{ WEAVE_URL }}",
+		sessionstate: {},
+		swfobject: {
+			vis: {}
+		}
 	}
+
+	// called when Weave JavaScript API is ready
+	var weaveReady = function(weave) { 
+
+		// load session state for existing visualization
+		jQuery.getJSON("{{ visualization.get_absolute_url }}sessionstate",
+			function (data) {
+				weave.setSessionState([], data);
+				// visual cosmetics
+				weave.setSessionState(["WeaveProperties"], { 
+					backgroundColor: "16777215", // white 
+					showCopyright: false,
+					dashboardMode: true,
+					enableMenuBar: false,
+					enableToolControls: false
+				});
+			}
+		);
+	}
+
+	jQuery(document).ready(function($) {
+
+		// FlashVars and attributes
+		MBDC.swfobject.vis["vis-{{ visualization.id|default:'new' }}"] = {
+			flashvars: {},
+			attributes: {
+				id: "vis-{{ visualization.id|default:'new' }}",
+				name: "vis-{{ visualization.id|default:'new' }}"
+			}
+		};
+
+		// add Weave Flash object
+		swfobject.embedSWF(
+			"{{ WEAVE_URL }}weave.swf", 
+			"vis-{{ visualization.id|default:'new' }}", 
+			"100%", "100%", 
+			"10.0.0",
+			"expressInstall.swf", 
+			MBDC.swfobject.vis["vis-{{ visualization.id|default:'new' }}"].flashvars, 
+			MBDC.swfobject.params, 
+			MBDC.swfobject.vis["vis-{{ visualization.id|default:'new' }}"].attributes
+		);
+
+	});
 </script>
+
+{% include "weave/_swfobject.html" %}
+
 <style type="text/css">
-	html, body, #weave {
+	html, body, #vis-{{ visualization.id|default:'new' }} {
 		width: 100%;
-		height: 100%;
+		height: 99%;
+		margin: 0;
+		padding: 0;
 	}
 </style>
 </head>
 <body>
-	{% include "weave/object.html" %}
+	<div id="vis-{{ visualization.id|default:'new' }}"></div>
 </body>

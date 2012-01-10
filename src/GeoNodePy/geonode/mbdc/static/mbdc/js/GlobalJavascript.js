@@ -161,7 +161,8 @@ jQuery(document).ready(function($) {
 	
 	//data_vis_tabs
 	if ( $('div.data_vis_tabs').length ) {
-		$( ".data_vis_tabs" ).each(function(){$(this).tabs();})
+		// FIXME: cleanup! adds too much stuff once jQuery UI CSS is available
+		// $( ".data_vis_tabs" ).each(function(){$(this).tabs();})
 	}
 	
 	//home_weave_rotator
@@ -202,6 +203,16 @@ jQuery(document).ready(function($) {
 		});
 	}
 	
+	//vis properties form
+	if ( $('div.vis_properties_form').length ) {
+		$( ".data_vis_header .expand_link" ).toggle(function(){
+			$(this).html('Edit Properties [-]')
+			$('.vis_properties_form:first').show();
+		},function(){
+			$(this).html('Edit Properties [+]')
+			$('.vis_properties_form').hide();
+		});
+	}
 	
 	//related_vis
 	if ( $('div.related_vis').length ) {

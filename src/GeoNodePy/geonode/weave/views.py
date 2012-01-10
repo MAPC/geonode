@@ -61,9 +61,12 @@ def new(request):
 	The view returns the default visualization.
 	A POST request saves a new visualization.
 	"""
+
+	siteurl = settings.SITEURL[:-1]
+
 	if request.method == 'GET':
 		# we treat visualization nr 1 as default visualization (session state)
-		visualization = get_object_or_404(Visualization, pk=1)
+		perm_change = True
 		return render_to_response('weave/edit.html', locals(), 
 			context_instance=RequestContext(request)
 		)
@@ -87,7 +90,7 @@ def new(request):
 			save_thumbnail(data=request.POST.get('thumbnail'), visid=visualization.id)
 
 			return HttpResponse(
-				'{"visid": %i}' % (visualization.id),
+				'{"visurl": "%s"}' % (visualization.get_absolute_url()),
 				status=201,
 				mimetype='application/json'
 			)
@@ -106,17 +109,24 @@ def edit(request, visid):
 	The view that returns the visualization page for given visualization ID.
 	A POST request updates given visualization.
 	"""
+
 	visualization = get_object_or_404(Visualization, pk=visid)
-	
+	siteurl = settings.SITEURL[:-1]
+
 	if request.method == 'GET':
-		# check permissons
+
+		# check permissons TODO: render to default template
 		if not request.user.has_perm("weave.view_visualization", obj=visualization):
 			return HttpResponse(
 					"You don't have permission to view this visualizations.",
 					mimetype="text/plain",
 					status=401)
+
+		perm_change = request.user.has_perm("weave.change_visualization", obj=visualization)
+
 		return render_to_response("weave/edit.html", locals(),
 			context_instance=RequestContext(request))
+
 	elif request.method == 'POST':
 		# check permissions
 		if not request.user.has_perm("weave.change_visualization", obj=visualization):

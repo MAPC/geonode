@@ -496,7 +496,20 @@ clear:left;
 .data_vis_header .title a { text-decoration:none !important; }
 .data_vis_header .info { font-size:12px; line-height:18px; }
 .data_vis_header .spacer { color:#b3bc5f; font-size:13px; line-height:18px; font-weight:bold; padding: 0 3px; }
-.data_vis_nav { float:right; width:60%; text-align:right; font-size:11px; line-height:18px; }
+
+#spinner {
+	color: #354F83;
+	float: right;
+	margin-top: 10px;
+}
+
+.data_vis_nav { 
+	float:right; 
+	width:60%; 
+	text-align:right; 
+	font-size:11px; 
+	line-height:18px; 
+}
 .data_vis_nav .spacer { }
 .data_vis_nav a { }
 .data_vis_nav .more { padding-right:10px; margin-right:5px; background:url(../img/Global/viz_link_arrow.png) right 5px no-repeat; color:#354F83; position:relative; }
@@ -507,6 +520,21 @@ clear:left;
 .data_vis_nav .dropdown ul li { border-bottom:1px solid #dadbdd; margin:0; padding:5px 2px; }
 .data_vis_nav .dropdown ul li:last-child { border-bottom:none; }
 .data_vis_nav .dropdown ul li a { display:block; text-decoration:none !important; font-size:10px; line-height:14px; }
+
+#embed-code {
+	float: right;
+    padding-right: 7px;
+    width: 60%;
+    display: none;
+    font-size:11px;
+}
+
+#embed-code input {
+	width: 100%;
+	font-size:11px;
+
+}
+
 
 .data_vis_tabs { clear:both; }
 .data_vis_tabs .ui-tabs-hide { display:none; }
@@ -564,6 +592,31 @@ clear:left;
 .data_set_list_item_header { border-bottom:1px solid #e2e3e2; padding-bottom:10px; margin-bottom:15px; }
 .data_set_list_item_header .title { font: bold 18px/22px 'PT Serif', Times, serif; color:#354F83; }
 .data_set_list_item_header .link { font-size:13px; line-height:18px; margin-left:10px; text-decoration:underline !important; }
+/* vis properties form*/
+
+.vis_properties_form {
+	width: 100%;
+	float: left;
+    padding-top: 15px;
+    display: none;
+}
+
+.vis_properties_form_label {
+	float: left;
+	width: 60px;
+}
+
+.vis_properties_form form input, .vis_properties_form form textarea {
+	width: 200px;
+	font-size: 11px;
+	margin-bottom: 1px;
+}
+
+#save-properties-button {
+	float:left;
+	margin-left: 60px;
+}
+
 /* related_vis */
 .related_vis { }
 .related_vis_pad { padding:25px 25px 10px; border-bottom:1px solid #e3e3e4; margin-bottom:25px; }
@@ -749,3 +802,8 @@ clear:left;
 .page_content .grid_table td { }
 .page_content .grid_table th { padding:14px 10px 10px; text-align:left; font-weight:bold; border-bottom:2px solid #ccc; }
 .page_content .grid_table td { padding:10px; vertical-align:top; border-bottom:1px solid #ccc; }
+
+/* weave */
+.weave_container {
+	border: 1px solid #E7E7E4;
+}
