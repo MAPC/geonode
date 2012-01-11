@@ -197,19 +197,18 @@
 							<br />
 							<div class="vis_properties_form_label"><label for="abstract"></label>Short description</div>
 							<textarea id="abstract" name="abstract">{{ visualization.abstract }}</textarea>
-							<div><a id="save-properties-button" href="">Save</a></div>
+							<div>{% if user.is_authenticated %}<a id="save-properties-button" class="properties_button" href="#">Save</a>{% else %}<a class="properties_button" href="/accounts/login">{% trans "Login to Save Visualization" %}</a>{% endif %}</div>
 					</form>
 				</div>
 
 				<div class="data_vis_nav">
 					{% if user.is_authenticated %}
-						<a id="save-button" href="">Save</a> 
+						<a id="save-button" href="#">Save</a> 
 						<span id="duplicate-spacer" class="spacer">|</span> <a id="duplicate-button" href="">Duplicate</a>
 					{% else %}
-					<!-- FIXME: this should be updated to a url var -->
 					<a href="/accounts/login">{% trans "Login to Save Visualization" %}</a>
 					{% endif %}
-					<span id="embed-spacer" class="spacer">|</span> <a id="embed-button" href="">Embed</a>
+					<span id="embed-spacer" class="spacer">|</span> <a id="embed-button" href="#">Embed</a>
 				</div>
 
 				<div id="embed-code">Please copy&amp;paste the embed-code below into your website:<input type="text" /></div>
