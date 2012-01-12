@@ -1,11 +1,39 @@
-{% extends "profiles/base.html" %}
+{% extends "registration/base.html" %}
+{% load i18n %}
 
-{% block main %}
-<div class="twocol">
-  <form action="" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Submit" />
-  </form>
+{% load mbdc_extras %}
+
+{% block body %}
+
+
+<!-- breadcrumb -->
+<div class="breadcrumb">
+  <span class="breadcrumb_title">You are here:</span>
+    <a class="breadcrumb_link" href="/">Home</a>
+    <span class="breadcrumb_current">Profiles</span>
 </div>
+<!-- /breadcrumb -->
+
+    
+{% get_data_search_bar %}
+
+<!-- site_body -->
+<div class="site_body">
+	<div class="site_body_pad">
+		<div class="generic_block form_wrap">
+	    	<div class="generic_header form_header">
+
+	    		<h2>Create your profile</h2>
+
+				<form action="" method="post">
+				    {% csrf_token %}
+				    {{ form.as_p }}
+				    <input type="submit" value="Submit" />
+				  </form>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /site_body -->
+
 {% endblock %}

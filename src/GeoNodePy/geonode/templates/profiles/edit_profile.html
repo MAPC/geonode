@@ -1,33 +1,61 @@
-{% extends "profiles/base.html" %}
+{% extends "registration/base.html" %}
 {% load i18n avatar_tags %}
 
-{% block content %}
-<div class="onecol">
-  <h2>Edit {{ profile.user.username }}'s profile</h2>
-  <p>{% trans "Your current avatar: " %}</p>
-  {% avatar user %}
-  {% if not avatars %}
-  <p>{% trans "You haven't uploaded an avatar yet. Please upload one now." %}</p>
-  {% else %}
-  <form method="POST" action="{% url avatar_change %}">
-    <ul>
-      {{ primary_avatar_form.as_ul }}
-    </ul>
-    <p>{% csrf_token %}<input type="submit" value="{% trans "Choose new Default" %}" /></p>
-  </form>
-  {% endif %}
+{% load mbdc_extras %}
 
-  <form enctype="multipart/form-data" method="POST" action="{% url avatar_add %}">
-    {{ upload_avatar_form.as_p }}
-    <p>{% csrf_token %}<input type="submit" value="{% trans "Upload New Image" %}" /></p>
-  </form>
+{% block body %}
 
-  <form action="" method="post">
-  {% csrf_token %}
-  <ul class="form">
-   {{ form.as_ul }}
-  </ul>
-  <input type="submit" value="Submit" />
-  </form>
+
+<!-- breadcrumb -->
+<div class="breadcrumb">
+  <span class="breadcrumb_title">You are here:</span>
+    <a class="breadcrumb_link" href="/">Home</a>
+    <span class="breadcrumb_current">Edit Profile</span>
 </div>
+<!-- /breadcrumb -->
+
+    
+{% get_data_search_bar %}
+
+<!-- site_body -->
+<div class="site_body">
+  <div class="site_body_pad">
+    <div class="generic_block form_wrap">
+        <div class="generic_header form_header">
+
+        <h2>Edit {{ profile.user.username }}'s profile</h2>
+        <p>{% trans "Your current avatar: " %}</p>
+        {% avatar user %}
+        {% if not avatars %}
+        <!-- <p>{% trans "You haven't uploaded an avatar yet. Please upload one now." %}</p> -->
+        {% else %}
+<!--         <form method="POST" action="{% url avatar_change %}">
+          <ul>
+            {{ primary_avatar_form.as_ul }}
+          </ul>
+          <p>{% csrf_token %}<input type="submit" value="{% trans "Choose new Default" %}" /></p>
+        </form> -->
+        {% endif %}
+
+<!--         <form enctype="multipart/form-data" method="POST" action="{% url avatar_add %}">
+          {{ upload_avatar_form.as_p }}
+          <p>{% csrf_token %}<input type="submit" value="{% trans "Upload New Image" %}" /></p>
+        </form> -->
+
+        <form action="" method="post">
+        {% csrf_token %}
+        <ul class="form">
+         {{ form.as_ul }}
+        </ul>
+        <input type="submit" value="Submit" />
+        </form>
+        
+
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /site_body -->
+
 {% endblock %}

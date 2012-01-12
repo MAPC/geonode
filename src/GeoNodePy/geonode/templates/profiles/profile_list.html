@@ -1,14 +1,41 @@
-{% extends "profiles/base.html" %}
+{% extends "registration/base.html" %}
 {% load avatar_tags %}
 
-{% block content %}
-<div class="onecol">
-{% for profile in object_list %}
-   {% if profile.user %}
-   <ul>
-     <li>{% avatar profile.user 50 %}<a href="{{profile.get_absolute_url}}">{{ profile.name }}</a></li>
-   </ul>
-    {% endif %}
-{% endfor %}
+{% load mbdc_extras %}
+
+{% block body %}
+
+
+<!-- breadcrumb -->
+<div class="breadcrumb">
+  <span class="breadcrumb_title">You are here:</span>
+    <a class="breadcrumb_link" href="/">Home</a>
+    <span class="breadcrumb_current">Profiles</span>
 </div>
+<!-- /breadcrumb -->
+
+    
+{% get_data_search_bar %}
+
+<!-- site_body -->
+<div class="site_body">
+	<div class="site_body_pad">
+		<div class="generic_block form_wrap">
+	    	<div class="generic_header form_header">
+
+	    		<h2>User Profiles</h2>
+
+				{% for profile in object_list %}
+				   {% if profile.user %}
+				   <ul>
+				     <li>{% avatar profile.user 50 %}<a href="{{profile.get_absolute_url}}">{{ profile.name }}</a></li>
+				   </ul>
+				    {% endif %}
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /site_body -->
+
 {% endblock %}

@@ -1,32 +1,61 @@
-{% extends "profiles/base.html" %}
-{% block head %}
+{% extends "registration/base.html" %}
+
+
+{% load i18n avatar_tags %}
+{% load mbdc_extras %}
+
+
+{% block head_javascript %}
+
+{{ block.super }}
+
+<script type="text/javascript" src="{% url django.views.i18n.javascript_catalog %}"></script>
 {% include "geonode/ext_header.html" %}
 {% include "geonode/app_header.html" %}
-{{ block.super }}
+
 {% endblock %}
-{% load i18n avatar_tags %}
-{% block content %}
-<div class="threecol">
-  <div style="float: right">{% avatar profile.user 70 %}</div>
+
+
+{% block body %}
+
+
+<!-- breadcrumb -->
+<div class="breadcrumb">
+  <span class="breadcrumb_title">You are here:</span>
+    <a class="breadcrumb_link" href="/">Home</a>
+    <span class="breadcrumb_current">Profile</span>
+</div>
+<!-- /breadcrumb -->
+
+    
+{% get_data_search_bar %}
+
+<!-- site_body -->
+<div class="site_body">
+  <div class="site_body_pad">
+    <div class="generic_block form_wrap">
+        <div class="generic_header form_header">
+
+         <div style="float: right">{% avatar profile.user 70 %}</div>
   <h2>{{ profile.name }}</h2>
   {% if user == profile.user %}
   <h3>{% trans "Actions" %}</h3>
   <ul>
     <li><a href="{% url data_upload %}">{% trans "Upload new data" %}</a></li>
     <li><a href="{% url map_new %}">{% trans "Create a new map" %}</a></li>
+    <li><a href="{% url weave-new %}">{% trans "Create a new Weave visualization" %}</a></li>
   </ul>
   <h3>{% trans "Settings" %}</h3>
   <ul>
     <li><a href="{% url profiles_edit_profile %}">{% trans "Edit profile information" %}</a></li>
   </ul>
   {% endif %}
-</div>
-{% endblock %}
-{% block sidebar %}
-<div class="twocol">
+
+
+
     <h2> {% trans "Maps & Data" %} </h2>
     <div id="assets"></div>
-</div>
+
 <script type="text/javascript">
 Ext.onReady(function() {
     var mapsAndLayers = [];
@@ -208,4 +237,17 @@ Ext.onReady(function() {
     {% endif %}
 });
 </script>
+
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /site_body -->
+
 {% endblock %}
+
