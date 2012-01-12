@@ -1,8 +1,34 @@
 {% extends "registration/base.html" %}
 {% load i18n %}
 
-{% block main %}
-<div class="twocol">
-  <p>{% trans "You are now registered. Activation email sent." %}</p>
+{% load mbdc_extras %}
+
+{% block body %}
+
+
+<!-- breadcrumb -->
+<div class="breadcrumb">
+  <span class="breadcrumb_title">You are here:</span>
+    <a class="breadcrumb_link" href="/">Home</a>
+    <span class="breadcrumb_current">Registration Complete</span>
 </div>
+<!-- /breadcrumb -->
+
+    
+{% get_data_search_bar %}
+
+
+<!-- site_body -->
+<div class="site_body">
+	<div class="site_body_pad">
+		<div class="generic_block form_wrap">
+	    	<div class="generic_header form_header">
+				<h2>Register Complete</h2>
+				<p>{% trans "You are now registered. An activation email was sent to your address." %}</p>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /site_body -->
+
 {% endblock %}

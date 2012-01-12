@@ -93,10 +93,11 @@ h6,
 p,
 a { word-wrap:break-word; }
 .clear { clear:both; overflow:hidden; height:0; line-height:0; font-size:0; }
-input,
-textarea,
-select,
-option { color:#222222; font-family:Arial, Helvetica, sans-serif; }
+input, textarea, select, option { 
+	color:#222222; 
+	font-family:Arial, Helvetica, sans-serif; 
+	font-size: 13px;
+}
 .j_on input.clear_value_off { color:#CCCCCC !important; }
 input[type='checkbox'] { border:none !important; }
 input[type='radio'] { border:none !important; }
@@ -313,7 +314,7 @@ ul.home_featured_maps_rotator li.home_featured_maps_slide { float:left; margin-r
 .home_latest_data_item .info { display:block; font-size:13px; line-height:18px; }
 .home_latest_data_item .info .spacer { color:#b3bc5f; font-size:13px; line-height:18px; font-weight:bold; padding: 0 3px; }
 /* breadcrumb */
-.breadcrumb { background:#f8f8f8; border:1px solid #cecece; border-width:1px 0; padding:3px 23px; line-height:13px; margin-top:25px; }
+.breadcrumb { background:#f8f8f8; border:1px solid #cecece; border-width:1px 0; padding:3px 23px; line-height:13px; margin-top:8px; }
 .breadcrumb .breadcrumb_title { color:#666666; font-size:12px; font-weight:bold; padding-right:12px; font-size:11px; line-height:18px; }
 .breadcrumb .breadcrumb_link { font-size:11px; color:#556c9a !important; margin-right:12px; }
 .breadcrumb .breadcrumb_link:hover { text-decoration:underline; }
@@ -367,14 +368,29 @@ ul.home_featured_maps_rotator li.home_featured_maps_slide { float:left; margin-r
 .form_content fieldset legend.form_req { font-size:12px; color:#860038; float:right; background:none; }
 .form_content fieldset .formcell { padding:7px 40px 7px 0; margin:0 0 5px; clear:both; }
 .form_content fieldset .form_req { background:transparent url(../img/Global/asterix.gif) no-repeat scroll 3px 15px; }
-.form_content fieldset .formcell label { display:inline-block; width:80px; padding:0 25px 0 20px; font-size:13px; }
-.form_content fieldset .formcell input[type="text"] { display:inline-block; width:390px; height:23px; line-height:23px; border:1px inset #eeeeee; -webkit-box-shadow: inset 1px 1px 2px 0px #999999; -moz-box-shadow: inset 1px 1px 2px 0px #999999; box-shadow: inset 1px 1px 2px 0px #999999; background:#ffffff; }
+.form_content fieldset .formcell label { display:inline-block; width:100px; padding:0 25px 0 20px; font-size:13px; }
+.form_content fieldset .formcell input[type="text"], .form_content fieldset .formcell input[type="password"] { 
+	display:inline-block; 
+	width:390px; 
+	height:23px; 
+	line-height:23px; 
+	border:1px inset #eeeeee; 
+	-webkit-box-shadow: 
+	inset 1px 1px 2px 0px #999999; 
+	-moz-box-shadow: inset 1px 1px 2px 0px #999999; 
+	box-shadow: inset 1px 1px 2px 0px #999999; 
+	background:#ffffff; }
 .form_content fieldset .formcell textarea { display:inline-block; width:390px; min-height:100px; line-height:18px; border:1px inset #eeeeee; -webkit-box-shadow: inset 1px 1px 2px 0px #999999; -moz-box-shadow: inset 1px 1px 2px 0px #999999; box-shadow: inset 1px 1px 2px 0px #999999; background:#ffffff; }
 .form_content fieldset .form_selected { background-color:#e8e8e8; }
 .form_content fieldset .form_err { background-color:#f1d8d8; border:none; }
-.form_content fieldset div.error { display:block; padding:10px 0 0 130px; color:#cc0000; font-size:12px; }
+.form_content fieldset div.error, ul.errorlist li { display:block; padding:10px 0 0 110px; color:#cc0000; font-size:12px; }
+
+ul.errorlist li {
+	padding: 0px 0 0 110px;
+}
+
 .form_content fieldset .form_submit_wrap { }
-.form_content fieldset .form_submit_pad { text-align:left; padding-left: 130px; }
+.form_content fieldset .form_submit_pad { text-align:left; padding-left: 150px; }
 .form_content fieldset input.form_submit { font-family: 'PT Sans', Arial, Helvetica, sans-serif; font-size:13px; font-weight:bold; line-height:14px; color:#ffffff; cursor:pointer; text-transform:uppercase; background:#556c9a; -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px; padding:1px 8px; display:inline-block; border:0; }
 /* data_search_bar */
 .data_search_bar { background-color:#4b6393; color:#fff; }
@@ -612,7 +628,7 @@ clear:left;
 	margin-bottom: 1px;
 }
 
-#save-properties-button {
+.properties_button {
 	float:left;
 	margin-left: 60px;
 }

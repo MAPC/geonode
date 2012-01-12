@@ -1,14 +1,76 @@
 {% extends "registration/base.html" %}
 {% load i18n %}
 
-{% block main %}
-<div class="twocol">
-  <form method="post" action=".">
-    {% csrf_token %}
-   <ul class="form">
-	  {{ form.as_ul }}
-      <li><input type="submit" value="{% trans 'Submit' %}" /></li>
-   </ul>
-  </form>
+{% load mbdc_extras %}
+
+{% block body %}
+
+
+<!-- breadcrumb -->
+<div class="breadcrumb">
+  <span class="breadcrumb_title">You are here:</span>
+    <a class="breadcrumb_link" href="/">Home</a>
+    <span class="breadcrumb_current">Register</span>
 </div>
+<!-- /breadcrumb -->
+
+    
+{% get_data_search_bar %}
+
+
+<!-- site_body -->
+    <div class="site_body">
+      	<div class="site_body_pad">
+
+                <div class="generic_block form_wrap">
+                  <div class="generic_header form_header">
+                    <h2>Register your account</h2>
+                  </div>
+                  <div class="form_content">
+                    <form method="post" action=".">
+                    {% csrf_token %}
+                    <fieldset class="form">
+                      <legend class="form_req"><img src="{{ STATIC_URL}}mbdc/img/Global/asterix.gif" /> = Required</legend>
+                      
+	                  <div class="formcell form_req">
+	                    <label for="id_username">Username:</label>
+	                    {{ form.username }}
+	                    {{ form.username.errors }}
+	                    <div class="clear"></div>
+	                  </div>
+
+	                  <div class="formcell form_req">	                  	
+	                    <label for="id_email">Email:</label>
+	                    {{ form.email }}
+	                    {{ form.email.errors }}
+	                    <div class="clear"></div>
+	                  </div>
+
+                      <div class="formcell form_req">
+                        <label for="id_password1">Password:</label>
+                        {{ form.password1 }}
+                        <div class="clear"></div>
+                      </div>
+
+                      <div class="formcell form_req">
+                        <label for="id_password2">Password again:</label>
+                        {{ form.password2 }}
+                        {{ form.non_field_errors.as_ul }}
+                        <div class="clear"></div>
+                      </div>
+
+                      <div class="form_submit_wrap">
+                        <div class="form_submit_pad">
+                          <input type="submit" value="Register" class="form_submit" /> With your registration you agree to the Terms of Use.
+                        </div>
+                      </div>
+                    </fieldset>
+                    </form>
+                  </div>
+                </div>
+		</div>
+    </div>
+    <!-- /site_body -->
+
 {% endblock %}
+

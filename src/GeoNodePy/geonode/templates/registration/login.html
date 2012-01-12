@@ -1,19 +1,63 @@
 {% extends "registration/base.html" %}
-{% block title %} GeoNode Login - {{ block.super }} {% endblock %}
-{% block main %}
-<div class="twocol">
-  <h2>GeoNode Login</h2>
-  {% if form.errors %}
-  <p>Your username and password didn't match. Please try again.</p>
-  {% endif %}
 
-  <form method="post" action="{% url django.contrib.auth.views.login %}">
-    {% csrf_token %}
-	<ul class="form">
-		  {{ form.as_ul }}
-		<li><input type="hidden" name="next" value="{{next}}" /></li>
-	    <li><input type="submit" value="Login"/></li>
-	</ul>
-  </form>
+{% load mbdc_extras %}
+
+{% block body %}
+
+
+<!-- breadcrumb -->
+<div class="breadcrumb">
+  <span class="breadcrumb_title">You are here:</span>
+    <a class="breadcrumb_link" href="/">Home</a>
+    <span class="breadcrumb_current">Login</span>
 </div>
+<!-- /breadcrumb -->
+
+    
+{% get_data_search_bar %}
+
+
+<!-- site_body -->
+    <div class="site_body">
+      <div class="site_body_pad">
+
+                <div class="generic_block form_wrap">
+                  <div class="generic_header form_header">
+                    <h2>Login to your account</h2>
+                    <p>Please login for access to more functionality.</p>
+                    {% if REGISTRATION_OPEN %}<p>Don't have an account? <a href="{% url registration_register %}">Sign up!</a></p>{% endif %}
+                  </div>
+                  <div class="form_content">
+                    <form method="post" action="{% url django.contrib.auth.views.login %}">
+                    {% csrf_token %}
+                    <fieldset class="form">
+                      <legend class="form_req"><img src="{{ STATIC_URL}}mbdc/img/Global/asterix.gif" /> = Required</legend>
+                      <div class="formcell form_req">
+                        <label for="id_username">Username:</label>
+                        <input id="id_username" type="text" name="username" maxlength="30" class="required" />
+                        <div class="clear"></div>
+                      </div>
+                      <div class="formcell form_req">
+                        <label for="id_password">Password:</label>
+                        <input type="password" name="password" id="id_password" class="required" />
+                        {% if form.errors %}
+                        <ul class="errorlist"><li>Your username and password didn't match. Please try again.</li></ul>
+                        {% endif %}
+                        <div class="clear"></div>
+                      </div>
+                      <div class="form_submit_wrap">
+                        <div class="form_submit_pad">
+                          <input type="submit" value="Login" class="form_submit" /> <a href="/accounts/password/reset/" title="Reset your password">Forgot password?</a>
+                        </div>
+                      </div>
+                    </fieldset>
+                    <input type="hidden" name="next" value="{{next}}" />
+                    </form>
+                  </div>
+                </div>
+
+</div>
+    </div>
+    <!-- /site_body -->
+
 {% endblock %}

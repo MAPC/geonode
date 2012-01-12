@@ -1,13 +1,35 @@
 {% extends "registration/base.html" %}
 {% load i18n %}
 
-{% block main %}
-<div class="twocol">
-  {% if account %}
-  <p>{% trans "Account successfully activated" %}</p>
-  <p><a href="{% url auth_login %}">{% trans "Log in" %}</a></p>
-  {% else %}
-  <p>{% trans "Account activation failed" %}</p>
-  {% endif %}
+{% load mbdc_extras %}
+
+{% block body %}
+
+
+<!-- breadcrumb -->
+<div class="breadcrumb">
+  <span class="breadcrumb_title">You are here:</span>
+    <a class="breadcrumb_link" href="/">Home</a>
+    <span class="breadcrumb_current">Account activation</span>
 </div>
+<!-- /breadcrumb -->
+
+    
+{% get_data_search_bar %}
+
+
+<!-- site_body -->
+<div class="site_body">
+	<div class="site_body_pad">
+		<div class="generic_block form_wrap">
+	    	<div class="generic_header form_header">
+				<h2>Account activation</h2>
+				<p>{% trans "Your account was successfully activated." %}</p>
+				<p><a href="{% url auth_login %}">{% trans "Log in" %}</a></p>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /site_body -->
+
 {% endblock %}

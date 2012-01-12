@@ -1,6 +1,6 @@
 {% load i18n %}
-{% trans "Activate account at" %} {{ site.name }}:
+{% trans "Please activate your account at the" %} {{ site.name }} by clicking the activation-link below:
 
 http://{{ site.domain }}{% url registration_activate activation_key %}
 
-{% blocktrans %}Link is valid for {{ expiration_days }} days.{% endblocktrans %}
+{% blocktrans %}This link is valid for {{ expiration_days }} days.{% endblocktrans %}

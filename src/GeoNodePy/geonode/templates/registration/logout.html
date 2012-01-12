@@ -1,8 +1,36 @@
 {% extends "registration/base.html" %}
 {% load i18n %}
 
-{% block main %}
-<div class="twocol">
-<p>{% trans "Logged out" %}</p>
+{% load mbdc_extras %}
+
+{% block body %}
+
+
+<!-- breadcrumb -->
+<div class="breadcrumb">
+  <span class="breadcrumb_title">You are here:</span>
+    <a class="breadcrumb_link" href="/">Home</a>
+    <span class="breadcrumb_current">Logged out</span>
 </div>
+<!-- /breadcrumb -->
+
+    
+{% get_data_search_bar %}
+
+<!-- site_body -->
+<div class="site_body">
+	<div class="site_body_pad">
+		<div class="generic_block form_wrap">
+	    	<div class="generic_header form_header">
+				<h2>Logged out</h2>
+
+      			<p>{% trans "Thanks for spending some quality time with the MetroBoston DataCommon today." %}</p>
+
+				<p><a href="/accounts/login">{% trans 'Log in again' %}</a></p>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /site_body -->
+
 {% endblock %}
