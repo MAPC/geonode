@@ -1,0 +1,119 @@
+[
+    {
+        "pk": 1,
+        "model": "mbdc.topic",
+        "fields": {
+            "order": 1,
+            "slug": "demographics",
+            "title": "Demographics"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "mbdc.topic",
+        "fields": {
+            "order": 2,
+            "slug": "arts-culture",
+            "title": "Arts & Culture"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "mbdc.topic",
+        "fields": {
+            "order": 3,
+            "slug": "civic-vitality",
+            "title": "Civic Vitality"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "mbdc.topic",
+        "fields": {
+            "order": 4,
+            "slug": "economy",
+            "title": "Economy"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "mbdc.topic",
+        "fields": {
+            "order": 5,
+            "slug": "education",
+            "title": "Education"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "mbdc.topic",
+        "fields": {
+            "order": 6,
+            "slug": "environment-energy",
+            "title": "Environment & Energy"
+        }
+    },
+    {
+        "pk": 7,
+        "model": "mbdc.topic",
+        "fields": {
+            "order": 7,
+            "slug": "housing",
+            "title": "Housing"
+        }
+    },
+    {
+        "pk": 8,
+        "model": "mbdc.topic",
+        "fields": {
+            "order": 8,
+            "slug": "land-use-zoning",
+            "title": "Land Use & Zoning"
+        }
+    },
+    {
+        "pk": 9,
+        "model": "mbdc.topic",
+        "fields": {
+            "order": 9,
+            "slug": "public-health",
+            "title": "Public Health"
+        }
+    },
+    {
+        "pk": 10,
+        "model": "mbdc.topic",
+        "fields": {
+            "order": 10,
+            "slug": "public-safety",
+            "title": "Public Safety"
+        }
+    },
+    {
+        "pk": 11,
+        "model": "mbdc.topic",
+        "fields": {
+            "order": 11,
+            "slug": "technology",
+            "title": "Technology"
+        }
+    },
+    {
+        "pk": 12,
+        "model": "mbdc.topic",
+        "fields": {
+            "order": 12,
+            "slug": "transportation",
+            "title": "Transportation"
+        }
+    },
+    {
+        "pk": 13,
+        "model": "mbdc.topic",
+        "fields": {
+            "order": 13,
+            "slug": "geographic-boundaries",
+            "title": "Geographic Boundaries"
+        }
+    }
+]

@@ -6,7 +6,7 @@
     <label>Topic:</label>
     <select>
     	<option>All</option>
-    	{% for topic in topics %}<option value="{{ topic.0 }}">{{ topic.1 }}</option>{% endfor %}
+    	{% for topic in topics %}<option value="{{ topic.slug }}">{{ topic.title }}</option>{% endfor %}
     </select>
     
     <label>Geographic Data Level:</label>

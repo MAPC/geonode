@@ -38,7 +38,7 @@
 												<div class="second_col_title">By Topic:</div>
 												<ul>
 												{% for topic in topics %}
-													<li><a href="{{ topic.0|get_topic_url }}">{{ topic.1 }}</a></li>
+													<li><a href="/topics/{{ topic.slug }}">{{ topic.title }}</a></li>
 												{% endfor %}
 												</ul>
 											</div>

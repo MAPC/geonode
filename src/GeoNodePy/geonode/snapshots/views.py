@@ -2,7 +2,7 @@ from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
 
 from geonode.snapshots.models import Regiontype, Regionalunit, Visualization
-from geonode.mbdc.models import TOPICS
+from geonode.mbdc.models import Topic
 
 def index(request):
 
@@ -32,7 +32,7 @@ def get_regionalunit(request, regiontype_slug, regionalunit_slug):
 	regionalunit = get_object_or_404(Regionalunit, regiontype=regiontype, slug__iexact=regionalunit_slug)
 
 	# show all categories except the last one ("Geographic Boundaries")
-	topics = TOPICS[:-1]
+	topics = Topic.objects.all()
 
 	visualizations = Visualization.objects.all()
 
@@ -56,9 +56,9 @@ def get_topic(request, regiontype_slug, regionalunit_slug, topic_slug):
 	regiontype = get_object_or_404(Regiontype, slug__iexact=regiontype_slug)
 	regionalunit = get_object_or_404(Regionalunit, regiontype=regiontype, slug__iexact=regionalunit_slug)
 
-	topic_verbose = dict(TOPICS)[topic_slug]
+	topic = get_object_or_404(Topic, slug__iexact=topic_slug)
 
-	visualizations = Visualization.objects.filter(regiontype=regiontype, topic__iexact=topic_slug)
+	visualizations = Visualization.objects.filter(regiontype=regiontype, topic=topic)
 
 	return render_to_response('snapshots/topic.html', locals(), context_instance=RequestContext(request))
 

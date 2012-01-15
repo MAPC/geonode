@@ -5,8 +5,6 @@ from django.core.files.storage import FileSystemStorage
 # lazy translation
 from django.utils.translation import ugettext_lazy as _
 
-from geonode.mbdc.models import TOPICS
-
 import os
 
 # south introspection rules 
@@ -59,7 +57,7 @@ class Visualization(models.Model):
 
 	# title, topic, session state, year, source
 	title = models.CharField(max_length=100)
-	topic = models.CharField(max_length=20, choices=TOPICS)
+	topic = models.ManyToManyField('mbdc.Topic', related_name='snapshot_visualization')
 
 	regiontype = models.ForeignKey('Regiontype', default=1)
 
