@@ -7,7 +7,7 @@ from django.contrib.auth.models import User, Permission
 from geonode.core.models import PermissionLevelMixin
 from geonode.core.models import AUTHENTICATED_USERS, ANONYMOUS_USERS
 
-from geonode.mbdc.models import Topic
+from geonode.mbdc.models import Topic, Datasource
 
 import simplejson
 
@@ -27,6 +27,11 @@ class Visualization(models.Model, PermissionLevelMixin):
 	A display name suitable for search results and page headers
 	"""
 
+	year = models.CharField(max_length=50, blank=True, null=True)
+	"""
+	Year(s) as String to support timeranges, as in ACS for instance.
+	"""
+
 	abstract = models.TextField(_('Abstract'), blank=True, null=True)
 	"""
 	A longer description of the themes in the visualization.
@@ -35,6 +40,11 @@ class Visualization(models.Model, PermissionLevelMixin):
 	topics = models.ManyToManyField('mbdc.Topic', related_name='weave_topics', blank=True, null=True)
 	"""
 	Topic category under which the visualization should be listed
+	"""
+
+	datasources = models.ManyToManyField('mbdc.Datasource', related_name='weave_datasources', blank=True, null=True)
+	"""
+	List of data sources used in visualization
 	"""
 
 	owner = models.ForeignKey(User, verbose_name=_('owner'))
@@ -69,6 +79,7 @@ class Visualization(models.Model, PermissionLevelMixin):
 		This method automatically persists to the database!
 		"""
 		self.title = conf['title']
+		self.year = conf['year']
 		self.abstract = conf['abstract']
 		self.sessionstate = conf['sessionstate']
 
@@ -76,11 +87,17 @@ class Visualization(models.Model, PermissionLevelMixin):
 
 		# remove obsolete related topics
 		self.topics.clear()
-
 		# update related topics
 		related_topics = simplejson.loads(conf['topics'])
-		for topic in related_topics:
-			self.topics.add(Topic.objects.get(pk=topic))
+		for topic_id in related_topics:
+			self.topics.add(Topic.objects.get(pk=topic_id))
+		
+		# remove obsolete related topics
+		self.datasources.clear()
+		# update datasources
+		datasources = simplejson.loads(conf['datasources'])
+		for datasource_id in datasources:
+			self.datasources.add(Datasource.objects.get(pk=datasource_id))
 	
 	@models.permalink
 	def get_absolute_url(self):

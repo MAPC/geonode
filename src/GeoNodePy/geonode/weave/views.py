@@ -24,7 +24,7 @@ from geonode.maps.views import _split_query
 from geonode.core.models import AUTHENTICATED_USERS, ANONYMOUS_USERS
 from geonode.maps.models import Contact
 from geonode.weave.models import Visualization
-from geonode.mbdc.models import Topic
+from geonode.mbdc.models import Topic, Datasource
 
 def save_thumbnail(data, visid):
 	"""
@@ -69,6 +69,7 @@ def new(request):
 		# we treat visualization nr 1 as default visualization (session state)
 		perm_change = True
 		topics = Topic.objects.all()
+		datasources = Datasource.objects.all()
 		return render_to_response('weave/edit.html', locals(), 
 			context_instance=RequestContext(request)
 		)
@@ -125,13 +126,22 @@ def edit(request, visid):
 					status=401)
 
 		perm_change = request.user.has_perm("weave.change_visualization", obj=visualization)
+
+		# get related topics
 		topics = Topic.objects.all()
 		related_topics = visualization.topics.select_related()
-
 		# annotate selected topics
 		for topic in topics:
 			if topic in related_topics:
 				topic.selected = True
+
+		# get datasources
+		datasources = Datasource.objects.all()
+		related_datasources = visualization.datasources.select_related()
+		# annotate selected datasources
+		for datasource in datasources:
+			if datasource in related_datasources:
+				datasource.selected = True
 
 		return render_to_response("weave/edit.html", locals(),
 			context_instance=RequestContext(request))
