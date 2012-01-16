@@ -121,6 +121,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.debug",
     "django.core.context_processors.i18n",
     "django.core.context_processors.media",
+    "django.core.context_processors.request",
     "geonode.maps.context_processors.resource_urls",
     "geonode.weave.context_processors.weave_media",
 )
@@ -131,6 +132,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'linaro_django_pagination.middleware.PaginationMiddleware',
 )
 
 # This isn't required for running the geonode site, but it when running sites that inherit the geonode.settings module.
@@ -260,6 +262,7 @@ INSTALLED_APPS = (
     'registration',
     'profiles',
     'avatar',
+    'linaro_django_pagination',
     'geonode.core',
     'geonode.maps',
     'geonode.proxy',
@@ -298,6 +301,10 @@ DB_DATASTORE_PASSWORD = ''
 DB_DATASTORE_HOST = ''
 DB_DATASTORE_PORT = ''
 DB_DATASTORE_TYPE=''
+
+# pagination
+PAGINATION_PREVIOUS_LINK_DECORATOR = '&#9668; '
+PAGINATION_NEXT_LINK_DECORATOR = ' &#9658'
 
 try:
     from local_settings import *

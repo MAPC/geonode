@@ -40,3 +40,15 @@ def page(request, slug):
 		about_pages = Page.objects.filter(section='about')
 
 	return render_to_response(template, locals(), context_instance=RequestContext(request))
+
+
+def gallery(request):
+
+	# get set of visualizations viewable by current user
+	readable_vis = get_readable_vis(request.user)
+
+	visualizations = Visualization.objects.filter(id__in=readable_vis).order_by('-last_modified')
+
+	nr_results = len(visualizations)
+
+	return render_to_response('mbdc/gallery.html', locals(), context_instance=RequestContext(request))

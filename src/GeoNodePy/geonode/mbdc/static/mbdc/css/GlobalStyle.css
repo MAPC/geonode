@@ -656,12 +656,12 @@ margin-right:0;
 .vis_box_item:nth-child(5n) {
 clear:left;
 }
-.vis_box_image { width:205px; height:155px; overflow:hidden; border:1px solid #cccccc; margin-bottom:12px; background:#fff; }
+.vis_box_image { width:205px; height:137px; overflow:hidden; border:1px solid #cccccc; margin-bottom:12px; background:#fff; }
 .vis_box_title { font-size:12px; line-height:18px; font-weight:bold; padding-bottom:3px; }
 .vis_box_title .title { }
 .vis_box_title .date { }
 .vis_box_location { font-size:12px; line-height:18px; padding-bottom:3px; }
-.vis_box_author { font-size:11px; line-height:18px; }
+.vis_box_author, .vis_box_abstract { font-size:11px; line-height:18px; }
 .vis_box_author .author { }
 .vis_box_item.locked { color:#a8a8a8; }
 .vis_box_item.locked .vis_box_title .title { color:#c2c2c2; }
@@ -702,7 +702,10 @@ clear:left;
 .results_pagination .pagination { padding:0 15px; float:right; width:65%; color:#556c9a; text-align:right; font-size:13px; line-height:18px; }
 .results_pagination .pagination a { padding:0 5px; }
 .results_pagination .pagination a.on { font-weight:bold; color:#b3bc5f; }
-.results_pagination .pagination .next_prev { text-decoration:underline !important; padding:0; }
+.results_pagination .pagination .next_prev { 
+	/*text-decoration:underline !important;*/ 
+	padding:0; 
+}
 /* results_pagination_bottom */
 .results_pagination_bottom { padding:0 40px; }
 /* index landing intro content */

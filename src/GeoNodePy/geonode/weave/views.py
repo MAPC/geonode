@@ -40,7 +40,7 @@ def save_thumbnail(data, visid):
 	visimg_file.close()
 	
 	# save visualization thumbnails
-	tn_sizes = dict(featured=(455, 315), gallery=(200,150))
+	tn_sizes = dict(featured=(455, 315), gallery=(205,155))
 	for tn_type in tn_sizes:
 		tn = Image.open(visimg_filename)
 		tn.thumbnail(tn_sizes[tn_type], Image.ANTIALIAS)
