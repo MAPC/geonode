@@ -620,7 +620,7 @@ clear:left;
 
 .vis_properties_form_label {
 	float: left;
-	width: 60px;
+	width: 80px;
 }
 
 .vis_properties_form form input, .vis_properties_form form textarea, .vis_properties_form form select, .vis_properties_form form select option {
@@ -635,7 +635,7 @@ clear:left;
 
 .properties_button {
 	float: left;
-	margin-left: 60px;
+	margin-left: 80px;
 }
 
 /* related_vis */
