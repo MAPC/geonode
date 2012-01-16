@@ -10,6 +10,9 @@ HERO_ORDER_CHOICES = tuple((i, i) for i in range(1,5))
 
 SECTION_CHOICES = (
     ('about', 'About the Project'),
+    ('resources', 'Resources'),
+    ('community', 'Community'),
+    ('legal', 'Legal'),
 )
 
 class Hero(models.Model):
