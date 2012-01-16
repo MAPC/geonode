@@ -103,18 +103,18 @@ input[type='checkbox'] { border:none !important; }
 input[type='radio'] { border:none !important; }
 .topic_icon { background:transparent url(../img/Global/sprite-topics.png) no-repeat scroll -999px -999px; display:block; width:15px; height:15px; }
 .topic_demographics { background-position:0 0; }
-.topic_artsCulture { background-position:0 -15px; }
-.topic_civicVitality { background-position:0 -30px; }
+.topic_arts-culture { background-position:0 -15px; }
+.topic_civic-vitality { background-position:0 -30px; }
 .topic_economy { background-position:0 -45px; }
 .topic_education { background-position:0 -60px; }
-.topic_environmentEnergy { background-position:0 -75px; }
+.topic_environment-energy { background-position:0 -75px; }
 .topic_housing { background-position:0 -90px; }
-.topic_landUseZoning { background-position:0 -105px; }
-.topic_publicHealth { background-position:0 -120px; }
-.topic_publicSafety { background-position:0 -135px; }
+.topic_land-use-zoning { background-position:0 -105px; }
+.topic_public-health { background-position:0 -120px; }
+.topic_public-safety { background-position:0 -135px; }
 .topic_technology { background-position:0 -150px; }
 .topic_transportation { background-position:0 -165px; }
-.topic_geographicBoundaries { background-position:0 -180px; }
+.topic_geographic-boundaries { background-position:0 -180px; }
 /*/////// site layout ///////////////////////////////////////////////////////////*/
 .wrapper { clear:both; width:960px; margin:0 auto; }
 /*/////// site components ///////////////////////////////////////////////////////////*/
@@ -622,7 +622,7 @@ clear:left;
 	width: 60px;
 }
 
-.vis_properties_form form input, .vis_properties_form form textarea {
+.vis_properties_form form input, .vis_properties_form form textarea, .vis_properties_form form select {
 	width: 200px;
 	font-size: 11px;
 	margin-bottom: 1px;

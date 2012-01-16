@@ -43,45 +43,23 @@
         <div class="home_weave_nav">
           <div class="home_weave_nav_heading">Explore Data by Topics:</div>
           <ul>
+            {% with topics|first as topic %}
             <li class="first">
-              <a href="javascript:;"><span class="topic_icon topic_demographics"></span>Demographics</a>
+              <a href="javascript:;"><span class="topic_icon topic_{{ topic.slug }}"></span>{{ topic.title }}</a>
             </li>
+            {% endwith %}
+
+            {% for topic in topics_center %}
             <li>
-              <a href="javascript:;"><span class="topic_icon topic_artsCulture"></span>Arts &amp; Culture</a>
+              <a href="javascript:;"><span class="topic_icon topic_{{ topic.slug }}"></span>{{ topic.title }}</a>
             </li>
-            <li>
-              <a href="javascript:;"><span class="topic_icon topic_civicVitality"></span>Civic Vitality</a>
+            {% endfor %}
+
+            {% with topics|custom_last as topic %}
+             <li class="last">
+              <a href="javascript:;"><span class="topic_icon topic_{{ topic.slug }}"></span>{{ topic.title }}</a>
             </li>
-            <li>
-              <a href="javascript:;"><span class="topic_icon topic_economy"></span>Economy</a>
-            </li>
-            <li>
-              <a href="javascript:;"><span class="topic_icon topic_education"></span>Education</a>
-            </li>
-            <li>
-              <a href="javascript:;"><span class="topic_icon topic_environmentEnergy"></span>Environment &amp; Energy</a>
-            </li>
-            <li>
-              <a href="javascript:;"><span class="topic_icon topic_housing"></span>Housing</a>
-            </li>
-            <li>
-              <a href="javascript:;"><span class="topic_icon topic_landUseZoning"></span>Land Use &amp; Zoning</a>
-            </li>
-            <li>
-              <a href="javascript:;"><span class="topic_icon topic_publicHealth"></span>Public Health</a>
-            </li>
-            <li>
-              <a href="javascript:;"><span class="topic_icon topic_publicSafety"></span>Public Safety</a>
-            </li>
-            <li>
-              <a href="javascript:;"><span class="topic_icon topic_technology"></span>Technology</a>
-            </li>
-            <li>
-              <a href="javascript:;"><span class="topic_icon topic_transportation"></span>Transportation</a>
-            </li>
-            <li class="last">
-              <a href="javascript:;"><span class="topic_icon topic_geographicBoundaries"></span>Geographic Boundaries</a>
-            </li>
+            {% endwith %}
           </ul>
         </div>
         <!-- /home_weave_nav -->

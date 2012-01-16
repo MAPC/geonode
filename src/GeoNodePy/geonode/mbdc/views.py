@@ -1,7 +1,7 @@
 from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
 
-from geonode.mbdc.models import Hero, Featured, Page
+from geonode.mbdc.models import Hero, Featured, Page, Topic
 from geonode.weave.models import Visualization
 from geonode.weave.utils import get_readable_vis
 
@@ -21,6 +21,10 @@ def index(request):
 	# get latest 10 visualizations for gallery
 	gallery_visualizations = Visualization.objects.filter(id__in=readable_vis).order_by('-last_modified')[:10]
 
+	topics = Topic.objects.all()
+
+	# workaround for slicing the queryset with negative index
+	topics_center = topics[1:len(topics) - 1]
 
 	return render_to_response('mbdc/index.html', locals(), context_instance=RequestContext(request))
 

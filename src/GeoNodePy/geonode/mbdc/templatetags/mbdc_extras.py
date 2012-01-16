@@ -50,3 +50,17 @@ def get_data_search_bar():
 		'topics': topics,
 		'STATIC_URL': settings.STATIC_URL,
 	}
+
+@register.filter
+def custom_last(value):
+    last = None
+
+    try:
+        last = value[-1]
+    except AssertionError:
+        try:
+            last = value.reverse()[0]
+        except IndexError:
+            pass
+
+    return last
