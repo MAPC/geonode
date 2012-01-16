@@ -85,6 +85,14 @@
 
 <!-- extra_javascript -->
 {% block extra_javascript %}<!-- super block -->{% endblock extra_javascript %}
+<script type="text/javascript">
+  var uvOptions = {};
+  (function() {
+    var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
+    uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/F8MZ3zd4fdsINrXm3AWNqQ.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
+  })();
+</script>
 <!-- /extra_javascript -->
 
 </body>
