@@ -57,7 +57,7 @@ class Visualization(models.Model):
 
 	# title, topic, session state, year, source
 	title = models.CharField(max_length=100)
-	topic = models.ManyToManyField('mbdc.Topic', related_name='snapshot_visualization')
+	topics = models.ManyToManyField('mbdc.Topic', related_name='snapshot_visualization')
 
 	regiontype = models.ForeignKey('Regiontype', default=1)
 
