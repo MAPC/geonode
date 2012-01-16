@@ -608,6 +608,7 @@ clear:left;
 .data_set_list_item_header { border-bottom:1px solid #e2e3e2; padding-bottom:10px; margin-bottom:15px; }
 .data_set_list_item_header .title { font: bold 18px/22px 'PT Serif', Times, serif; color:#354F83; }
 .data_set_list_item_header .link { font-size:13px; line-height:18px; margin-left:10px; text-decoration:underline !important; }
+
 /* vis properties form*/
 
 .vis_properties_form {
@@ -622,14 +623,18 @@ clear:left;
 	width: 60px;
 }
 
-.vis_properties_form form input, .vis_properties_form form textarea, .vis_properties_form form select {
+.vis_properties_form form input, .vis_properties_form form textarea, .vis_properties_form form select, .vis_properties_form form select option {
 	width: 200px;
 	font-size: 11px;
-	margin-bottom: 1px;
+	margin-bottom: 4px;
+}
+
+.vis_properties_form form select option {
+	margin-bottom: 0px;
 }
 
 .properties_button {
-	float:left;
+	float: left;
 	margin-left: 60px;
 }
 
@@ -640,6 +645,7 @@ clear:left;
 .related_vis_header .title { color:#3e464f; font-size:18px; line-height:22px; margin-right:15px; }
 .related_vis_header .expand_link { font-size:11px; line-height:22px; }
 .related_vis_content { display:none; padding:10px 0; }
+
 /* vis_box_listing */
 .vis_box_listing { }
 .vis_box_listing_pad { }

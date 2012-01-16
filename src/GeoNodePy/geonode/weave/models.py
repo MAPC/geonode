@@ -7,6 +7,8 @@ from django.contrib.auth.models import User, Permission
 from geonode.core.models import PermissionLevelMixin
 from geonode.core.models import AUTHENTICATED_USERS, ANONYMOUS_USERS
 
+from geonode.mbdc.models import Topic
+
 import simplejson
 
 try:
@@ -28,6 +30,11 @@ class Visualization(models.Model, PermissionLevelMixin):
 	abstract = models.TextField(_('Abstract'), blank=True, null=True)
 	"""
 	A longer description of the themes in the visualization.
+	"""
+
+	topics = models.ManyToManyField('mbdc.Topic', related_name='weave_topics', blank=True, null=True)
+	"""
+	Topic category under which the visualization should be listed
 	"""
 
 	owner = models.ForeignKey(User, verbose_name=_('owner'))
@@ -66,6 +73,14 @@ class Visualization(models.Model, PermissionLevelMixin):
 		self.sessionstate = conf['sessionstate']
 
 		self.save()
+
+		# remove obsolete related topics
+		self.topics.clear()
+
+		# update related topics
+		related_topics = simplejson.loads(conf['topics'])
+		for topic in related_topics:
+			self.topics.add(Topic.objects.get(pk=topic))
 	
 	@models.permalink
 	def get_absolute_url(self):
