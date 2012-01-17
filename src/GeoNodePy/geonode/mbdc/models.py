@@ -81,6 +81,9 @@ class Datasource(models.Model):
     url = models.URLField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
 
+    class Meta:
+        ordering = ['title']
+
     def __unicode__(self):
         return self.title
 

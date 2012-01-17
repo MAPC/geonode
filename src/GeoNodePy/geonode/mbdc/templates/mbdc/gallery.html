@@ -1,7 +1,41 @@
 {% extends "mbdc/base.html" %}
 
+
 {% load mbdc_extras %}
 {% load pagination_tags %}
+
+
+{% block extra_javascript %}
+
+{{ block.super }}
+
+<script type="text/javascript">
+
+	jQuery(document).ready(function($) {
+		
+		// refresh page with new filter parameters
+		$("#filter-button").bind("click", function() {
+			var query = {
+				// "page": 1 // default to page one with new filter
+			}
+			if ($("#filter-source option:selected").val()) query["datasources"] = $("#filter-source option:selected").val();
+			if ($("#filter-topic option:selected").val()) query["topics"] = $("#filter-topic option:selected").val();
+			if ($("#filter-user option:selected").val()) query["owner"] = $("#filter-user option:selected").val();
+			window.location = "{% url mbdc-gallery %}?" + $.param(query)
+			return false;
+		});
+		// refresh page with new filter parameters
+		$("#clear-button").bind("click", function() {
+			window.location = "{% url mbdc-gallery %}"
+			return false;
+		});
+
+	});
+
+</script>
+
+{% endblock extra_javascript %}
+
 
 {% block body %}
 
@@ -42,63 +76,52 @@
 		</div>
 		<div class="results_filter_form">
 			<div class="results_filter_form_pad">
+
 				<div class="filter_form_field">
-					<label for="filterSource">Source:</label>
-					<select id="filterSource" class="filter_form_field_source">
+					<label for="filter-topic">Topic:</label>
+					<select id="filter-topic" class="filter_form_field_topic">
 						<option value="" id="All">All</option>
 						
-						<option value="option 0">option 0</option>
+						{% for topic in topics %}
+
+						<option value="{{ topic.id }}"{% ifequal topic.id filter_topic.id %} selected="selected"{% endifequal %}>{{ topic.title }}</option>
 						
-						<option value="option 1">option 1</option>
-						
-						<option value="option 2">option 2</option>
-						
-						<option value="option 3">option 3</option>
-						
-						<option value="option 4">option 4</option>
+						{% endfor %}
 						
 					</select>
 				</div>
-				
+
 				<div class="filter_form_field">
-					<label for="filterTopic">Topic:</label>
-					<select id="filterTopic" class="filter_form_field_topic">
+					<label for="filter-source">Source:</label>
+					<select id="filter-source" class="filter_form_field_source">
 						<option value="" id="All">All</option>
 						
-						<option value="option 0">option 0</option>
+						{% for datasource in datasources %}
+
+						<option value="{{ datasource.id }}"{% ifequal datasource.id filter_source.id %} selected="selected"{% endifequal %}>{{ datasource.title }}</option>
 						
-						<option value="option 1">option 1</option>
-						
-						<option value="option 2">option 2</option>
-						
-						<option value="option 3">option 3</option>
-						
-						<option value="option 4">option 4</option>
+						{% endfor %}
 						
 					</select>
 				</div>
 								
 				<div class="filter_form_field">
-					<label for="filterUserAuthor">User/Author:</label>
-					<select id="filterUserAuthor" class="filter_form_field_userauthor">
+					<label for="filter-user">User/Author:</label>
+					<select id="filter-user" class="filter_form_field_userauthor">
 						<option value="" id="All">All</option>
 						
-						<option value="option 0">option 0</option>
+						{% for user in users %}
+
+						<option value="{{ user.id }}"{% ifequal user.id filter_user.id %} selected="selected"{% endifequal %}>{% firstof user.get_profile.name user.username %}</option>
 						
-						<option value="option 1">option 1</option>
-						
-						<option value="option 2">option 2</option>
-						
-						<option value="option 3">option 3</option>
-						
-						<option value="option 4">option 4</option>
+						{% endfor %}
 						
 					</select>
 				</div>
 				
 				<div class="filter_form_btns">
-					<input type="submit" class="filter_form_btn_filter" value="Filter" />
-					<input type="reset" class="filter_form_btn_clear" value="Clear" />
+					<input type="submit" class="filter_form_btn_filter" id="filter-button" value="Filter" />
+					<input type="reset" class="filter_form_btn_clear" id="clear-button" value="Clear" />
 				</div>
 				
 				<div class="clear"></div>
@@ -109,7 +132,7 @@
 
 		<!-- results_pagination -->
 		<div class="results_pagination">
-			<div class="tags"><span class="tag_title">You are viewing:</span> <span class="tag">All Topics</span> <span class="tag">All Geographic Data Levels</span></div>
+			<div class="tags"><span class="tag_title">You are viewing:</span> <span class="tag">{{ filter_topic|default:"All Topics" }} and {{ filter_source|default:"All Sources" }} by {% if filter_user %}{% firstof filter_user.get_profile.name filter_user.username %}{% else %}All Users{% endif %}</span></div>
 			<div class="results"><strong>{{ nr_results }}</strong> Results</div>
 
 			{% paginate using 'mbdc/_pagination.html' %}
@@ -162,68 +185,3 @@
 	
 {% endblock body %}
 
-{% block extra_javascript %}
-
-{{ block.super }}
-
-{% include "weave/_swfobject.html" %}
-
-<script type="text/javascript">
-
-jQuery(document).ready(function($) {
-
-	/* 
-	* Render selected visualization
-	*/
-	$(".vis_change").change(function() {
-
-		// only if something other than the first (empty) is selected
-		if ($(this).prop("selectedIndex") !== 0) {
-
-			// flash-object-id|FlashVars-file-value|title|year|sources
-			var vis_args = $("option:selected", this)
-				.val()
-				.split("|");
-
-			var weave = swfobject.getObjectById(vis_args[0]);
-
-			$.get(vis_args[1], function(xmlData){
-
-				// XML to string conversion
-				// TODO make function globally available
-				function XMLToString(oXML) {
-					if (window.ActiveXObject) {
-						return oXML.xml;
-					} else {
-						return (new XMLSerializer()).serializeToString(oXML);
-					}
-				}
-
-				// Weave API method only accepts strings
-				var data = XMLToString(xmlData);
-				var sessionstate = weave.convertSessionStateXMLToObject(data);
-				weave.setSessionState([], sessionstate);
-
-				// session state cosmetics
-				weave.setSessionState(['WeaveProperties'], { 
-					backgroundColor: "16777215", // white
-					dashboardMode: true, 
-					enableMenuBar: false,
-					enableToolControls: false ,
-					showCopyright: false
-				});
-
-				// update title, years and source
-				$("#" + vis_args[0] + "-meta .title")
-					.html("<a href=''>" + vis_args[2] + "</a>");
-				$("#" + vis_args[0] + "-meta .info")
-				 	.html("Year(s): " + vis_args[3] + "  <span class='spacer'>&#8226;</span>  Source: " + vis_args[4]);		
-			});
-		}
-	});
-
-});
-	  
-</script>
-
-{% endblock extra_javascript %}
