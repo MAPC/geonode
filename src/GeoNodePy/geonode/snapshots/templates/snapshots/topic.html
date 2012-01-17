@@ -19,7 +19,7 @@
 <div class="breadcrumb">
 	<span class="breadcrumb_title">You are here:</span>
     <a class="breadcrumb_link" href="/">Home</a>
-    <a class="breadcrumb_link" href="/snapshots/">Snapshots and Profiles</a>
+    <a class="breadcrumb_link" href="/snapshots/{{ regiontype.slug }}">Snapshots and Profiles</a>
     <a class="breadcrumb_link" href="/snapshots/{{ regiontype.slug }}">{{ regiontype.name }}</a>
     <a class="breadcrumb_link" href="/snapshots/{{ regiontype.slug }}/{{ regionalunit.slug }}">{{ regionalunit.name }}</a>
     <span class="breadcrumb_current">{{ topic_verbose }}</span>
@@ -44,13 +44,6 @@
 					<div class="clear"></div>
 				</div>
 				<!-- /location_content -->
-				
-				
-				<!-- save_pdf -->
-				<div class="save_pdf">
-				<a href="javascript:;">Save this View as a PDF</a>
-				</div>
-				<!-- save_pdf -->
 				
 				<!-- data_set_listing -->
 				<div class="data_set_listing">
@@ -119,11 +112,6 @@
 				</div>
 				<!-- /data_set_listing -->
 				
-				<!-- save_pdf -->
-				<div class="save_pdf_bottom">
-				<a href="javascript:;">Save this View as a PDF</a>
-				</div>
-				<!-- save_pdf -->
 			</div>
 		</div>
 		<!-- /site_body -->

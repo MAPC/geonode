@@ -5,6 +5,8 @@ from django.core.files.storage import FileSystemStorage
 # lazy translation
 from django.utils.translation import ugettext_lazy as _
 
+from markupfield.fields import MarkupField
+
 import os
 
 # south introspection rules 
@@ -34,8 +36,10 @@ class Regionalunit(models.Model):
 	""" Regional units for snapshots. """
 
 	unitid = models.CharField(max_length=20)
-	# unitid = models.IntegerField()
+	
 	name = models.CharField(max_length=100)
+	short_desc = MarkupField(_('Short description'), default_markup_type='markdown', null=True, blank=True)
+
 	slug = models.SlugField()
 	regiontype = models.ForeignKey('Regiontype', blank=True, null=True)
 	geometry = models.MultiPolygonField(srid=26986)
