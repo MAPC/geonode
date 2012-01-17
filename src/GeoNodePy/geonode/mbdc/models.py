@@ -22,7 +22,7 @@ class Hero(models.Model):
     subtitle = models.CharField(max_length=50)
     navtitle = models.CharField('Navigation Title', max_length=50, blank=True, null=True, help_text='A short title to be used in the right-hand side link column.')
     navsubtitle = models.CharField('Navigation Subtitle', max_length=50, blank=True, null=True, help_text='A short subtitle to be used in the right-hand side link column.')
-    content = models.TextField()
+    content = MarkupField(default_markup_type='markdown', null=True, blank=True)
     image = models.ImageField('Image file', upload_to='hero_img', help_text='Image proportions should be 320x220.')
     order = models.IntegerField(blank=True, null=True, choices=HERO_ORDER_CHOICES)
 
