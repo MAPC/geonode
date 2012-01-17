@@ -52,7 +52,7 @@ class Visualization(models.Model, PermissionLevelMixin):
 	The user that created/owns this map.
 	"""
 
-	last_modified = models.DateTimeField(auto_now_add=True)
+	last_modified = models.DateTimeField(auto_now=True)
 	"""
 	The last time the map was modified.
 	"""
@@ -68,9 +68,6 @@ class Visualization(models.Model, PermissionLevelMixin):
 	def __unicode__(self):
 		return '%s by %s' % (self.title, (self.owner.username if self.owner else "<Anonymous>"))
 
-	class Meta:
-		unique_together = (('title', 'owner'),)
-
 	def update_from_viewer(self, conf):
 		"""
 		Update this Visualization's details by parsing a JSON object as produced by
@@ -85,25 +82,33 @@ class Visualization(models.Model, PermissionLevelMixin):
 
 		self.save()
 
-		# remove obsolete related topics
-		self.topics.clear()
-		# update related topics
-		related_topics = simplejson.loads(conf['topics'])
-		for topic_id in related_topics:
-			self.topics.add(Topic.objects.get(pk=topic_id))
+		try:
+			# remove obsolete related topics
+			self.topics.clear()
+			# update related topics
+			related_topics = simplejson.loads(conf['topics'])
+			for topic_id in related_topics:
+				self.topics.add(Topic.objects.get(pk=topic_id))
+		except:
+			pass
 		
-		# remove obsolete related topics
-		self.datasources.clear()
-		# update datasources
-		datasources = simplejson.loads(conf['datasources'])
-		for datasource_id in datasources:
-			self.datasources.add(Datasource.objects.get(pk=datasource_id))
+
+		try:
+			# remove obsolete related topics
+			self.datasources.clear()
+			# update datasources
+			datasources = simplejson.loads(conf['datasources'])
+			for datasource_id in datasources:
+				self.datasources.add(Datasource.objects.get(pk=datasource_id))
+		except:
+			pass
 	
 	@models.permalink
 	def get_absolute_url(self):
 		return ('geonode.weave.views.edit', None, { 'visid': self.id, })
 	
 	class Meta:
+		ordering = ['-last_modified']
 		# custom permissions, 
 		# change and delete are standard in django
 		permissions = (('view_visualization', 'Can view'), 
