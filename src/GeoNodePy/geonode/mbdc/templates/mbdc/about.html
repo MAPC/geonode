@@ -1,6 +1,8 @@
 {% extends "mbdc/base.html" %}
 
 
+{% load mbdc_extras %}
+
 {% block body %}
 
 
@@ -15,6 +17,8 @@
 <!-- /breadcrumb -->
 
 		
+{% get_data_search_bar %}
+
 		<!-- site_body -->
 		<div class="site_body">
 			<div class="site_body_pad">
