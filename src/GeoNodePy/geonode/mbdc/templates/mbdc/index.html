@@ -43,23 +43,25 @@
         <div class="home_weave_nav">
           <div class="home_weave_nav_heading">Explore Data by Topics:</div>
           <ul>
-            {% with topics|first as topic %}
-            <li class="first">
-              <a href="javascript:;"><span class="topic_icon topic_{{ topic.slug }}"></span>{{ topic.title }}</a>
-            </li>
-            {% endwith %}
 
-            {% for topic in topics_center %}
-            <li>
-              <a href="javascript:;"><span class="topic_icon topic_{{ topic.slug }}"></span>{{ topic.title }}</a>
+            {% for topic in topics %}
+
+            {% if forloop.first %}
+            <li class="first">
+              <a href="{{ topic.get_absolute_url }}"><span class="topic_icon topic_{{ topic.slug }}"></span>{{ topic.title }}</a>
             </li>
+            {% else %}{% if forloop.last %}
+            <li class="last">
+              <a href="{{ topic.get_absolute_url }}"><span class="topic_icon topic_{{ topic.slug }}"></span>{{ topic.title }}</a>
+            </li>
+            {% else %}
+            <li>
+              <a href="{{ topic.get_absolute_url }}"><span class="topic_icon topic_{{ topic.slug }}"></span>{{ topic.title }}</a>
+            </li>
+            {% endif %}{% endif %}
+
             {% endfor %}
 
-            {% with topics|custom_last as topic %}
-             <li class="last">
-              <a href="javascript:;"><span class="topic_icon topic_{{ topic.slug }}"></span>{{ topic.title }}</a>
-            </li>
-            {% endwith %}
           </ul>
         </div>
         <!-- /home_weave_nav -->

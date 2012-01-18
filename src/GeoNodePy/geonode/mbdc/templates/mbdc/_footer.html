@@ -31,14 +31,14 @@
 					<div class="sitemap_col second">
 						<div class="sitemap_col_pad">
 							<ul>
-								<li>Find Visualizations
+								<li>Find Data
 									<div class="second_cols">
 										<div class="second_col">
 											<div class="second_col_pad">
 												<div class="second_col_title">By Topic:</div>
 												<ul>
 												{% for topic in topics %}
-													<li><a href="/topics/{{ topic.slug }}">{{ topic.title }}</a></li>
+													<li><a href="{{ topic.get_absolute_url }}">{{ topic.title }}</a></li>
 												{% endfor %}
 												</ul>
 											</div>

@@ -25,9 +25,6 @@ def index(request):
 
 	topics = Topic.objects.all()
 
-	# workaround for slicing the queryset with negative index
-	topics_center = topics[1:len(topics) - 1]
-
 	return render_to_response('mbdc/index.html', locals(), context_instance=RequestContext(request))
 
 def section(request, section):

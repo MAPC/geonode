@@ -90,10 +90,6 @@ class Datasource(models.Model):
     def __unicode__(self):
         return self.title
 
-    # @permalink
-    # def get_absolute_url(self):
-    #   return ("mbdc-page", None, { "slug": self.slug, })
-
 
 class Topic(models.Model):
     """
@@ -112,4 +108,7 @@ class Topic(models.Model):
 
     def __unicode__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return "/explore/gallery/?topics=%i" % self.id
 
