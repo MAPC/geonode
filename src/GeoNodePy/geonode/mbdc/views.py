@@ -30,18 +30,21 @@ def index(request):
 
 	return render_to_response('mbdc/index.html', locals(), context_instance=RequestContext(request))
 
+def section(request, section):
+	""" Shows the first page in given section """
 
-def page(request, slug):
+	section_pages = Page.objects.filter(section__iexact=section)
+	page = section_pages[0]
+
+	return render_to_response('mbdc/generic.html', locals(), context_instance=RequestContext(request))
+
+def page(request, slug, section):
 	""" Renders a flat page """
 
-	page = get_object_or_404(Page, slug__iexact=slug)
-	template = 'mbdc/page.html'
+	page = get_object_or_404(Page, slug__iexact=slug, section__iexact=section)
+	section_pages = Page.objects.filter(section__iexact=section)
 
-	if page.section == 'about':
-		template = 'mbdc/about.html'
-		about_pages = Page.objects.filter(section='about')
-
-	return render_to_response(template, locals(), context_instance=RequestContext(request))
+	return render_to_response('mbdc/generic.html', locals(), context_instance=RequestContext(request))
 
 
 def gallery(request):

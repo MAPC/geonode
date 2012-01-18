@@ -11,7 +11,7 @@ HERO_ORDER_CHOICES = tuple((i, i) for i in range(1,5))
 SECTION_CHOICES = (
     ('about', 'About the Project'),
     ('resources', 'Resources'),
-    ('community', 'Community'),
+    ('community', 'Learning Community'),
     ('legal', 'Legal'),
 )
 
@@ -68,7 +68,10 @@ class Page(models.Model):
       
     @permalink
     def get_absolute_url(self):
-        return ("mbdc-page", None, { "slug": self.slug, })
+        return ('mbdc-page', None, { 
+            'slug': self.slug, 
+            'section': self.section,
+        })
 
 class Datasource(models.Model):
     """ 

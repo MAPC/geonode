@@ -14,7 +14,8 @@ class FeaturedAdmin(admin.ModelAdmin):
 class PageAdmin(admin.ModelAdmin):
 	prepopulated_fields = {'slug': ('title',)}
 	list_display = ('title', 'section', 'order',)
-	list_editable = ('order',)
+	list_editable = ('order', 'section', )
+	ordering = ('section', 'order', )
 
 class DatasourceAdmin(admin.ModelAdmin):
 	list_display = ('title', )

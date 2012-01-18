@@ -6,5 +6,6 @@ from geonode.mbdc import views
 from django.conf import settings
 
 urlpatterns = patterns('',
-	url(r'^(?P<slug>[-\w]+)/$', views.page, name='mbdc-page'),
+    url(r'^(?P<section>[-\w]+)/$', views.section, name='mbdc-section'),
+    url(r'^(?P<section>[-\w]+)/(?P<slug>[-\w]+)/$', views.page, name='mbdc-page'),
 )

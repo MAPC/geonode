@@ -28,7 +28,7 @@
 			</div>
 		</li>
 		<li class="pri_nav doit">
-			<a href="javascript:;" class="pri_nav_link">Do-It-Yourself:</a>
+			<a href="{% url weave-new %}" class="pri_nav_link">Do-It-Yourself:</a>
 			<span class="pri_nav_sub">Create Your Own Charts &amp; Maps</span>
 			<div class="drop_nav">
 				<div class="drop_nav_pad">
@@ -39,31 +39,27 @@
 			</div>
 		</li>
 		<li class="pri_nav resources">
-			<a href="javascript:;" class="pri_nav_link">Resources:</a>
+			<a href="{% url mbdc-section section='resources' %}" class="pri_nav_link">Resources:</a>
 			<span class="pri_nav_sub">User Guides &amp; More</span>
 			<div class="drop_nav">
 				<div class="drop_nav_pad">
 					<ul>
-						<li>Drop Nav Title</li>
-						<li><a>Drop Nav Link</a></li>
-						<li><a>Drop Nav Link</a></li>
-						<li><a>Drop Nav Link</a></li>
-						<li><a>Drop Nav Link</a></li>
+						{% for page in resources_pages %}
+						<li><a href="{{ page.get_absolute_url }}">{{ page.title }}</a></li>
+						{% endfor %}
 					</ul>
 				</div>
 			</div>
 		</li>
 		<li class="pri_nav learning">
-			<a href="javascript:;" class="pri_nav_link">Learning Community:</a>
+			<a href="{% url mbdc-section section='community' %}" class="pri_nav_link">Learning Community:</a>
 			<span class="pri_nav_sub">Get Involved</span>
 			<div class="drop_nav">
 				<div class="drop_nav_pad">
 					<ul>
-						<li>Drop Nav Title</li>
-						<li><a>Drop Nav Link</a></li>
-						<li><a>Drop Nav Link</a></li>
-						<li><a>Drop Nav Link</a></li>
-						<li><a>Drop Nav Link</a></li>
+						{% for page in community_pages %}
+						<li><a href="{{ page.get_absolute_url }}">{{ page.title }}</a></li>
+						{% endfor %}
 					</ul>
 				</div>
 			</div>
