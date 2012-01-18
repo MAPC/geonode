@@ -130,21 +130,11 @@
                       </div>
 
                       <ul class="data_vis_topics">
-                        <li><a href="javascript:;"><span class="topic_icon topic_education"></span>Education</a></li>
+                        {% for topic in featured.visualization.topics.all %} 
+                        <li><a href="{{ topic.get_absolute_url }}"><span class="topic_icon topic_{{ topic.slug }}"></span>{{ topic.title }}</a></li>
+                        {% endfor %}
                       </ul>
-                      <div class="data_vis_rating">
-                        <div class="comments"><span class="num">15</span>comments</div>
-                        <div class="rate">
-                          <div class="stars">
-                            <a class="star rated"></a>
-                            <a class="star rated"></a>
-                            <a class="star"></a>
-                            <a class="star"></a>
-                            <a class="star"></a>
-                          </div>
-                          (25 people rated this)
-                        </div>
-                      </div>
+
                       <div class="clear"></div>
                     </div>
                   </div>
@@ -188,7 +178,7 @@
       <div class="home_featured_maps_pad">
         <div class="home_featured_maps_rotator_wrap">
           <div class="home_featured_maps_heading">
-            <span class="home_featured_heading_info">Visit the <a href="javascript:;">Visualization Gallery</a></span>
+            <span class="home_featured_heading_info">Visit the <a href="{% url mbdc-gallery %}">Visualization Gallery</a></span>
             <div class="title">Recent Data Visualizations from our Community:</div>
           </div>
 
@@ -217,26 +207,7 @@
           <div class="clear"></div>
         </div>
         
-        <div class="home_lastest_data">
-          <div class="home_lastest_data_pad">
-            <div class="home_lastest_data_heading">Latest Data Sets:</div>
-            <div class="home_latest_data_item">
-              <span class="topic_icon topic_geographicBoundaries"></span>
-              <a class="data_link" href="javascript:;">Population Estimates for the state, counties and municipalities.</a>
-              <div class="info">Year(s): 2000  <span class="spacer">&#8226;</span>  Source: <a>Source Title</a></div>
-            </div>
-            <div class="home_latest_data_item">
-              <span class="topic_icon topic_housing"></span>
-              <a class="data_link" href="javascript:;">Census Building Permits for Residential, Single Family, and Multi-Family Family Housing.</a>
-              <div class="info">Year(s): 2000  <span class="spacer">&#8226;</span>  Source: <a>Source Title</a></div>
-            </div>
-            <div class="home_latest_data_item">
-              <span class="topic_icon topic_publicHealth"></span>
-              <a class="data_link" href="javascript:;">Hospitalization Rates for Angina, Asthma, COPD, Diabetes, Heart Failure and Hypertension.</a>
-              <div class="info">Year(s): 2000  <span class="spacer">&#8226;</span>  Source: <a>Source Title</a></div>
-            </div>
-          </div>
-        </div>
+
         <div class="clear"></div>
       </div>
     </div>

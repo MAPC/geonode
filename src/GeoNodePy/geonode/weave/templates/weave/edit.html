@@ -218,7 +218,7 @@
 							{% endfor %}
 							</select>
 
-							<div>{% if user.is_authenticated %}<a id="save-properties-button" class="properties_button" href="#">Save</a>{% else %}<a class="properties_button" href="/accounts/login">{% trans "Login to Save Visualization" %}</a>{% endif %}</div>
+							<div>{% if user.is_authenticated %}<a id="save-properties-button" class="properties_button" href="#">Save</a>{% else %}<a class="properties_button" href="/accounts/login?next={{ request.get_full_path }}">{% trans "Login to Save Visualization" %}</a>{% endif %}</div>
 					</form>
 				</div>
 
@@ -227,7 +227,7 @@
 						<a id="save-button" href="#">Save</a> 
 						<span id="duplicate-spacer" class="spacer">|</span> <a id="duplicate-button" title="Save this Visualization to your profile" href="">Duplicate</a>
 					{% else %}
-					<a href="/accounts/login">{% trans "Login to Save Visualization" %}</a>
+					<a href="/accounts/login?next={{ request.get_full_path }}">{% trans "Login to Save Visualization" %}</a>
 					{% endif %}
 					<span id="embed-spacer" class="spacer">|</span> <a id="embed-button" href="#">Embed</a>
 				</div>

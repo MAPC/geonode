@@ -284,11 +284,21 @@ padding:18px 24px 0 0;
 /* home featured maps */
 .home_featured_maps { }
 .home_featured_maps_pad { padding:0 0 50px 10px; }
-.home_featured_maps .home_featured_maps_heading { width:660px; margin-bottom:10px; }
+.home_featured_maps .home_featured_maps_heading { 
+    width: 100%;
+    /*width:660px;*/ 
+    margin-bottom:10px; 
+}
 .home_featured_maps .home_featured_maps_heading .home_featured_heading_info { float:right; font-size:11px; line-height:22px; margin-right:10px; }
 .home_featured_maps .home_featured_maps_heading .title { color:#3b3b3b; font-size:18px; line-height:18px; margin-bottom:10px; }
 .home_featured_maps .home_featured_maps_heading .home_gallery_link { }
-.home_featured_maps .home_featured_maps_rotator_wrap { width:660px; height:320px; overflow:hidden; float:left; }
+.home_featured_maps .home_featured_maps_rotator_wrap { 
+    width: 100%;
+    /* width:660px; */
+    height:320px; 
+    overflow:hidden; 
+    float:left; 
+}
 .home_featured_maps_rotator_wrap .rotator_nav { float:left; }
 .home_featured_maps_rotator_wrap .rotator_nav a { background:transparent url(../img/Global/slider_nav.png) no-repeat scroll 0 0; width:10px; height:20px; display:block; float:left; text-indent:-9999px; }
 .home_featured_maps_rotator_wrap .rotator_nav a.nav_prev { margin-right:3px; }
