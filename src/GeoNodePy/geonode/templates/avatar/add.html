@@ -1,14 +1,63 @@
-{% extends "page_layout.html" %}
-{% load i18n avatar_tags %}
+{% extends "mbdc/page_layout.html" %}
 
-{% block content %}
-    <p>{% trans "Your current avatar: " %}</p>
-    {% avatar user %}
-    {% if not avatars %}
-        <p>{% trans "You haven't uploaded an avatar yet. Please upload one now." %}</p>
-    {% endif %}
-    <form enctype="multipart/form-data" method="POST" action="{% url avatar_add %}">
-        {{ upload_avatar_form.as_p }}
-        <p>{% csrf_token %}<input type="submit" value="{% trans "Upload New Image" %}" /></p>
-    </form>
+
+{% load i18n avatar_tags %}
+{% load mbdc_extras %}
+
+
+{% block body %}
+
+<!-- breadcrumb -->
+<div class="breadcrumb">
+  <span class="breadcrumb_title">You are here:</span>
+    <a class="breadcrumb_link" href="/">Home</a>
+    <a class="breadcrumb_link" href="{% url profiles_profile_list %}">Profiles</a>
+    <span class="breadcrumb_current">Upload a new Avatar</span>
+</div>
+<!-- /breadcrumb -->
+
+    
+{% get_data_search_bar %}
+
+
+<!-- site_body -->
+    <div class="site_body">
+      <div class="site_body_pad">
+
+                <div class="generic_block form_wrap">
+                  <div class="generic_header form_header">
+                    <h2>{% trans "Upload a new Avatar" %}</h2>
+                    <div class="avatar change">{% avatar user %}</div>
+                    <div class="clear"></div>
+                    {% if not avatars %}
+                    <p>{% trans "You haven't uploaded an avatar yet. Please upload one now." %}</p>
+                    {% endif %}
+                  </div>
+                  
+                  <div class="form_content">
+
+                    <form enctype="multipart/form-data" method="POST" action="{% url avatar_add %}">
+                    {% csrf_token %}
+                    <fieldset class="form">
+                      <legend class="form_req"><img src="{{ STATIC_URL}}mbdc/img/Global/asterix.gif" /> = Required</legend>
+                      <div class="formcell form_req">
+                        <label for="id_avatar">Avatar:</label>
+                        <input type="file" name="avatar" id="id_avatar" class="required" />
+                        <div class="clear"></div>
+                      </div>
+                      <div class="form_submit_wrap">
+                        <div class="form_submit_pad">
+                          <input type="submit" value="Upload New Image" />
+                        </div>
+                      </div>
+                    </fieldset>
+                    <input type="hidden" name="next" value="{{next}}" />
+                    </form>
+                  </div>
+                </div>
+
+</div>
+    </div>
+    <!-- /site_body -->
+
 {% endblock %}

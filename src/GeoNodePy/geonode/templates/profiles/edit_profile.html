@@ -23,35 +23,71 @@
     <div class="generic_block form_wrap">
         <div class="generic_header form_header">
 
-        <h2>Edit {{ profile.user.username }}'s profile</h2>
-        <p>{% trans "Your current avatar: " %}</p>
-        {% avatar user %}
-        {% if not avatars %}
-        <!-- <p>{% trans "You haven't uploaded an avatar yet. Please upload one now." %}</p> -->
-        {% else %}
-<!--         <form method="POST" action="{% url avatar_change %}">
-          <ul>
-            {{ primary_avatar_form.as_ul }}
-          </ul>
-          <p>{% csrf_token %}<input type="submit" value="{% trans "Choose new Default" %}" /></p>
-        </form> -->
-        {% endif %}
+        <h2>Edit your profile</h2>
 
-<!--         <form enctype="multipart/form-data" method="POST" action="{% url avatar_add %}">
-          {{ upload_avatar_form.as_p }}
-          <p>{% csrf_token %}<input type="submit" value="{% trans "Upload New Image" %}" /></p>
-        </form> -->
-
-        <form action="" method="post">
-        {% csrf_token %}
-        <ul class="form">
-         {{ form.as_ul }}
+        <div class="avatar edit">{% avatar user %}</div>
+        
+        <ul class="avatar_menu">
+          <li><a href="{% url avatar_add %}">Add Avatar</a></li>
+          <li><a href="{% url avatar_change %}">Change Avatar</a></li>
+          <li><a href="{% url avatar_delete %}">Delete Avatar</a></li>
         </ul>
-        <input type="submit" value="Submit" />
-        </form>
+
+        <div class="clear"></div>
+
+        <div class="form_content">
+          <form method="POST" action="">
+          {% csrf_token %}
+          <fieldset class="form">
+            
+            <div class="formcell">
+              <label for="id_name">Name:</label>
+              <input id="id_name" type="text" name="name" value="{{ profile.name }}" maxlength="255" />
+              <div class="clear"></div>
+            </div>
+
+            <div class="formcell">
+              <label for="id_organization">Organization:</label>
+              <input id="id_organization" type="text" name="organization" value="{{ profile.organization }}" maxlength="255" />
+              <div class="clear"></div>
+            </div>
+
+            <div class="formcell">
+              <label for="id_position">Position:</label>
+              <input id="id_position" type="text" name="position" value="{{ profile.position }}" maxlength="255" />
+              <div class="clear"></div>
+            </div>
+
+            <div class="formcell">
+              <label for="id_voice">Phone:</label>
+              <input id="id_voice" type="text" name="voice" value="{{ profile.voice }}" maxlength="255" />
+              <div class="clear"></div>
+            </div>
+
+            <div class="formcell">
+              <label for="id_city">City:</label>
+              <input id="id_city" type="text" name="city" value="{{ profile.city }}" maxlength="255" />
+              <div class="clear"></div>
+            </div>
+
+            <div class="formcell">
+              <label for="id_email">Email:</label>
+              <input id="id_email" type="text" name="email" value="{{ profile.email }}" maxlength="75" />
+              <div class="clear"></div>
+            </div>
+
+            <div class="form_submit_wrap">
+              <div class="form_submit_pad">
+                <input type="submit" value="Submit" />
+              </div>
+            </div>
+          </fieldset>
+          <input type="hidden" name="next" value="{% url profiles_edit_profile %}" />
+          </form>
+        </div>
         
 
-
+        
       </div>
     </div>
   </div>

@@ -306,6 +306,10 @@ DB_DATASTORE_TYPE=''
 PAGINATION_PREVIOUS_LINK_DECORATOR = '&#9668; '
 PAGINATION_NEXT_LINK_DECORATOR = ' &#9658'
 
+# Avatar
+AVATAR_GRAVATAR_BACKUP = False
+AVATAR_DEFAULT_URL = 'mbdc/img/avatar.png'
+
 try:
     from local_settings import *
 except ImportError:

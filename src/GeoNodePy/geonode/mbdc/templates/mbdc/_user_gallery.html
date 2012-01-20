@@ -1,0 +1,36 @@
+{% load pagination_tags %}
+
+{% autopaginate visualizations 8 %}
+
+<h1>{% if nr_results %}{{ nr_results }} Visualizations created{% else %}No Visualizations created yet{% endif %}</h1>
+
+<p><a href="{% url weave-new %}">Create a new Weave Visualization</a></p>
+
+<!-- vis_box_listing -->
+<div class="vis_box_listing">
+	<div class="vis_box_listing_pad">
+		
+		{% for visualization in visualizations %}
+
+		<div class="vis_box_item user_gallery">
+			<div class="vis_box_image"><a href="{{ visualization.get_absolute_url }}" title="{{ visualization.title }}"><img src="{{ MEDIA_URL }}weave_thumbnails/{{ visualization.id }}_gallery.png" alt="{{ visualization.title }}" /></a></div>
+			<div class="vis_box_title"><a href="{{ visualization.get_absolute_url }}" class="title">{{ visualization.title }}</a>{% if visualization.year %}, <span class="date">{{ visualization.year }}</span>{% endif %}</div>
+			<div class="vis_box_abstract">{{ visualization.abstract|truncatewords:8 }}</div>
+		</div>
+
+
+		{% endfor %}
+
+		<div class="clear"></div>
+	</div>
+</div>
+<!-- /vis_box_listing -->
+
+
+
+<!-- results_pagination_bottom -->
+<div class="results_pagination_bottom">
+	{% paginate using 'mbdc/_pagination.html' %}
+	<div class="clear"></div>
+</div>
+<!-- /results_pagination_bottom -->

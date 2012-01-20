@@ -1,7 +1,8 @@
 {% extends "registration/base.html" %}
-{% load avatar_tags %}
 
+{% load avatar_tags %}
 {% load mbdc_extras %}
+
 
 {% block body %}
 
@@ -21,17 +22,19 @@
 <div class="site_body">
 	<div class="site_body_pad">
 		<div class="generic_block form_wrap">
-	    	<div class="generic_header form_header">
+	    	<div class="generic_header">
 
-	    		<h2>User Profiles</h2>
+	    		<h2>Your Data Community</h2>
 
+	    		<ul class="user_list">
 				{% for profile in object_list %}
 				   {% if profile.user %}
-				   <ul>
-				     <li>{% avatar profile.user 50 %}<a href="{{profile.get_absolute_url}}">{{ profile.name }}</a></li>
-				   </ul>
+				   
+				     <li><a href="{{profile.get_absolute_url}}">{% avatar profile.user 40 %} {{ profile.name }}</a></li>
+				   
 				    {% endif %}
 				{% endfor %}
+				</ul>
 			</div>
 		</div>
 	</div>
