@@ -112,3 +112,42 @@ class Topic(models.Model):
     def get_absolute_url(self):
         return "/explore/gallery/?topics=%i" % self.id
 
+
+class Calendar(models.Model):
+    """ Stores Calendar pages """
+
+    MONTH_CHOICES=(
+        (1, 'January'), 
+        (2, 'February'),
+        (3, 'March'),
+        (4, 'April'),
+        (5, 'May'),
+        (6, 'June'),
+        (7, 'July'),
+        (8, 'August'),
+        (9, 'September'),
+        (10, 'October'),
+        (11, 'November'),
+        (12, 'December'),
+    )
+    year = models.IntegerField()
+    month = models.IntegerField(choices=MONTH_CHOICES)
+
+    title = models.CharField(max_length=100)
+    abstract = models.TextField()
+
+    topics = models.ManyToManyField('Topic', related_name='calendar_topics')
+    sources = models.ManyToManyField('Datasource', related_name='calendar_sources')
+
+    pdf_page = models.FileField(upload_to='calendar', help_text='Should be a PDF file.')
+    thumbnail = models.ImageField(upload_to='calendar', help_text='Image dimensions should be 200x150.')
+
+    class Meta:
+        ordering = ['-year', 'month', ]
+        verbose_name = _('Calendar page')
+        verbose_name_plural = _('Calendar pages')
+
+    def __unicode__(self):
+        return self.title
+
+        

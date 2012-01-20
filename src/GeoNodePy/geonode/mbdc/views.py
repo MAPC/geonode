@@ -3,7 +3,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 
 from django.contrib.auth.models import User
 
-from geonode.mbdc.models import Hero, Featured, Page, Topic, Datasource
+from geonode.mbdc.models import Hero, Featured, Page, Topic, Datasource, Calendar
 from geonode.weave.models import Visualization
 from geonode.weave.utils import get_readable_vis
 
@@ -66,10 +66,30 @@ def gallery(request):
 		if 'owner' in params: filter_user = User.objects.get(pk=params['owner'])
 
 	except:
-		# empty object
+		# empty queryset
 		visualizations = Visualization.objects.none()
 
 	# TODO: check if pagination provides that value somewhere
 	nr_results  = len(visualizations)
 
 	return render_to_response('mbdc/gallery.html', locals(), context_instance=RequestContext(request))
+
+
+def calendar(request, topic_slug='demographics'):
+	""" Renders the Regional Map Gallery with MAPC's calendar pages """
+
+	topics = Topic.objects.all()
+	topic_selected = get_object_or_404(Topic, slug__iexact=topic_slug)
+	calendar_pages = Calendar.objects.filter(topics__slug__iexact=topic_slug)
+
+	return render_to_response('mbdc/regional_map_gallery.html', locals(), context_instance=RequestContext(request))
+
+
+
+
+
+
+
+
+
+

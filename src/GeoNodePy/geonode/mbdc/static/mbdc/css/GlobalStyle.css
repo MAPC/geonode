@@ -926,3 +926,33 @@ ul.user_list li img {
 
 
 }
+
+/* regional map galler */
+
+.section_nav_wrap.regional_map_gallery p {
+	padding: 10px;
+}
+
+.regional_map_gallery .topic_icon {
+	float: left;
+	margin-right: 5px;
+}
+
+ul.section_nav.regional_map_gallery li {
+	padding: 0px;
+	margin: 0px;
+}
+
+.page_content.regional_map_gallery {
+    min-height: 500px;
+}
+
+.vis_box_item.calendar_page {
+	width: 80%;
+}
+
+.vis_box_item.calendar_page img {
+	float: left;
+	margin-right: 20px;
+	margin-bottom: 20px;
+}

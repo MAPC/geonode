@@ -1,0 +1,85 @@
+{% extends "mbdc/base.html" %}
+
+
+{% load mbdc_extras %}
+{% load pagination_tags %}
+
+
+{% block body %}
+
+<!-- breadcrumb -->
+<div class="breadcrumb">
+	<span class="breadcrumb_title">You are here:</span>
+    <a class="breadcrumb_link" href="/">Home</a>
+    <a class="breadcrumb_link" href="{% url mbdc-regional-map-gallery %}">Explore Data: Regional Map Gallery</a>
+    <span class="breadcrumb_current">{{ topic_selected.title }}</span>
+</div>
+<!-- /breadcrumb -->
+		
+{% get_data_search_bar %}
+
+		<!-- site_body -->
+		<div class="site_body">
+			<div class="site_body_pad">
+				<div class="generic_wrap">
+					<div class="cols_2cols">
+						<div class="col col_1">
+							<div class="col_pad">
+								
+								<!-- section_nav -->
+								<div class="section_nav_wrap regional_map_gallery">
+									<div class="section_nav_header">Regional Map Gallery:</div>
+									<p>Explore MAPC's Annual Report and Calendar maps, illustrating conditions in the region and see whether the map you want may already exist.</p>
+									<ul class="section_nav regional_map_gallery">
+
+
+										{% for topic in topics %}
+											{% if topic == topic_selected %}<li class="active">{% else %}<li>{% endif %}<a href="{% url mbdc-regional-map-gallery-topic topic_slug=topic.slug %}"><span class="topic_icon topic_{{ topic.slug }}"></span>{{ topic.title }}</a></li>
+										{% endfor %}
+									</ul>
+								</div>
+								<!-- /section_nav -->
+
+							</div>
+						</div>
+						<div class="col col_2">
+							<div class="col_pad">
+								<div class="page_content regional_map_gallery">
+									<h1>{{ topic_selected }}</h1>
+
+									{% if calendar_pages %}
+
+										{% autopaginate calendar_pages 8 %}
+
+										{% for calendar_page in calendar_pages %}
+										<div class="vis_box_item calendar_page">
+											<a href="{{ calendar_page.pdf_page.url }}" title="{{ calendar_page.title }}; MAPC Calendar Page {{ calendar_page.get_month_display }} {{ calendar_page.year }} [PDF]"><img src="{{ calendar_page.thumbnail.url }}" alt="{{ calendar_page.title }}; MAPC Calendar Page {{ calendar_page.get_month_display }} {{ calendar_page.year }}" width="200" height="150" /></a>
+											<div class="vis_box_title"><span class="title">{{ calendar_page.title }}</span></div>
+											<div class="vis_box_abstract">{{ calendar_page.abstract }}</div>
+											<div class="vis_box_abstract"><a href="{{ calendar_page.pdf_page.url }}" title="{{ calendar_page.title }}">[Download PDF]</a></div>
+										</div>
+										<div class="clear"></div>
+										{% endfor %}
+										<!-- results_pagination_bottom -->
+										<div class="results_pagination_bottom">
+											{% paginate using 'mbdc/_pagination.html' %}
+											<div class="clear"></div>
+										</div>
+										<!-- /results_pagination_bottom -->
+
+									{% else %}
+										No regional maps found.
+									{% endif %}
+
+								</div>
+							</div>
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+		<!-- /site_body -->
+	
+	{% endblock body %}
