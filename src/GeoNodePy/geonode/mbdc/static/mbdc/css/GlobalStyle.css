@@ -198,7 +198,9 @@ input[type='radio'] { border:none !important; }
 .sitemap_col { float:left; min-height:245px; overflow:hidden; position:relative; }
 .sitemap_col.first { width:150px; }
 .sitemap_col.first .sitemap_col_pad { padding:0 10px 0 0; }
-.sitemap_col.second { width:415px; }
+.sitemap_col.second { 
+    width: 200px; 
+}
 .sitemap_col.second .sitemap_col_pad { padding:0 5px 0 46px; }
 .sitemap_col.second .second_cols { clear:both; margin: 3px 0 0; }
 .sitemap_col.second .second_col { float:left; width:160px; }

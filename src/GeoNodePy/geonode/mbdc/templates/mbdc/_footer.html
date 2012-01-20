@@ -67,15 +67,6 @@
 									</ul>
 								</li>
 							</ul>
-							<ul>
-								<li><a href="javascript:;">Resources</a>
-									<ul>
-										{% for page in resources_pages %}
-										<li><a href="{{ page.get_absolute_url }}">{{ page.title }}</a></li>
-										{% endfor %}
-									</ul>
-								</li>
-							</ul>
 						</div>
 					</div>
 					<div class="sitemap_col fourth">
@@ -84,6 +75,15 @@
 								<li><a href="javascript:;">Learning Community</a>
 									<ul>
 										{% for page in community_pages %}
+										<li><a href="{{ page.get_absolute_url }}">{{ page.title }}</a></li>
+										{% endfor %}
+									</ul>
+								</li>
+							</ul>
+							<ul>
+								<li><a href="javascript:;">Resources</a>
+									<ul>
+										{% for page in resources_pages %}
 										<li><a href="{{ page.get_absolute_url }}">{{ page.title }}</a></li>
 										{% endfor %}
 									</ul>
