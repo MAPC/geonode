@@ -157,7 +157,7 @@
 			<div class="vis_box_image"><a href="{{ visualization.get_absolute_url }}" title="{{ visualization.title }}"><img src="{{ MEDIA_URL }}weave_thumbnails/{{ visualization.id }}_gallery.png" alt="{{ visualization.title }}" /></a></div>
 			<div class="vis_box_title"><a href="{{ visualization.get_absolute_url }}" class="title">{{ visualization.title }}</a>{% if visualization.year %}, <span class="date">{{ visualization.year }}</span>{% endif %}</div>
 			<div class="vis_box_abstract">{{ visualization.abstract|truncatewords:8 }}</div>
-			<div class="vis_box_author">By <a href="{{ visualization.owner.get_profile.get_absolute_url }}" class="author">{% firstof visualization.owner.get_profile.name visualization.owner.username %}</a></div>
+			<div class="vis_box_author">By {% if visualization.owner.get_profile.get_absolute_url %}<a href="{{ visualization.owner.get_profile.get_absolute_url }}">{% firstof visualization.owner.get_profile.name visualization.owner.username %}</a>{% else %}{% firstof visualization.owner.get_profile.name visualization.owner.username %}{% endif %}</div>
 		</div>
 
 		{% endfor %}

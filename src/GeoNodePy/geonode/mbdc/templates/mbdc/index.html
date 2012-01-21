@@ -101,7 +101,7 @@
                     <div class="data_vis_pad">
                       <div class="data_vis_header">
                         <div class="title"><a href="{{ featured.visualization.get_absolute_url }}">{{ featured.visualization.title }}</a></div>
-                        <div class="info">By <a href="{{ featured.visualization.owner.get_profile.get_absolute_url }}">{% firstof featured.visualization.owner.get_profile.name featured.visualization.owner.username %}</a></div>
+                        <div class="info">By {% if featured.visualization.owner.get_profile.get_absolute_url %}<a href="{{ featured.visualization.owner.get_profile.get_absolute_url }}">{% firstof featured.visualization.owner.get_profile.name featured.visualization.owner.username %}</a>{% else %}{% firstof featured.visualization.owner.get_profile.name featured.visualization.owner.username %}{% endif %}</div>
                       </div>
 
                       <div class="data_vis_tabs ui-tabs ui-widget ui-widget-content ui-corner-all">
@@ -197,7 +197,7 @@
                 <a href="{{ visualization.get_absolute_url }}" title="{{ visualization.title }}"><img src="{{ MEDIA_URL }}weave_thumbnails/{{ visualization.id }}_gallery.png" alt="{{ visualization.title }}" /></a>
               </div>
               <div class="slide_credit">
-                By <a href="{{ visualization.owner.get_profile.get_absolute_url }}">{% firstof visualization.owner.get_profile.name visualization.owner.username %}</a>
+                By {% if visualization.owner.get_profile.get_absolute_url %}<a href="{{ visualization.owner.get_profile.get_absolute_url }}">{% firstof visualization.owner.get_profile.name visualization.owner.username %}</a>{% else %}{% firstof visualization.owner.get_profile.name visualization.owner.username %}{% endif %}
               </div>
             </li>
             
