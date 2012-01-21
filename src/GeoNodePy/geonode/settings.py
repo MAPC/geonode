@@ -310,6 +310,9 @@ PAGINATION_NEXT_LINK_DECORATOR = ' &#9658'
 AVATAR_GRAVATAR_BACKUP = False
 AVATAR_DEFAULT_URL = 'mbdc/img/avatar.png'
 
+# Max 20MB file upload
+FILE_UPLOAD_MAX_MEMORY_SIZE = 20971520
+
 try:
     from local_settings import *
 except ImportError:
