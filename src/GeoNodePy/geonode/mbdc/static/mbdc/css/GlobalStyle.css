@@ -851,6 +851,9 @@ clear:left;
 
 /* profiles */
 
+.alt_label {
+	font-size: 13px;
+}
 .avatar img {
     float: left;
     margin-right: 10px;
@@ -879,7 +882,7 @@ ul.section_nav.profile {
     font-size: 13px;
 }
 
-ul.section_nav li span.obfuscate a {
+ul.section_nav li span.obfuscate a{
     display: inline;
     line-height: 0;
     padding: 0px;
