@@ -25,56 +25,63 @@
 
 	    		<h2>Create your profile</h2>
 
-			<div class="form_content">
-	          	<form method="POST" action="">
-	          	{% csrf_token %}
-	          	<fieldset class="form">
-	            
-	            <div class="formcell">
-	              <label for="id_name">Name:</label>
-	              <input id="id_name" type="text" name="name" value="{{ profile.name }}" maxlength="255" />
-	              <div class="clear"></div>
-	            </div>
 
-	            <div class="formcell">
-	              <label for="id_organization">Organization:</label>
-	              <input id="id_organization" type="text" name="organization" value="{{ profile.organization }}" maxlength="255" />
-	              <div class="clear"></div>
-	            </div>
+        <div class="form_content">
+          <form method="POST" action="">
+          {% csrf_token %}
+          <fieldset class="form">
+            
+            <div class="formcell">
+              <label for="id_name">Name:</label>
+              <input id="id_name" type="text" name="name" maxlength="255" />
+              <div class="clear"></div>
+            </div>
 
-	            <div class="formcell">
-	              <label for="id_position">Position:</label>
-	              <input id="id_position" type="text" name="position" value="{{ profile.position }}" maxlength="255" />
-	              <div class="clear"></div>
-	            </div>
+            <div class="formcell">
+              <label for="id_organization">Organization:</label>
+              <input id="id_organization" type="text" name="organization" maxlength="255" />
+              <div class="clear"></div>
+            </div>
 
-	            <div class="formcell">
-	              <label for="id_voice">Phone:</label>
-	              <input id="id_voice" type="text" name="voice" value="{{ profile.voice }}" maxlength="255" />
-	              <div class="clear"></div>
-	            </div>
+            <div class="formcell">
+              <label for="id_city">City:</label>
+              <input id="id_city" type="text" name="city" maxlength="255" />
+              <div class="clear"></div>
+            </div>
 
-	            <div class="formcell">
-	              <label for="id_city">City:</label>
-	              <input id="id_city" type="text" name="city" value="{{ profile.city }}" maxlength="255" />
-	              <div class="clear"></div>
-	            </div>
+            <div class="formcell">
+              <label for="id_email">Email:</label>
+              <input id="id_email" type="text" name="email" value="{{ request.user.email }}" maxlength="75" />
+              <div class="clear"></div>
+            </div>
 
-	            <div class="formcell">
-	              <label for="id_email">Email:</label>
-	              <input id="id_email" type="text" name="email" value="{{ profile.email }}" maxlength="75" />
-	              <div class="clear"></div>
-	            </div>
+            <div class="formcell">
+              <label for="id_website_url">Website:</label>
+              <input id="id_website_url" type="text" name="website_url" maxlength="75" />
+              <div class="clear"></div>
+            </div>
 
-	            <div class="form_submit_wrap">
-	              <div class="form_submit_pad">
-	                <input type="submit" value="Submit" />
-	              </div>
-	            </div>
-	          </fieldset>
-	          <input type="hidden" name="next" value="{% url profiles_edit_profile %}" />
-	          </form>
-	        </div>
+            <div class="formcell">
+              <label for="id_website_url"></label>
+              <input id="id_mbdc_newsletter" type="checkbox" name="mbdc_newsletter" checked="checked" /><span class="alt_label">Subscribe to MetroBoston DataCommon's Newsletter</span>
+              <div class="clear"></div>
+            </div>
+
+            <div class="formcell">
+              <label for="id_website_url"></label>
+              <input id="id_mapc_newsletter" type="checkbox" name="mapc_newsletter" checked="checked" /><span class="alt_label">Subscribe to MAPC's Newsletter</span>
+              <div class="clear"></div>
+            </div>
+
+            <div class="form_submit_wrap">
+              <div class="form_submit_pad">
+                <input type="submit" value="Submit" />
+              </div>
+            </div>
+          </fieldset>
+          <input type="hidden" name="next" value="{% url profiles_edit_profile %}" />
+          </form>
+        </div>
 
 
 

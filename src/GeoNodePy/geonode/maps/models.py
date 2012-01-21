@@ -500,6 +500,14 @@ class Contact(models.Model):
     country = models.CharField(choices=COUNTRIES, max_length=3, blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
 
+    # MBDC extensions
+    website_url = models.URLField(blank=True, null=True)
+    mapc_newsletter = models.BooleanField()
+    mbdc_newsletter = models.BooleanField()
+    last_modified = models.DateTimeField(auto_now=True)
+    class Meta:
+        ordering = ['-last_modified']
+
     def clean(self):
         # the specification says that either name or organization should be provided
         valid_name = (self.name != None and self.name != '')

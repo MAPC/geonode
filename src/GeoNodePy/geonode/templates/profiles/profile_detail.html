@@ -36,10 +36,9 @@
 
                   <ul class="section_nav profile">
                     {% if profile.organization %}<li>Organization: {{ profile.organization }}</li>{% endif %}
-                    {% if profile.position %}<li>Position: {{ profile.position }}</li>{% endif %}
-                    {% if profile.email %}<li>Email: <span class="obfuscate">{{ profile.email|obfuscate }}</span></li>{% endif %}
-                    {% if profile.voice %}<li>Phone: {{ profile.voice }}</li>{% endif %}
                     {% if profile.city %}<li>City: {{ profile.city }}</li>{% endif %}
+                    {% if profile.email %}<li>Email: <span class="obfuscate">{{ profile.email|obfuscate }}</span></li>{% endif %}
+                    {% if profile.website_url %}<li>Website: <span class="obfuscate"><a class="profile_website_url" href="{{ profile.website_url }}">{{ profile.website_url }}</a></span></li>{% endif %}
                     {% if user == profile.user %}<li><a href="{% url profiles_edit_profile %}">{% trans "Edit profile information" %}</a></li>{% endif %}
                   </ul>
                   

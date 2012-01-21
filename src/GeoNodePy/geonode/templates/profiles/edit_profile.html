@@ -53,18 +53,6 @@
             </div>
 
             <div class="formcell">
-              <label for="id_position">Position:</label>
-              <input id="id_position" type="text" name="position" value="{{ profile.position }}" maxlength="255" />
-              <div class="clear"></div>
-            </div>
-
-            <div class="formcell">
-              <label for="id_voice">Phone:</label>
-              <input id="id_voice" type="text" name="voice" value="{{ profile.voice }}" maxlength="255" />
-              <div class="clear"></div>
-            </div>
-
-            <div class="formcell">
               <label for="id_city">City:</label>
               <input id="id_city" type="text" name="city" value="{{ profile.city }}" maxlength="255" />
               <div class="clear"></div>
@@ -73,6 +61,24 @@
             <div class="formcell">
               <label for="id_email">Email:</label>
               <input id="id_email" type="text" name="email" value="{{ profile.email }}" maxlength="75" />
+              <div class="clear"></div>
+            </div>
+
+            <div class="formcell">
+              <label for="id_website_url">Website:</label>
+              <input id="id_website_url" type="text" name="website_url" value="{{ profile.website_url }}" maxlength="75" />
+              <div class="clear"></div>
+            </div>
+
+            <div class="formcell">
+              <label for="id_website_url"></label>
+              <input id="id_mbdc_newsletter" type="checkbox" name="mbdc_newsletter" {% if profile.mbdc_newsletter %}checked="checked"{% endif %} /><span class="alt_label">Subscribe to MetroBoston DataCommon's Newsletter</span>
+              <div class="clear"></div>
+            </div>
+
+            <div class="formcell">
+              <label for="id_website_url"></label>
+              <input id="id_mapc_newsletter" type="checkbox" name="mapc_newsletter" {% if profile.mapc_newsletter %}checked="checked"{% endif %} /><span class="alt_label">Subscribe to MAPC's Newsletter</span>
               <div class="clear"></div>
             </div>
 
