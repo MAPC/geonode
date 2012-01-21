@@ -502,8 +502,8 @@ class Contact(models.Model):
 
     # MBDC extensions
     website_url = models.URLField(blank=True, null=True)
-    mapc_newsletter = models.BooleanField()
-    mbdc_newsletter = models.BooleanField()
+    mapc_newsletter = models.BooleanField(default=True)
+    mbdc_newsletter = models.BooleanField(default=True)
     last_modified = models.DateTimeField(auto_now=True)
     class Meta:
         ordering = ['-last_modified']

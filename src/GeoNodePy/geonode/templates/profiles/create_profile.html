@@ -33,43 +33,48 @@
             
             <div class="formcell">
               <label for="id_name">Name:</label>
-              <input id="id_name" type="text" name="name" maxlength="255" />
+              {{ form.name }}
+              {{ form.name.errors }}
               <div class="clear"></div>
             </div>
 
             <div class="formcell">
               <label for="id_organization">Organization:</label>
-              <input id="id_organization" type="text" name="organization" maxlength="255" />
+              {{ form.organization }}
+              {{ form.organization.errors }}
               <div class="clear"></div>
             </div>
 
             <div class="formcell">
               <label for="id_city">City:</label>
-              <input id="id_city" type="text" name="city" maxlength="255" />
+              {{ form.city }}
+              {{ form.city.errors }}
               <div class="clear"></div>
             </div>
 
             <div class="formcell">
               <label for="id_email">Email:</label>
               <input id="id_email" type="text" name="email" value="{{ request.user.email }}" maxlength="75" />
+              {{ form.email.errors }}
               <div class="clear"></div>
             </div>
 
             <div class="formcell">
               <label for="id_website_url">Website:</label>
-              <input id="id_website_url" type="text" name="website_url" maxlength="75" />
+              {{ form.website_url }}
+              {{ form.website_url.errors }}
               <div class="clear"></div>
             </div>
 
             <div class="formcell">
               <label for="id_website_url"></label>
-              <input id="id_mbdc_newsletter" type="checkbox" name="mbdc_newsletter" checked="checked" /><span class="alt_label">Subscribe to MetroBoston DataCommon's Newsletter</span>
+              {{ form.mbdc_newsletter }}<span class="alt_label">Subscribe to MetroBoston DataCommon's Newsletter</span>
               <div class="clear"></div>
             </div>
 
             <div class="formcell">
               <label for="id_website_url"></label>
-              <input id="id_mapc_newsletter" type="checkbox" name="mapc_newsletter" checked="checked" /><span class="alt_label">Subscribe to MAPC's Newsletter</span>
+              {{ form.mapc_newsletter }}<span class="alt_label">Subscribe to MAPC's Newsletter</span>
               <div class="clear"></div>
             </div>
 

@@ -884,7 +884,7 @@ ul.section_nav.profile {
 
 ul.section_nav li span.obfuscate a{
     display: inline;
-    line-height: 0;
+    line-height: 16.5px;
     padding: 0px;
 }
 
