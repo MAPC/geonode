@@ -52,7 +52,7 @@
 		};
 
 		{% if not visualization.id %}
-		$("#duplicate-button, #duplicate-spacer, #embed-button, #embed-spacer").hide();
+		$("#duplicate-button, #duplicate-spacer, #embed-button, #embed-spacer, #delete-button, #delete-spacer").hide();
 		{% else %}
 		MBDC.visid = "{{ visualization.id }}";
 		{% endif %}
@@ -61,8 +61,9 @@
 		{% if perm_change %}
 		MBDC.visembedurl = MBDC.visurl = "{{ visualization.get_absolute_url }}";
 		{% else %}
+		// FIXME: security by obscurity
 		MBDC.visurl = "{% url weave-new %}";
-		$("#properties-button, #save-button, #duplicate-spacer").hide();
+		$("#properties-button, #save-button, #duplicate-spacer, #delete-button, #delete-spacer").hide();
 		{% endif %}
 
 		// init embed-code
@@ -137,7 +138,8 @@
 					}
 
 					// more options once the visualization is saved
-					$("#properties-button, #save-button, #duplicate-button, #duplicate-spacer, #embed-button, #embed-spacer").show();
+					$("#properties-button, #save-button, #duplicate-button, #duplicate-spacer, #embed-button, #embed-spacer, #delete-button, #delete-spacer").show();
+					$("#delete-button").attr("href", MBDC.visurl + "delete");
 
 					$("#spinner").spin(false);
 
@@ -230,18 +232,19 @@
 							{% endfor %}
 							</select>
 
-							<div>{% if user.is_authenticated %}<a id="save-properties-button" class="properties_button" href="#">Save</a>{% else %}<a class="properties_button" href="/accounts/login?next={{ request.get_full_path }}">{% trans "Login to Save Visualization" %}</a>{% endif %}</div>
+							<div>{% if user.is_authenticated %}<a id="save-properties-button" class="properties_button" href="save">Save</a>{% else %}<a class="properties_button" href="/accounts/login?next={{ request.get_full_path }}">{% trans "Login to Save Visualization" %}</a>{% endif %}</div>
 					</form>
 				</div>
 
 				<div class="data_vis_nav">
 					{% if user.is_authenticated %}
-						<a id="save-button" href="#">Save</a> 
-						<span id="duplicate-spacer" class="spacer">|</span> <a id="duplicate-button" title="Save this Visualization to your profile" href="">Duplicate</a>
+						<a id="save-button" title="Save this Visualization" href="save">Save</a> 
+						<span id="duplicate-spacer" class="spacer">|</span> <a id="duplicate-button" title="Duplicate this Visualization to your profile" href="duplicate">Duplicate</a>
+						<span id="delete-spacer" class="spacer">|</span> <a id="delete-button" title="Delete this Visualization from your profile" href="delete">Delete</a>
 					{% else %}
 					<a href="/accounts/login?next={{ request.get_full_path }}">{% trans "Login to Save Visualization" %}</a>
 					{% endif %}
-					<span id="embed-spacer" class="spacer">|</span> <a id="embed-button" href="#">Embed</a>
+					<span id="embed-spacer" class="spacer">|</span> <a id="embed-button" href="embed" title="Embed this Visualization in another website">Embed</a>
 				</div>
 
 				<div id="embed-code">Copy&amp;paste the embed-code below into your website:<input type="text" /></div>

@@ -1,7 +1,7 @@
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, HttpResponseRedirect
-from django.template import RequestContext
+from django.template import RequestContext, loader
 from django.db import transaction
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
@@ -13,6 +13,7 @@ import json
 import re
 import unicodedata
 from urllib import urlencode
+import os
 
 import base64
 import Image
@@ -25,6 +26,9 @@ from geonode.core.models import AUTHENTICATED_USERS, ANONYMOUS_USERS
 from geonode.maps.models import Contact
 from geonode.weave.models import Visualization
 from geonode.mbdc.models import Topic, Datasource
+
+# Visualization Thumbnail sizes
+TN_SIZES = dict(featured=(455, 315), gallery=(205,155))
 
 def save_thumbnail(data, visid):
 	"""
@@ -40,10 +44,9 @@ def save_thumbnail(data, visid):
 	visimg_file.close()
 	
 	# save visualization thumbnails
-	tn_sizes = dict(featured=(455, 315), gallery=(205,155))
-	for tn_type in tn_sizes:
+	for tn_type in TN_SIZES:
 		tn = Image.open(visimg_filename)
-		tn.thumbnail(tn_sizes[tn_type], Image.ANTIALIAS)
+		tn.thumbnail(TN_SIZES[tn_type], Image.ANTIALIAS)
 		tn.save('%s/weave_thumbnails/%i_%s.png' % (settings.MEDIA_ROOT, visid, tn_type), 'PNG')
 
 def index(request):
@@ -169,7 +172,30 @@ def edit(request, visid):
 				mimetype="text/plain"
 			)
 
-def sessionstate(request, visid=1):
+
+def delete(request, visid):
+	"""
+	Removes an existing Visualization
+	FIXME: remove obsolete perm roles
+	"""
+	visualization = get_object_or_404(Visualization, pk=visid)
+
+	if not request.user.has_perm('weave.delete_visualization', obj=visualization):
+		return HttpResponse(loader.render_to_string('401.html', 
+			RequestContext(request, {'error_message': 
+				_("You are not permitted to delete this Visualization.")})), status=401)
+
+	# delete visualization images
+	os.remove('%s/weave_thumbnails/%i.png' % (settings.MEDIA_ROOT, visualization.id))
+	for tn_type in TN_SIZES:
+		# tn.save('%s/weave_thumbnails/%i_%s.png' % (settings.MEDIA_ROOT, visid, tn_type), 'PNG')
+		os.remove('%s/weave_thumbnails/%i_%s.png' % (settings.MEDIA_ROOT, visualization.id, tn_type))
+
+	visualization.delete()
+
+	return redirect('weave-new')
+
+def sessionstate(request, visid):
 	"""
 	Returns a JSON session state for given visualization.
 	"""
