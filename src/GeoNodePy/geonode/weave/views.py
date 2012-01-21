@@ -66,7 +66,6 @@ def new(request):
 	siteurl = settings.SITEURL[:-1]
 
 	if request.method == 'GET':
-		# we treat visualization nr 1 as default visualization (session state)
 		perm_change = True
 		topics = Topic.objects.all()
 		datasources = Datasource.objects.all()
@@ -93,7 +92,7 @@ def new(request):
 			save_thumbnail(data=request.POST.get('thumbnail'), visid=visualization.id)
 
 			return HttpResponse(
-				'{"visurl": "%s"}' % (visualization.get_absolute_url()),
+				'{"visurl": "%s", "visid": "%i"}' % (visualization.get_absolute_url(), visualization.id),
 				status=201,
 				mimetype='application/json'
 			)

@@ -53,6 +53,8 @@
 
 		{% if not visualization.id %}
 		$("#duplicate-button, #duplicate-spacer, #embed-button, #embed-spacer").hide();
+		{% else %}
+		MBDC.visid = "{{ visualization.id }}";
 		{% endif %}
 
 		// post url
@@ -80,14 +82,15 @@
 
 		// Save Visualization
 		$("#save-button, #save-properties-button").bind("click", function() {
-			saveSessionState("saved");
+			saveSessionState();
 			return false;
 		});
 
 		// Duplicate Visualization
 		$("#duplicate-button").bind("click", function() {
 			MBDC.visurl = "{% url weave-new %}";
-			saveSessionState("duplicated");
+			// pass the current visualization as original if duplicate action
+			saveSessionState({"original": MBDC.visid});
 			return false;
 		});
 
@@ -100,7 +103,7 @@
 			return false;
 		});
 
-		var saveSessionState = function (message) {
+		var saveSessionState = function (add_params) {
 
 			// visual AJAX feedback
 			$("#spinner").spin("small");
@@ -108,21 +111,27 @@
 			// get Weave object
 			var weave = swfobject.getObjectById("vis-{{ visualization.id|default:'new' }}");
 
+			var params = { 
+				"title": $("#.vis_properties_form form #title").val(),
+				"year": $("#.vis_properties_form form #year").val(),
+				"abstract": $("#.vis_properties_form form #abstract").val(), 
+				"topics": JSON.stringify($(".vis_properties_form form #topics").val()),
+				"datasources": JSON.stringify($(".vis_properties_form form #datasources").val()),
+				"sessionstate": JSON.stringify(weave.getSessionState([])),
+				"thumbnail": weave.evaluateExpression(null, 'getBase64Image(Application.application.visDesktop)', null, ['weave.utils.BitmapUtils', 'mx.core.Application']) 
+			}
+
+			// additional parameters
+			if (add_params) $.extend(params, add_params);
+
 			$.post(MBDC.visurl, 
-				{ 
-					"title": $("#.vis_properties_form form #title").val(),
-					"year": $("#.vis_properties_form form #year").val(),
-					"abstract": $("#.vis_properties_form form #abstract").val(), 
-					"topics": JSON.stringify($(".vis_properties_form form #topics").val()),
-					"datasources": JSON.stringify($(".vis_properties_form form #datasources").val()),
-					"sessionstate": JSON.stringify(weave.getSessionState([])),
-					"thumbnail": weave.evaluateExpression(null, 'getBase64Image(Application.application.visDesktop)', null, ['weave.utils.BitmapUtils', 'mx.core.Application'])  
-				},
+				params,
 				function(data){
 					
 					// set new URLs
 					if (data) {
 						MBDC.visembedurl = MBDC.visurl = data["visurl"];
+						MBDC.visid = data["visid"];
 						$("#vis-title").attr("href", data["visurl"]);
 						$("#embed-code input").val("<iframe width='500' height='350' frameborder='0' scrolling='no' marginheight='0' marginwidth='0' src='{{ siteurl }}" + MBDC.visembedurl + "embed'></iframe><br /><small><a href='{{ siteurl }}" + MBDC.visembedurl + "'>View Larger Visualization</a></small>");
 					}
@@ -187,7 +196,10 @@
 				<div id="spinner"></div>
 				<div class="data_vis_header">
 					<div class="title"><a id="vis-title" href="{{ visualization.get_absolute_url }}">{{ visualization.title|default:"New Weave Visualization" }} </a></div>
-					<div class="info">{% if visualization.owner.get_profile.get_absolute_url %}By <a href="{{ visualization.owner.get_profile.get_absolute_url }}">{% firstof visualization.owner.get_profile.name visualization.owner.username %}</a>{% else %}By {% firstof visualization.owner.get_profile.name visualization.owner.username %}{% endif %}</div>
+
+					{% if visualization %}<div class="info">{% if visualization.owner.get_profile.get_absolute_url %}By <a href="{{ visualization.owner.get_profile.get_absolute_url }}">{% firstof visualization.owner.get_profile.name visualization.owner.username %}</a>{% else %}By {% firstof visualization.owner.get_profile.name visualization.owner.username %}{% endif %}</div>{% endif %}
+
+					{% if visualization.original %}<div class="info">Based on <a href="{{ visualization.original.get_absolute_url }}">{{ visualization.original.title }}</a></div>{% endif %}
 
 					<div class="info">{% if visualization.year %}Year(s): <span id="vis-year">{{ visualization.year }}</span><span class="spacer">&#8226;</span>{% endif %}  {% if related_datasources %}Source(s): <span id="vis-datasources">{% for datasource in related_datasources %}<a href="{{ datasource.url }}" target="_blank">{{ datasource.title }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}</span>{% endif %}</div>
 					<a href="#" id="properties-button" class="expand_link">Edit Properties [+]</a>

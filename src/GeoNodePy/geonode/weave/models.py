@@ -52,6 +52,11 @@ class Visualization(models.Model, PermissionLevelMixin):
 	The user that created/owns this map.
 	"""
 
+	original = models.ForeignKey('self', blank=True, null=True)
+	""" 
+	The original object if duplicated. 
+	"""
+
 	last_modified = models.DateTimeField(auto_now=True)
 	"""
 	The last time the map was modified.
@@ -79,6 +84,11 @@ class Visualization(models.Model, PermissionLevelMixin):
 		self.year = conf['year']
 		self.abstract = conf['abstract']
 		self.sessionstate = conf['sessionstate']
+
+		try:
+			self.original = Visualization.objects.get(pk=conf['original'])
+		except:
+			pass
 
 		self.save()
 
