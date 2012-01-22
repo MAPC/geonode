@@ -1,11 +1,35 @@
-{% extends "page_layout.html" %}
+{% extends "mbdc/page_layout.html" %}
 {% load i18n %}
+{% load mbdc_extras %}
 
-{% block main %}
-  <div class="onecol">
-    <div id="description"><h3>{% trans "Page Not Found" %}</h3></div>
-    {% blocktrans %}
-        The page you requested does not exist.  Perhaps you are using an outdated bookmark?
-    {% endblocktrans %}
+{% block body %}
+
+<!-- breadcrumb -->
+<div class="breadcrumb">
+  <span class="breadcrumb_title">You are here:</span>
+    <a class="breadcrumb_link" href="/">Home</a>
+    <span class="breadcrumb_current">Error 404 Not Found</span>
+</div>
+<!-- /breadcrumb -->
+
+    
+{% get_data_search_bar %}
+
+
+<!-- site_body -->
+<div class="site_body">
+  <div class="site_body_pad">
+    <div class="generic_block">
+        <div class="generic_header">
+
+  <h2>{% trans "Page Not Found" %}</h2>
+    <p>{% blocktrans %}The page you requested does not exist.  Perhaps you are using an outdated bookmark?{% endblocktrans %}</p>
+
+
+      </div>
+    </div>
   </div>
+</div>
+<!-- /site_body -->
+
 {% endblock %}

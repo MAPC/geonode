@@ -1,11 +1,33 @@
-{% extends "page_layout.html" %}
+{% extends "mbdc/page_layout.html" %}
 {% load i18n %}
+{% load mbdc_extras %}
 
-{% block main %}
-  <div class="onecol">
-    <div id="description"><h3>{% trans "Internal Server Error" %}</h3></div>
-    {% blocktrans %}
-        An internal error occurred. Please try again, and if the problem continues, contact your site administrator.
-    {% endblocktrans %}
+{% block body %}
+
+<!-- breadcrumb -->
+<div class="breadcrumb">
+  <span class="breadcrumb_title">You are here:</span>
+    <a class="breadcrumb_link" href="/">Home</a>
+    <span class="breadcrumb_current">Error 500 Internal Server Error</span>
+</div>
+<!-- /breadcrumb -->
+
+    
+{% get_data_search_bar %}
+
+<!-- site_body -->
+<div class="site_body">
+  <div class="site_body_pad">
+    <div class="generic_block">
+        <div class="generic_header">
+
+  <h2>{% trans "Internal Server Error" %}</h2>
+    <p>{% blocktrans %}An internal error occurred. Please try again, and if the problem continues, please use our <a href="https://datacommon.uservoice.com">feedback forum</a> for help.{% endblocktrans %}</p>
+
+      </div>
+    </div>
   </div>
+</div>
+<!-- /site_body -->
+
 {% endblock %}

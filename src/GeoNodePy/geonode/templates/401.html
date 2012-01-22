@@ -1,16 +1,34 @@
-{% extends "page_layout.html" %}
+{% extends "mbdc/page_layout.html" %}
 {% load i18n %}
+{% load mbdc_extras %}
 
-{% block main %}
-    <div id="description"> 
-      <h3> 
+{% block body %}
+
+<!-- breadcrumb -->
+<div class="breadcrumb">
+  <span class="breadcrumb_title">You are here:</span>
+    <a class="breadcrumb_link" href="/">Home</a>
+    <span class="breadcrumb_current">Error 401 Unauthorized</span>
+</div>
+<!-- /breadcrumb -->
+
+    
+{% get_data_search_bar %}
+
+<!-- site_body -->
+<div class="site_body">
+  <div class="site_body_pad">
+    <div class="generic_block">
+        <div class="generic_header">
+
+      <h2> 
         {% if error_title %}
           {{ error_title }}
         {% else %}
           {% trans "Not Permitted" %}
         {% endif %}
-      </h3>
-    </div>
+      </h2>
+
     <p>
     {% if error_message %}
       {{ error_message }}
@@ -27,4 +45,11 @@
     {% blocktrans %}Please login or register and retry.{% endblocktrans %}
     {% endif %}
     </p>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /site_body -->
 {% endblock %}
