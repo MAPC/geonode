@@ -98,6 +98,9 @@ STATICFILES_DIRS = [
     os.path.join(PROJECT_ROOT, "weave/static"),
 ]
 
+# The file storage engine to use when collecting static files with the collectstatic management command.
+STATICFILES_STORAGE = 'staticfiles.storage.StaticFilesStorage'
+
 GEONODE_UPLOAD_PATH = os.path.join(STATIC_URL, "upload/")
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
