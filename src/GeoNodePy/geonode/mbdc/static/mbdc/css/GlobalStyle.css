@@ -893,6 +893,10 @@ ul.section_nav li span.obfuscate a{
     float: left;
 }
 
+.vis_box_item.user_gallery:nth-child(odd) {
+clear:left;
+}
+
 .page_content.user_gallery a {
     text-decoration: none;
 }
