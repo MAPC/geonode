@@ -9,6 +9,39 @@
 
 {% include "weave/_swfobject.html" %}
 
+<script type="text/javascript">
+
+
+// called when Weave JavaScript API is ready
+var weaveReady = function(weave) { 
+
+	if (weave.id === "overviewmap") weave.evaluateExpression(['MapTool'], 'zoomToSelection()');
+
+}
+
+jQuery(document).ready(function($) {
+
+    // add featured Weave Flash object
+    swfobject.embedSWF(
+      "{{ WEAVE_URL }}weave.swf", 
+      "overviewmap", 
+      "380", "275", 
+      "10.0.0",
+      "expressInstall.swf", 
+      {
+		file: "{{ SITEURL|slice:':-1' }}{% url geonode.snapshots.views.get_sessionstate regiontype.slug regionalunit.slug overviewmap.id %}"
+	  }, 
+      MBDC.swfobject.params, 
+      {
+        id: "overviewmap",
+        name: "overviewmap"
+      }
+    );
+
+});
+
+</script>
+
 {% endblock head_javascript %}
 
 {% block body %}
@@ -33,8 +66,10 @@
 				<!-- location_content -->
 				<div class="location_content">
 					<div class="location_content_media">
-						
-						<img src="{{ STATIC_URL }}mbdc/img/photo-townsnapshot2.jpg" width="380" height="275" alt="Snapshots and Profiles" />
+
+						<div id="overviewmap">
+                            <p>Please install the <a href="http://get.adobe.com/flashplayer/">Adobe Flash Player</a> to be able to see this visualization.</p>
+                        </div>
 						
 					</div>
 					<div class="location_content_text page_content">

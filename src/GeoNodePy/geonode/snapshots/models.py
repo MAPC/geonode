@@ -70,6 +70,8 @@ class Visualization(models.Model):
 	year = models.CharField(max_length=20, blank=True, null=True)
 	source = models.ManyToManyField('mbdc.Datasource', blank=True, null=True)
 
+	overviewmap = models.BooleanField(help_text='This visualization will be shown as overviewmap in the Snapshot header.')
+
 	def __unicode__(self):
 	 	return self.title
 

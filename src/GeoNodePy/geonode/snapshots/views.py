@@ -30,11 +30,10 @@ def get_regionalunit(request, regiontype_slug, regionalunit_slug):
 
 	regiontype = get_object_or_404(Regiontype, slug__iexact=regiontype_slug)
 	regionalunit = get_object_or_404(Regionalunit, regiontype=regiontype, slug__iexact=regionalunit_slug)
+	overviewmap = Visualization.objects.filter(regiontype=regiontype, overviewmap=True)[0]
 
 	# show all categories except the last one ("Geographic Boundaries")
 	topics = Topic.objects.all()
-
-	visualizations = Visualization.objects.all()
 
 	return render_to_response('snapshots/regionalunit.html', locals(), context_instance=RequestContext(request))
 
@@ -46,7 +45,6 @@ def get_sessionstate(request, regiontype_slug, regionalunit_slug, visid):
 	regiontype = get_object_or_404(Regiontype, slug__iexact=regiontype_slug)
 	regionalunit = get_object_or_404(Regionalunit, regiontype=regiontype, slug__iexact=regionalunit_slug)
 	
-	# TODO: change to correct mimetype 'application/xml' once http://bugs.oicweave.org/issues/755 is resolved
 	return render_to_response(visualization.sessionstate.name, locals(), context_instance=RequestContext(request), mimetype='application/xml')
 
 

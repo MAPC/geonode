@@ -14,7 +14,7 @@ register = template.Library()
 def get_visualizations(topic, regiontype, regionalunit):
 	""" renders flash visualization for given arguments """
 
-	visualizations = Visualization.objects.filter(regiontype=regiontype, topics=topic)
+	visualizations = Visualization.objects.filter(regiontype=regiontype, topics=topic, overviewmap=False)
 
 	return {
 		'topic': topic,
