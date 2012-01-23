@@ -29,7 +29,10 @@ def get_regionalunit(request, regiontype_slug, regionalunit_slug):
 
 	regiontype = get_object_or_404(Regiontype, slug__iexact=regiontype_slug)
 	regionalunit = get_object_or_404(Regionalunit, regiontype=regiontype, slug__iexact=regionalunit_slug)
-	overviewmap = Visualization.objects.filter(regiontype=regiontype, overviewmap=True)[0]
+	try:
+		overviewmap = Visualization.objects.filter(regiontype=regiontype, overviewmap=True)[0]
+	except:
+		pass
 
 	# show all categories except the last one ("Geographic Boundaries")
 	topics = Topic.objects.all()
