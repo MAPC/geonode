@@ -197,14 +197,14 @@
 			<div class="data_vis_pad">
 				<div id="spinner"></div>
 				<div class="data_vis_header">
-					<div class="title"><a id="vis-title" href="{{ visualization.get_absolute_url }}">{{ visualization.title|default:"New Weave Visualization" }} </a></div>
+					<div class="title"><a id="vis-title" {% if visualization %}href="{{ visualization.get_absolute_url }}"{% endif %}>{{ visualization.title|default:"New Weave Visualization" }} </a></div>
 
 					{% if visualization %}<div class="info">{% if visualization.owner.get_profile.get_absolute_url %}By <a href="{{ visualization.owner.get_profile.get_absolute_url }}">{% firstof visualization.owner.get_profile.name visualization.owner.username %}</a>{% else %}By {% firstof visualization.owner.get_profile.name visualization.owner.username %}{% endif %}</div>{% endif %}
 
 					{% if visualization.original %}<div class="info">Based on <a href="{{ visualization.original.get_absolute_url }}">{{ visualization.original.title }}</a></div>{% endif %}
 
 					<div class="info">{% if visualization.year %}Year(s): <span id="vis-year">{{ visualization.year }}</span><span class="spacer">&#8226;</span>{% endif %}  {% if related_datasources %}Source(s): <span id="vis-datasources">{% for datasource in related_datasources %}<a href="{{ datasource.url }}" target="_blank">{{ datasource.title }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}</span>{% endif %}</div>
-					<a href="#" id="properties-button" class="expand_link">Edit Properties [+]</a>
+					<a href="" id="properties-button" class="expand_link">Edit Properties [+]</a>
 				</div>
 				
 				<div class="vis_properties_form">	
