@@ -26,7 +26,6 @@ def get_regiontype(request, regiontype_slug):
 def get_regionalunit(request, regiontype_slug, regionalunit_slug):
 	""" Render page for regional unit with one (first) visualization per topic """
 	# snapshot types
-	# snapshot_types = Regiontype.objects.all()
 
 	regiontype = get_object_or_404(Regiontype, slug__iexact=regiontype_slug)
 	regionalunit = get_object_or_404(Regionalunit, regiontype=regiontype, slug__iexact=regionalunit_slug)
@@ -34,6 +33,9 @@ def get_regionalunit(request, regiontype_slug, regionalunit_slug):
 
 	# show all categories except the last one ("Geographic Boundaries")
 	topics = Topic.objects.all()
+
+	# build the town select dropdown
+	regionalunits = Regionalunit.objects.all()
 
 	return render_to_response('snapshots/regionalunit.html', locals(), context_instance=RequestContext(request))
 

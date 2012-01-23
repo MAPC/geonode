@@ -419,9 +419,25 @@ ul.errorlist li {
 .page_intro_content .page_content_media + .page_content_text { float:left; width:560px; }
 /* location_content */
 .location_content { padding:18px 10px; }
-.location_content .location_content_media { float:right; width:380px; max-width:380px; margin:0 20px 0 10px; height:275px; }
+.location_content .location_content_media { 
+	float:right; 
+	width:380px; 
+	max-width:380px; 
+	margin:0 20px 0 10px; 
+	height: 345px; 
+}
 .location_content .location_content_media > * { max-width:380px!important; }
-.location_content .location_content_text { width:auto; font-size:15px; line-height:22px; height:274px; border-bottom:1px solid #e2e3e2; }
+.location_content .location_content_text { 
+	width:auto; 
+	font-size:15px; 
+	line-height:22px; 
+	height:344px; 
+	border-bottom:1px solid #e2e3e2; 
+}
+.location_content .location_content_media object {
+	border: 1px solid #E7E7E4;
+}
+
 .location_content .location_content_media + .location_content_text { float:left; width:490px; }
 /* map_listing */
 .map_listing { }
