@@ -72,6 +72,9 @@ class Visualization(models.Model):
 
 	overviewmap = models.BooleanField(help_text='This visualization will be shown as overviewmap in the Snapshot header.')
 
+	class Meta:
+		ordering = ['title']
+
 	def __unicode__(self):
 	 	return self.title
 
