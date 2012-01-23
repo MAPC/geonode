@@ -101,6 +101,9 @@
                     <div class="data_vis_pad">
                       <div class="data_vis_header">
                         <div class="title"><a href="{{ featured.visualization.get_absolute_url }}">{{ featured.visualization.title }}</a></div>
+
+                        <div class="info">{% if featured.visualization.year %}Year(s): <span id="vis-year">{{ featured.visualization.year }}</span><span class="spacer">&#8226;</span>{% endif %}  {% if featured.visualization.datasources.all %}Source(s): <span id="vis-datasources">{% for datasource in featured.visualization.datasources.all %}<a href="{{ datasource.url }}" target="_blank">{{ datasource.title }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}</span>{% endif %}</div>
+
                         <div class="info">By {% if featured.visualization.owner.get_profile.get_absolute_url %}<a href="{{ featured.visualization.owner.get_profile.get_absolute_url }}">{% firstof featured.visualization.owner.get_profile.name featured.visualization.owner.username %}</a>{% else %}{% firstof featured.visualization.owner.get_profile.name featured.visualization.owner.username %}{% endif %}</div>
                       </div>
 
