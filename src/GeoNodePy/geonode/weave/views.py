@@ -22,7 +22,7 @@ from django.conf import settings
 
 from geonode.maps.views import _split_query
 
-from geonode.core.models import AUTHENTICATED_USERS, ANONYMOUS_USERS
+from geonode.core.models import AUTHENTICATED_USERS, ANONYMOUS_USERS, PermissionLevelMixin
 from geonode.maps.models import Contact
 from geonode.weave.models import Visualization
 from geonode.mbdc.models import Topic, Datasource
@@ -77,11 +77,9 @@ def new(request):
 		)
 	elif request.method == 'POST':
 		if not request.user.is_authenticated():
-			return HttpResponse(
-				'You must be logged in to save new visualizations.',
-				mimetype="text/plain",
-				status=401
-			)
+			return HttpResponse(loader.render_to_string('401.html', 
+				RequestContext(request, {'error_message': 
+				_('You must be logged in to save a new visualizations.')})), status=401)
 		try: 
 			# instantiate new visualization
 			visualization = Visualization(owner=request.user)
@@ -122,12 +120,21 @@ def edit(request, visid):
 
 		# check permissons TODO: render to default template
 		if not request.user.has_perm("weave.view_visualization", obj=visualization):
-			return HttpResponse(
-					"You don't have permission to view this visualizations.",
-					mimetype="text/plain",
-					status=401)
-
+			return HttpResponse(loader.render_to_string('401.html', 
+				RequestContext(request, {'error_message': 
+				_("You are not permitted to view this Visualization.")})), status=401)
+		
+		# check user permissions
 		perm_change = request.user.has_perm("weave.change_visualization", obj=visualization)
+
+		# check visualiation permissions for authenticated users to find out if we can
+		# set Visualization public or private in UI
+		if visualization.get_gen_level(AUTHENTICATED_USERS) == PermissionLevelMixin.LEVEL_NONE:
+			set_perm = 'public'
+			get_perm = 'private'
+		else:
+			set_perm = 'private'
+			get_perm = 'public'
 
 		# get related topics
 		topics = Topic.objects.all()
@@ -151,10 +158,9 @@ def edit(request, visid):
 	elif request.method == 'POST':
 		# check permissions
 		if not request.user.has_perm("weave.change_visualization", obj=visualization):
-			return HttpResponse(
-					"You don't have permission to edit this visualizations.",
-					mimetype="text/plain",
-					status=401)
+			return HttpResponse(loader.render_to_string('401.html', 
+				RequestContext(request, {'error_message': 
+				_("You are not permitted to edit this Visualization.")})), status=401)
 		try:
 			
 			# save visualization thumbnail
@@ -203,17 +209,44 @@ def sessionstate(request, visid):
 	visualization = get_object_or_404(Visualization, pk=visid)
 	# check permissions
 	if not request.user.has_perm("weave.view_visualization", obj=visualization):
-		return HttpResponse(
-			"You don't have permission to access this Session State.",
-			mimetype="text/plain",
-			status=401
-		)
+		return HttpResponse(loader.render_to_string('401.html', 
+				RequestContext(request, {'error_message': 
+				_("You don't have permission to access this configuration.")})), status=401)
 	# return JSON session state
 	return HttpResponse(
 		visualization.sessionstate,
 		status=201,
 		mimetype='application/json'
 	)
+
+
+def set_permissions(request, visid):
+	""" Toggles public and private Visualiztions """
+
+	visualization = get_object_or_404(Visualization, pk=visid)
+
+	if not request.user.has_perm("weave.change_visualization", obj=visualization):
+		return HttpResponse(loader.render_to_string('401.html', 
+			RequestContext(request, {'error_message': 
+			_("You are not permitted to edit this Visualization.")})), status=401)
+
+	if not request.method == 'POST':
+		return HttpResponse(
+			'You must use POST for editing Visualization permissions',
+			status=405,
+			mimetype='text/plain'
+		)
+	else:
+		set_perm = request.POST.get('set_perm')
+		if set_perm == 'Private':
+			visualization.set_private_permissions()
+		elif set_perm == 'Public':
+			visualization.set_default_permissions()
+
+		return HttpResponse(
+			status=201
+		)
+
 
 
 def detail(request, visid):

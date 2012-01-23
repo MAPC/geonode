@@ -63,7 +63,7 @@
 		{% else %}
 		// FIXME: security by obscurity
 		MBDC.visurl = "{% url weave-new %}";
-		$("#properties-button, #save-button, #duplicate-spacer, #delete-button, #delete-spacer").hide();
+		$("#properties-button, #save-button, #duplicate-spacer, #delete-button, #delete-spacer, #perm-button, #perm-spacer").hide();
 		{% endif %}
 
 		// init embed-code
@@ -92,6 +92,31 @@
 			MBDC.visurl = "{% url weave-new %}";
 			// pass the current visualization as original if duplicate action
 			saveSessionState({"original": MBDC.visid});
+			return false;
+		});
+
+		// Set public or private Visualization [get perm, set perm]
+		var perm = ["{{ get_perm|title|default:"Public" }}", "{{ set_perm|title|default:"Private" }}"]
+		$("#perm-button").bind("click", function() {
+
+			// visual AJAX feedback
+			$("#spinner").spin("small");
+
+			$.post(MBDC.visurl + "permissions", 
+				{
+					"set_perm": perm[1]
+				},
+				function () {
+					perm.reverse();
+					$("#perm-button")
+						.html("Make " + perm[1])
+						.attr("title", "Set this Visualization " + perm[1])
+						.attr("href", "permissions/" + perm[1]);
+					$("#spinner").spin(false);
+				}, 
+				"json"
+			);
+
 			return false;
 		});
 
@@ -138,7 +163,7 @@
 					}
 
 					// more options once the visualization is saved
-					$("#properties-button, #save-button, #duplicate-button, #duplicate-spacer, #embed-button, #embed-spacer, #delete-button, #delete-spacer").show();
+					$("#properties-button, #save-button, #duplicate-button, #duplicate-spacer, #embed-button, #embed-spacer, #delete-button, #delete-spacer, #perm-button, #perm-spacer").show();
 					$("#delete-button").attr("href", MBDC.visurl + "delete");
 
 					$("#spinner").spin(false);
@@ -197,7 +222,7 @@
 			<div class="data_vis_pad">
 				<div id="spinner"></div>
 				<div class="data_vis_header">
-					<div class="title"><a id="vis-title" {% if visualization %}href="{{ visualization.get_absolute_url }}"{% endif %}>{{ visualization.title|default:"New Weave Visualization" }} </a></div>
+					<div class="title"><a id="vis-title" {% if visualization %}href="{{ visualization.get_absolute_url }}"{% endif %}>{{ visualization.title|default:"New Weave Visualization" }} {{ vis_perm }}</a></div>
 
 					{% if visualization %}<div class="info">{% if visualization.owner.get_profile.get_absolute_url %}By <a href="{{ visualization.owner.get_profile.get_absolute_url }}">{% firstof visualization.owner.get_profile.name visualization.owner.username %}</a>{% else %}By {% firstof visualization.owner.get_profile.name visualization.owner.username %}{% endif %}</div>{% endif %}
 
@@ -240,6 +265,7 @@
 					{% if user.is_authenticated %}
 						<a id="save-button" title="Save this Visualization" href="save">Save</a> 
 						<span id="duplicate-spacer" class="spacer">|</span> <a id="duplicate-button" title="Duplicate this Visualization to your profile" href="duplicate">Duplicate</a>
+						<span id="perm-spacer">|</span> <a id="perm-button" title="Set this Visualization {{ set_perm|title|default:"Private" }}" href="permissions/{{ set_perm|default:"Private" }}">Make {{ set_perm|title|default:"Private" }}</a> 
 						<span id="delete-spacer" class="spacer">|</span> <a id="delete-button" title="Delete this Visualization from your profile" href="delete">Delete</a>
 					{% else %}
 					<a href="/accounts/login?next={{ request.get_full_path }}">{% trans "Login to Save Visualization" %}</a>

@@ -142,4 +142,10 @@ class Visualization(models.Model, PermissionLevelMixin):
 
 		# assign owner admin privs
 		if self.owner:
-			self.set_user_level(self.owner, self.LEVEL_ADMIN)  
+			self.set_user_level(self.owner, self.LEVEL_ADMIN)
+
+
+	def set_private_permissions(self):
+		""" Only owner can access Visualization """
+		self.set_gen_level(ANONYMOUS_USERS, self.LEVEL_NONE)
+		self.set_gen_level(AUTHENTICATED_USERS, self.LEVEL_NONE)
