@@ -2,6 +2,42 @@
 
 {% load mbdc_extras %}
 
+{% block head_javascript %}
+
+{{ block.super }}
+
+{% include "weave/_swfobject.html" %}
+
+<script type="text/javascript">
+
+jQuery(document).ready(function($) {
+
+
+    {% for featured in featured_visualizations %}
+
+    // add featured Weave Flash object
+    swfobject.embedSWF(
+      "{{ WEAVE_URL }}weave.swf", 
+      "vis-{{ featured.visualization.id }}", 
+      "455", "315", 
+      "10.0.0",
+      "expressInstall.swf", 
+      {}, 
+      MBDC.swfobject.params, 
+      {
+        id: "vis-{{ featured.visualization.id }}",
+        name: "vis-{{ featured.visualization.id }}"
+      }
+    );
+
+    {% endfor %}
+
+});
+
+</script>
+
+{% endblock head_javascript %}
+
 {% block body %}
 
         <!-- home_slider -->
@@ -102,7 +138,7 @@
                       <div class="data_vis_header">
                         <div class="title"><a href="{{ featured.visualization.get_absolute_url }}">{{ featured.visualization.title }}</a></div>
 
-                        <div class="info">{% if featured.visualization.year %}Year(s): <span id="vis-year">{{ featured.visualization.year }}</span><span class="spacer">&#8226;</span>{% endif %}  {% if featured.visualization.datasources.all %}Source(s): <span id="vis-datasources">{% for datasource in featured.visualization.datasources.all %}<a href="{{ datasource.url }}" target="_blank">{{ datasource.title }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}</span>{% endif %}</div>
+                        <div class="info">{% if featured.visualization.year %}Year(s): <span id="vis-year">{{ featured.visualization.year }}</span><span class="spacer">&#8226;</span>{% endif %}  {% if featured.visualization.datasources.all %}Source(s): <span id="vis-datasources">{% for datasource in featured.visualization.datasources.all %}{{ datasource.title }}{% if not forloop.last %}, {% endif %}{% endfor %}</span>{% endif %}</div>
 
                         <div class="info">By {% if featured.visualization.owner.get_profile.get_absolute_url %}<a href="{{ featured.visualization.owner.get_profile.get_absolute_url }}">{% firstof featured.visualization.owner.get_profile.name featured.visualization.owner.username %}</a>{% else %}{% firstof featured.visualization.owner.get_profile.name featured.visualization.owner.username %}{% endif %}</div>
                       </div>
@@ -110,24 +146,12 @@
                       <div class="data_vis_tabs ui-tabs ui-widget ui-widget-content ui-corner-all">
                         <div id="featured-{{ featured.visualization.id }}" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
 
-
-
-  <object type="application/x-shockwave-flash" data="{{ WEAVE_URL }}weave.swf" id="weave-{{ featured.visualization.id }}" name="weave-{{ featured.visualization.id }}" width="455" height="315">
-    <param name="quality" value="high" />
-    <param name="bgcolor" value="#ffffff" />
-    <param name="allowscriptaccess" value="always" />
-    <param name="base" value="{{ WEAVE_URL }}" />
-    <param name="wmode" value="transparent" />
-
-      <img src="{{ MEDIA_URL }}weave_thumbnails/{{ featured.visualization.id }}_featured.png" alt="{{ featured.visualization.title }}" class="data_vis_tn">
-
-  </object>
-
-
-
-
-
-
+                          <div id="vis-{{ featured.visualization.id }}">
+                            {% if featured.visualization.id %}
+                            <img src="{{ MEDIA_URL }}weave_thumbnails/{{ featured.visualization.id }}_featured.png" alt="{{ featured.visualization.title }}">
+                            {% endif %}
+                            <p>Please install the <a href="http://get.adobe.com/flashplayer/">Adobe Flash Player</a> to be able to interact with this visualization.</p>
+                          </div>
 
                         </div>
                       </div>
@@ -143,7 +167,6 @@
                   </div>
 
 {% endfor %}
-
                   <!-- /featured data_vis -->
 
                 </div>
