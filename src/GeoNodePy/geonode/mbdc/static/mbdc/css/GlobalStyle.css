@@ -238,7 +238,13 @@ padding:18px 24px 0 0;
 .home_slide_nav a.activeSlide { background-color:#fff !important; color:#485572 !important; }
 .home_slide_nav a.activeSlide .home_slide_box_nav_subtitle { color:#777777 !important; }
 .home_slide_box_nav_title { display:none; }
-.home_slide_box_img { float:right; width:318px; height:218px; overflow:hidden; position:relative; border:1px solid #d8d9db; margin:30px 40px 0 0; }
+.home_slide_box_img { 
+	float:right; width:318px; 
+	height:218px; 
+	overflow:hidden; 
+	position:relative; 
+	/*border:1px solid #d8d9db; */
+	margin:30px 40px 0 0; }
 .home_slide_box_content { float:left; width:390px; height:288px; overflow:hidden; position:relative; }
 .home_slide_box_content_pad { padding:18px 0 18px 18px; }
 .home_slide_box_title { font: normal 22px/26px 'PT Serif', Times, serif; color:#000 !important; text-decoration:none !important; padding-bottom:3px; display:block; }
