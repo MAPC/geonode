@@ -979,3 +979,7 @@ ul.section_nav.regional_map_gallery li {
 	margin-right: 20px;
 	margin-bottom: 20px;
 }
+
+.mapc_page {
+	font-style: italic;
+}
