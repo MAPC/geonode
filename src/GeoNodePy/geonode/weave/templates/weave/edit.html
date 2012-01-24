@@ -52,7 +52,7 @@
 		};
 
 		{% if not visualization.id %}
-		$("#duplicate-button, #duplicate-spacer, #embed-button, #embed-spacer, #delete-button, #delete-spacer").hide();
+		$("#duplicate-button, #duplicate-spacer, #embed-button, #embed-spacer, #delete-button, #delete-spacer, #perm-button, #perm-spacer").hide();
 		{% else %}
 		MBDC.visid = "{{ visualization.id }}";
 		{% endif %}
