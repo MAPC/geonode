@@ -501,7 +501,7 @@ class Contact(models.Model):
     email = models.EmailField(blank=True, null=True)
 
     # MBDC extensions
-    website_url = models.URLField(blank=True, null=True)
+    website_url = models.URLField(default="http://", blank=True, null=True)
     mapc_newsletter = models.BooleanField(default=True)
     mbdc_newsletter = models.BooleanField(default=True)
     last_modified = models.DateTimeField(auto_now=True)
