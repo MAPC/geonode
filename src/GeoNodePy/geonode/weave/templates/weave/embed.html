@@ -41,24 +41,24 @@
 	jQuery(document).ready(function($) {
 
 		// FlashVars and attributes
-		MBDC.swfobject.vis["vis-{{ visualization.id|default:'new' }}"] = {
+		MBDC.swfobject.vis["vis-{{ visualization.id }}"] = {
 			flashvars: {},
 			attributes: {
-				id: "vis-{{ visualization.id|default:'new' }}",
-				name: "vis-{{ visualization.id|default:'new' }}"
+				id: "vis-{{ visualization.id }}",
+				name: "vis-{{ visualization.id }}"
 			}
 		};
 
 		// add Weave Flash object
 		swfobject.embedSWF(
 			"{{ WEAVE_URL }}weave.swf", 
-			"vis-{{ visualization.id|default:'new' }}", 
+			"vis-{{ visualization.id }}", 
 			"100%", "100%", 
 			"10.0.0",
 			"expressInstall.swf", 
-			MBDC.swfobject.vis["vis-{{ visualization.id|default:'new' }}"].flashvars, 
+			MBDC.swfobject.vis["vis-{{ visualization.id }}"].flashvars, 
 			MBDC.swfobject.params, 
-			MBDC.swfobject.vis["vis-{{ visualization.id|default:'new' }}"].attributes
+			MBDC.swfobject.vis["vis-{{ visualization.id }}"].attributes
 		);
 
 	});
@@ -76,5 +76,7 @@
 </style>
 </head>
 <body>
-	<div id="vis-{{ visualization.id|default:'new' }}"></div>
+	<div id="vis-{{ visualization.id }}">
+		<img src="{{ MEDIA_URL }}weave_thumbnails/{{ visualization.id }}.png" alt="{{ visualization.title }}" width="100%">
+	</div>
 </body>
