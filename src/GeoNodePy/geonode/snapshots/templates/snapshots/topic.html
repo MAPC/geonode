@@ -13,6 +13,96 @@
 
 {% include "weave/_swfobject.html" %}
 
+<script type="text/javascript">
+
+// keeping track of which visualization is currently shown and loaded
+var pagevis = {};
+
+// called when Weave JavaScript API is ready
+var weaveReady = function(weave) { 
+
+	// session state cosmetics on all instances
+	weave.setSessionState(['WeaveProperties'], { 
+		backgroundColor: "16777215", // white
+		dashboardMode: true, 
+		enableMenuBar: false,
+		enableToolControls: false ,
+		showCopyright: false
+	});
+
+	// track loaded visualizations
+	pagevis[weave.id].loaded = true;
+	var vis, progress = [];
+	for (var vis in pagevis) {
+		progress.push(pagevis[vis].loaded);
+	}
+	// all Weave instances loaded
+	if (jQuery.inArray(false, progress) === -1) { jQuery(".view_print").show(); }
+
+}
+
+
+jQuery(document).ready(function($) {
+
+	/* 
+	 * Turn static image into interactive Visualization
+	 */
+	$(".vistn").bind("click", function() {
+		var weavecont = $(this).parent().attr("id");
+
+		// add Flash object
+		swfobject.embedSWF(
+			"{{ WEAVE_URL }}weave.swf", 
+			weavecont, 
+			"333", "252", 
+			"10.0.0",
+			"expressInstall.swf", 
+			MBDC.swfobject.vis[weavecont].flashvars, 
+			MBDC.swfobject.params, 
+			MBDC.swfobject.vis[weavecont].attributes
+		);
+		pagevis[weavecont].loaded = false;
+	})
+	.hover(function() {
+    	$(this).css("cursor", "pointer");
+  	});
+
+	/* 
+	 * Save thumbnails to server and open print-optimized page with currently shown visualizations
+	 */
+    $(".view_print a").bind("click", function() {
+
+    	$("object").each( function(index) {
+    		var weave = swfobject.getObjectById($(this).attr('id'));
+    		try {
+				pagevis[weave.id].thumbnail = weave.evaluateExpression(null, 'getBase64Image(Application.application.visDesktop)', null, ['weave.utils.BitmapUtils', 'mx.core.Application']);
+			} catch (error) {
+				alert("Please wait until all visualizations are loaded.")
+			}
+    	});
+
+    	$.post("{% url snapshots-thumbnails regiontype_slug=regiontype.slug regionalunit_slug=regionalunit.slug %}", 
+			{
+				visualizations: JSON.stringify(pagevis)
+			},
+			function(data){
+				// thumbnails created, now open print layout with shown visualizations
+				var printvis = [];
+				for (var vis in pagevis) {
+					printvis.push([pagevis[vis].visid]);
+				}
+				window.location = "{% url snapshots-print regiontype_slug=regiontype.slug regionalunit_slug=regionalunit.slug %}?visualizations=" + printvis.toString();
+			}, 
+			"json"
+		);
+
+    	return false;
+    });
+
+});
+
+</script>
+
 {% endblock head_javascript %}
 
 
@@ -47,6 +137,12 @@
 					<div class="clear"></div>
 				</div>
 				<!-- /location_content -->
+
+				<!-- printer friendly page -->
+				<div class="view_print">
+				<a href="print">View Printer-friendly page</a>
+				</div>
+				<!-- printer friendly page -->
 				
 				<!-- data_set_listing -->
 				<div class="data_set_listing">
@@ -67,34 +163,57 @@
 										<div id="tabs-1">
 
 											<div id="vis-{{ visualization.id }}">
-												<!-- TODO: add thumbnail -->
-												<p>Please install Adobe Flash to be able to see this visualization.</p>
+												{% if visualization.id in tn_list %}
+												<img class="vistn" src="{{ MEDIA_URL }}snapshots_thumbnails/{{ regiontype.slug }}/{{ regionalunit.slug }}/{{ visualization.id }}.png" width="333" height="252" alt="{{ visualization.title }}" />
+												{% endif %}
+												<p>Please install the <a href="http://get.adobe.com/flashplayer/">Adobe Flash Player</a> to interact with this visualization.</p>
 											</div>
 
 											<script type="text/javascript">
 
-												// FlashVars and attributes
-												MBDC.swfobject.vis["vis-{{ visualization.id }}"] = {
-													flashvars: {
-														file: "{{ SITEURL|slice:':-1' }}{% url geonode.snapshots.views.get_sessionstate regiontype.slug regionalunit.slug visualization.id %}"
-													},
-													attributes: {
-														id: "vis-{{ visualization.id }}",
-														name: "vis-{{ visualization.id }}"
-													}
-												};
+												jQuery(document).ready(function($) {
 
-												// add Flash object
-												swfobject.embedSWF(
-													"{{ WEAVE_URL }}weave.swf", 
-													"vis-{{ visualization.id }}", 
-													"333", "252", 
-													"10.0.0",
-													"expressInstall.swf", 
-													MBDC.swfobject.vis["vis-{{ visualization.id }}"].flashvars, 
-													MBDC.swfobject.params, 
-													MBDC.swfobject.vis["vis-{{ visualization.id }}"].attributes
-												);
+													// FlashVars and attributes
+													MBDC.swfobject.vis["vis-{{ visualization.id }}"] = {
+														flashvars: {
+															file: "{{ SITEURL|slice:':-1' }}{% url geonode.snapshots.views.get_sessionstate regiontype.slug regionalunit.slug visualization.id %}"
+														},
+														attributes: {
+															id: "vis-{{ visualization.id }}",
+															name: "vis-{{ visualization.id }}"
+														}
+													};
+
+													pagevis["vis-{{ visualization.id }}"] = {
+														visid: {{ visualization.id }}
+													};
+
+													{% if visualization.id not in tn_list %}
+
+													$(".view_print").hide();
+
+													// add Flash object
+													swfobject.embedSWF(
+														"{{ WEAVE_URL }}weave.swf", 
+														"vis-{{ visualization.id }}", 
+														"333", "252", 
+														"10.0.0",
+														"expressInstall.swf", 
+														MBDC.swfobject.vis["vis-{{ visualization.id }}"].flashvars, 
+														MBDC.swfobject.params, 
+														MBDC.swfobject.vis["vis-{{ visualization.id }}"].attributes
+													);
+
+													pagevis["vis-{{ visualization.id }}"].loaded = false;
+
+													{% endif %}		
+													
+													// Flash available
+													if (swfobject.getFlashPlayerVersion()["major"] > 0) { 
+														$("#vis-{{ visualization.id }} p:first").html("Click image for interactive Weave Visualization.");
+													}
+														
+												});					
 
 											</script>
 
@@ -114,6 +233,12 @@
 					</div>
 				</div>
 				<!-- /data_set_listing -->
+
+				<!-- printer friendly page -->
+				<div class="view_print bottom">
+				<a href="print">View Printer-friendly page</a>
+				</div>
+				<!-- printer friendly page -->
 				
 			</div>
 		</div>

@@ -10,6 +10,19 @@ from geonode.weave.views import save_thumbnail
 import os
 import simplejson
 
+
+def get_thumbnail_list(regiontype, regionalunit):
+	""" Returns a list of exisiting Visualization thumbnails """
+
+	# check for existing tumbnail files
+	path = '%s/snapshots_thumbnails/%s/%s' % (settings.MEDIA_ROOT, regiontype, regionalunit)
+	tn_list = []
+	if os.path.exists(path):
+		tn_list = [ int(tn[:-4]) for tn in os.listdir(path) if tn[-3:] == 'png']
+
+	return tn_list
+	
+
 def index(request):
 
 	# snapshot types
@@ -46,11 +59,7 @@ def get_regionalunit(request, regiontype_slug, regionalunit_slug):
 	# build the town select dropdown
 	regionalunits = Regionalunit.objects.all()
 
-	# check for existing tumbnail files
-	path = '%s/snapshots_thumbnails/%s/%s' % (settings.MEDIA_ROOT, regiontype_slug, regionalunit_slug)
-	tn_list = []
-	if os.path.exists(path):
-		tn_list = [ int(tn[:-4]) for tn in os.listdir(path) if tn[-3:] == 'png']
+	tn_list = get_thumbnail_list(regiontype_slug, regionalunit_slug)
 
 	return render_to_response('snapshots/regionalunit.html', locals(), context_instance=RequestContext(request))
 
@@ -118,7 +127,12 @@ def get_topic(request, regiontype_slug, regionalunit_slug, topic_slug):
 
 	visualizations = Visualization.objects.filter(regiontype=regiontype, topics=topic)
 
+	tn_list = get_thumbnail_list(regiontype_slug, regionalunit_slug)
+
 	return render_to_response('snapshots/topic.html', locals(), context_instance=RequestContext(request))
+
+
+
 
 
 
