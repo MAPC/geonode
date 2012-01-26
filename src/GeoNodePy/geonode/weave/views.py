@@ -32,7 +32,6 @@ from geonode.mbdc.models import Topic, Datasource
 DEFAULT_TN_SIZES = dict(featured=(455, 315), gallery=(205,155))
 
 
-# @never_cache
 def save_thumbnail(data, path, filename, tn_sizes):
 	"""
 	Saves a base64 Weave visualization image file with alternative sizes to the given path in MEDIA_ROOT.
@@ -73,6 +72,7 @@ def index(request):
 		context_instance=RequestContext(request)
 	)
 
+@never_cache
 @csrf_exempt
 @transaction.commit_manually
 def new(request):
@@ -120,6 +120,7 @@ def new(request):
 				mimetype="text/plain"
 			)
 
+@never_cache
 @csrf_exempt
 @transaction.commit_manually
 def edit(request, visid):
