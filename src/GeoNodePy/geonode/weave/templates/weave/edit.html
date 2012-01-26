@@ -15,9 +15,14 @@
 {% include "weave/_swfobject.html" %}
 
 <script type="text/javascript">
+	
+	// Weave API availability flag
+	MBDC.weaveAPI = false;
 
 	// called when Weave JavaScript API is ready
 	var weaveReady = function(weave) { 
+
+		MBDC.weaveAPI = true;
 
 		{% if visualization.id %}
 			// visual AJAX feedback
@@ -145,40 +150,47 @@
 			// get Weave object
 			var weave = swfobject.getObjectById("vis-{{ visualization.id|default:'new' }}");
 
-			var params = { 
-				"title": $("#.vis_properties_form form #title").val(),
-				"year": $("#.vis_properties_form form #year").val(),
-				"abstract": $("#.vis_properties_form form #abstract").val(), 
-				"topics": JSON.stringify($(".vis_properties_form form #topics").val()),
-				"datasources": JSON.stringify($(".vis_properties_form form #datasources").val()),
-				"sessionstate": JSON.stringify(weave.getSessionState([])),
-				"thumbnail": weave.evaluateExpression(null, 'getBase64Image(Application.application.visDesktop)', null, ['weave.utils.BitmapUtils', 'mx.core.Application']) 
+			console.log(weave);
+
+			if (MBDC.weaveAPI) {
+
+				var params = { 
+					"title": $("#.vis_properties_form form #title").val(),
+					"year": $("#.vis_properties_form form #year").val(),
+					"abstract": $("#.vis_properties_form form #abstract").val(), 
+					"topics": JSON.stringify($(".vis_properties_form form #topics").val()),
+					"datasources": JSON.stringify($(".vis_properties_form form #datasources").val()),
+					"sessionstate": JSON.stringify(weave.getSessionState([])),
+					"thumbnail": weave.evaluateExpression(null, 'getBase64Image(Application.application.visDesktop)', null, ['weave.utils.BitmapUtils', 'mx.core.Application']) 
+				}
+
+				// additional parameters
+				if (add_params) $.extend(params, add_params);
+
+				$.post(MBDC.visurl, 
+					params,
+					function(data){
+						
+						// set new URLs
+						if (data) {
+							MBDC.visembedurl = MBDC.visurl = data["visurl"];
+							MBDC.visid = data["visid"];
+							$("#vis-title").attr("href", data["visurl"]);
+							$("#embed-code input").val("<iframe width='500' height='350' frameborder='0' scrolling='no' marginheight='0' marginwidth='0' src='{{ siteurl }}" + MBDC.visembedurl + "embed'></iframe><br /><small><a href='{{ siteurl }}" + MBDC.visembedurl + "'>View Larger Visualization</a></small>");
+						}
+
+						// more options once the visualization is saved
+						$("#properties-button, #save-button, #duplicate-button, #duplicate-spacer, #embed-button, #embed-spacer, #delete-button, #delete-spacer, #perm-button, #perm-spacer").show();
+						$("#delete-button").attr("href", MBDC.visurl + "delete");
+
+						$("#spinner").spin(false);
+
+					}, 
+					"json"
+				);
+			} else {
+				$("#spinner").spin(false);
 			}
-
-			// additional parameters
-			if (add_params) $.extend(params, add_params);
-
-			$.post(MBDC.visurl, 
-				params,
-				function(data){
-					
-					// set new URLs
-					if (data) {
-						MBDC.visembedurl = MBDC.visurl = data["visurl"];
-						MBDC.visid = data["visid"];
-						$("#vis-title").attr("href", data["visurl"]);
-						$("#embed-code input").val("<iframe width='500' height='350' frameborder='0' scrolling='no' marginheight='0' marginwidth='0' src='{{ siteurl }}" + MBDC.visembedurl + "embed'></iframe><br /><small><a href='{{ siteurl }}" + MBDC.visembedurl + "'>View Larger Visualization</a></small>");
-					}
-
-					// more options once the visualization is saved
-					$("#properties-button, #save-button, #duplicate-button, #duplicate-spacer, #embed-button, #embed-spacer, #delete-button, #delete-spacer, #perm-button, #perm-spacer").show();
-					$("#delete-button").attr("href", MBDC.visurl + "delete");
-
-					$("#spinner").spin(false);
-
-				}, 
-				"json"
-			);
 		}
 
 		// Edit visualization properties and update text on page
@@ -234,7 +246,7 @@
 
 					{% if visualization %}<div class="info">{% if visualization.owner.get_profile.get_absolute_url %}By <a href="{{ visualization.owner.get_profile.get_absolute_url }}">{% firstof visualization.owner.get_profile.name visualization.owner.username %}</a>{% else %}By {% firstof visualization.owner.get_profile.name visualization.owner.username %}{% endif %}</div>{% endif %}
 
-					{% if visualization.original %}<div class="info">Based on <a href="{{ visualization.original.get_absolute_url }}">{{ visualization.original.title }}</a></div>{% endif %}
+					{% if visualization.original %}<div class="info">Based on <a href="{{ visualization.original.get_absolute_url }}">{{ visualization.original.title }}</a>{% if visualization.original.owner.get_profile.get_absolute_url %}, by <a href="{{ visualization.original.owner.get_profile.get_absolute_url }}">{% firstof visualization.original.owner.get_profile.name visualization.original.owner.username %}</a>{% else %}, by {% firstof visualization.original.owner.get_profile.name visualization.original.owner.username %}{% endif %}</div>{% endif %}
 
 					<div class="info">{% if visualization.year %}Year(s): <span id="vis-year">{{ visualization.year }}</span><span class="spacer">&#8226;</span>{% endif %}  {% if related_datasources %}Source(s): <span id="vis-datasources">{% for datasource in related_datasources %}<a href="{{ datasource.url }}" target="_blank">{{ datasource.title }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}</span>{% endif %}</div>
 					<a href="" id="properties-button" class="expand_link">Edit Properties [+]</a>
