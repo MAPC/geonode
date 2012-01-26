@@ -300,7 +300,7 @@ jQuery(document).ready(function($) {
 
     // Open selected snapshot
     $('.regionalunit_selector').change(function() {  	
-    	// regionalunit_url = $("option:selected", this).val();
+    	regionalunit_url = $("option:selected", this).val();
 		window.location = "{% url snapshots-regiontype regiontype_slug %}" + regionalunit_url;
 		return false;
     });
