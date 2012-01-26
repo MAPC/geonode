@@ -948,6 +948,14 @@ clear:left;
     min-height: 300px;
 }
 
+.user_gallery .results {
+	width: 35%;
+}
+
+.user_gallery .pagination {
+	width: 50%;
+}
+
 .results_pagination_bottom .pagination a {
     font-size: 11px;
     text-decoration: none;

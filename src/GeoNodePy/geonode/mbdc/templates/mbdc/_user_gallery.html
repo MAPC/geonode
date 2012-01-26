@@ -4,7 +4,16 @@
 
 <h1>{% if nr_results %}{{ nr_results }} Visualizations created{% else %}No Visualizations created yet{% endif %}</h1>
 
-<p><a href="{% url weave-new %}">Create a new Weave Visualization</a></p>
+<!-- results_pagination -->
+<div class="results_pagination">
+
+	<div class="results"><a href="{% url weave-new %}">Create a new Weave Visualization</a></div>
+
+	{% paginate using 'mbdc/_pagination.html' %}
+
+	<div class="clear"></div>
+</div>
+<!-- /results_pagination -->
 
 <!-- vis_box_listing -->
 <div class="vis_box_listing">
