@@ -18,20 +18,14 @@
 
 						<div id="{{ topic.slug }}">
 							{% if visualizations.0.id in tn_list %}
-							<img src="{{ MEDIA_URL }}snapshots_thumbnails/{{ regiontype.slug }}/{{ regionalunit.slug }}/{{ visualizations.0.id }}.png" width="333" height="252" alt="{{ visualizations.0.title }}" />
+							<img class="vistn" src="{{ MEDIA_URL }}snapshots_thumbnails/{{ regiontype.slug }}/{{ regionalunit.slug }}/{{ visualizations.0.id }}.png" width="333" height="252" alt="{{ visualizations.0.title }}" />
 							{% endif %}
-							<p>Please install the <a href="http://get.adobe.com/flashplayer/">Adobe Flash Player</a> to be able to see this visualization.</p>
-
+							<p>Please install the <a href="http://get.adobe.com/flashplayer/">Adobe Flash Player</a> to interact with this visualization.</p>
 						</div>
 
 						<script type="text/javascript">
 							
 							jQuery(document).ready(function($) {
-
-								pagevis["{{ topic.slug }}"] = {
-									visid: {{ visualizations.0.id }},
-									loaded: false
-								}
 
 								// FlashVars and attributes
 								MBDC.swfobject.vis["{{ topic.slug }}"] = {
@@ -43,6 +37,14 @@
 										name: "{{ topic.slug }}"
 									}
 								};
+
+								pagevis["{{ topic.slug }}"] = {
+									visid: {{ visualizations.0.id }}
+								};
+
+								{% if visualizations.0.id not in tn_list %}
+
+								$(".view_print").hide();
 
 								// add Flash object
 								swfobject.embedSWF(
@@ -56,8 +58,20 @@
 									MBDC.swfobject.vis["{{ topic.slug }}"].attributes
 								);
 
-								{% for visualization in visualizations %}
+								pagevis["{{ topic.slug }}"].loaded = false;
 
+								{% endif %}
+
+								// Flash available
+								if (swfobject.getFlashPlayerVersion()["major"] > 0) { 
+									$("#{{ topic.slug }} p:first").html("Click image for interactive Weave Visualization.");
+								} else {
+									// no Flash
+									$(".data_vis_selection").hide();
+								}
+
+								// visualization switcher
+								{% for visualization in visualizations %}
 									$("#{{ regiontype.id }}{{ regionalunit.id }}{{ visualization.id }}").data("visparams", { 
 										topic : "{{ topic.slug }}", 
 										url : "{{ SITEURL|slice:':-1' }}{% url geonode.snapshots.views.get_sessionstate regiontype.slug regionalunit.slug visualization.id %}",
@@ -66,7 +80,6 @@
 										year : "{{ visualization.year }}",
 										sources :  "{% for source in visualization.source.all %} <a href='{{ source.url }}'>{{ source.title }}</a>{% endfor %}"
 									});
-
 								{% endfor %}
 
 							});

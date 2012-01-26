@@ -26,12 +26,15 @@ var pagevis = {};
 
 {% if overviewmap %}
 
-pagevis["overviewmap"] = {
-	visid: {{ overviewmap.id }},
-	loaded: false
-}
-
 jQuery(document).ready(function($) {
+
+	pagevis["overviewmap"] = {
+		visid: {{ overviewmap.id }}
+	}
+
+{% if overviewmap.id not in tn_list %}
+
+	$(".view_print").hide();
 
     // add featured Weave Flash object
     swfobject.embedSWF(
@@ -50,11 +53,27 @@ jQuery(document).ready(function($) {
       }
     );
 
+    pagevis["overviewmap"].loaded = false;
+
+{% endif %}
+
+    // Flash available
+	if (swfobject.getFlashPlayerVersion()["major"] > 0) $("#overviewmap p:first").remove();
+
 });
 {% endif %}
 
 // called when Weave JavaScript API is ready
 var weaveReady = function(weave) { 
+
+	// session state cosmetics on all instances
+	weave.setSessionState(['WeaveProperties'], { 
+		backgroundColor: "16777215", // white
+		dashboardMode: true, 
+		enableMenuBar: false,
+		enableToolControls: false ,
+		showCopyright: false
+	});
 
 	// call weave internal function
 	if (weave.id === "overviewmap") weave.evaluateExpression(['MapTool'], 'zoomToSelection()');
@@ -105,7 +124,7 @@ var weaveReady = function(weave) {
 							{% if overviewmap.id in tn_list %}
 							<img src="{{ MEDIA_URL }}snapshots_thumbnails/{{ regiontype.slug }}/{{ regionalunit.slug }}/{{ overviewmap.id }}.png" width="333" height="252" alt="{{ regionalunit.name }} Overviewmap" />
 							{% endif %}
-                            <p>Please install the <a href="http://get.adobe.com/flashplayer/">Adobe Flash Player</a> to be able to see this visualization.</p>
+                            <p>Please install the <a href="http://get.adobe.com/flashplayer/">Adobe Flash Player</a> to interact with this visualization.</p>
                         </div>
                         {% endif %}
 
@@ -176,8 +195,6 @@ var weaveReady = function(weave) {
 
 jQuery(document).ready(function($) {
 
-	$(".view_print").hide();
-
 	/* 
 	 * Render selected visualization
 	 */
@@ -190,33 +207,80 @@ jQuery(document).ready(function($) {
 
 			var weave = swfobject.getObjectById(visparams.topic);
 
-			$.get(visparams.url, function(xmlData){
+			if (weave === null) {
+				// add Flash object
+				swfobject.embedSWF(
+					"{{ WEAVE_URL }}weave.swf", 
+					visparams.topic, 
+					"333", "252", 
+					"10.0.0",
+					"expressInstall.swf", 
+					{
+						file: visparams.url
+					}, 
+					MBDC.swfobject.params, 
+					{
+						id: visparams.topic,
+						name: visparams.topic
+					}
+				);
+				pagevis[visparams.topic].loaded = false;
+				weave = swfobject.getObjectById(visparams.topic)
 
-				// Weave API method only accepts strings
-				var data = XMLToString(xmlData);
-				var sessionstate = weave.convertSessionStateXMLToObject(data);
-				weave.setSessionState([], sessionstate);
+			} else {
+				// Flash object there, update configuration
+				$.get(visparams.url, function(xmlData){
 
-				// session state cosmetics
-				weave.setSessionState(['WeaveProperties'], { 
-					backgroundColor: "16777215", // white
-					dashboardMode: true, 
-					enableMenuBar: false,
-					enableToolControls: false ,
-					showCopyright: false
+					// Weave API method only accepts strings
+					var data = XMLToString(xmlData);
+					var sessionstate = weave.convertSessionStateXMLToObject(data);
+					weave.setSessionState([], sessionstate);
+
+					// session state cosmetics on all instances
+					weave.setSessionState(['WeaveProperties'], { 
+						backgroundColor: "16777215", // white
+						dashboardMode: true, 
+						enableMenuBar: false,
+						enableToolControls: false ,
+						showCopyright: false
+					});
+	
 				});
+			}
 
-				// update title, years and source
-				$("#" + visparams.topic + "-meta .title")
-					.html("<a href=''>" + visparams.vistitle + "</a>");
-				$("#" + visparams.topic + "-meta .info")
-				 	.html("Year(s): " + visparams.year + "  <span class='spacer'>&#8226;</span>  Source: " + visparams.sources);	
-				 	
-				 pagevis[visparams.topic].visid = visparams.visid;	
-
-			});
+			// update title, years and source
+			$("#" + visparams.topic + "-meta .title")
+				.html("<a href=''>" + visparams.vistitle + "</a>");
+			$("#" + visparams.topic + "-meta .info")
+			 	.html("Year(s): " + visparams.year + "  <span class='spacer'>&#8226;</span>  Source: " + visparams.sources);	
+			 	
+			pagevis[visparams.topic].visid = visparams.visid;
 		}
 	});
+
+	/* 
+	 * Turn static image into interactive Visualization
+	 */
+	$(".vistn").bind("click", function() {
+		var weavecont = $(this).parent().attr("id");
+
+		// add Flash object
+		swfobject.embedSWF(
+			"{{ WEAVE_URL }}weave.swf", 
+			weavecont, 
+			"333", "252", 
+			"10.0.0",
+			"expressInstall.swf", 
+			MBDC.swfobject.vis[weavecont].flashvars, 
+			MBDC.swfobject.params, 
+			MBDC.swfobject.vis[weavecont].attributes
+		);
+		pagevis[weavecont].loaded = false;
+	})
+	.hover(function() {
+    	$(this).css("cursor", "pointer");
+  	});
+
 
 	// XML to string conversion
 	// TODO make function globally available
