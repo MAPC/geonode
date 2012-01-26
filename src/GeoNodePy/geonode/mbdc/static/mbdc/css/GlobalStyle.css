@@ -1005,6 +1005,7 @@ ul.section_nav.regional_map_gallery li {
 	float: left;
 	margin-right: 20px;
 	margin-bottom: 20px;
+	border: 1px solid #CCCCCC;
 }
 
 .mapc_page {
