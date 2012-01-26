@@ -90,11 +90,12 @@ class Visualization(models.Model):
 
 	def save(self, *args, **kwargs):
 		# delete previously saved image thumbnails for this visualization
-		regionalunits = Regionalunit.objects.all()
-		for regionalunit in regionalunits:
-			path = '%s/snapshots_thumbnails/%s/%s/%i.png' % (settings.MEDIA_ROOT, self.regiontype.slug, regionalunit.slug, self.id)
-			if os.path.isfile(path):
-				os.remove(path)
+		if self.id:
+			regionalunits = Regionalunit.objects.all()
+			for regionalunit in regionalunits:
+				path = '%s/snapshots_thumbnails/%s/%s/%i.png' % (settings.MEDIA_ROOT, self.regiontype.slug, regionalunit.slug, self.id)
+				if os.path.isfile(path):
+					os.remove(path)
 
 		super(Visualization, self).save(*args, **kwargs) # Call the "real" save() method.
 
