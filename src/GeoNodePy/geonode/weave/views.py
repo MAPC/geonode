@@ -204,10 +204,13 @@ def delete(request, visid):
 				_("You are not permitted to delete this Visualization.")})), status=401)
 
 	# delete visualization images
-	os.remove('%s/weave_thumbnails/%i.png' % (settings.MEDIA_ROOT, visualization.id))
-	for tn_type in TN_SIZES:
-		# tn.save('%s/weave_thumbnails/%i_%s.png' % (settings.MEDIA_ROOT, visid, tn_type), 'PNG')
-		os.remove('%s/weave_thumbnails/%i_%s.png' % (settings.MEDIA_ROOT, visualization.id, tn_type))
+	path = '%s/weave_thumbnails/%i.png' % (settings.MEDIA_ROOT, visualization.id)
+	if os.path.isfile(path):
+			os.remove(path)
+	for tn_type in DEFAULT_TN_SIZES:
+		path = '%s/weave_thumbnails/%i_%s.png' % (settings.MEDIA_ROOT, visualization.id, tn_type)
+		if os.path.isfile(path):
+				os.remove(path)
 
 	visualization.delete()
 
