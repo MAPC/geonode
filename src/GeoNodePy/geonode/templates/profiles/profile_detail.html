@@ -5,6 +5,9 @@
 {% load mbdc_extras %}
 
 
+{% block title %}{% if user == profile.user %}Your {% else %}{{ profile.name }}'s{% endif %} Profile | {{ block.super }}{% endblock %}
+
+
 {% block body %}
 
 

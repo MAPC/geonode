@@ -2,6 +2,10 @@
 
 {% load mbdc_extras %}
 
+
+{% block title %}Welcome! | {{ block.super }}{% endblock %}
+
+
 {% block head_javascript %}
 
 {{ block.super }}

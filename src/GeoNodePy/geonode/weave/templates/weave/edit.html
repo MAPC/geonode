@@ -5,6 +5,9 @@
 {% load mbdc_extras %}
 
 
+{% block title %}{{ visualization.title|default:"New Weave Visualization" }} | {{ block.super }}{% endblock %}
+
+
 {% block head_javascript %}
 
 {{ block.super }}
@@ -226,8 +229,8 @@
 		<div class="data_vis">
 			<div class="data_vis_pad">
 				<div id="spinner"></div>
-				<div class="data_vis_header">
-					<div class="title"><a id="vis-title" {% if visualization %}href="{{ visualization.get_absolute_url }}"{% endif %}>{{ visualization.title|default:"New Weave Visualization" }} {{ vis_perm }}</a></div>
+				<div class="data_vis_header editor">
+					<div class="title"><a id="vis-title" {% if visualization %}href="{{ visualization.get_absolute_url }}"{% endif %}>{{ visualization.title|default:"New Weave Visualization" }}</a></div>
 
 					{% if visualization %}<div class="info">{% if visualization.owner.get_profile.get_absolute_url %}By <a href="{{ visualization.owner.get_profile.get_absolute_url }}">{% firstof visualization.owner.get_profile.name visualization.owner.username %}</a>{% else %}By {% firstof visualization.owner.get_profile.name visualization.owner.username %}{% endif %}</div>{% endif %}
 

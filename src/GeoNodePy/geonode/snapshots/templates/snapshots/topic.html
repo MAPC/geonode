@@ -4,6 +4,9 @@
 {% load snapshots_extras %}
 
 
+{% block title %}{{ topic.title }} for {{ regionalunit.name }} Community Snapshot | {{ block.super }}{% endblock %}
+
+
 {% block head_javascript %}
 
 {{ block.super }}
