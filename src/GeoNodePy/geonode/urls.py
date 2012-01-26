@@ -1,4 +1,5 @@
 from django.conf.urls.defaults import *
+from django.views.decorators.cache import cache_page
 from django.conf import settings
 from staticfiles.urls import staticfiles_urlpatterns
 from geonode.sitemap import LayerSitemap, MapSitemap
