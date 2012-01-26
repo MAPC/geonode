@@ -58,8 +58,8 @@
 								</div>
 								<div class="city_town_content_select">
 									<div class="city_town_content_select_pad">
-										<label>Choose a City or Town</label>
-										<select class="regionalunit_selector chzn-select" id="{{ regiontype.slug }}" data-placeholder="Choose a City or Town" style="width:100%;" >
+										<select class="regionalunit_selector chzn-select" id="{{ regiontype.slug }}" style="width:100%;" >
+                                            <option value=""></option>
 										{% for regionalunit in regionalunits %}
 											<option value="{{ regionalunit.slug }}">{{ regionalunit.name }}</option>
 										{% endfor %}
@@ -90,7 +90,7 @@
   jQuery(document).ready(function($) {
 
   	// initiate chosen dropdown UIs	
-	$(".chzn-select").chosen();
+	$(".chzn-select").data("placeholder","Select a City or Town").chosen();
 
     // Open selected snapshot
     $('.regionalunit_selector').change(function() {  	

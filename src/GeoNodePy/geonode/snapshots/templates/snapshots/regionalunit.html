@@ -130,14 +130,12 @@ var weaveReady = function(weave) {
 
                         <div class="city_town_content_select">
 							<div class="city_town_content_select_pad">
-								<label>See another City or Town</label>
-								<select class="regionalunit_selector chzn-select" id="{{ regiontype.slug }}" data-placeholder="Choose a City or Town" style="width:300px;" >
+								<select class="regionalunit_selector chzn-select" id="{{ regiontype.slug }}" style="width:300px;" >
+									<option value=""></option>
 								{% for runit in regionalunits %}
 									<option value="{{ runit.slug }}">{{ runit.name }}</option>
 								{% endfor %}
 								</select>
-								<div class="content"></div>
-								<span class="arrow"></span>
 							</div>
 						</div>
 						
@@ -296,11 +294,11 @@ jQuery(document).ready(function($) {
 	 * Chosen Regionalunit combobox
 	 */
 	// initiate
-	$(".chzn-select").chosen();
+	$(".chzn-select").data("placeholder","See another City or Town").chosen();
 
     // Open selected snapshot
     $('.regionalunit_selector').change(function() {  	
-    	regionalunit_url = $("option:selected", this).val();
+    	// regionalunit_url = $("option:selected", this).val();
 		window.location = "{% url snapshots-regiontype regiontype_slug %}" + regionalunit_url;
 		return false;
     });
