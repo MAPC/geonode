@@ -58,11 +58,13 @@
 		{% endif %}
 
 		// post url
-		{% if perm_change %}
-		MBDC.visembedurl = MBDC.visurl = "{{ visualization.get_absolute_url }}";
-		{% else %}
+
+		MBDC.visembedurl = MBDC.visurl = "{% if visualization.get_absolute_url %}{{ visualization.get_absolute_url }}{% else %}{% url weave-new %}{% endif %}";
+
 		// FIXME: security by obscurity
-		MBDC.visurl = "{% url weave-new %}";
+		// MBDC.visurl = "{% url weave-new %}";
+		// $("#properties-button, #save-button, #duplicate-spacer, #delete-button, #delete-spacer, #perm-button, #perm-spacer").hide();
+		{% if not perm_change %}
 		$("#properties-button, #save-button, #duplicate-spacer, #delete-button, #delete-spacer, #perm-button, #perm-spacer").hide();
 		{% endif %}
 
