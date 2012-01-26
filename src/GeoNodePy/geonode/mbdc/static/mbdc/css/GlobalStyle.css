@@ -438,7 +438,10 @@ ul.errorlist li {
 	font-size:15px; 
 	line-height:22px; 
 	height:344px; 
-	border-bottom:1px solid #e2e3e2; 
+	/*border-bottom:1px solid #e2e3e2;*/ 
+}
+.location_content_text .view_print {
+	border-bottom: none;
 }
 .location_content .location_content_media object {
 	border: 1px solid #E7E7E4;
@@ -1013,4 +1016,14 @@ ul.section_nav.regional_map_gallery li {
 .location_content_media.print, .location_content_text.page_content.print {
 	border-bottom: none;
 	height: 275px;
+}
+
+/* Chosen overrides */
+
+select.chzn-select {
+	width: 100%;
+}
+
+.chzn-container .chzn-results .highlighted {
+  background: #3B5486;
 }

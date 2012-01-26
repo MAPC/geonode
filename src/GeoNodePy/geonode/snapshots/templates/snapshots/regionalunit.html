@@ -118,7 +118,7 @@ var weaveReady = function(weave) {
 					
 				
 					<div class="location_content_media">
-							
+						
 						{% if overviewmap %}
 						<div id="overviewmap">
 							{% if overviewmap.id in tn_list %}
@@ -131,7 +131,7 @@ var weaveReady = function(weave) {
                         <div class="city_town_content_select">
 							<div class="city_town_content_select_pad">
 								<label>See another City or Town</label>
-								<select class="regionalunit_selector chzn-select" id="{{ regiontype.slug }}" data-placeholder="Choose a City or Town" style="width:100%;" >
+								<select class="regionalunit_selector chzn-select" id="{{ regiontype.slug }}" data-placeholder="Choose a City or Town" style="width:300px;" >
 								{% for runit in regionalunits %}
 									<option value="{{ runit.slug }}">{{ runit.name }}</option>
 								{% endfor %}
@@ -147,18 +147,18 @@ var weaveReady = function(weave) {
 						
 						<h1>{{ regionalunit.name }}</h1>
 						{% if regionalunit.short_desc %}{{ regionalunit.short_desc }}{% endif %}
+
+						<!-- printer friendly page -->
+						<div class="view_print">
+						<a href="print">View Printer-friendly page</a>
+						</div>
+						<!-- printer friendly page -->
 						
 					</div>				
 					
 					<div class="clear"></div>
 				</div>
 				<!-- /location_content -->
-
-				<!-- printer friendly page -->
-				<div class="view_print">
-				<a href="print">View Printer-friendly page</a>
-				</div>
-				<!-- printer friendly page -->
 				
 				<!-- data_set_listing -->
 				<div class="data_set_listing">
