@@ -8,7 +8,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext as _
-from django.views.decorators.cache import cache_page, never_cache
 
 import json
 import re
@@ -72,7 +71,7 @@ def index(request):
 		context_instance=RequestContext(request)
 	)
 
-@never_cache
+
 @csrf_exempt
 @transaction.commit_manually
 def new(request):
@@ -120,7 +119,6 @@ def new(request):
 				mimetype="text/plain"
 			)
 
-@never_cache
 @csrf_exempt
 @transaction.commit_manually
 def edit(request, visid):
@@ -221,7 +219,6 @@ def delete(request, visid):
 	return redirect('weave-new')
 
 
-@never_cache
 def sessionstate(request, visid):
 	"""
 	Returns a JSON session state for given visualization.
@@ -241,7 +238,6 @@ def sessionstate(request, visid):
 	)
 
 
-@never_cache
 def set_permissions(request, visid):
 	""" Toggles public and private Visualiztions """
 

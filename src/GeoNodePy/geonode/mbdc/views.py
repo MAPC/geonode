@@ -1,6 +1,5 @@
 from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
-from django.views.decorators.cache import cache_page, never_cache
 
 from django.contrib.auth.models import User
 
@@ -9,7 +8,6 @@ from geonode.weave.models import Visualization
 from geonode.weave.utils import get_readable_vis
 
 
-@cache_page(60 * 15)
 def index(request): 
 	""" Renders homepage """
 
@@ -45,7 +43,6 @@ def page(request, slug, section):
 	return render_to_response('mbdc/generic.html', locals(), context_instance=RequestContext(request))
 
 
-@never_cache
 def gallery(request):
 
 	topics = Topic.objects.all()
