@@ -547,6 +547,9 @@ clear:left;
 	padding:14px 24px; 
 }
 .data_vis_header { float:left; width: 335px; overflow:hidden; /*margin-bottom: -16px;*/ }
+.data_vis_header.editor {
+	width: 100%;
+}
 .data_vis_header .title { font: bold 18px/22px 'PT Serif', Times, serif; }
 .data_vis_header .title a { text-decoration:none !important; }
 .data_vis_header .info { font-size:12px; line-height:18px; }
