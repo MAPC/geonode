@@ -102,6 +102,9 @@ var weaveReady = function(weave) {
 							
 						{% if overviewmap %}
 						<div id="overviewmap">
+							{% if overviewmap.id in tn_list %}
+							<img src="{{ MEDIA_URL }}snapshots_thumbnails/{{ regiontype.slug }}/{{ regionalunit.slug }}/{{ overviewmap.id }}.png" width="333" height="252" alt="{{ regionalunit.name }} Overviewmap" />
+							{% endif %}
                             <p>Please install the <a href="http://get.adobe.com/flashplayer/">Adobe Flash Player</a> to be able to see this visualization.</p>
                         </div>
                         {% endif %}
@@ -144,7 +147,7 @@ var weaveReady = function(weave) {
 
 					{% for topic in topics %}
 						
-						{% get_visualizations topic regiontype regionalunit %}
+						{% get_visualizations topic regiontype regionalunit tn_list %}
 
 					{% endfor %}
 

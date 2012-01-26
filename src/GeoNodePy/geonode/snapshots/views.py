@@ -46,6 +46,12 @@ def get_regionalunit(request, regiontype_slug, regionalunit_slug):
 	# build the town select dropdown
 	regionalunits = Regionalunit.objects.all()
 
+	# check for existing tumbnail files
+	path = '%s/snapshots_thumbnails/%s/%s' % (settings.MEDIA_ROOT, regiontype_slug, regionalunit_slug)
+	tn_list = []
+	if os.path.exists(path):
+		tn_list = [ int(tn[:-4]) for tn in os.listdir(path) if tn[-3:] == 'png']
+
 	return render_to_response('snapshots/regionalunit.html', locals(), context_instance=RequestContext(request))
 
 

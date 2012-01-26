@@ -11,7 +11,7 @@ register = template.Library()
 
 
 @register.inclusion_tag('snapshots/_visualization.html')
-def get_visualizations(topic, regiontype, regionalunit):
+def get_visualizations(topic, regiontype, regionalunit, tn_list):
 	""" renders flash visualization for given arguments """
 
 	visualizations = Visualization.objects.filter(regiontype=regiontype, topics=topic, overviewmap=False)
@@ -21,7 +21,9 @@ def get_visualizations(topic, regiontype, regionalunit):
 		'visualizations': visualizations,
 		'regiontype': regiontype,
 		'regionalunit': regionalunit,
+		'tn_list': tn_list,
 		'STATIC_URL': settings.STATIC_URL,
 		'WEAVE_URL': settings.WEAVE_URL,
 		'SITEURL': settings.SITEURL,
+		'MEDIA_URL': settings.MEDIA_URL,
 	}
