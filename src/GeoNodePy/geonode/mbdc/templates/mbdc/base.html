@@ -1,5 +1,4 @@
 {% load i18n %}
-{% load cache %}
 {% load mbdc_extras %}
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -64,7 +63,6 @@
 <div id="site_head">
 	<div class="site_head_pad">
 		<div class="features">
-            {% cache 0 useraccount %}
 			<div class="account">
 			{% if user.is_authenticated %}
 				{% if user.get_profile %}Welcome, <a href="{{ user.get_profile.get_absolute_url }}">{% firstof user.get_profile.name user.username|title %}</a>{% else %}Welcome, {{ user.username }} | <a href="{% url profiles_create_profile %}"><strong>Create Your Profile</strong></a>{% endif %} {% if user.is_staff %}| <a class="" id="adminLink" href="/admin/">{% trans "Admin" %}</a>{% endif %} | <a href="{% url auth_logout %}">{% trans "Log out" %}</a>
@@ -72,7 +70,6 @@
 				{% if REGISTRATION_OPEN %}Join Our Community, <a href="{% url registration_register %}">Create an Account</a> or {% endif %}<a href="/accounts/login?next={{ request.get_full_path }}">{% trans "Login" %}</a>
   			{% endif %}
 			</div>
-            {% endcache %}
 		</div>
 		<div class="logo"><a href="{% url geonode.mbdc.views.index %}"><img src="{{ STATIC_URL }}mbdc/img/Global/The-Boston-Indicators-Project.png" border="0" alt="The Boston Indicators Project" width="671" height="95"/></a></div>
 		<div class="clear"></div>

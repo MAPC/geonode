@@ -2,7 +2,6 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
 from django.conf import settings
-from django.views.decorators.cache import cache_page, never_cache
 
 from geonode.snapshots.models import Regiontype, Regionalunit, Visualization
 from geonode.mbdc.models import Topic
@@ -75,7 +74,6 @@ def get_sessionstate(request, regiontype_slug, regionalunit_slug, visid):
 	return render_to_response(visualization.sessionstate.name, locals(), context_instance=RequestContext(request), mimetype='application/xml')
 
 
-@never_cache
 def create_thumbnails(request, regiontype_slug, regionalunit_slug):
 	"""" 
 	Receives base64 data from currently shown visualizations and creates thumbnails.
@@ -103,7 +101,6 @@ def create_thumbnails(request, regiontype_slug, regionalunit_slug):
 		)
 
 
-@cache_page(60 * 15)
 def print_regionalunit(request, regiontype_slug, regionalunit_slug):
 	""" Renders a printer friendly layout """
 
@@ -122,7 +119,6 @@ def print_regionalunit(request, regiontype_slug, regionalunit_slug):
 	return render_to_response('snapshots/print.html', locals(), context_instance=RequestContext(request))
 
 
-@cache_page(60 * 15)
 def get_topic(request, regiontype_slug, regionalunit_slug, topic_slug):
 	""" Render all visualizations for given topic and regional unit """
 
