@@ -33,7 +33,7 @@
 				{% for profile in object_list %}
 				   {% if profile.user %}
 				   
-				     <li><a href="{{profile.get_absolute_url}}">{% avatar profile.user 40 %} {{ profile.name }}</a></li>
+				     <li><div><a href="{{profile.get_absolute_url}}">{% avatar profile.user 40 %} {{ profile.name }}</a><div></li>
 				   
 				    {% endif %}
 				{% endfor %}

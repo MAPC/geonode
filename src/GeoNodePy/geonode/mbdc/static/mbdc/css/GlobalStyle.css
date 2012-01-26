@@ -981,11 +981,13 @@ ul.user_list li {
 }
 
 ul.user_list li img {
-    margin-right: 2px;
-    margin-left: 10px ;
-    vertical-align: middle;
+    float: left;
+    margin: 0 10px 10px;
+}
 
-
+ul.user_list div {
+	max-width: 150px;
+	float: left;
 }
 
 /* regional map galler */
