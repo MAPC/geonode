@@ -142,7 +142,7 @@ input[type='radio'] { border:none !important; }
 #site_head { height:120px; border-bottom:1px solid #ccc; }
 .site_head_pad { padding:10px 0; }
 #site_head .logo { }
-#site_head .features { float:right; padding:0 0 10px; text-align:right; width:260px; }
+#site_head .features { float:right; padding:0 0 10px; text-align:right; width:280px; }
 #site_head .search { padding:5px 10px 10px 0; border-bottom:1px solid #ccc; vertical-align:text-top }
 #site_head .search_box { background:#fff; border-top:1px solid #666; border-right: 1px solid #e9e9ef; border-bottom:1px solid #e9e9ef; border-left:1px solid #e9e9ef; float:left; margin-right:5px; }
 #site_head .search input[type=text] { width:210px; background:#fff; vertical-align:text-top; padding:2px; border: none; }
