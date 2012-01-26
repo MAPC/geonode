@@ -1,8 +1,14 @@
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
+from django.conf import settings
 
 from geonode.snapshots.models import Regiontype, Regionalunit, Visualization
 from geonode.mbdc.models import Topic
+from geonode.weave.views import save_thumbnail
+
+import os
+import simplejson
 
 def index(request):
 
@@ -30,7 +36,7 @@ def get_regionalunit(request, regiontype_slug, regionalunit_slug):
 	regiontype = get_object_or_404(Regiontype, slug__iexact=regiontype_slug)
 	regionalunit = get_object_or_404(Regionalunit, regiontype=regiontype, slug__iexact=regionalunit_slug)
 	try:
-		overviewmap = Visualization.objects.filter(regiontype=regiontype, overviewmap=True)[0]
+		overviewmap = Visualization.objects.get(regiontype=regiontype, overviewmap=True)
 	except:
 		pass
 
@@ -51,6 +57,49 @@ def get_sessionstate(request, regiontype_slug, regionalunit_slug, visid):
 	regionalunit = get_object_or_404(Regionalunit, regiontype=regiontype, slug__iexact=regionalunit_slug)
 	
 	return render_to_response(visualization.sessionstate.name, locals(), context_instance=RequestContext(request), mimetype='application/xml')
+
+def create_thumbnails(request, regiontype_slug, regionalunit_slug):
+	"""" 
+	Receives base64 data from currently shown visualizations and creates thumbnails.
+	Called before the print layout.
+	"""
+
+	if not request.method == 'POST':
+		return HttpResponse(
+			'You must use POST to create thumbnails.',
+			status=405,
+			mimetype='text/plain'
+		)
+	else:
+		visualizations = simplejson.loads(request.POST['visualizations'])
+
+		for visualization in visualizations:
+			# save visualization thumbnail if it doesn't exist
+			path = 'snapshots_thumbnails/%s/%s/' % (regiontype_slug, regionalunit_slug)
+			filename = visualizations[visualization]['visid']
+			if not os.path.isfile('%s/%s%s.png' % (settings.MEDIA_ROOT, path, filename)):
+				save_thumbnail(data=visualizations[visualization]['thumbnail'], path=path, filename='%s' % (filename), tn_sizes=None)
+
+		return HttpResponse(
+			status=201
+		)
+
+def print_regionalunit(request, regiontype_slug, regionalunit_slug):
+	""" Renders a printer friendly layout """
+
+	printvis = request.GET['visualizations'].split(',')
+
+	regiontype = get_object_or_404(Regiontype, slug__iexact=regiontype_slug)
+	regionalunit = get_object_or_404(Regionalunit, regiontype=regiontype, slug__iexact=regionalunit_slug)
+
+	visualizations = Visualization.objects.filter(id__in=printvis, overviewmap=False)
+
+	try:
+		overviewmap = Visualization.objects.get(id__in=printvis, overviewmap=True)
+	except:
+		pass
+
+	return render_to_response('snapshots/print.html', locals(), context_instance=RequestContext(request))
 
 
 def get_topic(request, regiontype_slug, regionalunit_slug, topic_slug):

@@ -18,15 +18,17 @@
 
 <script language="JavaScript" src="{{ STATIC_URL }}snapshots/chosen/chosen.jquery.min.js" type="text/javascript"></script>
 
-{% if overviewmap %}
+
 <script type="text/javascript">
 
+// keeping track of which visualization is currently shown and loaded
+var pagevis = {};
 
-// called when Weave JavaScript API is ready
-var weaveReady = function(weave) { 
+{% if overviewmap %}
 
-	if (weave.id === "overviewmap") weave.evaluateExpression(['MapTool'], 'zoomToSelection()');
-
+pagevis["overviewmap"] = {
+	visid: {{ overviewmap.id }},
+	loaded: false
 }
 
 jQuery(document).ready(function($) {
@@ -49,9 +51,27 @@ jQuery(document).ready(function($) {
     );
 
 });
+{% endif %}
+
+// called when Weave JavaScript API is ready
+var weaveReady = function(weave) { 
+
+	// call weave internal function
+	if (weave.id === "overviewmap") weave.evaluateExpression(['MapTool'], 'zoomToSelection()');
+
+	// track loaded visualizations
+	pagevis[weave.id].loaded = true;
+	var vis, progress = [];
+	for (var vis in pagevis) {
+		progress.push(pagevis[vis].loaded);
+	}
+	// all Weave instances loaded
+	if (jQuery.inArray(false, progress) === -1) { jQuery(".view_print").show(); }
+
+}
 
 </script>
-{% endif %}
+
 
 {% endblock head_javascript %}
 
@@ -111,6 +131,12 @@ jQuery(document).ready(function($) {
 					<div class="clear"></div>
 				</div>
 				<!-- /location_content -->
+
+				<!-- printer friendly page -->
+				<div class="view_print">
+				<a href="print">View Printer-friendly page</a>
+				</div>
+				<!-- printer friendly page -->
 				
 				<!-- data_set_listing -->
 				<div class="data_set_listing">
@@ -122,12 +148,16 @@ jQuery(document).ready(function($) {
 
 					{% endfor %}
 
-					
-						
 						<div class="clear"></div>
 					</div>
 				</div>
 				<!-- /data_set_listing -->
+
+				<!-- printer friendly page -->
+				<div class="view_print bottom">
+				<a href="print">View Printer-friendly page</a>
+				</div>
+				<!-- printer friendly page -->
 				
 			</div>
 		</div>
@@ -143,32 +173,21 @@ jQuery(document).ready(function($) {
 
 jQuery(document).ready(function($) {
 
+	$(".view_print").hide();
+
 	/* 
-	* Render selected visualization
-	*/
+	 * Render selected visualization
+	 */
 	$(".vis_change").change(function() {
 
 		// only if something other than the first (empty) is selected
 		if ($(this).prop("selectedIndex") !== 0) {
 
-			// flash-object-id|FlashVars-file-value|title|year|sources
-			var vis_args = $("option:selected", this)
-				.val()
-				.split("|");
+			var visparams = $("option:selected", this).data("visparams");
 
-			var weave = swfobject.getObjectById(vis_args[0]);
+			var weave = swfobject.getObjectById(visparams.topic);
 
-			$.get(vis_args[1], function(xmlData){
-
-				// XML to string conversion
-				// TODO make function globally available
-				function XMLToString(oXML) {
-					if (window.ActiveXObject) {
-						return oXML.xml;
-					} else {
-						return (new XMLSerializer()).serializeToString(oXML);
-					}
-				}
+			$.get(visparams.url, function(xmlData){
 
 				// Weave API method only accepts strings
 				var data = XMLToString(xmlData);
@@ -185,17 +204,30 @@ jQuery(document).ready(function($) {
 				});
 
 				// update title, years and source
-				$("#" + vis_args[0] + "-meta .title")
-					.html("<a href=''>" + vis_args[2] + "</a>");
-				$("#" + vis_args[0] + "-meta .info")
-				 	.html("Year(s): " + vis_args[3] + "  <span class='spacer'>&#8226;</span>  Source: " + vis_args[4]);		
+				$("#" + visparams.topic + "-meta .title")
+					.html("<a href=''>" + visparams.vistitle + "</a>");
+				$("#" + visparams.topic + "-meta .info")
+				 	.html("Year(s): " + visparams.year + "  <span class='spacer'>&#8226;</span>  Source: " + visparams.sources);	
+				 	
+				 pagevis[visparams.topic].visid = visparams.visid;	
+
 			});
 		}
 	});
 
+	// XML to string conversion
+	// TODO make function globally available
+	var XMLToString = function (oXML) {
+		if (window.ActiveXObject) {
+			return oXML.xml;
+		} else {
+			return (new XMLSerializer()).serializeToString(oXML);
+		}
+	}
+
 	/* 
-	* Chosen Regionalunit combobox
-	*/
+	 * Chosen Regionalunit combobox
+	 */
 	// initiate
 	$(".chzn-select").chosen();
 
@@ -204,6 +236,38 @@ jQuery(document).ready(function($) {
     	regionalunit_url = $("option:selected", this).val();
 		window.location = "{% url snapshots-regiontype regiontype_slug %}" + regionalunit_url;
 		return false;
+    });
+
+    /* 
+	 * Save thumbnails to server and open print-optimized page with currently shown visualizations
+	 */
+    $(".view_print a").bind("click", function() {
+
+    	$("object").each( function(index) {
+    		var weave = swfobject.getObjectById($(this).attr('id'));
+    		try {
+				pagevis[weave.id].thumbnail = weave.evaluateExpression(null, 'getBase64Image(Application.application.visDesktop)', null, ['weave.utils.BitmapUtils', 'mx.core.Application']);
+			} catch (error) {
+				alert("Please wait until all visualizations are loaded.")
+			}
+    	});
+
+    	$.post("{% url snapshots-thumbnails regiontype_slug=regiontype.slug regionalunit_slug=regionalunit.slug %}", 
+			{
+				visualizations: JSON.stringify(pagevis)
+			},
+			function(data){
+				// thumbnails created, now open print layout with shown visualizations
+				var printvis = [];
+				for (var vis in pagevis) {
+					printvis.push([pagevis[vis].visid]);
+				}
+				window.location = "{% url snapshots-print regiontype_slug=regiontype.slug regionalunit_slug=regionalunit.slug %}?visualizations=" + printvis.toString();
+			}, 
+			"json"
+		);
+
+    	return false;
     });
 
 });

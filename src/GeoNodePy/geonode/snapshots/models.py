@@ -1,6 +1,7 @@
 from django.contrib.gis.db import models
 from django.db.models import permalink
 from django.core.files.storage import FileSystemStorage
+from django.conf import settings
 
 # lazy translation
 from django.utils.translation import ugettext_lazy as _
@@ -86,3 +87,16 @@ class Visualization(models.Model):
 	 			'regiontype_slug': regiontype_slug,
 	 			'regionalunit_slug': regionalunit_slug,
 	 		})
+
+	def save(self, *args, **kwargs):
+		# delete previously saved image thumbnails for this visualization
+		regionalunits = Regionalunit.objects.all()
+		for regionalunit in regionalunits:
+			path = '%s/snapshots_thumbnails/%s/%s/%i.png' % (settings.MEDIA_ROOT, self.regiontype.slug, regionalunit.slug, self.id)
+			if os.path.isfile(path):
+				os.remove(path)
+
+		super(Visualization, self).save(*args, **kwargs) # Call the "real" save() method.
+
+
+

@@ -22,29 +22,51 @@
 						</div>
 
 						<script type="text/javascript">
+							
+							jQuery(document).ready(function($) {
 
-							// FlashVars and attributes
-							MBDC.swfobject.vis["{{ topic.slug }}"] = {
-								flashvars: {
-									file: "{{ SITEURL|slice:':-1' }}{% url geonode.snapshots.views.get_sessionstate regiontype.slug regionalunit.slug visualizations.0.id %}"
-								},
-								attributes: {
-									id: "{{ topic.slug }}",
-									name: "{{ topic.slug }}"
+								pagevis["{{ topic.slug }}"] = {
+									visid: {{ visualizations.0.id }},
+									loaded: false
 								}
-							};
 
-							// add Flash object
-							swfobject.embedSWF(
-								"{{ WEAVE_URL }}weave.swf", 
-								"{{ topic.slug }}", 
-								"333", "252", 
-								"10.0.0",
-								"expressInstall.swf", 
-								MBDC.swfobject.vis["{{ topic.slug }}"].flashvars, 
-								MBDC.swfobject.params, 
-								MBDC.swfobject.vis["{{ topic.slug }}"].attributes
-							);
+								// FlashVars and attributes
+								MBDC.swfobject.vis["{{ topic.slug }}"] = {
+									flashvars: {
+										file: "{{ SITEURL|slice:':-1' }}{% url geonode.snapshots.views.get_sessionstate regiontype.slug regionalunit.slug visualizations.0.id %}"
+									},
+									attributes: {
+										id: "{{ topic.slug }}",
+										name: "{{ topic.slug }}"
+									}
+								};
+
+								// add Flash object
+								swfobject.embedSWF(
+									"{{ WEAVE_URL }}weave.swf", 
+									"{{ topic.slug }}", 
+									"333", "252", 
+									"10.0.0",
+									"expressInstall.swf", 
+									MBDC.swfobject.vis["{{ topic.slug }}"].flashvars, 
+									MBDC.swfobject.params, 
+									MBDC.swfobject.vis["{{ topic.slug }}"].attributes
+								);
+
+								{% for visualization in visualizations %}
+
+									$("#{{ regiontype.id }}{{ regionalunit.id }}{{ visualization.id }}").data("visparams", { 
+										topic : "{{ topic.slug }}", 
+										url : "{{ SITEURL|slice:':-1' }}{% url geonode.snapshots.views.get_sessionstate regiontype.slug regionalunit.slug visualization.id %}",
+										visid : {{ visualization.id }},
+										vistitle : "{{ visualization.title }}",
+										year : "{{ visualization.year }}",
+										sources :  "{% for source in visualization.source.all %} <a href='{{ source.url }}'>{{ source.title }}</a>{% endfor %}"
+									});
+
+								{% endfor %}
+
+							});
 
 						</script>
 						 
@@ -53,7 +75,7 @@
 				<div class="data_vis_selection">
 					<select class="vis_change">
 						<option>Choose Visualization</option>
-						{% for visualization in visualizations %}<option value="{{ topic.slug }}|{{ SITEURL|slice:':-1' }}{% url geonode.snapshots.views.get_sessionstate regiontype.slug regionalunit.slug visualization.id %}|{{ visualization.title }}|{{ visualization.year }}| {% for source in visualization.source.all %}<a href='{{ source.url }}'>{{ source.title }}</a>{% endfor %}">{{ visualization.title }}</option>{% endfor %}
+						{% for visualization in visualizations %}<option id="{{ regiontype.id }}{{ regionalunit.id }}{{ visualization.id }}" value="{{ visualization.id }}">{{ visualization.title }}</option>{% endfor %}
 					</select>
 				</div>
 				<div class="clear"></div>

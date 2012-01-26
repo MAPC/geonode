@@ -629,6 +629,18 @@ clear:left;
 .save_pdf_bottom { border-top:1px solid #e2e3e2; padding:15px 34px; background:url(../img/Global/save_pdf.png) left 10px no-repeat; margin:25px 10px 0; }
 .save_pdf_bottom a { color:#556c9a !important; text-decoration:none !important; font: bold 15px/18px 'PT Sans', Arial, Helvetica, sans-serif; text-transform:uppercase; }
 .save_pdf_bottom a:hover { color:#3b3b3b !important; }
+/* printer friendly page */
+.view_print { 
+	border-bottom:1px solid #e2e3e2; 
+	padding:15px 24px; 
+	background:url(../img/Icons/print.gif) left 15px no-repeat; 
+	margin:0 10px 25px; }
+.view_print a { color:#556c9a !important; text-decoration:none !important; font: bold 15px/18px 'PT Sans', Arial, Helvetica, sans-serif; text-transform:uppercase; }
+.view_print a:hover { color:#3b3b3b !important; }
+.view_print.bottom { 
+	border-top:1px solid #e2e3e2;
+	border-bottom: none;
+}
 /*data_set_listing*/
 .data_set_listing { }
 .data_set_listing_pad { padding:0 30px; }
@@ -988,4 +1000,11 @@ ul.section_nav.regional_map_gallery li {
 
 .mapc_page {
 	font-style: italic;
+}
+
+/* print layout */
+
+.location_content_media.print, .location_content_text.page_content.print {
+	border-bottom: none;
+	height: 275px;
 }

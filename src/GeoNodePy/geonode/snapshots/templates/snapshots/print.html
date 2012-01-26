@@ -1,0 +1,163 @@
+{% load i18n %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{% block title %} {{ SITENAME }} {% endblock %}</title>
+<link rel="shortcut icon" type="image/x-icon" href="{{ STATIC_URL }}mbdc/img/favicon.ico" />
+
+<!-- header_include -->
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+
+<link href="{{ STATIC_URL }}mbdc/css/GlobalStyle.css" rel="stylesheet" type="text/css" />
+{% block extra_css %}{% endblock extra_css %}
+
+{% block head_javascript %}
+
+<script type="text/javascript">
+
+    // Google Analytics code
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-5547782-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+</script>
+
+{% endblock head_javascript %}
+
+<!-- /header_include -->
+
+</head>
+<body>
+
+<!-- utility_nav -->
+<div class="utility_nav">
+	<div class="wrapper">
+
+	</div>
+</div>
+<!-- utility_nav -->
+
+	<!-- wrapper -->
+	<div class="wrapper">
+		
+<!-- site_head -->
+<div id="site_head">
+	<div class="site_head_pad">
+		<div class="logo"><a href="{% url geonode.mbdc.views.index %}"><img src="{{ STATIC_URL }}mbdc/img/Global/The-Boston-Indicators-Project.png" border="0" alt="The Boston Indicators Project" width="671" height="95"/></a></div>
+		<div class="clear"></div>
+	</div>
+</div>
+<!-- /site_head -->
+
+
+		<!-- site_body -->
+		<div class="site_body">
+			<div class="site_body_pad">
+				<!-- location_content -->
+				<div class="location_content">
+					
+				
+					<div class="location_content_media print">
+							
+						{% if overviewmap %}
+						<div id="overviewmap">
+                            <img src="{{ MEDIA_URL }}snapshots_thumbnails/{{ regiontype.slug }}/{{ regionalunit.slug }}/{{ overviewmap.id }}.png" width="333" height="252" alt="{{ regionalunit.name }} Overviewmap" />
+                        </div>
+                        {% endif %}
+						
+					</div>
+
+					<div class="location_content_text page_content print">
+						
+						<h1>Community Snapshot for {{ regionalunit.name }}</h1>
+						{% if regionalunit.short_desc %}{{ regionalunit.short_desc }}{% endif %}
+						
+					</div>				
+					
+					<div class="clear"></div>
+				</div>
+				<!-- /location_content -->
+				
+				<!-- data_set_listing -->
+				<div class="data_set_listing">
+					<div class="data_set_listing_pad">
+					{{ printvis.visualizations }}
+					{% for visualization in visualizations %}
+						
+							<div class="data_set_list_item">
+
+								<div class="data_set_list_item_header">
+									<span class="title">{{ visualization.topics.all.0.title }}</span>
+								</div>
+													
+								<!-- data_vis -->
+								<div class="data_vis">
+									<div class="data_vis_pad">
+										<div id="{{ topic.slug }}-meta" class="data_vis_header">
+											<div class="title"><a href="">{{ visualization.title }}</a></div>
+											<div class="info">Year(s): {{ visualization.year }}  <span class="spacer">&#8226;</span>  Source: {% for source in visualization.source.all %}<a href="{{ source.url }}" target="_blank" >{{ source.title }}</a>{% endfor %}</div>
+										</div>
+										<div class="data_vis_tabs">
+											<div id="tabs-1">
+
+												<img src="{{ MEDIA_URL }}snapshots_thumbnails/{{ regiontype.slug }}/{{ regionalunit.slug }}/{{ visualization.id }}.png" width="333" height="252" alt="{{ visualization.title }}" />
+
+											</div>
+										</div>
+										<div class="clear"></div>
+									</div>
+								</div>
+								<!-- /data_vis -->
+
+							</div>
+
+					{% endfor %}
+
+						<div class="clear"></div>
+					</div>
+				</div>
+				<!-- /data_set_listing -->
+				
+			</div>
+		</div>
+		<!-- /site_body -->
+
+
+
+	</div>
+	<!-- /wrapper -->
+
+<!-- site_foot -->
+<div id="site_foot">
+		<!-- wrapper -->
+		<div class="wrapper">
+	
+			<!-- site_foot_content -->
+			<div class="site_foot_content">
+				<div class="logos">
+					<a href="http://www.mapc.org" title="Metropolitan Area Planning Council"><img src="{{ STATIC_URL }}mbdc/img/logo-mapc.png" width="100" height="55" alt="MAPC" /></a>
+					<a href="http://www.bostonindicators.org/" title="The Boston Indicators Project"><img src="{{ STATIC_URL }}mbdc/img/logo-indicators.png" width="200" height="45" alt="The Boston Indicators Project" /></a>
+					<a href="http://www.tbf.org/" title="The Boston Foundation"><img src="{{ STATIC_URL }}mbdc/img/logo-tbf.png" width="128" height="45" alt="The Boston Foundation" /></a>
+				</div>
+				<div>60 Temple Place Boston, MA 02111   Main Tel: 617-451-2770  |  FAX: 617-451-2770</div>
+				<div>
+				{% for page in legal_pages %}<a href="{{ page.get_absolute_url }}">{{ page.title }}</a>{% if not forloop.last %} | {% endif %}{% endfor %}</div>
+				<div class="clear"></div>
+			</div>
+			<!-- /site_foot_content -->
+		</div>
+		<!-- /wrapper -->
+</div>
+<!-- /site_foot -->
+
+</body>
+</html>
