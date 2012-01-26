@@ -30,7 +30,7 @@ from geonode.mbdc.models import Topic, Datasource
 # Visualization Thumbnail sizes
 DEFAULT_TN_SIZES = dict(featured=(455, 315), gallery=(205,155))
 
-def save_thumbnail(data, path, tn_sizes):
+def save_thumbnail(data, path, filename, tn_sizes):
 	"""
 	Saves a base64 Weave visualization image file with alternative sizes to the given path in MEDIA_ROOT.
 	TODO: save in database, otherwise the image bypasses the security architecture
@@ -41,18 +41,23 @@ def save_thumbnail(data, path, tn_sizes):
 
 	"""
 
+	# check for directory
+	if not os.path.exists('%s/%s' % (settings.MEDIA_ROOT, path)):
+		os.makedirs('%s/%s' % (settings.MEDIA_ROOT, path))
+
 	# save visualization image
 	visimg_data = base64.b64decode(data)
-	visimg_filename = '%s/%s.png' % (settings.MEDIA_ROOT, path)
+	visimg_filename = '%s/%s%s.png' % (settings.MEDIA_ROOT, path, filename)
 	visimg_file = open(visimg_filename,'wb+')
 	visimg_file.write(visimg_data)
 	visimg_file.close()
 	
 	# save visualization thumbnails
-	for tn_type in tn_sizes:
-		tn = Image.open(visimg_filename)
-		tn.thumbnail(tn_sizes[tn_type], Image.ANTIALIAS)
-		tn.save('%s/%s_%s.png' % (settings.MEDIA_ROOT, path, tn_type), 'PNG')
+	if tn_sizes != None:
+		for tn_type in tn_sizes:
+			tn = Image.open(visimg_filename)
+			tn.thumbnail(tn_sizes[tn_type], Image.ANTIALIAS)
+			tn.save('%s/%s%s_%s.png' % (settings.MEDIA_ROOT, path, filename, tn_type), 'PNG')
 
 	
 
@@ -97,7 +102,7 @@ def new(request):
 			transaction.commit()
 
 			# save visualization thumbnail
-			save_thumbnail(data=request.POST.get('thumbnail'), path='/weave_thumbnails/%i' % (visualization.id), tn_sizes=DEFAULT_TN_SIZES)
+			save_thumbnail(data=request.POST.get('thumbnail'), path='weave_thumbnails/', filename=visualization.id, tn_sizes=DEFAULT_TN_SIZES)
 
 			return HttpResponse(
 				'{"visurl": "%s", "visid": "%i"}' % (visualization.get_absolute_url(), visualization.id),
@@ -171,7 +176,7 @@ def edit(request, visid):
 		try:
 			
 			# save visualization thumbnail
-			save_thumbnail(data=request.POST.get('thumbnail'), path='/weave_thumbnails/%i' % (visualization.id), tn_sizes=DEFAULT_TN_SIZES)
+			save_thumbnail(data=request.POST.get('thumbnail'), path='weave_thumbnails/', filename=visualization.id, tn_sizes=DEFAULT_TN_SIZES)
 
 			# update existing visualization
 			visualization.update_from_viewer(request.POST)
