@@ -139,7 +139,7 @@ jQuery(document).ready(function($) {
 
                   <div class="data_vis">
                     <div class="data_vis_pad">
-                      <div class="data_vis_header">
+                      <div class="data_vis_header index">
                         <div class="title">{{ featured.visualization.title }}</div>
 
                         <div class="info">{% if featured.visualization.year %}Year(s): <span id="vis-year">{{ featured.visualization.year }}</span><span class="spacer">&#8226;</span>{% endif %}  {% if featured.visualization.datasources.all %}Source(s): <span id="vis-datasources">{% for datasource in featured.visualization.datasources.all %}{{ datasource.title }}{% if not forloop.last %}, {% endif %}{% endfor %}</span>{% endif %}</div>
