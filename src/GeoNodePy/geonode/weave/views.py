@@ -16,7 +16,8 @@ from urllib import urlencode
 import os
 
 import base64
-import Image
+from PIL import Image
+from io import BytesIO
 
 from django.conf import settings
 
@@ -47,18 +48,15 @@ def save_thumbnail(data, path, filename, tn_sizes):
 		os.makedirs('%s/%s' % (settings.MEDIA_ROOT, path))
 
 	# save visualization image
-	visimg_data = base64.b64decode(data)
-	visimg_filename = '%s/%s%s.png' % (settings.MEDIA_ROOT, path, filename)
-	visimg_file = open(visimg_filename,'wb+')
-	visimg_file.write(visimg_data)
-	visimg_file.close()
+	visimg = Image.open(BytesIO(base64.b64decode(data)))
+	visimg.save('%s/%s%s.png' % (settings.MEDIA_ROOT, path, filename), 'PNG', optimize=True)
 	
 	# save visualization thumbnails
 	if tn_sizes != None:
 		for tn_type in tn_sizes:
-			tn = Image.open(visimg_filename)
+			tn = Image.open(BytesIO(base64.b64decode(data)))
 			tn.thumbnail(tn_sizes[tn_type], Image.ANTIALIAS)
-			tn.save('%s/%s%s_%s.png' % (settings.MEDIA_ROOT, path, filename, tn_type), 'PNG')
+			tn.save('%s/%s%s_%s.png' % (settings.MEDIA_ROOT, path, filename, tn_type), 'PNG', optimize=True)
 
 	
 
