@@ -52,7 +52,7 @@ class Visualization(models.Model, PermissionLevelMixin):
 	The user that created/owns this map.
 	"""
 
-	original = models.ForeignKey('self', blank=True, null=True)
+	original = models.ForeignKey('self', related_name='duplicates', blank=True, null=True)
 	""" 
 	The original object if duplicated. 
 	"""

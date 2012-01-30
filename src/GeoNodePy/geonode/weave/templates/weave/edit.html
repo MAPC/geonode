@@ -179,7 +179,12 @@
 
 						// more options once the visualization is saved
 						$("#properties-button, #save-button, #duplicate-button, #duplicate-spacer, #embed-button, #embed-spacer, #delete-button, #delete-spacer, #perm-button, #perm-spacer").show();
+						// except for delete, only visual effect of link target
+						$("#save-button").attr("href", MBDC.visurl + "save");
+						$("#duplicate-button").attr("href", MBDC.visurl + "duplicate");
+						$("#embed-button").attr("href", MBDC.visurl + "embed");
 						$("#delete-button").attr("href", MBDC.visurl + "delete");
+						$("#perm-button").attr("href", MBDC.visurl + "permissions/" + perm[1]);
 
 						$("#spinner").spin(false);
 

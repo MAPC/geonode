@@ -213,6 +213,12 @@ def delete(request, visid):
 		path = '%s/weave_thumbnails/%i_%s.png' % (settings.MEDIA_ROOT, visualization.id, tn_type)
 		if os.path.isfile(path):
 				os.remove(path)
+	
+	# remove original source from all duplicated visualizations
+	duplicates = visualization.duplicates.all()
+	for duplicate in duplicates:
+		duplicate.original = None
+		duplicate.save()
 
 	visualization.delete()
 
