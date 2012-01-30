@@ -10,8 +10,8 @@ from geonode.snapshots.models import Regiontype
 register = template.Library()
 
 
-@register.inclusion_tag('snapshots/_visualization.html')
-def get_visualizations(topic, regiontype, regionalunit, tn_list):
+@register.inclusion_tag('snapshots/_visualization.html', takes_context=True)
+def get_visualizations(context, topic, regiontype, regionalunit, tn_list):
 	""" renders flash visualization for given arguments """
 
 	visualizations = Visualization.objects.filter(regiontype=regiontype, topics=topic, overviewmap=False)
@@ -22,8 +22,8 @@ def get_visualizations(topic, regiontype, regionalunit, tn_list):
 		'regiontype': regiontype,
 		'regionalunit': regionalunit,
 		'tn_list': tn_list,
-		'STATIC_URL': settings.STATIC_URL,
-		'WEAVE_URL': settings.WEAVE_URL,
-		'SITEURL': settings.SITEURL,
-		'MEDIA_URL': settings.MEDIA_URL,
+		'STATIC_URL': context['STATIC_URL'],
+		'WEAVE_URL': context['WEAVE_URL'],
+		'SITEURL': context['SITEURL'],
+		'MEDIA_URL': context['MEDIA_URL'],
 	}
