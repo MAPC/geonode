@@ -22,9 +22,7 @@ def get_header_about():
 
 	about_pages = Page.objects.filter(section='about')
 
-	return {
-		'about_pages': about_pages,
-	}
+	return locals()
 
 @register.inclusion_tag('mbdc/_header_primarynav.html')
 def get_header_primarynav():
@@ -35,8 +33,8 @@ def get_header_primarynav():
 
     return locals()
 
-@register.inclusion_tag('mbdc/_footer.html')
-def get_footer():
+@register.inclusion_tag('mbdc/_footer.html', takes_context=True)
+def get_footer(context):
 
     about_pages = Page.objects.filter(section='about')	
     resources_pages = Page.objects.filter(section='resources')
@@ -44,23 +42,21 @@ def get_footer():
     legal_pages = Page.objects.filter(section='legal')
     snapshot_types = Regiontype.objects.all()
     topics = Topic.objects.all()
-    STATIC_URL = settings.STATIC_URL
+    STATIC_URL = context['STATIC_URL']
 
     return locals()
 
-@register.inclusion_tag('mbdc/_data_search_bar.html')
-def get_data_search_bar():
+@register.inclusion_tag('mbdc/_data_search_bar.html', takes_context=True)
+def get_data_search_bar(context):
 
-	topics = Topic.objects.all()
+    topics = Topic.objects.all()
+    STATIC_URL = context['STATIC_URL']
 
-	return {
-		'topics': topics,
-		'STATIC_URL': settings.STATIC_URL,
-	}
+    return locals()
 
 
-@register.inclusion_tag('mbdc/_user_gallery.html')
-def get_user_gallery(request, user):
+@register.inclusion_tag('mbdc/_user_gallery.html', takes_context=True)
+def get_user_gallery(context, request, user):
 
     try:
         readable_vis = get_readable_vis(request.user)
@@ -69,7 +65,7 @@ def get_user_gallery(request, user):
         visualizations = Visualization.objects.none()
 
     nr_results = len(visualizations)
-    MEDIA_URL = settings.MEDIA_URL
+    MEDIA_URL = context['MEDIA_URL']
 
     return locals()
 
