@@ -1,6 +1,7 @@
 from django.utils.translation import ugettext as _
 from django.db import models
 from django.db.models import permalink
+from django.conf import settings
 
 from markupfield.fields import MarkupField
 
@@ -150,4 +151,17 @@ class Calendar(models.Model):
     def __unicode__(self):
         return self.title
 
-        
+
+class Upload(models.Model):
+    """ Allows content editors to manage media """
+
+    title = models.CharField(blank=False, max_length=100)
+    upload = models.FileField(upload_to='uploads')
+    last_modified = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['last_modified', 'title']
+
+    def get_absolute_url(self):
+        return "%s%s" % (settings.MEDIA_URL, self.upload)
+   
