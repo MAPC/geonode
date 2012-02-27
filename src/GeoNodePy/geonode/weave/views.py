@@ -259,11 +259,8 @@ def set_permissions(request, visid):
 			mimetype='text/plain'
 		)
 	else:
-		set_perm = request.POST.get('set_perm')
-		if set_perm == 'Private':
-			visualization.set_private_permissions()
-		elif set_perm == 'Public':
-			visualization.set_default_permissions()
+		perm = request.POST.get('set_perm')
+		visualization.set_permissions(perm)
 
 		return HttpResponse(
 			status=201

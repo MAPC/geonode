@@ -131,8 +131,8 @@ class Visualization(models.Model, PermissionLevelMixin):
 	LEVEL_ADMIN = 'visualization_admin'
 
 	def set_default_permissions(self):
-		self.set_gen_level(ANONYMOUS_USERS, self.LEVEL_READ)
-		self.set_gen_level(AUTHENTICATED_USERS, self.LEVEL_READ)
+		# private is default, only owner has access to it
+		self.set_permissions('Private')
 
 		# remove specific user permissions
 		current_perms =	 self.get_all_level_info()
@@ -145,7 +145,13 @@ class Visualization(models.Model, PermissionLevelMixin):
 			self.set_user_level(self.owner, self.LEVEL_ADMIN)
 
 
-	def set_private_permissions(self):
-		""" Only owner can access Visualization """
-		self.set_gen_level(ANONYMOUS_USERS, self.LEVEL_NONE)
-		self.set_gen_level(AUTHENTICATED_USERS, self.LEVEL_NONE)
+	def set_permissions(self, perm):
+		""" Change Visualization access permissions """
+
+		if perm == 'Public':
+			self.set_gen_level(ANONYMOUS_USERS, self.LEVEL_READ)
+			self.set_gen_level(AUTHENTICATED_USERS, self.LEVEL_READ)
+		elif perm == 'Private':
+			self.set_gen_level(ANONYMOUS_USERS, self.LEVEL_NONE)
+			self.set_gen_level(AUTHENTICATED_USERS, self.LEVEL_NONE)
+		

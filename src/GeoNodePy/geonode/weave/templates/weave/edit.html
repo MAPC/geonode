@@ -109,7 +109,7 @@
 		});
 
 		// Set public or private Visualization [get perm, set perm]
-		var perm = ["{{ get_perm|title|default:"Public" }}", "{{ set_perm|title|default:"Private" }}"]
+		var perm = ["{{ get_perm|title|default:"Private" }}", "{{ set_perm|title|default:"Public" }}"]
 		$("#perm-button").bind("click", function() {
 
 			// visual AJAX feedback
@@ -288,7 +288,7 @@
 					{% if user.is_authenticated %}
 						<a id="save-button" title="Save this Visualization" href="save">Save</a> 
 						<span id="duplicate-spacer" class="spacer">|</span> <a id="duplicate-button" title="Duplicate this Visualization to your profile" href="duplicate">Duplicate</a>
-						<span id="perm-spacer">|</span> <a id="perm-button" title="Set this Visualization {{ set_perm|title|default:"Private" }}" href="permissions/{{ set_perm|default:"Private" }}">Make {{ set_perm|title|default:"Private" }}</a> 
+						<span id="perm-spacer">|</span> <a id="perm-button" title="Set this Visualization {{ set_perm|title|default:"Public" }}" href="permissions/{{ set_perm|default:"Public" }}">Make {{ set_perm|title|default:"Public" }}</a> 
 						<span id="delete-spacer" class="spacer">|</span> <a id="delete-button" title="Delete this Visualization from your profile" href="delete">Delete</a>
 					{% else %}
 					<a href="/accounts/login?next={{ request.get_full_path }}">{% trans "Login to Save Visualization" %}</a>
