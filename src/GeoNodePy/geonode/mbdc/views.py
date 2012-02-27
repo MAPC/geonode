@@ -19,8 +19,8 @@ def index(request):
 	# featured visualizations
 	featured_visualizations = Featured.objects.filter(visualization__in=readable_vis)
 
-	# get latest 10 visualizations for gallery
-	gallery_visualizations = Visualization.objects.filter(id__in=readable_vis).order_by('-last_modified')[:10]
+	# get latest 10 visualizations for gallery, that are not default visualizations
+	gallery_visualizations = Visualization.objects.exclude(title__icontains='New Weave Visualization').filter(id__in=readable_vis).order_by('-last_modified')[:10]
 
 	topics = Topic.objects.all()
 
@@ -57,7 +57,7 @@ def gallery(request):
 		if 'page' in params: del params['page']
 		# build query from other GET parameters
 		query = dict([(param,int(params[param])) for param in params], id__in=readable_vis)
-		visualizations = Visualization.objects.filter(**query).order_by('-last_modified')
+		visualizations = Visualization.objects.exclude(title__icontains='New Weave Visualization').filter(**query).order_by('-last_modified')
 
 		# for selected options and verbose filter output on page
 		if 'datasources' in params: filter_source = Datasource.objects.get(pk=params['datasources'])
