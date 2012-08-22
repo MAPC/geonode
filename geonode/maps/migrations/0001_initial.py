@@ -23,6 +23,10 @@ class Migration(SchemaMigration):
             ('zipcode', self.gf('django.db.models.fields.CharField')(max_length=255, null=True, blank=True)),
             ('country', self.gf('django.db.models.fields.CharField')(max_length=3, null=True, blank=True)),
             ('email', self.gf('django.db.models.fields.EmailField')(max_length=75, null=True, blank=True)),
+            ('website_url', self.gf('django.db.models.fields.URLField')(max_length=200, null=True, blank=True)),
+            ('mapc_newsletter', self.gf('django.db.models.fields.BooleanField')(default=True)),
+            ('mbdc_newsletter', self.gf('django.db.models.fields.BooleanField')(default=True)),
+            ('last_modified', self.gf('django.db.models.fields.DateTimeField')(auto_now=True)),
         ))
         db.send_create_signal('maps', ['Contact'])
 
@@ -88,8 +92,8 @@ class Migration(SchemaMigration):
             ('group', self.gf('django.db.models.fields.CharField')(max_length=200, null=True)),
             ('visibility', self.gf('django.db.models.fields.BooleanField')(default=True)),
             ('ows_url', self.gf('django.db.models.fields.URLField')(max_length=200, null=True)),
-            ('layer_params', self.gf('django.db.models.fields.TextField')()),
-            ('source_params', self.gf('django.db.models.fields.TextField')()),
+            ('layer_params', self.gf('django.db.models.fields.CharField')(max_length=1024)),
+            ('source_params', self.gf('django.db.models.fields.CharField')(max_length=1024)),
         ))
         db.send_create_signal('maps', ['MapLayer'])
 
@@ -186,7 +190,7 @@ class Migration(SchemaMigration):
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
         'maps.contact': {
-            'Meta': {'object_name': 'Contact'},
+            'Meta': {'ordering': "['-last_modified']", 'object_name': 'Contact'},
             'area': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
             'city': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
             'country': ('django.db.models.fields.CharField', [], {'max_length': '3', 'null': 'True', 'blank': 'True'}),
@@ -194,11 +198,15 @@ class Migration(SchemaMigration):
             'email': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'null': 'True', 'blank': 'True'}),
             'fax': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'last_modified': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True'}),
+            'mapc_newsletter': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
+            'mbdc_newsletter': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
             'organization': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
             'position': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']", 'null': 'True', 'blank': 'True'}),
             'voice': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
+            'website_url': ('django.db.models.fields.URLField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
             'zipcode': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'})
         },
         'maps.contactrole': {
@@ -259,12 +267,12 @@ class Migration(SchemaMigration):
             'format': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True'}),
             'group': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'layer_params': ('django.db.models.fields.TextField', [], {}),
+            'layer_params': ('django.db.models.fields.CharField', [], {'max_length': '1024'}),
             'map': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'layer_set'", 'to': "orm['maps.Map']"}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True'}),
             'opacity': ('django.db.models.fields.FloatField', [], {'default': '1.0'}),
             'ows_url': ('django.db.models.fields.URLField', [], {'max_length': '200', 'null': 'True'}),
-            'source_params': ('django.db.models.fields.TextField', [], {}),
+            'source_params': ('django.db.models.fields.CharField', [], {'max_length': '1024'}),
             'stack_order': ('django.db.models.fields.IntegerField', [], {}),
             'styles': ('django.db.models.fields.CharField', [], {'max_length': '200', 'null': 'True'}),
             'transparent': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),

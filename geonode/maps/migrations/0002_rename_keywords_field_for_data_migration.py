@@ -11,10 +11,26 @@ class Migration(SchemaMigration):
         # Move aside keywords column temporarily
         db.rename_column('maps_layer', 'keywords', 'keywords_temp')
 
+        # migrating MBDC model changes
+        db.alter_column('maps_map', 'title', models.TextField())
+        db.alter_column('maps_maplayer', 'layer_params', models.TextField())
+        db.alter_column('maps_maplayer', 'source_params', models.TextField())
+
+        # Changing field 'Contact.last_modified'
+        db.alter_column('maps_contact', 'last_modified', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, null=True))
+
 
     def backwards(self, orm):
         
         db.rename_column('maps_layer', 'keywords_temp', 'keywords')
+
+        # migrating MBDC model changes
+        db.alter_column('maps_map', 'title', models.CharField(max_length=1000))
+        db.alter_column('maps_maplayer', 'layer_params', models.CharField(max_length=1024))
+        db.alter_column('maps_maplayer', 'source_params', models.CharField(max_length=1024))
+
+        # Changing field 'Contact.last_modified'
+        db.alter_column('maps_contact', 'last_modified', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, default=datetime.date(2012, 1, 27)))
 
 
     models = {
@@ -55,7 +71,7 @@ class Migration(SchemaMigration):
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
         'maps.contact': {
-            'Meta': {'object_name': 'Contact'},
+            'Meta': {'ordering': "['-last_modified']", 'object_name': 'Contact'},
             'area': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
             'city': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
             'country': ('django.db.models.fields.CharField', [], {'max_length': '3', 'null': 'True', 'blank': 'True'}),
@@ -63,11 +79,15 @@ class Migration(SchemaMigration):
             'email': ('django.db.models.fields.EmailField', [], {'max_length': '75', 'null': 'True', 'blank': 'True'}),
             'fax': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'last_modified': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'null': 'True', 'blank': 'True'}),
+            'mapc_newsletter': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
+            'mbdc_newsletter': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
             'organization': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
             'position': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']", 'null': 'True', 'blank': 'True'}),
             'voice': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
+            'website_url': ('django.db.models.fields.URLField', [], {'default': "'http://'", 'max_length': '200', 'null': 'True', 'blank': 'True'}),
             'zipcode': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'})
         },
         'maps.contactrole': {
