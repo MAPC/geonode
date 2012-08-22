@@ -76,6 +76,7 @@ setup(name='GeoNode',
         # native dependencies
         "PIL",
         "lxml",
+        "psycopg2",
         # python dependencies
         "gsconfig==0.6",
         "OWSLib==0.5.1",
