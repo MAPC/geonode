@@ -32,3 +32,6 @@ nosetests.xml
 # OSX specific
 .Python
 .DS_Store
+
+# Project specific
+local_settings.py
