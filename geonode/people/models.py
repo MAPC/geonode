@@ -45,6 +45,14 @@ class Contact(ProfileBase):
     country = models.CharField(choices=COUNTRIES, max_length=3, blank=True, null=True, help_text=_('country of the physical address'))
     email = models.EmailField(blank=True, null=True, help_text=_('address of the electronic mailbox of the responsible organization or individual'))
 
+    # MBDC extensions
+    website_url = models.URLField(default="http://", blank=True, null=True)
+    mapc_newsletter = models.BooleanField(default=True)
+    mbdc_newsletter = models.BooleanField(default=True)
+    last_modified = models.DateTimeField(auto_now=True)
+    class Meta:
+        ordering = ['-last_modified']
+
     def clean(self):
         # the specification says that either name or organization should be provided
         valid_name = (self.name != None and self.name != '')
