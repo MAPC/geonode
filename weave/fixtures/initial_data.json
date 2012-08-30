@@ -1,0 +1,45 @@
+[
+    {
+        "pk": 7,
+        "model": "core.objectrole",
+        "fields": {
+            "codename": "visualization_readonly",
+            "title": "Read Only",
+            "list_order": 0,
+            "permissions": [ 
+                ["view_visualization", "weave", "visualization"]
+            ],
+            "content_type": ["weave", "visualization"]
+        }
+    },
+    {
+        "pk": 8,
+        "model": "core.objectrole",
+        "fields": {
+            "codename": "visualization_readwrite",
+            "title": "Read/Write",
+            "list_order": 1,
+            "permissions": [ 
+                ["view_visualization", "weave", "visualization"],
+                ["change_visualization", "weave", "visualization"]
+            ],
+            "content_type": ["weave", "visualization"]
+        }
+    },
+    {
+        "pk": 9,
+        "model": "core.objectrole",
+        "fields": {
+            "codename": "visualization_admin",
+            "title": "Administrative",
+            "list_order": 2,
+            "permissions": [ 
+                ["view_visualization", "weave", "visualization"],
+                ["change_visualization", "weave", "visualization"],
+                ["delete_visualization", "weave", "visualization"],
+                ["change_visualization_permissions", "weave", "visualization"]
+            ],
+            "content_type": ["weave", "visualization"]
+        }
+    }
+]
