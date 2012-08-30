@@ -89,10 +89,8 @@ class Migration(SchemaMigration):
         },
         'mbdc.hero': {
             'Meta': {'ordering': "['order']", 'object_name': 'Hero'},
-            '_content_rendered': ('django.db.models.fields.TextField', [], {}),
             'active': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'content': ('markupfield.fields.MarkupField', [], {'null': 'True', 'rendered_field': 'True', 'blank': 'True'}),
-            'content_markup_type': ('django.db.models.fields.CharField', [], {'default': "'markdown'", 'max_length': '30', 'blank': 'True'}),
+            'content': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'image': ('django.db.models.fields.files.ImageField', [], {'max_length': '100'}),
             'navsubtitle': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True', 'blank': 'True'}),
@@ -103,9 +101,7 @@ class Migration(SchemaMigration):
         },
         'mbdc.page': {
             'Meta': {'ordering': "['section', 'order']", 'object_name': 'Page'},
-            '_content_rendered': ('django.db.models.fields.TextField', [], {}),
-            'content': ('markupfield.fields.MarkupField', [], {'null': 'True', 'rendered_field': 'True', 'blank': 'True'}),
-            'content_markup_type': ('django.db.models.fields.CharField', [], {'default': "'markdown'", 'max_length': '30', 'blank': 'True'}),
+            'content': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'order': ('django.db.models.fields.IntegerField', [], {'null': 'True', 'blank': 'True'}),
             'section': ('django.db.models.fields.CharField', [], {'max_length': '20', 'null': 'True', 'blank': 'True'}),
