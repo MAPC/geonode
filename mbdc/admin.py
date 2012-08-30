@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from geonode.mbdc.models import Hero, Featured, Page, Datasource, Topic, Calendar, Upload
+from mbdc.models import Hero, Featured, Page, Datasource, Topic, Calendar, Upload
 
 class HeroAdmin(admin.ModelAdmin):
 	list_display = ('title', 'subtitle', 'active', 'order',)
