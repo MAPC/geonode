@@ -1,0 +1,25 @@
+<!-- data_search_bar -->
+<div class="data_search_bar">
+  <div class="data_search_bar_pad">
+    <span class="title">Start A Data Search:</span>
+    
+    <label>Topic:</label>
+    <select id="searchbar-topic">
+    	<option>All</option>
+    	{% for topic in topics %}<option value="{{ topic.id }}">{{ topic.title }}</option>{% endfor %}
+    </select>
+    
+    <input type="image" id="searchbar-button" src="{{ STATIC_URL }}mbdc/img/Global/header_search.png" />
+    
+  </div>
+</div>
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+    // load gallery page with selected topic
+    $("#searchbar-button").bind("click", function() {
+        if ($("#searchbar-topic option:selected").val()) window.location = "/explore/gallery/?topics=" + $("#searchbar-topic option:selected").val();
+        return false;
+    });
+});
+</script>
+<!-- /data_search_bar -->

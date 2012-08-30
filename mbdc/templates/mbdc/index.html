@@ -1,0 +1,279 @@
+{% extends "mbdc/base.html" %}
+
+{% load mbdc_extras %}
+
+
+{% block title %}Welcome! | {{ block.super }}{% endblock %}
+
+
+{% block head_javascript %}
+
+{{ block.super }}
+
+{% include "weave/_swfobject.html" %}
+
+<script type="text/javascript">
+
+jQuery(document).ready(function($) {
+
+
+    {% for featured in featured_visualizations %}
+
+    // add featured Weave Flash object
+    swfobject.embedSWF(
+      "{{ WEAVE_URL }}weave.swf", 
+      "vis-{{ featured.visualization.id }}", 
+      "455", "315", 
+      "10.0.0",
+      "expressInstall.swf", 
+      {}, 
+      MBDC.swfobject.params, 
+      {
+        id: "vis-{{ featured.visualization.id }}",
+        name: "vis-{{ featured.visualization.id }}"
+      }
+    );
+
+    {% endfor %}
+
+});
+
+</script>
+
+{% endblock head_javascript %}
+
+{% block body %}
+
+        <!-- home_slider -->
+    <div class="home_slider">
+      <div class="home_slide">
+
+{% for hero_entry in hero_entries %}
+  
+          <div class="home_slide_box">
+          <div class="home_slide_box_img">
+            <img src="{{ hero_entry.image.url }}" alt="{{ hero_entry.title }}" width="320" height="220" />
+          </div>
+          <div class="home_slide_box_content">
+            <div class="home_slide_box_content_pad">
+              <div class="home_slide_box_nav_title">{{ hero_entry.navtitle }} <span class="home_slide_box_nav_subtitle">{{ hero_entry.navsubtitle }}</span></div>
+              <span class="home_slide_box_title">{{ hero_entry.title }}</span>
+              <div class="home_slide_box_subtitle">{{ hero_entry.subtitle }}</div>
+              <div class="home_slide_box_text page_content">
+                {{ hero_entry.content }}
+              </div>
+            </div>
+          </div>
+          <div class="clear"></div>
+        </div>
+
+{% endfor %}
+
+      </div>
+    </div>
+    <!-- /home_slider -->
+    
+{% get_data_search_bar %}
+
+    
+    <!-- home_weave -->
+    <div class="home_weave">
+      <div class="home_weave_pad">
+        <!-- home_weave_nav -->
+        <div class="home_weave_nav">
+          <div class="home_weave_nav_heading">Explore Data by Topics:</div>
+          <ul>
+
+            {% for topic in topics %}
+
+            {% if forloop.first %}
+            <li class="first">
+              <a href="{{ topic.get_absolute_url }}"><span class="topic_icon topic_{{ topic.slug }}"></span>{{ topic.title }}</a>
+            </li>
+            {% else %}{% if forloop.last %}
+            <li class="last">
+              <a href="{{ topic.get_absolute_url }}"><span class="topic_icon topic_{{ topic.slug }}"></span>{{ topic.title }}</a>
+            </li>
+            {% else %}
+            <li>
+              <a href="{{ topic.get_absolute_url }}"><span class="topic_icon topic_{{ topic.slug }}"></span>{{ topic.title }}</a>
+            </li>
+            {% endif %}{% endif %}
+
+            {% endfor %}
+
+          </ul>
+        </div>
+        <!-- /home_weave_nav -->
+        <!-- home_weave_content -->
+        <div class="home_weave_content">
+          <!-- home_weave_intro -->
+          <div class="home_weave_intro">
+            <h1>Introducing WEAVE...</h1>
+            <div class="home_weave_intro_image">
+              <img src="{{ STATIC_URL }}mbdc/img/logo-oic.png" alt="OIC" width="130" height="60" />
+            </div>
+            <div class="home_weave_intro_text page_content">
+              A web-based visualization platform designed  to enable visualization of any available data by anyone for any purpose.  WEAVE is in development by the Open Indicators Consortium (OIC) To learn more about WEAVE, check out <a href="http://www.oicweave.org/" target="_blank">www.oicweave.org</a>.
+            </div>
+          </div>
+          <!-- /home_weave_intro -->
+          
+          <!-- home_weave_featured -->
+          <div class="home_weave_featured">
+            <div class="col col_1">
+              <div class="home_weave_rotator_wrap">
+                <div class="home_weave_rotator_header">
+                  <div class="rotator_nav">
+                    <a href="javascript:;" class="nav_prev">prev</a>
+                    <a href="javascript:;" class="nav_next">next</a>
+                  </div>
+                  <div class="home_weave_rotator_title">Featured Weave Visualizations</div>
+                  <div class="clear"></div>
+                </div>
+                <div class="home_weave_rotator">
+                  
+                  <!-- featured data_vis -->
+
+{% for featured in featured_visualizations %}
+
+                  <div class="data_vis">
+                    <div class="data_vis_pad">
+                      <div class="data_vis_header index">
+                        <div class="title">{{ featured.visualization.title }}</div>
+
+                        <div class="info">{% if featured.visualization.year %}Year(s): <span id="vis-year">{{ featured.visualization.year }}</span><span class="spacer">&#8226;</span>{% endif %}  {% if featured.visualization.datasources.all %}Source(s): <span id="vis-datasources">{% for datasource in featured.visualization.datasources.all %}{{ datasource.title }}{% if not forloop.last %}, {% endif %}{% endfor %}</span>{% endif %}</div>
+
+                        <div class="info">By {% if featured.visualization.owner.get_profile.get_absolute_url %}<a href="{{ featured.visualization.owner.get_profile.get_absolute_url }}">{% firstof featured.visualization.owner.get_profile.name featured.visualization.owner.username %}</a>{% else %}{% firstof featured.visualization.owner.get_profile.name featured.visualization.owner.username %}{% endif %}</div>
+                      </div>
+
+                      <div class="data_vis_tabs ui-tabs ui-widget ui-widget-content ui-corner-all">
+                        <div id="featured-{{ featured.visualization.id }}" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
+
+                          <div id="vis-{{ featured.visualization.id }}">
+                            {% if featured.visualization.id %}
+                            <img src="{{ MEDIA_URL }}weave_thumbnails/{{ featured.visualization.id }}_featured.png" alt="{{ featured.visualization.title }}">
+                            {% endif %}
+                            <p>Please install the <a href="http://get.adobe.com/flashplayer/">Adobe Flash Player</a> to be able to interact with this visualization.</p>
+                          </div>
+
+                        </div>
+                      </div>
+
+                      <ul class="data_vis_topics">
+                        {% for topic in featured.visualization.topics.all %} 
+                        <li><a href="{{ topic.get_absolute_url }}"><span class="topic_icon topic_{{ topic.slug }}"></span>{{ topic.title }}</a></li>
+                        {% endfor %}
+                      </ul>
+
+                      <div class="clear"></div>
+                    </div>
+                  </div>
+
+{% endfor %}
+                  <!-- /featured data_vis -->
+
+                </div>
+                
+              </div>
+              
+            </div>
+            <div class="col col_2">
+              <div class="home_weave_training">
+                <div class="home_weave_training_heading">Do It Yourself, Getting Started...</div>
+                <div class="home_weave_training_image">
+                  
+                  <img src="{{ STATIC_URL }}mbdc/img/photo-training.jpg" width="253" height="147" alt="Do It Yourself, Getting Started" />
+                  
+                </div>
+                <div class="home_weave_training_text page_content">
+                  <h3>Hands-on Training Available</h3>
+                  <p>MetroBoston DataCommon Training session are held every month at offices of the <a href="http://www.mapc.org" title="Metropolitan Area Planning Council">Metropolitan Area Planning Council</a> in downtown Boston. Participants receive an orientation to the various components of the website, and complete a hands-on tutorial of the DataMap Tool to create their own customized maps. Attendees have included community leaders, city and town planners, government employees staff from non-profit organizations and research organizations, and many others.</p>
+                </div>
+                <a class="home_weave_training_reg" href="http://mbdc.eventbrite.com" title="Register for MetroBoston DataCommon Hands-on Training in Boston, MA  on Eventbrite">Register for a Training</a>
+              </div>
+            </div>
+            <div class="clear"></div>
+          </div>
+          <!-- /home_weave_featured -->
+        </div>
+        <!-- /home_weave_content -->
+        <div class="clear"></div>
+      </div>
+    </div>
+    <!-- /home_weave -->
+    
+    <!-- home_featured_maps -->
+    <div class="home_featured_maps">
+      <div class="home_featured_maps_pad">
+        <div class="home_featured_maps_rotator_wrap">
+          <div class="home_featured_maps_heading">
+            <span class="home_featured_heading_info">Visit the <a href="{% url mbdc-gallery %}">Visualization Gallery</a></span>
+            <div class="title">Recent Data Visualizations from our Community:</div>
+          </div>
+
+          <div class="rotator_nav">
+            <a href="javascript:;" class="nav_prev">prev</a>
+            <a href="javascript:;" class="nav_next">next</a>
+          </div>      
+
+          <ul class="home_featured_maps_rotator" id="FeaturedMapsRotator">
+            
+{% for visualization in gallery_visualizations %}
+
+            <li class="home_featured_maps_slide">
+              <a class="slide_title" href="{{ visualization.get_absolute_url }}">{{ visualization.title }}</a>
+              <div class="slide_image">
+                <a href="{{ visualization.get_absolute_url }}" title="{{ visualization.title }}"><img src="{{ MEDIA_URL }}weave_thumbnails/{{ visualization.id }}_gallery.png" alt="{{ visualization.title }}" /></a>
+              </div>
+              <div class="slide_credit">
+                By {% if visualization.owner.get_profile.get_absolute_url %}<a href="{{ visualization.owner.get_profile.get_absolute_url }}">{% firstof visualization.owner.get_profile.name visualization.owner.username %}</a>{% else %}{% firstof visualization.owner.get_profile.name visualization.owner.username %}{% endif %}
+              </div>
+            </li>
+            
+{% endfor %}
+            
+          </ul>
+          <div class="clear"></div>
+        </div>
+        
+
+        <div class="clear"></div>
+      </div>
+    </div>
+    <!-- /home_featured_maps -->
+
+{% endblock body %}
+
+
+{% block extra_javascript %}
+
+<script type="text/javascript">
+
+  /* 
+   * Called when Weave instance is done loading.
+   */ 
+  var weaveReady = function(weave) { 
+    
+    var weaveId = weave.attributes['id'].value;
+    var visId = weaveId.split("-")[1];
+
+     // load weave session state
+    jQuery.getJSON("/visualizations/" + visId + "/sessionstate", function(sessionstate) {
+      // update session state
+      weave.setSessionState([], sessionstate);
+       // session state cosmetics
+      weave.setSessionState(['WeaveProperties'], { 
+        backgroundColor: "16777215", // white
+        dashboardMode: true, 
+        enableMenuBar: false,
+        enableToolControls: false  
+      });
+
+    });
+
+  }
+
+</script>
+
+{% endblock extra_javascript %}

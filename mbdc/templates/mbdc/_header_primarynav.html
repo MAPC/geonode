@@ -1,0 +1,69 @@
+<!-- primary_nav -->
+<div class="primary_nav">
+	<ul>
+		<li class="pri_nav explore">
+			<a href="#" class="pri_nav_link">Explore Data:</a>
+			<span class="pri_nav_sub">By Topic &amp; Geography</span>
+			<div class="drop_nav">
+				<div class="drop_nav_pad">
+					<ul>
+						<li><a href="{% url mbdc-regional-map-gallery %}" title="Regional Map Gallery">Regional Map Gallery</a></li>
+						<li><a href="{% url mbdc-gallery %}" title="User created visualizations">Visualization Gallery</a></li>
+					</ul>
+				</div>
+			</div>
+		</li>
+		<li class="pri_nav snapshots">
+			<a href="/snapshots/cities-and-towns" class="pri_nav_link">Community Snapshots:</a>
+			<span class="pri_nav_sub">Regional Trends &amp; Current Conditions</span>
+			<div class="drop_nav">
+				<div class="drop_nav_pad">
+					<ul>
+ 					{% for snapshot_type in snapshot_types %}
+						<li><a href="/snapshots/{{ snapshot_type.slug }}" title="For {{ snapshot_type.name }}">For {{ snapshot_type.name }}</a></li>
+					{% endfor %}
+					</ul>
+				</div>
+			</div>
+		</li>
+		<li class="pri_nav doit">
+			<a href="{% url weave-new %}" class="pri_nav_link">Do-It-Yourself:</a>
+			<span class="pri_nav_sub">Create Your Own Charts &amp; Maps</span>
+			<div class="drop_nav">
+				<div class="drop_nav_pad">
+					<ul>
+						<li><a href="{% url weave-new %}">New Weave Visualization</a></li>
+					</ul>
+				</div>
+			</div>
+		</li>
+		<li class="pri_nav resources">
+			<a href="{% url mbdc-section section='resources' %}" class="pri_nav_link">Resources:</a>
+			<span class="pri_nav_sub">User Guides &amp; More</span>
+			<div class="drop_nav">
+				<div class="drop_nav_pad">
+					<ul>
+						{% for page in resources_pages %}
+						<li><a href="{{ page.get_absolute_url }}">{{ page.title }}</a></li>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+		</li>
+		<li class="pri_nav learning">
+			<a href="{% url mbdc-section section='community' %}" class="pri_nav_link">Learning Community:</a>
+			<span class="pri_nav_sub">Get Involved</span>
+			<div class="drop_nav">
+				<div class="drop_nav_pad">
+					<ul>
+						{% for page in community_pages %}
+						<li><a href="{{ page.get_absolute_url }}">{{ page.title }}</a></li>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+		</li>
+	</ul>
+	<div class="clear"></div>
+</div>
+<!-- /primary_nav -->

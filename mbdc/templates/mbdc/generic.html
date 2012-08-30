@@ -1,0 +1,64 @@
+{% extends "mbdc/base.html" %}
+
+
+{% load mbdc_extras %}
+
+
+{% block title %}{{ page.title }} | {{ block.super }}{% endblock %}
+
+
+{% block body %}
+
+<!-- breadcrumb -->
+<div class="breadcrumb">
+	<span class="breadcrumb_title">You are here:</span>
+    <a class="breadcrumb_link" href="/">Home</a>
+    <a class="breadcrumb_link" href="{% url mbdc-section section=page.section %}">{{ page.get_section_display }}</a>
+    <span class="breadcrumb_current">{{ page.title }}</span>
+</div>
+<!-- /breadcrumb -->
+		
+{% get_data_search_bar %}
+
+		<!-- site_body -->
+		<div class="site_body">
+			<div class="site_body_pad">
+				<div class="generic_wrap">
+					<div class="cols_2cols">
+						<div class="col col_1">
+							<div class="col_pad">
+								
+								<!-- section_nav -->
+								<div class="section_nav_wrap">
+									<div class="section_nav_header">{{ page.get_section_display }}:</div>
+									<ul class="section_nav">
+
+
+										{% for section_page in section_pages %}
+											{% if page == section_page %}<li class="active">{% else %}<li>{% endif %}<a href="{{ section_page.get_absolute_url }}">{{ section_page.title }}</a></li>
+										{% endfor %}
+									</ul>
+								</div>
+								<!-- /section_nav -->
+
+							</div>
+						</div>
+						<div class="col col_2">
+							<div class="col_pad">
+								<div class="page_content">
+									<h1>{{ page.title }}</h1>
+
+									{{ page.content }}
+
+								</div>
+							</div>
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+		<!-- /site_body -->
+	
+	{% endblock body %}

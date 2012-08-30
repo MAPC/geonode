@@ -1,0 +1,114 @@
+{% load mbdc_extras %}
+
+<!-- site_foot -->
+<div id="site_foot">
+		<!-- wrapper -->
+		<div class="wrapper">
+			<!-- sitemap -->
+			<div class="sitemap">
+				<div class="sitemap_cols">
+					<div class="sitemap_col first">
+						<div class="sitemap_col_pad">
+							<ul>
+								<li>About MBDC
+									<ul>
+									{% for page in about_pages %}
+										<li><a href="{{ page.get_absolute_url }}">{{ page.title }}</a></li>
+									{% endfor %}
+									</ul>
+								</li>
+							</ul>
+							
+							<!-- site_foot_social -->
+							<div class="site_foot_social">
+								<a href="https://twitter.com/#!/MAPCMetroBoston" class="twitter"></a>
+								<a href="http://www.facebook.com/pages/Metropolitan-Area-Planning-Council-MAPC/127159693987749" class="facebook"></a>
+								<a href="http://www.linkedin.com/company/64441" class="linkedin"></a>
+							</div>
+							<!-- /site_foot_social -->
+						</div>
+					</div>
+					<div class="sitemap_col second">
+						<div class="sitemap_col_pad">
+							<ul>
+								<li>Find Data
+									<div class="second_cols">
+										<div class="second_col">
+											<div class="second_col_pad">
+												<div class="second_col_title">By Topic:</div>
+												<ul>
+												{% for topic in topics %}
+													<li><a href="{{ topic.get_absolute_url }}">{{ topic.title }}</a></li>
+												{% endfor %}
+												</ul>
+											</div>
+										</div>
+										<div class="clear"></div>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="sitemap_col third">
+						<div class="sitemap_col_pad">
+							<ul>
+								<li>Snapshots &amp; Profiles
+									<ul>
+									{% for snapshot_type in snapshot_types %}
+										<li><a href="/snapshots/{{ snapshot_type.slug }}" title="For {{ snapshot_type.name }}">For {{ snapshot_type.name }}</a></li>
+									{% endfor %}
+									</ul>
+								</li>
+							</ul>
+							<ul>
+								<li><a href="{% url weave-new %}">Do It Yourself</a>
+									<ul>
+										<li><a href="{% url weave-new %}">New Weave Visualization</a></li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="sitemap_col fourth">
+						<div class="sitemap_col_pad">
+							<ul>
+								<li><a href="javascript:;">Learning Community</a>
+									<ul>
+										{% for page in community_pages %}
+										<li><a href="{{ page.get_absolute_url }}">{{ page.title }}</a></li>
+										{% endfor %}
+									</ul>
+								</li>
+							</ul>
+							<ul>
+								<li><a href="javascript:;">Resources</a>
+									<ul>
+										{% for page in resources_pages %}
+										<li><a href="{{ page.get_absolute_url }}">{{ page.title }}</a></li>
+										{% endfor %}
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+			<!-- /sitemap -->
+			<!-- site_foot_content -->
+			<div class="site_foot_content">
+				<div class="logos">
+					<a href="http://www.mapc.org" title="Metropolitan Area Planning Council" target="_blank"><img src="{{ STATIC_URL }}mbdc/img/logo-mapc.png" width="100" height="55" alt="MAPC" /></a>
+					<a href="http://www.bostonindicators.org/" title="The Boston Indicators Project" target="_blank"><img src="{{ STATIC_URL }}mbdc/img/logo-indicators.png" width="200" height="45" alt="The Boston Indicators Project" /></a>
+					<a href="http://www.tbf.org/" title="The Boston Foundation" target="_blank"><img src="{{ STATIC_URL }}mbdc/img/logo-tbf.png" width="128" height="45" alt="The Boston Foundation" /></a>
+				</div>
+				<div>60 Temple Place Boston, MA 02111   Main Tel: 617-451-2770  |  FAX: 617-451-2770</div>
+				<div>
+				{% for page in legal_pages %}<a href="{{ page.get_absolute_url }}">{{ page.title }}</a>{% if not forloop.last %} | {% endif %}{% endfor %}</div>
+				<div class="clear"></div>
+			</div>
+			<!-- /site_foot_content -->
+		</div>
+		<!-- /wrapper -->
+</div>
+<!-- /site_foot -->
