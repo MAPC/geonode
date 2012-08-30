@@ -1,3 +1,4 @@
+
 #########################################################################
 #
 # Copyright (C) 2012 OpenPlans
@@ -147,7 +148,7 @@ def upgradedb(options):
         print "Please specify your GeoNode version"
     else:
         print "Upgrades from GeoNode Version %s are not yet supported." % version
-
+        
 
 @task
 def sync(options):
@@ -481,4 +482,3 @@ def justcopy(origin, target):
         if not os.path.exists(target):
             os.makedirs(target)
         shutil.copy(origin, target)
-
