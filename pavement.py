@@ -195,7 +195,8 @@ def package(options):
         'sync',
         'start_django'])
 @cmdopts([
-    ('bind=', 'b', 'Bind server to provided IP address and port number.')
+    ('bind=', 'b', 'Bind server to provided IP address and port number.'),
+    ('settings=', 's', 'Specify settings for the --settings argument')
 ], share_with=['start_django'])
 def start():
     """
@@ -229,7 +230,8 @@ def stop():
 
 
 @cmdopts([
-    ('bind=', 'b', 'Bind server to provided IP address and port number.')
+    ('bind=', 'b', 'Bind server to provided IP address and port number.'),
+    ('settings=', 's', 'Specify settings for the --settings argument')
 ])
 @task
 def start_django():
@@ -237,8 +239,8 @@ def start_django():
     Start the GeoNode Django application
     """
     bind = options.get('bind', '')
-    sh('python manage.py runserver %s &' % bind)
-
+    settings = options.get('settings', 'geonode.settings')
+    sh('python manage.py runserver %s --settings=%s &' % (bind, settings))
 
 @task
 def start_geoserver(options):
