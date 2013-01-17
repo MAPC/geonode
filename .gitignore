@@ -35,6 +35,10 @@ nosetests.xml
 
 # Docs
 docs/_build
+notes.md
 
 # ec2.py
 scripts/cloud/.gnec2.cfg
+
+# dev tools
+*.sublime-*
