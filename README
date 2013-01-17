@@ -2,6 +2,17 @@
     :alt: Build Status
     :target: http://travis-ci.org/#!/GeoNode/geonode
 
+GeoNode GeoSites
+================
+
+Adds support for hosting multiple sites with one GeoNode installation. See http://docs.geonode.org/en/dev/deploy/multi-tenancy.html for more details on that subject.
+
+To test, checkout the [geosites] branch and run::
+
+    paver start_django -b 0.0.0.0:8002 -s site2.settings
+
+to start a new site (Site 2) on port 8002. A Django site.id=2 is required to be set beforehand.
+
 =========
  GeoNode
 =========
