@@ -128,7 +128,7 @@ INSTALLED_APPS = (
     'taggit_templatetags',
     'south',
     'friendlytagloader',
-    'leaflet',
+    'geoexplorer',
     'request',
 
     # Theme
@@ -487,3 +487,6 @@ DB_DATASTORE_NAME = ''
 
 #The name of the store in Geoserver
 
+LEAFLET_CONFIG = {
+    'TILES_URL': 'http://{s}.tile2.opencyclemap.org/transport/{z}/{x}/{y}.png'
+}
