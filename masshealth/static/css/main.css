@@ -20,7 +20,7 @@ p
 
 h1
 {
-	font-size: 28px;
+	font-size: 18px;
 	color: #f35a20;
 	line-height: 30px;
     text-align: left;
@@ -278,7 +278,7 @@ margin-top: 30px;
 
 li.town-list select
  {
-   width: 165px;
+   width: 125px;
  }
 .row { margin: 0; }
 
@@ -324,7 +324,7 @@ clear: both;
 	line-height: 15px;
 	color: #000000;
     display: block;
-    width: 700px;
+    width: 780px;
     clear: both;
     font-family: Arial, sans-serif;
 }
