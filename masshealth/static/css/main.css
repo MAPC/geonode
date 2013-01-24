@@ -297,13 +297,11 @@ li.town-list select
 
 .visualization-text
 {
-background-color: #EFEFEF;
-    float: right;
+    background-color: #EFEFEF;
     font-size: 13px;
     line-height: 15px;
-    margin-left: 10px;
     padding: 15px;
-    width: 190px;
+    margin-top: 10px;
 }
 
 .vis_placeholder { width: 707px; height: 78px; border: 1px solid #dfdfdf; margin: 10px 0;}

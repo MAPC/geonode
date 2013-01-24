@@ -20,7 +20,8 @@ jQuery(document).ready(function($) {
     swfobject.embedSWF(
       "{{ WEAVE_URL }}weave.swf", 
       "visualization", 
-      "470", "325", 
+      // "470", "325",
+      "700", "480",
       "10.0.0",
       "expressInstall.swf", 
       {
@@ -66,6 +67,19 @@ jQuery(document).ready(function() {
     	<h2>Data Stories: {{ place.name }}</h2>
     	<p><em>These data stories provide insight into health topics particularly of interest in your community</em></p>
     
+        <ul id="featured_stories" class="story_links jcarousel-skin-tango">         
+            {% for story in datastories %}
+            <li class="story_sum">
+                {% if story.image %}
+                <img class="thumbnail" src="{{ MEDIA_URL }}{{ story.image }}" align="right">
+                {% endif %} 
+                <a class="link_title" href="{% url masshealth.datastories.views.story place.slug story.slug %}">
+                {{ story.title }}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+
 		{% if story %}
 
 			{% if page %}
@@ -86,11 +100,11 @@ jQuery(document).ready(function() {
 		<h4 class="storytitle">{{ story.title }}</h4>
 		
 			{% if page %}
-				
+				    <div class="story-abstract">{{ story.abstract|safe }}</div>
 					<div class="page">
 
 					  {% if page.visualization %}
-					  <div class="page-text visualization-text">{{ page.text|safe }}</div>
+					  
 					    <div id="visualization">
 					      {% if page.visualization.thumbnail %}
 					        <img src="{{ MEDIA_URL }}{{ page.visualization.thumbnail }}" alt="">
@@ -101,6 +115,7 @@ jQuery(document).ready(function() {
 						   </a> to interact with this visualization.
 						 </p>
 					    </div>
+                        <div class="page-text visualization-text">{{ page.text|safe }}</div>
 					  {% else %}
 					  <div class="page-text">{{ page.text|safe }}</div>
 					  	{% if page.image %}
@@ -108,7 +123,7 @@ jQuery(document).ready(function() {
 					  	{% endif %}
 					  {% endif %}
 					</div>
-					<div class="story-abstract">{{ story.abstract|safe }}</div>
+					
 				<div class="next-prev">
 					{% if page_prev %}
 					  <a href="?page_num={{ page_prev }}">&#9668;</a>&nbsp;
@@ -131,21 +146,6 @@ jQuery(document).ready(function() {
 				{{ place.name }} has no Data Stories.
 			</div>
 		{% endif %}
-
-<ul id="featured_stories" class="story_links jcarousel-skin-tango">			
-	{% for story in datastories %}
-	<li class="story_sum">
-					  {% if story.image %}
-						<img class="thumbnail" src="{{ MEDIA_URL }}{{ story.image }}" align="right">
-					  {% endif %}	
-					  <a class="link_title" href="{% url masshealth.datastories.views.story place.slug story.slug %}">
-                      {{ story.title }}
-                      </a>
-
-	
-	</li>
-	{% endfor %}
-</ul>
 	 
 	 </div>
 
