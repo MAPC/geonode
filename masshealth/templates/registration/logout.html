@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block bodyclass %}
+<body class="account">
+{% endblock %} 
+
+{% block content %}
+<p>You are now logged out.</p>
+<p><a href="{% url auth_login %}">Log in again</a></p>
+{% endblock %}

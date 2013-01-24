@@ -1,0 +1,920 @@
+<Weave encoding="dynamic">
+  <WeaveProperties name="WeaveProperties">
+    <backgroundColor>16777215</backgroundColor>
+    <collabServerIP>demo.oicweave.org</collabServerIP>
+    <collabServerName>ivpr-vm</collabServerName>
+    <collabServerPort>5222</collabServerPort>
+    <collabServerRoom/>
+    <collabSpectating>false</collabSpectating>
+    <cssStyleSheetName>weaveStyle.css</cssStyleSheetName>
+    <dashboardMode>true</dashboardMode>
+    <dashedSelectionBox>5,5</dashedSelectionBox>
+    <dataInfoURL/>
+    <debugScreenBounds>false</debugScreenBounds>
+    <defaultTextFormat>
+      <bold>false</bold>
+      <color>0</color>
+      <font>Sophia Nubian</font>
+      <italic>false</italic>
+      <size>11</size>
+      <underline>false</underline>
+    </defaultTextFormat>
+    <enableAboutMenu>true</enableAboutMenu>
+    <enableAdd2DHistogram>false</enableAdd2DHistogram>
+    <enableAddAttributeMenuTool>false</enableAddAttributeMenuTool>
+    <enableAddBarChart>true</enableAddBarChart>
+    <enableAddColorLegend>true</enableAddColorLegend>
+    <enableAddColormapHistogram>true</enableAddColormapHistogram>
+    <enableAddCompoundRadViz>false</enableAddCompoundRadViz>
+    <enableAddCustomTool>false</enableAddCustomTool>
+    <enableAddDataFilter>true</enableAddDataFilter>
+    <enableAddDataSource>true</enableAddDataSource>
+    <enableAddDataTable>true</enableAddDataTable>
+    <enableAddDimensionSliderTool>false</enableAddDimensionSliderTool>
+    <enableAddGaugeTool>false</enableAddGaugeTool>
+    <enableAddGraphTool>true</enableAddGraphTool>
+    <enableAddHistogram>true</enableAddHistogram>
+    <enableAddLineChart>true</enableAddLineChart>
+    <enableAddMap>true</enableAddMap>
+    <enableAddNewDatasource>true</enableAddNewDatasource>
+    <enableAddPieChart>true</enableAddPieChart>
+    <enableAddPieChartHistogram>false</enableAddPieChartHistogram>
+    <enableAddRadViz>false</enableAddRadViz>
+    <enableAddRamachandranPlot>false</enableAddRamachandranPlot>
+    <enableAddRScriptEditor>true</enableAddRScriptEditor>
+    <enableAddScatterplot>true</enableAddScatterplot>
+    <enableAddThermometerTool>false</enableAddThermometerTool>
+    <enableAddTimeSliderTool>false</enableAddTimeSliderTool>
+    <enableAddWeaveDataSource>true</enableAddWeaveDataSource>
+    <enableAnnotation>true</enableAnnotation>
+    <enableBitmapFilters>true</enableBitmapFilters>
+    <enableBrowseData>true</enableBrowseData>
+    <enableCascadeAllWindows>true</enableCascadeAllWindows>
+    <enableClearCurrentSelection>true</enableClearCurrentSelection>
+    <enableCloseAllWindows>true</enableCloseAllWindows>
+    <enableCollaborationBar>false</enableCollaborationBar>
+    <enableCreateSubsets>true</enableCreateSubsets>
+    <enableDataMenu>true</enableDataMenu>
+    <enableDrawCircle>true</enableDrawCircle>
+    <enableDynamicTools>true</enableDynamicTools>
+    <enableEditDataSource>true</enableEditDataSource>
+    <enableEditDatasources>true</enableEditDatasources>
+    <enableExportApplicationScreenshot>true</enableExportApplicationScreenshot>
+    <enableExportCSV>true</enableExportCSV>
+    <enableExportToolImage>true</enableExportToolImage>
+    <enableFullScreen>false</enableFullScreen>
+    <enableGeometryProbing>true</enableGeometryProbing>
+    <enableLoadMyData>true</enableLoadMyData>
+    <enableManageSavedSelections>true</enableManageSavedSelections>
+    <enableManageSavedSubsets>true</enableManageSavedSubsets>
+    <enableMarker>true</enableMarker>
+    <enableMenuBar>false</enableMenuBar>
+    <enableMinimizeAllWindows>true</enableMinimizeAllWindows>
+    <enableMouseWheel>true</enableMouseWheel>
+    <enableNewDataset>true</enableNewDataset>
+    <enableNewUserWizard>false</enableNewUserWizard>
+    <enablePanelCoordsPercentageMode>true</enablePanelCoordsPercentageMode>
+    <enablePenTool>true</enablePenTool>
+    <enableProbeAnimation>true</enableProbeAnimation>
+    <enableProbeLines>true</enableProbeLines>
+    <enableProbeToolTip>true</enableProbeToolTip>
+    <enableRefreshHierarchies>true</enableRefreshHierarchies>
+    <enableRemoveSubsets>true</enableRemoveSubsets>
+    <enableRestoreAllMinimizedWindows>true</enableRestoreAllMinimizedWindows>
+    <enableRightClick>true</enableRightClick>
+    <enableSaveCurrentSelection>true</enableSaveCurrentSelection>
+    <enableSaveCurrentSubset>true</enableSaveCurrentSubset>
+    <enableSearchForRecord>true</enableSearchForRecord>
+    <enableSelectionSelectorBox>true</enableSelectionSelectorBox>
+    <enableSelectionsMenu>true</enableSelectionsMenu>
+    <enableSessionMenu>true</enableSessionMenu>
+    <enableShowAllRecords>true</enableShowAllRecords>
+    <enableSubsetControls>true</enableSubsetControls>
+    <enableSubsetSelectionBox>true</enableSubsetSelectionBox>
+    <enableSubsetsMenu>true</enableSubsetsMenu>
+    <enableThreadPriorities>false</enableThreadPriorities>
+    <enableTileAllWindows>true</enableTileAllWindows>
+    <enableToolAttributeEditing>true</enableToolAttributeEditing>
+    <enableToolControls>false</enableToolControls>
+    <enableToolProbe>true</enableToolProbe>
+    <enableToolSelection>true</enableToolSelection>
+    <enableUserPreferences>true</enableUserPreferences>
+    <enableWindowMenu>true</enableWindowMenu>
+    <eventListeners encoding="dynamic"/>
+    <geometryMetadataRequestMode>xyz</geometryMetadataRequestMode>
+    <geometryMinimumScreenArea>1</geometryMinimumScreenArea>
+    <macroLibraries>weave.api::WeaveAPI</macroLibraries>
+    <macros encoding="dynamic"/>
+    <maxComputationTimePerFrame>100</maxComputationTimePerFrame>
+    <maxTooltipRecordsShown>2</maxTooltipRecordsShown>
+    <pageTitle>Open Indicators Weave</pageTitle>
+    <panelTitleTextFormat>
+      <bold>false</bold>
+      <color>16777215</color>
+      <font>Verdana</font>
+      <italic>false</italic>
+      <size>10</size>
+      <underline>false</underline>
+    </panelTitleTextFormat>
+    <pdbServiceURL>/WeavePDBService/PDBService</pdbServiceURL>
+    <probeInnerGlowAlpha>1</probeInnerGlowAlpha>
+    <probeInnerGlowBlur>5</probeInnerGlowBlur>
+    <probeInnerGlowColor>16777215</probeInnerGlowColor>
+    <probeInnerGlowStrength>10</probeInnerGlowStrength>
+    <probeLineFormatter>str = replace(lpad(string, 8, "	"), "	", "  ");
+str + " (" + title + ")"</probeLineFormatter>
+    <probeOuterGlowAlpha>1</probeOuterGlowAlpha>
+    <probeOuterGlowBlur>3</probeOuterGlowBlur>
+    <probeOuterGlowColor>0</probeOuterGlowColor>
+    <probeOuterGlowStrength>3</probeOuterGlowStrength>
+    <probeToolTipBackgroundAlpha>1</probeToolTipBackgroundAlpha>
+    <probeToolTipBackgroundColor>NaN</probeToolTipBackgroundColor>
+    <probeToolTipFontColor>0</probeToolTipFontColor>
+    <probeToolTipMaxWidth>344</probeToolTipMaxWidth>
+    <rServiceURL>/WeaveServices/RService</rServiceURL>
+    <searchServiceURLs>Wikipedia|http://en.wikipedia.org/wiki/Special:Search?search=
+Google|http://www.google.com/search?q=
+Google Images|http://images.google.com/images?q=
+Google Maps|http://maps.google.com/maps?t=h&amp;q=</searchServiceURLs>
+    <SecondaryKeyNumColumn_useGlobalMinMaxValues>true</SecondaryKeyNumColumn_useGlobalMinMaxValues>
+    <selectionAlphaAmount>0.5</selectionAlphaAmount>
+    <selectionBlurringAmount>4</selectionBlurringAmount>
+    <shadowAlpha>0.5</shadowAlpha>
+    <shadowAngle>45</shadowAngle>
+    <shadowBlur>4</shadowBlur>
+    <shadowColor>0</shadowColor>
+    <shadowDistance>2</shadowDistance>
+    <showCollaborationEditor>false</showCollaborationEditor>
+    <showCollaborationMenuItem>true</showCollaborationMenuItem>
+    <showColorController>true</showColorController>
+    <showCopyright>false</showCopyright>
+    <showEquationEditor>true</showEquationEditor>
+    <showKeyTypeInColumnTitle>false</showKeyTypeInColumnTitle>
+    <showProbeToolTipEditor>true</showProbeToolTipEditor>
+    <showProbeWindow>true</showProbeWindow>
+    <showSelectedRecordsText>true</showSelectedRecordsText>
+    <showSessionHistoryControls>false</showSessionHistoryControls>
+    <showVisToolCloseDialog>false</showVisToolCloseDialog>
+    <startupJavaScript/>
+    <toolInteractions>
+      <defaultDragMode>pan</defaultDragMode>
+      <pan>alt,drag</pan>
+      <probe>move</probe>
+      <select>drag</select>
+      <selectAdd>ctrl,drag</selectAdd>
+      <selectAll>ctrl,dclick</selectAll>
+      <selectRemove>ctrl,shift,drag</selectRemove>
+      <zoom>shift,drag
+wheel</zoom>
+      <zoomIn>dclick</zoomIn>
+      <zoomOut>shift,dclick</zoomOut>
+      <zoomToExtent>ctrl,alt,shift,dclick</zoomToExtent>
+    </toolInteractions>
+    <version>1.0 Beta (Wed Jun 13 04:00:03 EDT 2012)</version>
+    <windowSnapGridSize>1%</windowSnapGridSize>
+    <workspaceHeight>288</workspaceHeight>
+    <workspaceMultiplier>1</workspaceMultiplier>
+    <workspaceWidth>344</workspaceWidth>
+  </WeaveProperties>
+  <ColorColumn name="defaultColorColumn">
+    <internalDynamicColumn encoding="dynamic">
+      <GlobalObjectReference name="defaultColorBinColumn"/>
+    </internalDynamicColumn>
+    <ramp>0xEDF8E9,0xBAE4B3,0x74C476,0x31A354,0x006D2C</ramp>
+    <recordColors/>
+  </ColorColumn>
+  <BinnedColumn name="defaultColorBinColumn">
+    <binningDefinition encoding="dynamic">
+      <CustomSplitBinningDefinition>
+        <overrideBinNames/>
+        <splitValues>0,2500,5000,10000,1411072.39</splitValues>
+      </CustomSplitBinningDefinition>
+    </binningDefinition>
+    <internalDynamicColumn encoding="dynamic">
+      <GlobalObjectReference name="defaultColorDataColumn"/>
+    </internalDynamicColumn>
+  </BinnedColumn>
+  <FilteredColumn name="defaultColorDataColumn">
+    <filter encoding="dynamic">
+      <GlobalObjectReference name="defaultSubsetKeyFilter"/>
+    </filter>
+    <internalDynamicColumn encoding="dynamic">
+      <ReferencedColumn>
+        <dynamicColumnReference encoding="dynamic">
+          <HierarchyColumnReference>
+            <dataSourceName>MetroBoston DataCommon</dataSourceName>
+            <hierarchyPath encoding="xml">
+              <hierarchy>
+                <category title="Environment &amp; Energy" name="Data Tables">
+                  <category title="Open Space by Municipal Summary" name="Open Space by Municipal Summary">
+                    <attribute year="2011" string="formatNumber(number, 2)" title="Total Acres of Open Space" keyType="MUNI_ID" name="OS_TOT" dataType="number" dataTable="Open Space by Municipal Summary"/>
+                  </category>
+                </category>
+              </hierarchy>
+            </hierarchyPath>
+          </HierarchyColumnReference>
+        </dynamicColumnReference>
+      </ReferencedColumn>
+    </internalDynamicColumn>
+  </FilteredColumn>
+  <KeyFilter name="defaultSubsetKeyFilter">
+    <excluded/>
+    <included/>
+    <includeMissingKeys>true</includeMissingKeys>
+    <includeMissingKeyTypes>true</includeMissingKeyTypes>
+  </KeyFilter>
+  <KeySet name="defaultSelectionKeySet" encoding="dynamic"/>
+  <KeySet name="defaultProbeKeySet" encoding="dynamic"/>
+  <KeySet name="alwaysHighlightKeySet"/>
+  <LinkableHashMap name="savedSelections" encoding="dynamic"/>
+  <LinkableHashMap name="savedSubsets" encoding="dynamic"/>
+  <WeaveDataSource name="MetroBoston DataCommon">
+    <attributeHierarchy encoding="xml">
+      <hierarchy name="MetroBoston DataCommon">
+        <category title="Demographics" name="Data Tables">
+          <category title="Census Tract Data" name="Data Tables">
+            <category subject="Civic Vitality" name="Foreign Born (Census Tracts)" title="Foreign Born, 5yr Avg 2006-10 (Census Tracts)" source="ACS"/>
+            <category subject="Demographics" name="Population By Gender and Age, 2000 (Census Tracts)" description="Census 2000" source="Census" title="Population By Gender and Age, 2000 (Census Tracts)"/>
+            <category subject="Demographics" name="Population By Gender and Age, 2010 (Census Tracts)" description="Census" source="Census" title="Population By Gender and Age, 2010 (Census Tracts)"/>
+            <category subject="Demographics" name="Population by Race, 2000 (Census Tract)" description="Census 2000" source="Census" title="Population by Race/Ethnicity, 2000 (Census Tract)"/>
+            <category subject="Demographics" name="Population by Race, 2010 (Census Tract)" description="Census 2010" source="Census" title="Population by Race/Ethnicity, 2010 (Census Tract)"/>
+          </category>
+          <category title="Municpal Data" name="Data Tables">
+            <category subject="Census" name="Census Mail Participation Rate (Municipal)" description="2000 and 2010" source="Census" title="Census Mail Participation Rate, 2000 &amp; 2010 (Municipal)"/>
+            <category subject="Demographics" name="Citizenship Status (Municipality)" title="Citizenship Status, 5yr Avg 2005-09 (Municipal)" source="ACS"/>
+            <category subject="Civic Vitality" name="Foreign Born (Municipal)" title="Foreign Born, 5yr Avg 2006-10 (Municipal)" source="ACS"/>
+            <category name="Geographic Mobility (Municipal)" source="ACS" title="Geographic Mobility, 5yr Avg 2005-09 (Municipal)"/>
+            <category subject="Demographics" name="Linguistic Isolation (Municipal)" title="Linguistic Isolation, 5yr Avg 2005-09 (Municipal)" source="ACS"/>
+            <category subject="Demographics" name="Population By Age 2000 - 2010 (Municipality)" title="Population By Age, 2000 &amp; 2010 (Municipality)" source="Census"/>
+            <category subject="Demogrpahics" name="Population By Gender and Age with Change, 2000 - 2010 (Municipal)" title="Population By Gender and Age with Change, 2000 &amp; 2010 (Municipal)" source="Census"/>
+            <category name="Population by Race with Change, 2000-2010 (Municipal)" source="Census" title="Population by Race/Ethnicity with Change, 2000 &amp; 2010 (Municipal)"/>
+            <category subject="Demographics" name="Population by Minorities, 2000-2010 (Municipal)" title="Minority Population, 2000 &amp; 2010 (Municipal)" source="Census"/>
+          </category>
+          <category title="Population Projections, 2000-2030" name="Data Tables">
+            <category subject="MetroFuture" name="Employment Projections by Sector, Current Trends/MetroFuture (Municipal)" title="Projected Employment, Current Trends/MetroFuture, 2030 (Municipal)" source="MAPC, 2008"/>
+            <category subject="MetroFuture" name="Employment Projections by Sector, Current Trends/MetroFuture (TAZ)" title="Projected Employment, Current Trends/MetroFuture, 2030 (TAZ)" source="MAPC, 2008"/>
+            <category subject="MetroFuture" name="Population Projection by Age Group, Current Trends, (Municipal)" title="Projected Population by Age Group, Current Trends, 2030 (Municipal)" source="MAPC, 2008"/>
+            <category subject="MetroFuture" name="Population Projection by Age Group, MetroFuture (Municipal)" title="Projected Population by Age Group, MetroFuture, 2030 (Municipal)" source="MAPC, 2008"/>
+            <category subject="MetroFuture" name="Population, Household and Employment Projection, Current Trends/MetroFuture (Municipal)" title="Projected Population, Households and Employment, Current Trends/MetroFuture 2030 (Municipal)" source="MAPC, 2008"/>
+            <category subject="MetroFuture" name="Population, Household and Employment Projection, Current Trends/MetroFuture (TAZ)" title="Projected Population, Households and Employment, Current Trends/MetroFuture 2030 (TAZ)" source="MAPC, 2008"/>
+          </category>
+        </category>
+        <category title="Civic Vitality and Governance" name="Data Tables">
+          <category name="Arts and Culture Points" source="NEFA, 2007" title="Arts and Culture Points of Interest"/>
+          <category subject="Civic Vitality ad Governance" name="Community Preservation Act votes (Municipal)" title="Community Preservation Act Status (Municipal)" source="Community Preservation Coalition, 2011"/>
+          <category name="Forms of Municipal Governance (Municipal)" source="MMA, Secretary of State, 2011" title="Forms of Municipal Governance (Municipal)"/>
+          <category subject="Civic Vitality ad Governance" name="Voters (Municipal)" title="Registered Voters, by Year 2004-2010 (Municipal)" source="State Elections Division 2004-2010"/>
+          <category name="MA House Districts" source="MassGIS, 2011" title="State Representatives (MA House Districts)"/>
+          <category name="MA Senate Districts" source="MassGIS, 2011" title="State Senators (MA Senate Districts)"/>
+          <category name="US Congressional Districts" source="MassGIS, 2007" title="US Representatives (US Congressional Districts)"/>
+          <category name="Property Crimes (Municipal)" subject="Public Safety" title="Property Crimes, 2001-09 (Municipal)"/>
+          <category name="Violent Crimes (Municipal)" subject="Public Safety" title="Violent Crimes, 2001-09 (Municipal)"/>
+        </category>
+        <category title="Economy" name="Data Tables">
+          <category subject="Economy" name="Average Weekly Wages by Sector (Municipal)" title="Average Weekly Wages by Sector, by Municipality 2001-2010 (Municipal)" source="MA EOLWD ES-202, 2011"/>
+          <category subject="Economy" name="Average Weekly Wages by Sector by Year (Municipal)" title="Average Weekly Wages by Sector, by Year 2001-2010 (Municipal)" source="MA EOLWD ES-202, 2011"/>
+          <category subject="Economy" name="Children in Poverty by Family Type (Census Tracts)" description="ACS 2005-09" source="ACS" title="Children in Poverty by Family Type, 5yr Avg 2005-09 (Census 2000 Tracts)"/>
+          <category subject="Economy" name="Employment By Sector 2010 (Municipal) - Tranposed" title="Employment By Sector 2010 (Municipal) - Tranposed" source="ES-202"/>
+          <category name="Housing and Transportation Cost (Municipal)" subject="Economy" title="Housing and Transportation Cost (Municipal)"/>
+          <category subject="Economy" name="Employment By Sector 2010 (Municipal)" title="Employment By Sector, Place of Work, 2010 (Municipal)" source="MA EOLWD ES-202, 2011"/>
+          <category subject="Economy" name="Employment by Sector (Municipal)" title="Employment by Sector, Place of Work, by Year 2001-2010 (Municipal)" source="MA EOLWD ES-202, 2011"/>
+          <category subject="Economy" name="Establishment by Sector (Municipal)" title="Establishment by Sector, Place of Work, by Year 2001-2010 (Municipal)" source="MA EOLWD ES-202, 2011"/>
+          <category name="Labor Force and Unemployment, Place of Residence, by Year (Municipal)" source="MA EOLWD ES-202, 2011" title="Labor Force and Unemployment, Place of Residence, by Year 2006-10 (Municipal)"/>
+          <category name="Local Area Unemployment Statistics (Municipality)" source="MA EOLWD, 2006-2010" title="Local Area Unemployment Statistics (Municipal)"/>
+          <category name="Employment (Municipal)" source="MA EOLWD ES-202, 2011" title="Total Employment, Place of Work, by Year 1986-2010 (Municipal)"/>
+        </category>
+        <category title="Education" name="Data Tables">
+          <category title="School Districts data" name="Data Tables">
+            <category name="School Districts" source="DESE" title="School Districts"/>
+            <category subject="Education" name="School Districts: Enrollment, 2010-11" title="District Enrollment, 2010-11 (School Districts)" source="DESE, 2011"/>
+            <category name="School Districts: Enrollment (multi-year)" source="DESE, 2011" title="District Enrollment, by year 2006-11 (School Districts)"/>
+            <category subject="Education" name="School Districts: Graduation Plans by year" title="District Graduation Plans, by year 2006-11 (School Districts)" source="DESE, 2011"/>
+            <category name="School Districts: Graduation Plans (multi-year)" source="DESE, 2011" title="District Graduation Plans, by year 2006-11 (School Districts) (Dimension Slider only)"/>
+            <category subject="Education" name="School Districts: Technology by year" description="DESE" source="DESE, 2011" title="District Technology, by year 2003-10 (School Districts)"/>
+            <category name="School Districts by Town" source="DESE, MAPC" title="Districts by Municipality, 2011"/>
+          </category>
+          <category title="School Municipal Districts data" name="Data Tables">
+            <category subject="Education" name="School Municipal Districts: Enrollment, 2009-10" title="Enrollment, 2009-10 (School Municipal Districts)" source="DESE, 2011"/>
+            <category name="School Municipal Districts: Enrollment, 2010-11" source="DESE, 2011" title="Enrollment, 2010-11 (School Municipal Districts)"/>
+            <category name="School Municipal Districts: Enrollment (multi-year)" source="DESE, 2011" title="Enrollment, by year 2006-11 (School Municipal Districts)"/>
+            <category subject="Education" name="School Municipal Districts: MCAS Grade 03 Math Proficiency for Student Groups, 2011" description="MCAS, 2011" source="DESE" title="MCAS Grade 03 Math Proficiency by Group, 2010-11 (School Municipal Districts)"/>
+            <category name="School Municipal Districts: MCAS Grade 03 Reading Proficiency for Student Groups, 2011" source="DESE, 2011" title="MCAS Grade 03 Reading Proficiency by Group, 2010-11 (School Municipal Districts)"/>
+            <category subject="Education" name="School Municipal Districts: MCAS Grade 3 All Students Math Proficiency (multi-year)" description="2005-06 thru 2010-11" source="DESE, 2011" title="MCAS Grade 03 Total Math Proficiency, by Year 2006-11 (School Municipal Districts)"/>
+            <category name="School Municipal Districts: MCAS Grade 03 Reading Proficiency, 2011" source="DESE, 2011" title="MCAS Grade 03 Total Reading Proficiency, 2010-11 (School Municipal Districts)"/>
+            <category name="School Municipal Districts: MCAS Grade 3 All Students Reading Proficiency (multi-year)" source="DESE, 2011" title="MCAS Grade 03 Total Reading Proficiency, by Year 2006-11 (School Municipal Districts)"/>
+            <category subject="Education" name="School Municipal Districts: MCAS Grade 08 Math Proficiency for Student Groups, 2011" title="MCAS Grade 08 Math Proficiency by Group, 2010-11 (School Municipal Districts)" source="DESE, 2011"/>
+            <category subject="Education" name="School Municipal Districts: MCAS Grade 08 Reading Proficiency for Student Groups, 2011" title="MCAS Grade 08 Reading Proficiency by Group, 2010-11 (School Municipal Districts)" source="DESE, 2011"/>
+            <category subject="Education" name="School Municipal Districts: MCAS Grade 08 Science Proficiency for Student Groups, 2011" description="MCAS" source="DESE, 2011" title="MCAS Grade 08 Science Proficiency by Group, 2010-11 (School Municipal Districts)"/>
+            <category description=" MCAS" name="School Municipal Districts: MCAS Grade 10 Math Proficiency for Student Groups, 2011" title="MCAS Grade 10 Math Proficiency by Group, 2010-11 (School Municipal Districts)" source="DESE, 2011"/>
+            <category name="School Municipal Districts: MCAS Grade 10 Reading Proficiency for Student Groups, 2011" source="DESE, 2011" title="MCAS Grade 10 Reading Proficiency by Group, 2010-11 (School Municipal Districts)"/>
+            <category name="School Municipal Districts: MCAS Grade 10 Science Proficiency for Student Groups, 2011" source="DESE, 2011" title="MCAS Grade 10 Science Proficiency by Group, 2010-11 (School Municipal Districts)"/>
+          </category>
+          <category title="Schools data" name="Data Tables">
+            <category name="Boston Circle of Promise Schools" source="DESE, 2011" title="BPS Circle of Promise Schools"/>
+            <category name="Boston Schools" source="DESE, 2011" title="BPS Schools"/>
+            <category name="Boston Turnaround Schools" source="DESE, 2011" title="BPS Turnaround Schools"/>
+            <category name="Schools" source="DESE, 2011" title="Schools"/>
+            <category name="Schools: Enrollment, 2010-11" source="DESE, 2011" title="Enrollment, 2010-11 (Schools)"/>
+            <category name="Schools: Enrollment (multi-year)" source="DESE, 2011" title="Enrollment (multi-year)"/>
+            <category name="Schools: MCAS Grade 03 Math Proficiency for Student Groups, 2011" source="DESE, 2011" title="MCAS Grade 03 Math Proficiency by Group, 2010-11 (Schools)"/>
+            <category name="Schools: MCAS Grade 03 Reading Proficiency for Student Groups, 2011" source="DESE, 2011" title="MCAS Grade 03 Reading Proficiency by Group, 2010-11 (Schools)"/>
+            <category name="Schools: MCAS Grade 03 Reading Proficiency, 2011" source="DESE, 2011" title="MCAS Grade 03 Total Reading Proficiency, 2010-11 (Schools)"/>
+            <category subject="Education" name="Schools: MCAS Grade 08 Math Proficiency for Student Groups, 2011" title="MCAS Grade 08 Math Proficiency by Group, 2010-11 (Schools)" source="DESE, 2011"/>
+            <category subject="Education" name="Schools: MCAS Grade 08 Reading Proficiency for Student Groups, 2011" title="MCAS Grade 08 Reading Proficiency by Group, 2010-11 (Schools)" source="DESE, 2011"/>
+            <category subject="Education" name="Schools: MCAS Grade 08 Science Proficiency for Student Groups, 2011" title="MCAS Grade 08 Science Proficiency by Group, 2010-11 (Schools)" source="DESE, 2011"/>
+            <category name="Schools: MCAS Grade 10 Math Proficiency for Student Groups, 2011" source="DESE, 2011" title="MCAS Grade 10 Math Proficiency by Group, 2010-11 (Schools)"/>
+            <category name="Schools: MCAS Grade 10 Reading Proficiency for Student Groups, 2011" source="DESE, 2011" title="MCAS Grade 10 Reading Proficiency by Group, 2010-11 (Schools)"/>
+            <category name="Schools: MCAS Grade 10 Science Proficiency for Student Groups, 2011" source="DESE, 2011" title="MCAS Grade 10 Science Proficiency by Group, 2010-11 (Schools)"/>
+            <category subject="Education" name="Schools: Mobility, 2010" title="Mobility, 2010 (Schools)" source="DESE, 2010"/>
+            <category subject="Education" name="Schools: Risk Indicators By Year" description="DESE" title="Student Risk Indicators By Year 2006-11 (Schools)"/>
+          </category>
+          <category name="Colleges and Universities" source="MassGIS" title="Colleges and Universities"/>
+          <category subject="Education" name="Educational Attainment by Foreign Born  5yr Avg 2006-10 (Census Tracts)" description="ACS, 2006-10" title="Educational Attainment by Foreign Born  5yr Avg 2006-10 (Census Tracts)"/>
+          <category subject="Education" name="Educational Attainment by Foreign Born  5yr Avg 2006-10 (Municipal)" description="ACS" title="Educational Attainment by Foreign Born  5yr Avg 2006-10 (Municipal)"/>
+          <category subject="Education" name="Educational Attainment in Labor Force, ACS 2006-10 (Census Tracts)" description="ACS" source="ACS" title="Educational Attainment in Labor Force, 5yr Avg 2006-10 (Census Tracts)"/>
+          <category name="Educational Attainment over 25 years (Municipal)" source="ACS" title="Educational Attainment, Population 25+ years, 5yr Avg 2005-09 (Municipal)"/>
+          <category name="Libraries" source="MassGIS, 2005" title="Libraries"/>
+        </category>
+        <category title="Environment &amp; Energy" name="Data Tables">
+          <category name="Environmental Hazards Density (Municipal)" source="Northeastern study" title="Environmental Hazards Density (Municipal)"/>
+          <category name="Environmental Justice Populations (Block Groups)" source="Census" title="Environmental Justice Populations, 2000 (Block Groups)"/>
+          <category subject="Environment" name="Environmental Justice Criteria (Municipal)" description="Census 2000 block groups" source="Census" title="Environmental Justice Summary, 2000 (Municipal)"/>
+          <category name="Land Use Summary Statistics 2005 (Municipal)" source="MassGIS, 2009" title="Land Use Summary Statistics, 2005 (Municipal)"/>
+          <category name="LEED Certified Buildings (Points)" source="USGBC, 2012" title="LEED Certified Buildings (Points)"/>
+          <category name="Open Space" source="MassGIS" title="Open Space"/>
+          <category title="Open Space by Municipal Summary" name="Open Space by Municipal Summary">
+            <attribute dataTable="Open Space by Municipal Summary" name="MUNI_ID" dataType="string" title="Municipal ID" keyType="MUNI_ID"/>
+            <attribute dataTable="Open Space by Municipal Summary" name="MUNI" dataType="string" title="Municipality" keyType="MUNI_ID"/>
+            <attribute year="2011" string="formatNumber(number, 2)" title="Total Acres of Open Space" keyType="MUNI_ID" name="OS_TOT" dataType="number" dataTable="Open Space by Municipal Summary"/>
+            <attribute string="formatNumber(number, 2)" title="Acres of Permenently Protected Open Space" keyType="MUNI_ID" name="PP_AC" dataType="number" dataTable="Open Space by Municipal Summary"/>
+            <attribute string="formatNumber(number, 2)" title="Acres of Non-Permenently Protected Open Space" keyType="MUNI_ID" name="OTH_AC" dataType="number" dataTable="Open Space by Municipal Summary"/>
+            <attribute string="formatNumber(number, 2)" title="% Acres of Permenently Protected Open Space" keyType="MUNI_ID" name="PP_PCT" dataType="number" dataTable="Open Space by Municipal Summary"/>
+            <attribute string="formatNumber(number, 2)" title="% Acres of Non-Permenently Protected Open Space" keyType="MUNI_ID" name="OTH_PCT" dataType="number" dataTable="Open Space by Municipal Summary"/>
+          </category>
+          <category name="Protected Open Space" source="MassGIS" title="Protected Open Space"/>
+          <category title="Water Bodies (100k Hydro)" name="Water Bodies (100k Hydro)"/>
+        </category>
+        <category title="Grid" name="Data Tables">
+          <category title="1Km Grid" name="1Km Grid"/>
+          <category name="1Km Grid Allocation" subject="Grid" title="1Km Grid Allocation"/>
+        </category>
+        <category title="Housing" name="Data Tables">
+          <category subject="Housing" name="Housing Building Permits: Multi-Family Units (Municipal)" title="Building Permits: Multi-Family Housing, by Year 2000-10 (Municipal)" source="Census"/>
+          <category subject="Housing" name="Housing Building Permits: Single Family Units (Municipal)" title="Building Permits: Single Family Housing, by Year 2001-10 (Municipal)" source="Census"/>
+          <category subject="Housing" name="Housing Building Permits: Total Units (Municipal)" title="Building Permits: Total Housing, by Year 2001-10 (Municipal)" source="Census"/>
+          <category subject="Housing" name="Housing: Household Type 2000-2010 (Municipal)" title="Household Type, 2000 &amp; 2010 (Municipal)" source="Census"/>
+          <category name="Housing Cost Burden for Owner (Municipal)" source="ACS" title="Housing Cost Burden for Owner, 5yr Avg 2005-09 (Municipal)"/>
+          <category subject="Housing" name="Housing Cost Burden for Renters (Census Tracts)" title="Housing Cost Burden for Renters, 5yr Avg 2005-09 (Census 2000 Tracts)" source="ACS"/>
+          <category subject="Housing" name="Housing Cost Burden for Renters (Municipal)" title="Housing Cost Burden for Renters, 5yr Avg 2005-09 (Municipal)" source="ACS"/>
+          <category subject="Demographics" name="Housing Occupancy, 2000-2010 (Municipal)" title="Housing Occupancy, 2000 &amp; 2010 (Municipal)" source="Census"/>
+          <category subject="Housing" name="Housing: Census 2000 (Municipal)" description="Census 2000" source="Census" title="Housing Summary, 2000 (Municipal)"/>
+          <category subject="Housing" name="Housing Type (Municipal)" description="ACS 2006-10 avg" source="ACS" title="Housing Type, 5yr Avg 2006-10 (Municipal)"/>
+          <category subject="Housing" name="Median Household Income by Race (Municipal)" description="ACS 2005-09" source="ACS" title="Median Household Income by Race, 5yr Avg 2005-09 (Municipal)"/>
+          <category subject="Housing" name="Subsidized Housing Inventory" title="Subsidized Housing Inventory, by Year 2006-11 (Municipal) " source="DHCD, 2011"/>
+        </category>
+        <category title="Public Health" name="Data Tables">
+          <category subject="Public Health" name="Asthma Related Hospitalizations" title="Asthma Related Hospitalizations, 2007-09 (Municipal)" source="MADPH, 2012"/>
+          <category subject="Public Health" name="Cancer Mortality, 2006 (Municipal)" title="Cancer Mortality, 2006 (Municipal)" source="MADPH, 2012"/>
+          <category subject="Public Health" name="Cancer Mortality, 2007 (Municipal)" title="Cancer Mortality, 2007 (Municipal)" source="MADPH, 2012"/>
+          <category subject="Public Health" name="Cancer Mortality, 2008 (Municipal)" title="Cancer Mortality, 2008 (Municipal)" source="MADPH, 2012"/>
+          <category subject="Public Health" name="Cardiovascular Hospitalizations (Municipal)" title="Cardiovascular Hospitalizations, 2007-09 (Municipal)" source="MADPH, 2012"/>
+          <category name="Food Establishments, 2012 (Municipal)" subject="Public Health" title="Food Establishments, 2012 (Municipal)"/>
+          <category name="Low Birth Weight (Municipal)" subject="Public Health" title="Low Birth Weight (Municipal)"/>
+          <category subject="Public Health" name="Smoking Mothers during Pregnancy, 2004-10avg (Municipal)" description="DPH" title="Smoking Mothers during Pregnancy, 2004-10avg (Municipal)"/>
+          <category name="Total Births" subject="Public Health" title="Total Births to Moms Age 15-44, 2007-09 (Municipal)"/>
+          <category name="DPH: Births, 2000-2009 (Municipal)" subject="Public Health" title="DPH: Births, 2000-2009 (Municipal)"/>
+          <category title="DPH: Cardiovascular Surveillance Data" name="DPH: Cardiovascular Surveillance Data"/>
+          <category title="DPH: Community Health Centers" name="DPH: Community Health Centers"/>
+          <category subject="Public Health" name="DPH: Food Establishments" description="InfoGroup, 2011" source="InfoGroup" title="DPH: Food Establishments"/>
+          <category title="DPH: Hospitalizations" name="DPH: Hospitalizations"/>
+          <category name="DPH: Public Health Data" subject="Public Health" title="DPH: Public Health Data"/>
+          <category title="DPH: Small Area Estimates" name="DPH: Small Area Estimates"/>
+          <category name="Community Health Center Patient Populations" subject="Public Health" title="Community Health Center Patient Populations"/>
+          <category subject="Public Health" name="Smoking Mothers during Pregnancy, 2004-10avg (Municipal)" description="DPH" title="Smoking Mothers during Pregnancy, 2004-10avg (Municipal)"/>
+        </category>
+        <category title="Transportation" name="Data Tables">
+          <category name="Bike and Pedestrian Facilities" source="MAPC, 2011" title="Bike and Pedestrian Facilities"/>
+          <category name="Commuter Rail" source="MassGIS, 2010" title="Commuter Rail"/>
+          <category name="Commuter Rail Stations" source="MassGIS, 2008" title="Commuter Rail Stations"/>
+          <category title="Fairmount Commuter Line" name="Fairmount Commuter Line"/>
+          <category name="Major Roads" source="MassDOT" title="Major Roads"/>
+          <category name="Major Routes" source="MassDOT" title="Major Routes"/>
+          <category name="MBTA Subway Lines" source="MassDOT" title="MBTA Subway Lines"/>
+          <category title="MBTA Subway Stops" name="MBTA Subway Stops"/>
+          <category name="Transportation to Work (Municipal)" source="ACS" title="Transportation to Work, 5yr Avg 2005-09 (Municipal)"/>
+          <category name="Travel Time to Work (Municipal)" source="ACS" title="Travel Time to Work, 5yr Avg 2005-09 (Municipal)"/>
+          <category subject="Transportation" name="Vehicle Miles Traveled, 2005-2007" title="Vehicle Miles Traveled, 2005-2007" source="MassGIS"/>
+          <category subject="Transportation" name="Vehicles by Household, 5yr Avg 2006-10 (Census 2010 Tracts)" title="Vehicles by Household, 5yr Avg 2006-10 (Census 2010 Tracts)" source="ACS"/>
+          <category subject="Transportation" name="Vehicles by Household, 5yr Avg 2006-10 (Municipal)" description="ACS 2006-10" source="ACS" title="Vehicles by Household, 5yr Avg 2006-10 (Municipal)"/>
+        </category>
+        <category title="Boundaries" name="Data Tables">
+          <category name="MAPC Municipalities" source="MAPC" title="MAPC Municipalities"/>
+          <category name="Massachusetts Municipalities" source="MassGIS" title="Massachusetts Municipalities">
+            <attribute projection="EPSG:26986" name="Massachusetts Municipalities" dataType="geometry" title="Massachusetts Municipalities" keyType="MUNI_ID"/>
+            <attribute min=" " title="Municipal ID" keyType="MUNI_ID" geometryCollection="Massachusetts Municipalities" name="town_id" dataType="number" max=" " dataTable="Massachusetts Municipalities"/>
+            <attribute min=" " year=" " title="Municipality" keyType="MUNI_ID" geometryCollection="Massachusetts Municipalities" name="town" dataType="string" max=" " dataTable="Massachusetts Municipalities"/>
+          </category>
+          <category name="Boston Neighborhoods" source="BRA, 2010" title="Boston Neighborhoods"/>
+          <category name="Boston Parcels (Subset)" source="City of Boston, 2010" title="Boston Parcels (Subset)"/>
+          <category name="Census 2010 Tracts" source="Census, 2010" title="Census 2010 Tracts"/>
+          <category name="Census 2000 Block Groups" source="Census" title="Census Block Groups 2000"/>
+          <category name="Census 2010 Block Groups" source="Census, 2010" title="Census Block Groups, 2010"/>
+          <category name="Census 2000 Tracts" source="Census" title="Census Tracts, 2000"/>
+          <category subject="Boundaries" name="Community Types (Municipal)" title="Community Types (Municipal)" source="MAPC, 2011"/>
+          <category name="MA Counties" source="MassGIS" title="MA Counties"/>
+          <category name="MetroFuture Region" source="MAPC, 2008" title="MetroFuture Region"/>
+          <category name="Traffic Analysis Zones (TAZ)" source="HUD" title="Traffic Analysis Zones (TAZ) "/>
+          <category title="US States" name="US States"/>
+        </category>
+        <category title="Spatial Geography for Maps" name="Geometry Collections">
+          <attribute name="1Km Grid" dataType="geometry" title="1Km Grid" keyType="Grid_1Km_ID"/>
+          <attribute name="1Km Grid for MetroFuture Modelling Region" dataType="geometry" title="1Km Grid for MetroFuture Modelling Region" keyType="Grid_1Km_ID"/>
+          <attribute name="Arts and Culture Points" dataType="geometry" title="Arts and Culture Points" keyType="Arts and Culture Points"/>
+          <attribute name="Bike and Pedestrian Facilities" dataType="geometry" title="Bike and Pedestrian Facilities" keyType="ObjectID"/>
+          <attribute name="Boston Circle of Promise Schools" dataType="geometry" title="Boston Circle of Promise Schools" keyType="SchoolID"/>
+          <attribute name="Boston Daycares" dataType="geometry" title="Boston Daycares" keyType="ObjectID"/>
+          <attribute name="Boston Neighborhoods" dataType="geometry" title="Boston Neighborhoods" keyType="ObjectID"/>
+          <attribute name="Boston Non-Profit Educational Assets (Points)" dataType="geometry" title="Boston Non-Profit Educational Assets (Points)" keyType="ObjectID"/>
+          <attribute name="Boston Outline" dataType="geometry" title="Boston Outline" keyType="MUNI_ID"/>
+          <attribute name="Boston Parcels (Subset)" dataType="geometry" title="Boston Parcels (Subset)" keyType="BostonParcelID"/>
+          <attribute name="Boston Schools" dataType="geometry" title="Boston Schools" keyType="SchoolID"/>
+          <attribute name="Boston Turnaround Schools" dataType="geometry" title="Boston Turnaround Schools" keyType="SchoolID"/>
+          <attribute name="Census 2000 Block Groups" dataType="geometry" title="Census 2000 Block Groups" keyType="BG_00_ID"/>
+          <attribute name="Census 2000 Tracts" dataType="geometry" title="Census 2000 Tracts" keyType="CT_ID"/>
+          <attribute name="Census 2010 Block Groups" dataType="geometry" title="Census 2010 Block Groups" keyType="BG_10_ID"/>
+          <attribute name="Census 2010 Tracts" dataType="geometry" title="Census 2010 Tracts" keyType="ct10_id"/>
+          <attribute name="Child Care Providers with Less than High School" dataType="geometry" title="Child Care Providers with Less than High School" keyType="ObjectID"/>
+          <attribute name="Colleges and Universities" dataType="geometry" title="Colleges and Universities" keyType="College_ID"/>
+          <attribute name="Commuter Rail" dataType="geometry" title="Commuter Rail" keyType="Commuter Rail"/>
+          <attribute name="Commuter Rail Stations" dataType="geometry" title="Commuter Rail Stations" keyType="Commuter Rail Stations"/>
+          <attribute name="Environmental Justice Populations (Block Groups)" dataType="geometry" title="Environmental Justice Populations (Block Groups)" keyType="BG_00_ID"/>
+          <attribute name="Fairmount Commuter Line" dataType="geometry" title="Fairmount Commuter Line" keyType="ObjectID"/>
+          <attribute name="LEED Certified Buildings (Points)" dataType="geometry" title="LEED Certified Buildings (Points)" keyType="LEED_ID"/>
+          <attribute name="Libraries" dataType="geometry" title="Libraries" keyType="ObjectID"/>
+          <attribute name="MA Counties" dataType="geometry" title="MA Counties" keyType="FIPS_ID"/>
+          <attribute name="MA House Districts" dataType="geometry" title="MA House Districts" keyType="MA_HOUSE02_ID"/>
+          <attribute name="MA Senate Districts" dataType="geometry" title="MA Senate Districts" keyType="MA_SENATE02_ID"/>
+          <attribute name="Major Roads (MassDOT)" dataType="geometry" title="Major Roads (MassDOT)" keyType="ObjectID"/>
+          <attribute name="Major Routes (MassDOT)" dataType="geometry" title="Major Routes (MassDOT)" keyType="ObjectID"/>
+          <attribute name="MAPC Municipalities" dataType="geometry" title="MAPC Municipalities" keyType="MUNI_ID"/>
+          <attribute name="Massachusetts Municipalities" dataType="geometry" title="Massachusetts Municipalities" keyType="MUNI_ID"/>
+          <attribute name="MBTA Subway Lines" dataType="geometry" title="MBTA Subway Lines" keyType="MBTA Subway Lines"/>
+          <attribute name="MBTA Subway Stops" dataType="geometry" title="MBTA Subway Stops" keyType="MBTA Subway Stops"/>
+          <attribute name="MetroFuture Region" dataType="geometry" title="MetroFuture Region" keyType="MUNI_ID"/>
+          <attribute name="Open Space" dataType="geometry" title="Open Space" keyType="OS_ID"/>
+          <attribute name="Protected Open Space" dataType="geometry" title="Protected Open Space" keyType="OS_ID"/>
+          <attribute name="School Districts" dataType="geometry" title="School Districts" keyType="SchoolDistrictID"/>
+          <attribute name="School Districts by Town" dataType="geometry" title="School Districts by Town" keyType="MUNI_ID"/>
+          <attribute name="Schools" dataType="geometry" title="Schools" keyType="SchoolID"/>
+          <attribute name="Success Boston Student Cohorts (2010)" dataType="geometry" title="Success Boston Student Cohorts (2010)" keyType="ObjectID"/>
+          <attribute name="Traffic Analysis Zones (TAZ) " dataType="geometry" title="Traffic Analysis Zones (TAZ) " keyType="TAZ_ID"/>
+          <attribute name="US Congressional Districts" dataType="geometry" title="US Congressional Districts" keyType="US_CONGRESS_ID"/>
+          <attribute name="US States" dataType="geometry" title="US States" keyType="Arts and Culture Points"/>
+          <attribute name="Water Bodies (100k Hydro)" dataType="geometry" title="Water Bodies (100k Hydro)" keyType="PALIS_ID"/>
+        </category>
+      </hierarchy>
+    </attributeHierarchy>
+    <hierarchyURL/>
+    <url>/WeaveServices/DataService</url>
+  </WeaveDataSource>
+  <LinkableHashMap name="Probe Header Columns" encoding="dynamic">
+    <ReferencedColumn name="ReferencedColumn">
+      <dynamicColumnReference encoding="dynamic">
+        <HierarchyColumnReference>
+          <dataSourceName>MetroBoston DataCommon</dataSourceName>
+          <hierarchyPath encoding="xml">
+            <hierarchy>
+              <category title="Boundaries" name="Data Tables">
+                <category name="Massachusetts Municipalities" title="Massachusetts Municipalities" source="MassGIS">
+                  <attribute min=" " year=" " title="Municipality" keyType="MUNI_ID" geometryCollection="Massachusetts Municipalities" name="town" dataType="string" max=" " dataTable="Massachusetts Municipalities"/>
+                </category>
+              </category>
+            </hierarchy>
+          </hierarchyPath>
+        </HierarchyColumnReference>
+      </dynamicColumnReference>
+    </ReferencedColumn>
+  </LinkableHashMap>
+  <LinkableHashMap name="Probed Columns" encoding="dynamic"/>
+  <MapTool name="MapTool">
+    <buttonRadius>3</buttonRadius>
+    <children encoding="dynamic">
+      <SimpleInteractiveVisualization name="visualization">
+        <axesAlpha>NaN</axesAlpha>
+        <axesColor>0</axesColor>
+        <axesThickness>NaN</axesThickness>
+        <enableAutoZoomToExtent>false</enableAutoZoomToExtent>
+        <enableAutoZoomToSelection>false</enableAutoZoomToSelection>
+        <enableAutoZoomXToNiceNumbers>false</enableAutoZoomXToNiceNumbers>
+        <enableAutoZoomYToNiceNumbers>false</enableAutoZoomYToNiceNumbers>
+        <enableFixedAspectRatio>true</enableFixedAspectRatio>
+        <enableProbe>true</enableProbe>
+        <enableSelection>true</enableSelection>
+        <enableZoomAndPan>false</enableZoomAndPan>
+        <gridLineAlpha>NaN</gridLineAlpha>
+        <gridLineColor>0</gridLineColor>
+        <gridLineThickness>NaN</gridLineThickness>
+        <includeNonSelectableLayersInAutoZoom>true</includeNonSelectableLayersInAutoZoom>
+        <layers encoding="dynamic">
+          <SelectablePlotLayer name="plot2">
+            <backgroundIsVisible>true</backgroundIsVisible>
+            <layerIsSelectable>false</layerIsSelectable>
+            <layerIsVisible>true</layerIsVisible>
+            <maxVisibleScale>Infinity</maxVisibleScale>
+            <minVisibleScale>0</minVisibleScale>
+            <plotter encoding="dynamic">
+              <GeometryPlotter>
+                <fill>
+                  <alpha>
+                    <defaultValue>1</defaultValue>
+                    <internalDynamicColumn encoding="dynamic"/>
+                  </alpha>
+                  <color>
+                    <defaultValue>16774625</defaultValue>
+                    <internalDynamicColumn encoding="dynamic">
+                      <GlobalObjectReference name="defaultColorColumn"/>
+                    </internalDynamicColumn>
+                  </color>
+                  <enabled>
+                    <defaultValue>true</defaultValue>
+                    <internalDynamicColumn encoding="dynamic"/>
+                  </enabled>
+                  <enableMissingDataGradient>false</enableMissingDataGradient>
+                  <imageURL>
+                    <defaultValue/>
+                    <internalDynamicColumn encoding="dynamic"/>
+                  </imageURL>
+                </fill>
+                <geometryColumn>
+                  <internalDynamicColumn encoding="dynamic">
+                    <ReferencedColumn>
+                      <dynamicColumnReference encoding="dynamic">
+                        <HierarchyColumnReference>
+                          <dataSourceName>MetroBoston DataCommon</dataSourceName>
+                          <hierarchyPath encoding="xml">
+                            <hierarchy>
+                              <category title="Spatial Geography for Maps" name="Geometry Collections">
+                                <attribute name="US States" dataType="geometry" title="US States" keyType="Arts and Culture Points"/>
+                              </category>
+                            </hierarchy>
+                          </hierarchyPath>
+                        </HierarchyColumnReference>
+                      </dynamicColumnReference>
+                    </ReferencedColumn>
+                  </internalDynamicColumn>
+                  <projectionSRS/>
+                </geometryColumn>
+                <iconSize>10</iconSize>
+                <keySet>
+                  <keyFilter encoding="dynamic">
+                    <GlobalObjectReference name="defaultSubsetKeyFilter"/>
+                  </keyFilter>
+                </keySet>
+                <line>
+                  <alpha>
+                    <defaultValue>0.5</defaultValue>
+                    <internalDynamicColumn encoding="dynamic"/>
+                  </alpha>
+                  <caps>
+                    <defaultValue/>
+                    <internalDynamicColumn encoding="dynamic"/>
+                  </caps>
+                  <color>
+                    <defaultValue>0</defaultValue>
+                    <internalDynamicColumn encoding="dynamic"/>
+                  </color>
+                  <enabled>
+                    <defaultValue>true</defaultValue>
+                    <internalDynamicColumn encoding="dynamic"/>
+                  </enabled>
+                  <joints>
+                    <defaultValue/>
+                    <internalDynamicColumn encoding="dynamic"/>
+                  </joints>
+                  <miterLimit>
+                    <defaultValue>3</defaultValue>
+                    <internalDynamicColumn encoding="dynamic"/>
+                  </miterLimit>
+                  <pixelHinting>
+                    <defaultValue>false</defaultValue>
+                    <internalDynamicColumn encoding="dynamic"/>
+                  </pixelHinting>
+                  <scaleMode>
+                    <defaultValue>none</defaultValue>
+                    <internalDynamicColumn encoding="dynamic"/>
+                  </scaleMode>
+                  <weight>
+                    <defaultValue>1</defaultValue>
+                    <internalDynamicColumn encoding="dynamic"/>
+                  </weight>
+                </line>
+                <pixellation>1</pixellation>
+                <pointDataImageColumn encoding="dynamic"/>
+                <symbolPlotters encoding="dynamic"/>
+                <useFixedImageSize>false</useFixedImageSize>
+              </GeometryPlotter>
+            </plotter>
+            <probeFilter encoding="dynamic">
+              <GlobalObjectReference name="defaultProbeKeySet"/>
+            </probeFilter>
+            <selectionFilter encoding="dynamic">
+              <GlobalObjectReference name="defaultSelectionKeySet"/>
+            </selectionFilter>
+            <subsetFilter encoding="dynamic">
+              <GlobalObjectReference name="defaultSubsetKeyFilter"/>
+            </subsetFilter>
+            <useTextBitmapFilters>false</useTextBitmapFilters>
+          </SelectablePlotLayer>
+          <SelectablePlotLayer name="plot">
+            <backgroundIsVisible>true</backgroundIsVisible>
+            <layerIsSelectable>true</layerIsSelectable>
+            <layerIsVisible>true</layerIsVisible>
+            <maxVisibleScale>Infinity</maxVisibleScale>
+            <minVisibleScale>0</minVisibleScale>
+            <plotter encoding="dynamic">
+              <GeometryPlotter>
+                <fill>
+                  <alpha>
+                    <defaultValue>1</defaultValue>
+                    <internalDynamicColumn encoding="dynamic"/>
+                  </alpha>
+                  <color>
+                    <defaultValue/>
+                    <internalDynamicColumn encoding="dynamic">
+                      <GlobalObjectReference name="defaultColorColumn"/>
+                    </internalDynamicColumn>
+                  </color>
+                  <enabled>
+                    <defaultValue>true</defaultValue>
+                    <internalDynamicColumn encoding="dynamic"/>
+                  </enabled>
+                  <enableMissingDataGradient>false</enableMissingDataGradient>
+                  <imageURL>
+                    <defaultValue/>
+                    <internalDynamicColumn encoding="dynamic"/>
+                  </imageURL>
+                </fill>
+                <geometryColumn>
+                  <internalDynamicColumn encoding="dynamic">
+                    <ReferencedColumn>
+                      <dynamicColumnReference encoding="dynamic">
+                        <HierarchyColumnReference>
+                          <dataSourceName>MetroBoston DataCommon</dataSourceName>
+                          <hierarchyPath encoding="xml">
+                            <hierarchy>
+                              <category title="Spatial Geography for Maps" name="Geometry Collections">
+                                <attribute name="Massachusetts Municipalities" dataType="geometry" title="Massachusetts Municipalities" keyType="MUNI_ID"/>
+                              </category>
+                            </hierarchy>
+                          </hierarchyPath>
+                        </HierarchyColumnReference>
+                      </dynamicColumnReference>
+                    </ReferencedColumn>
+                  </internalDynamicColumn>
+                  <projectionSRS/>
+                </geometryColumn>
+                <iconSize>10</iconSize>
+                <keySet>
+                  <keyFilter encoding="dynamic">
+                    <GlobalObjectReference name="defaultSubsetKeyFilter"/>
+                  </keyFilter>
+                </keySet>
+                <line>
+                  <alpha>
+                    <defaultValue>0.5</defaultValue>
+                    <internalDynamicColumn encoding="dynamic"/>
+                  </alpha>
+                  <caps>
+                    <defaultValue/>
+                    <internalDynamicColumn encoding="dynamic"/>
+                  </caps>
+                  <color>
+                    <defaultValue>0</defaultValue>
+                    <internalDynamicColumn encoding="dynamic"/>
+                  </color>
+                  <enabled>
+                    <defaultValue>true</defaultValue>
+                    <internalDynamicColumn encoding="dynamic"/>
+                  </enabled>
+                  <joints>
+                    <defaultValue/>
+                    <internalDynamicColumn encoding="dynamic"/>
+                  </joints>
+                  <miterLimit>
+                    <defaultValue>3</defaultValue>
+                    <internalDynamicColumn encoding="dynamic"/>
+                  </miterLimit>
+                  <pixelHinting>
+                    <defaultValue>false</defaultValue>
+                    <internalDynamicColumn encoding="dynamic"/>
+                  </pixelHinting>
+                  <scaleMode>
+                    <defaultValue>none</defaultValue>
+                    <internalDynamicColumn encoding="dynamic"/>
+                  </scaleMode>
+                  <weight>
+                    <defaultValue>1</defaultValue>
+                    <internalDynamicColumn encoding="dynamic"/>
+                  </weight>
+                </line>
+                <pixellation>1</pixellation>
+                <pointDataImageColumn encoding="dynamic"/>
+                <symbolPlotters encoding="dynamic"/>
+                <useFixedImageSize>false</useFixedImageSize>
+              </GeometryPlotter>
+            </plotter>
+            <probeFilter encoding="dynamic">
+              <GlobalObjectReference name="defaultProbeKeySet"/>
+            </probeFilter>
+            <selectionFilter encoding="dynamic">
+              <GlobalObjectReference name="defaultSelectionKeySet"/>
+            </selectionFilter>
+            <subsetFilter encoding="dynamic">
+              <GlobalObjectReference name="defaultSubsetKeyFilter"/>
+            </subsetFilter>
+            <useTextBitmapFilters>false</useTextBitmapFilters>
+          </SelectablePlotLayer>
+        </layers>
+        <marginBottom>0</marginBottom>
+        <marginLeft>0</marginLeft>
+        <marginRight>0</marginRight>
+        <marginTop>0</marginTop>
+        <maxZoomLevel>16</maxZoomLevel>
+        <minScreenSize>128</minScreenSize>
+        <minZoomLevel>0</minZoomLevel>
+        <overrideXMax>NaN</overrideXMax>
+        <overrideXMin>NaN</overrideXMin>
+        <overrideYMax>NaN</overrideYMax>
+        <overrideYMin>NaN</overrideYMin>
+        <zoomBounds>
+          <area>70415585464.279</area>
+          <xCenter>187501.50015139</xCenter>
+          <yCenter>851905.98540493</yCenter>
+        </zoomBounds>
+        <zoomFactor>2</zoomFactor>
+      </SimpleInteractiveVisualization>
+    </children>
+    <closeable>true</closeable>
+    <enableBackground>false</enableBackground>
+    <enableBorders>true</enableBorders>
+    <enableMoveResize>true</enableMoveResize>
+    <enableOverview>false</enableOverview>
+    <enableSubMenu>false</enableSubMenu>
+    <enableTitle>false</enableTitle>
+    <includeToolAttributesInProbe>true</includeToolAttributesInProbe>
+    <maximizable>true</maximizable>
+    <maximized>true</maximized>
+    <minimizable>true</minimizable>
+    <minimized>false</minimized>
+    <panelBackgroundColor>10079487</panelBackgroundColor>
+    <panelBorderColor>NaN</panelBorderColor>
+    <panelHeight>50%</panelHeight>
+    <panelStyleList/>
+    <panelTitle/>
+    <panelWidth>50%</panelWidth>
+    <panelX>23%</panelX>
+    <panelY>26%</panelY>
+    <pinnable>true</pinnable>
+    <pinnableToBack>false</pinnableToBack>
+    <pinned>false</pinned>
+    <pinnedToBack>false</pinnedToBack>
+    <projectionSRS/>
+    <showMouseModeControls>true</showMouseModeControls>
+    <showZoomControls>false</showZoomControls>
+  </MapTool>
+  <ColorBinLegendTool name="ColorBinLegendTool">
+    <buttonRadius>3</buttonRadius>
+    <children encoding="dynamic">
+      <SimpleInteractiveVisualization name="visualization">
+        <axesAlpha>NaN</axesAlpha>
+        <axesColor>0</axesColor>
+        <axesThickness>NaN</axesThickness>
+        <enableAutoZoomToExtent>true</enableAutoZoomToExtent>
+        <enableAutoZoomToSelection>false</enableAutoZoomToSelection>
+        <enableAutoZoomXToNiceNumbers>false</enableAutoZoomXToNiceNumbers>
+        <enableAutoZoomYToNiceNumbers>false</enableAutoZoomYToNiceNumbers>
+        <enableFixedAspectRatio>false</enableFixedAspectRatio>
+        <enableProbe>true</enableProbe>
+        <enableSelection>true</enableSelection>
+        <enableZoomAndPan>false</enableZoomAndPan>
+        <gridLineAlpha>NaN</gridLineAlpha>
+        <gridLineColor>0</gridLineColor>
+        <gridLineThickness>NaN</gridLineThickness>
+        <includeNonSelectableLayersInAutoZoom>false</includeNonSelectableLayersInAutoZoom>
+        <layers encoding="dynamic">
+          <SelectablePlotLayer name="plot">
+            <backgroundIsVisible>true</backgroundIsVisible>
+            <layerIsSelectable>true</layerIsSelectable>
+            <layerIsVisible>true</layerIsVisible>
+            <maxVisibleScale>Infinity</maxVisibleScale>
+            <minVisibleScale>0</minVisibleScale>
+            <plotter encoding="dynamic">
+              <ColorBinLegendPlotter>
+                <ascendingOrder>true</ascendingOrder>
+                <dynamicColorColumn encoding="dynamic">
+                  <GlobalObjectReference name="defaultColorColumn"/>
+                </dynamicColorColumn>
+                <itemLabelFunction>string</itemLabelFunction>
+                <keySet>
+                  <keyFilter encoding="dynamic">
+                    <GlobalObjectReference name="defaultSubsetKeyFilter"/>
+                  </keyFilter>
+                </keySet>
+                <legendTitleFunction>string</legendTitleFunction>
+                <lineStyle>
+                  <alpha>
+                    <defaultValue>0.5</defaultValue>
+                    <internalDynamicColumn encoding="dynamic"/>
+                  </alpha>
+                  <caps>
+                    <defaultValue/>
+                    <internalDynamicColumn encoding="dynamic"/>
+                  </caps>
+                  <color>
+                    <defaultValue>0</defaultValue>
+                    <internalDynamicColumn encoding="dynamic"/>
+                  </color>
+                  <enabled>
+                    <defaultValue>true</defaultValue>
+                    <internalDynamicColumn encoding="dynamic"/>
+                  </enabled>
+                  <joints>
+                    <defaultValue/>
+                    <internalDynamicColumn encoding="dynamic"/>
+                  </joints>
+                  <miterLimit>
+                    <defaultValue>3</defaultValue>
+                    <internalDynamicColumn encoding="dynamic"/>
+                  </miterLimit>
+                  <pixelHinting>
+                    <defaultValue>false</defaultValue>
+                    <internalDynamicColumn encoding="dynamic"/>
+                  </pixelHinting>
+                  <scaleMode>
+                    <defaultValue>normal</defaultValue>
+                    <internalDynamicColumn encoding="dynamic"/>
+                  </scaleMode>
+                  <weight>
+                    <defaultValue>1</defaultValue>
+                    <internalDynamicColumn encoding="dynamic"/>
+                  </weight>
+                </lineStyle>
+                <maxColumns>1</maxColumns>
+                <shapeSize>20</shapeSize>
+              </ColorBinLegendPlotter>
+            </plotter>
+            <probeFilter encoding="dynamic">
+              <GlobalObjectReference name="defaultProbeKeySet"/>
+            </probeFilter>
+            <selectionFilter encoding="dynamic">
+              <GlobalObjectReference name="defaultSelectionKeySet"/>
+            </selectionFilter>
+            <subsetFilter encoding="dynamic">
+              <GlobalObjectReference name="defaultSubsetKeyFilter"/>
+            </subsetFilter>
+            <useTextBitmapFilters>true</useTextBitmapFilters>
+          </SelectablePlotLayer>
+        </layers>
+        <marginBottom>5</marginBottom>
+        <marginLeft>5</marginLeft>
+        <marginRight>5</marginRight>
+        <marginTop>25</marginTop>
+        <maxZoomLevel>16</maxZoomLevel>
+        <minScreenSize>128</minScreenSize>
+        <minZoomLevel>0</minZoomLevel>
+        <overrideXMax>NaN</overrideXMax>
+        <overrideXMin>NaN</overrideXMin>
+        <overrideYMax>NaN</overrideYMax>
+        <overrideYMin>NaN</overrideYMin>
+        <zoomBounds>
+          <xMax>1</xMax>
+          <xMin>0</xMin>
+          <yMax>1</yMax>
+          <yMin>0</yMin>
+        </zoomBounds>
+        <zoomFactor>2</zoomFactor>
+      </SimpleInteractiveVisualization>
+    </children>
+    <closeable>true</closeable>
+    <enableBorders>true</enableBorders>
+    <enableMoveResize>true</enableMoveResize>
+    <enableSubMenu>false</enableSubMenu>
+    <enableTitle>false</enableTitle>
+    <maximizable>true</maximizable>
+    <maximized>false</maximized>
+    <minimizable>true</minimizable>
+    <minimized>false</minimized>
+    <panelBackgroundColor>16774625</panelBackgroundColor>
+    <panelBorderColor>NaN</panelBorderColor>
+    <panelHeight>44%</panelHeight>
+    <panelStyleList/>
+    <panelTitle/>
+    <panelWidth>52%</panelWidth>
+    <panelX>1%</panelX>
+    <panelY>52%</panelY>
+    <pinnable>true</pinnable>
+    <pinnableToBack>false</pinnableToBack>
+    <pinned>true</pinned>
+    <pinnedToBack>false</pinnedToBack>
+  </ColorBinLegendTool>
+</Weave>
