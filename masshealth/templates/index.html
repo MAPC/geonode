@@ -1,0 +1,185 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load heroes_extras %}
+{% load programs_extras %}
+
+{% block title %} {% trans "Welcome!" %} - {{ block.super }} {% endblock %}
+
+{% block head_javascript %}
+{{ block.super }}
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-plugins.js"></script>
+{% endblock %} 
+
+{% block bodyclass %}
+<body class="home">
+{% endblock %} 
+
+{% block content %} 
+
+<h1 class="home">Mapping data and local actions to create a healthier Massachusetts</h1>
+
+<!-- home_slider -->
+{% heroes "homepage" as my_heroes %}
+
+
+
+
+{% if my_heroes.count %}
+<div class="home_slider">
+  <div class="home_slide">
+{% for hero in my_heroes %}
+
+    <div class="home_slide_box">
+      <div class="home_slide_box_img">
+        <img src="{{ hero.image.url }}" alt="" width="340" height="244" />
+      </div>
+      <div class="home_slide_box_content">
+        <div class="home_slide_box_content_pad">
+          <div class="home_slide_box_nav_title">
+            
+            <div class="home_slide_box_nav_subtitle">
+              {{ hero.type }}
+            </div>
+            
+            {{ hero.title }}
+          </div>
+
+          <div class="home_slide_box_subtitle">
+            {{ hero.type }} 
+          </div>
+          <h2 class="home_slide_box_title">
+            {{ hero.title }} 
+          </h2>
+          <div class="home_slide_box_text page_content">
+
+              {{ hero.description|safe }}
+
+          </div>
+        </div>
+      </div>
+      <div class="clear">
+      </div>
+    </div>
+
+  
+{% endfor %}
+</div>  </div>
+{% endif %}
+<!-- /home_slider -->
+
+
+
+<div class="span12">
+{{flatpage.content}}
+
+  
+  <div id="mamc_map_container">
+    <div id="mamc_map"></div>
+  </div>
+  <p>Mass in Motion Initiatives. Click on the map to explore health programs underway in Massachusetts.</p>
+
+</div>
+
+
+{% endblock %}
+
+
+{% block javascript %}
+    {{ block.super }}
+    {% include "_map_inc.html" %}
+    <script type="text/javascript">
+
+        // background layers
+        var basemap = new L.MAPCTileLayer("basemap");
+
+        var boston = new L.LatLng(42.357778, -71.061667);
+        var map = new L.Map("mamc_map",{
+            minZoom: 9,
+            maxZoom: 17
+        })
+        .setView(boston, 9)
+        .addLayer(basemap);
+
+  /*      
+
+        // project layers
+        {% get_icons "all" as icons %}
+
+        // default generic marker
+        var projects = {
+          "layer-0": {
+            layer: new L.GeoJSON()
+          }
+        };
+        map.addLayer(projects["layer-0"].layer);
+
+        // categorized markers
+        {% for icon in icons %}
+        projects["layer-{{ icon.id }}"] = {
+          icon: new L.Icon({
+            iconUrl: '{{ icon.map_icon.url }}',
+            shadowUrl: null,
+            iconSize: new L.Point(32, 37),
+            shadowSize: null,
+            iconAnchor: new L.Point(16, 37),
+            popupAnchor: new L.Point(2, -32)
+        }),
+        layer: new L.GeoJSON(null, {
+            pointToLayer: function(latlng) {
+                  return new L.Marker(latlng, {
+                      icon: projects["layer-{{ icon.id }}"].icon
+                });
+            }
+        })
+        };
+      projects["layer-{{ icon.id }}"].layer.on("featureparse", function(e) {  
+            if (e.properties) {
+                popupContent = "<h4>" + e.properties["title"] + "</h4>";
+                if (e.properties["image_url"]) popupContent += "<p><img src=" + e.properties["image_url"] + " class=\"map-thumb\" alt=\"" + e.properties["title"] + "\"></p>";
+                if (e.properties["description"] !== "") popupContent += "<p>" + e.properties["description"] + "<a href=\"" + e.properties["absolute_url"] + "\"><br>read more</a></p>";
+                e.layer.bindPopup(popupContent);
+            }
+        });
+      map.addLayer(projects["layer-{{ icon.id }}"].layer);
+        {% endfor %}
+*/
+        // TODO: project layer prototype function
+
+        jQuery(function() {
+            // load program locations on map
+            $.getJSON(
+                "/program/geojson/",  
+                function(data) {
+                  function pointToLayer(feature, latlng){    
+                      var programIcon = L.icon({ 
+                          iconUrl: feature.properties.map_icon,
+                          iconSize: [32, 37],
+                          iconAnchor: [16, 37],
+                          popupAnchor: [2, -32],
+                          shadowUrl: null
+                      });
+                      marker = L.marker(latlng, {icon:programIcon});
+                      return marker; 
+                  } 
+
+                  function onEachFeature(feature, layer) {
+                      var popupContent = "<h4>" + feature.properties["title"] + "</h4>";
+                      if (feature.properties["image_url"]) popupContent += "<p><img src=" + feature.properties["image_url"] + " class=\"map-thumb\" alt=\"" + feature.properties["title"] + "\"></p>";
+                      if (feature.properties["description"] !== "") popupContent += "<p>" + feature.properties["description"] + "<a href=\"" + feature.properties["absolute_url"] + "\"><br>read more</a></p>";
+                      layer.bindPopup(popupContent);
+                  } 
+
+                  // render GeoJSON layer
+                  var programLayer = L.geoJson(data, {
+                      pointToLayer: pointToLayer,
+                      onEachFeature: onEachFeature
+                  });
+                  programLayer.addTo(map);
+
+                  map.fitBounds(programLayer.getBounds());
+
+            });
+    });
+
+    </script>
+{% endblock %}
