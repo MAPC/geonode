@@ -160,6 +160,6 @@ class InOtherPlace(object):
 
 # 'XXX' is pretty darned safe, since all the slugs and all the text in
 # in the url patterns is lower case.
-InOtherPlace._default_instance = InOtherPlace(summary, 'XXX')
+InOtherPlace._default_instance = InOtherPlace(programs, 'XXX')
 InOtherPlace(profiles, 'XXX')
 InOtherPlace(programs, 'XXX')
