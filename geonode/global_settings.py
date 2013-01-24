@@ -39,7 +39,7 @@ DATABASES = {
 # although not all choices may be available on all operating systems.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'America/New_York'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -114,6 +114,8 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
+    'grappelli',
+    'filebrowser',
     'django.contrib.admin',
     'django.contrib.sitemaps',
     'django.contrib.staticfiles',
@@ -249,7 +251,7 @@ MIDDLEWARE_CLASSES = (
     'pagination.middleware.PaginationMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-)
+) + SITE_MIDDLEWARE_CLASSES
 
 
 # Replacement of default authentication backend in order to support
@@ -325,8 +327,6 @@ NOSE_ARGS = [
 #
 # GeoNode specific settings
 #
-
-SITEURL = "http://localhost:8000/"
 
 # GeoServer information
 

@@ -15,6 +15,7 @@ PROJECT_ROOT = os.path.dirname(geonode.__file__)
 
 # Site id in the Django sites framework
 SITE_ID = 1
+SITEURL = "http://localhost:8000/"
 
 # Directory of site specific settings
 SITE_ROOT = os.path.abspath(os.path.dirname(__file__))
@@ -32,12 +33,15 @@ STATICFILES_DIRS = [
 # Site specific apps
 SITE_APPS = ()
 
+# Site specific apps
+SITE_MIDDLEWARE_CLASSES = ()
+
 # Global geonode settings
 execfile(os.path.join(PROJECT_ROOT,'global_settings.py'))
 
-LEAFLET_CONFIG = {
-    'TILES_URL': 'http://{s}.tile2.opencyclemap.org/transport/{z}/{x}/{y}.png'
-}
+#
+# Global Settings Overrides
+#
 
 # Load more settings from a file called local_settings.py if it exists
 try:
