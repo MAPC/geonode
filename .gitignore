@@ -42,3 +42,7 @@ scripts/cloud/.gnec2.cfg
 
 # dev tools
 *.sublime-*
+
+# private
+local_settings.py
+*/data/*
