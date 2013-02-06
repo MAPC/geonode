@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "masshealth/base.html" %}
 {% load i18n %}
 {% load heroes_extras %}
 {% load programs_extras %}
@@ -86,7 +86,7 @@
 
 {% block javascript %}
     {{ block.super }}
-    {% include "_map_inc.html" %}
+    {% include "masshealth/_map_inc.html" %}
     <script type="text/javascript">
 
         // background layers
