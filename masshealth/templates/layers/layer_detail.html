@@ -1,0 +1,215 @@
+{% extends "layers/layer_base.html" %}
+{% load geonode_auth %}
+{% load i18n %}
+{% load dialogos_tags %}
+{% load agon_ratings_tags %}
+{% load bootstrap_tags %}
+{% load url from future %}
+
+{% block title %}{{ layer.title|default:layer.typename }} — {{ block.super }}{% endblock %}
+
+{% block head %}
+{% include "layers/layer_map.html" %}
+
+{{ block.super }}
+{% endblock %}
+
+
+{% block body_class %}data{% endblock %}
+
+{% block body_outer %}
+  <div class="span6">
+    <h2 class="page-title">{{ layer.title|default:layer.typename }}</h2>
+  </div>
+  <div class="span6 action-group">
+    <div class="pull-right">
+      <div class="btn-group">
+        <a class="btn btn-large btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+          {% trans "Download Layer" %}
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          {% for link in layer.link_set.download %}
+            <li><a href="{{ link.url }}">{{ link.name }} <i class="icon-chevron-right"></i></a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="btn-group">
+        <a class="btn btn-large btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+          {% trans "Download Metadata" %}
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+          {% for link in layer.link_set.metadata %}
+            <li><a href="{{ link.url }}">{{ link.name }} <i class="icon-chevron-right"></i></a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    {% has_obj_perm user layer "layer.change_layer" as can_edit_layer %}
+    {% if can_edit_layer %}
+    <div class="btn-group pull-right">
+      <a class="btn btn-large btn-info dropdown-toggle" data-toggle="dropdown" href="#">
+        {% trans "Edit Layer" %}
+        <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu">
+        <!--li><a href="">Edit Layer Data <i class="icon-chevron-right"></i></a></li-->
+        <li><a href="{% url "layer_metadata" layer.typename %}">{% trans "Edit Metadata" %} <i class="icon-chevron-right"></i></a></li>
+        <li><a href="{% url "layer_replace" layer.typename %}">{% trans "Replace this Layer" %} <i class="icon-chevron-right"></i></a></li>
+        <li><a href="{% url "layer_remove" layer.typename %}">{% trans "Remove this Layer" %} <i class="icon-chevron-right"></i></a></li>
+      </ul>
+    </div>
+    {% endif %}
+  </div>
+  <div class="span12">
+    <div id="embedded_map" class="mrg-btm">
+        <div id="preview_map"></div>
+    </div>
+  </div>
+  <div class="span8">
+    <div class="layer-actions">
+      {% include "layers/_actions.html" %}
+    </div>
+    <div class="tab-content">
+
+    {% include "geonode/resourcebase_info_panel.html" with resourcebase=layer %}
+
+      <article id="attributes" class="tab-pane">
+        {% if layer.attribute_set.all %}
+            <table class="table table-striped table-bordered table-condensed">
+              <thead>
+                <tr>
+                  <th>{% trans "Attribute Name" %}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for attribute in layer.attribute_set.all %}
+                  <tr>
+                    <td>{{ attribute }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        {% endif %}
+      </article>
+      <article id="comments" class="tab-pane">
+        {% with layer as obj %}
+          {% include "_comments.html" %}
+        {% endwith %}
+      </article>
+    </div>
+  </div>
+  <aside class="span4">
+    <div class="well">
+        <h2>{% trans "Maps using this layer" %}</h2>
+        {% if layer.maps %}
+        <p>{% trans "List of maps using this layer:" %}</p>
+        {% endif %}
+        <ul class="unstyled space">
+          {% for maplayer in layer.maps %} 
+            <li><a href="{{ maplayer.map.get_absolute_url }}">{{ maplayer.map.title }}</a></li>
+          {% empty %}
+            <li>{% trans "This layer is not currently used in any maps." %}</li>
+          {% endfor %}
+        </ul>
+    </div>
+    <div class="well">
+        <h2>{% trans "Create a map using this layer" %}</h2>
+        <p>{% trans "Click the button below to generate a new map based on this layer." %}</p>
+        <a href="{% url "new_map" %}?layer={{layer.typename}}" class="btn btn-large">{% trans "Create a Map" %}</a>
+    </div>
+    {% if user.is_authenticated %}
+    <div class="well">
+        <h2>{% trans "Styles" %}</h2>
+        <p>{% trans "The following styles are associated with this layer. Choose a style to view it in the preview map." %}</p>
+        <ul class="unstyled space">
+          {% for style in layer.styles.all %}
+            <li>
+              <a href="#">
+                {% if style.sld_title %}
+                  {{ style.sld_title }}
+                {% else %}
+                  {{ style.name|title }}
+                {% endif %}
+              </a>
+            <li>
+          {% empty %}
+            <li>{% trans "No styles associated with this layer" %}</li>
+          {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+  </aside>
+<div class="modal custom hide" id="download-layer">
+    <div class="modal-header">
+      <button class="close" data-dismiss="modal">×</button>
+      <h2><i class="icon-download-alt"></i> {% trans "Download Layer" %}</h2>
+    </div>
+    <div class="modal-body">
+      <p></p>
+    </div>
+    <div class="modal-footer">
+      <div class="span2 offset1">
+        <ul class="unstyled">
+          <li><a href="#">Zipped Shapefile</a></li>
+          <li><a href="#">JPEG</a></li>
+          <li><a href="#">GML 2.0</a></li>
+          <li><a href="#">PDF</a></li>
+          <li><a href="#">GML 3.1.1</a></li>
+          <li><a href="#">PNG</a></li>
+        </ul>
+      </div>
+      <div class="span2">
+        <ul class="unstyled">
+          <li><a href="#">CSV</a></li>
+          <li><a href="#">KML</a></li>
+          <li><a href="#">Excel</a></li>
+          <li><a href="#">GeoJSON</a></li>
+          <li><a href="#">{% trans "View in Google Earth" %}</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  {% include "_permissions_form.html" %}
+{% endblock %}
+{% block extra_script %}
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+    {% if request.user.is_authenticated %}
+        {% user_rating_js request.user layer "layer" %}
+    {% else %}
+        <script src="{{ STATIC_URL }}libs/js/jquery.raty.js"></script>
+    {% endif %}
+    <script type="text/javascript">
+    $(function() {
+        $('div.overall_rating').raty({
+            half: true,
+            readOnly: true,
+            start: $('div.overall_rating').data('rating'),
+            path: "{{ STATIC_URL }}libs/agon_ratings/img/"
+        });
+    });
+    </script>
+    <script src="{{ STATIC_URL }}geonode/js/paginate.js"></script>
+    <script>
+        $(function () {
+            var activeTab = $('[href=' + location.hash + ']');
+            activeTab && activeTab.tab('show');
+        });
+
+        (function() {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/plusone.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+    </script>
+    {% include "_permissions_form_js.html" %}
+{% endblock extra_script %}
