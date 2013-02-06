@@ -46,3 +46,4 @@ scripts/cloud/.gnec2.cfg
 # private
 local_settings.py
 */data/*
+geoserver_data/*
