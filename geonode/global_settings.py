@@ -406,12 +406,12 @@ PYCSW = {
 # GeoNode javascript client configuration
 
 # Where should newly created maps be focused?
-DEFAULT_MAP_CENTER = (0, 0)
+DEFAULT_MAP_CENTER = (-71.063611, 42.358056)
 
 # How tightly zoomed should newly created maps be?
 # 0 = entire world;
 # maximum zoom is between 12 and 15 (for Google Maps, coverage varies by area)
-DEFAULT_MAP_ZOOM = 0
+DEFAULT_MAP_ZOOM = 9
 
 MAP_BASELAYERS = [{
     "source": {
@@ -437,39 +437,23 @@ MAP_BASELAYERS = [{
     "source": {"ptype": "gxp_mapquestsource"},
     "name":"osm",
     "group":"background",
-    "visibility": True
-  }, {
-    "source": {"ptype": "gxp_mapquestsource"},
-    "name":"naip",
-    "group":"background",
     "visibility": False
   }, {
     "source": {"ptype": "gxp_bingsource"},
-    "name": "AerialWithLabels",
+    "name": "Aerial",
     "fixed": True,
     "visibility": False,
     "group":"background"
-  },{
+  }, {
     "source": {"ptype": "gxp_mapboxsource"},
   }, {
     "source": {"ptype": "gx_olsource"},
-    "type":"OpenLayers.Layer.WMS",
-    "group":"background",
-    "visibility": False,
+    "type":"OpenLayers.Layer.OSM",
+    "args":["MAPC Basemap", "http://tiles.mapc.org/basemap/${z}/${x}/${y}.png"],
+    "visibility": True,
     "fixed": True,
-    "args":[
-      "bluemarble",
-      "http://maps.opengeo.org/geowebcache/service/wms",
-      {
-        "layers":["bluemarble"],
-        "format":"image/png",
-        "tiled": True,
-        "tilesOrigin": [-20037508.34, -20037508.34]
-      },
-      {"buffer": 0}
-    ]
-
-}]
+    "group":"background"
+  }]
 
 # GeoNode vector data backend configuration.
 
