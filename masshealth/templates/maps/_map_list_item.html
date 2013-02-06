@@ -1,0 +1,16 @@
+{% load url from future %}
+{% load i18n %}
+{% load agon_ratings_tags %}
+
+{% overall_rating map "map" as map_rating %}
+<article>
+  <header>
+    <h3><a href="{% url "map_detail" map.id %}">{{ map.title }}</a></h3>
+  </header>
+  <div class="details">
+      <div class="meta">
+        {% trans "from" %} <a href="{% url "profile_detail" map.owner.username %}" rel="author">{{ map.owner }}</a>, {{ map.last_modified|timesince }} {% trans 'ago' %}
+      </div>
+      <p class="abstract">{{ map.abstract }}</p>
+  </div>
+</article>
