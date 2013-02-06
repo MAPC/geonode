@@ -4,15 +4,11 @@ from django.template.defaultfilters import truncatewords
 
 from models import Program
 
-def all_geojson(request):
+def build_program_geojson(programs):
+    """ 
+    Takes a Program Queryset and returns a GeoJSON object 
+    with title, description and image-url properties. 
     """
-    Return a GeoJSON representation of all Programs with title, description and image-url properties.
-    """
-
-    try:
-      programs = Program.objects.transform(4326).all().select_related()
-    except Place.DoesNotExist:
-      raise Http404
 
     features = []
 
@@ -28,4 +24,35 @@ def all_geojson(request):
         features.append(feature)
 
     response = dict(type='FeatureCollection', features=features)
-    return HttpResponse(simplejson.dumps(response), mimetype='application/json')
+
+    return simplejson.dumps(response)
+
+
+def all_geojson(request):
+    """
+    Return a GeoJSON representation of all Programs.
+    """
+
+    try:
+      programs = Program.objects.transform(4326).all().select_related()
+    except Program.DoesNotExist:
+      raise Http404
+
+    geojson = build_program_geojson(programs)
+
+    return HttpResponse(geojson, mimetype='application/json')
+
+
+def place_geojson(request, place_slug):
+    """
+    Return a GeoJSON representation of all Programs in a Place.
+    """
+
+    try:
+        programs = Program.objects.transform(4326).filter(place__slug__iexact=place_slug).select_related()
+    except Program.DoesNotExist:
+        raise Http404
+
+    geojson = build_program_geojson(programs)
+
+    return HttpResponse(geojson, mimetype='application/json')
