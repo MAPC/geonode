@@ -82,15 +82,8 @@
         <li><a class="home" href="/">HOME</a></li>
         <li><a class="cominfo" href="/place/summary/massachusetts/">COMMUNITY<br>INFORMATION</a></li>
         <li><a class="maptool" href="/layers/">DATA</a></li>
+        <li><a class="maptool" href="/maps/">MAPS</a></li>
         <li><a class="about" href="/about/about-the-website/">ABOUT</a></li>
-        <li>
-          {% if user.is_authenticated %}
-          <a class="login" href="/account/logout/">LOGOUT</a>
-          {% else %}
-          <a class="login" href="/account/login/">LOGIN</a>
-          {% endif %}
-        </li>
-
         </ul>
           </div><!--/.nav-collapse -->
         </div>

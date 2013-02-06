@@ -71,7 +71,7 @@ li.town-list select {
     color: #3A3A3A;
     font-size: 11px;
     margin-bottom: 0;
-    margin-top: 14px;
+    margin-top: 4px;
     text-align: left;
 }
 
@@ -81,6 +81,7 @@ li.town-list select {
     margin: 0;
     font-size: 13px;
     line-height: 14px;
+    margin-left: 20px;
 }
 
 .navbar .nav.masshealth > li
@@ -97,7 +98,7 @@ li.town-list select {
     color: #3A3A3A;
     font-weight: bold;
     line-height: 16px;
-    padding: 40px 6px 40px;
+    padding: 20px 6px 40px;
     font-size: 12px;
     text-decoration: none;
     text-shadow: none;
@@ -114,7 +115,7 @@ li.town-list select {
 }
 /* 2 lines text */
 .navbar .nav.masshealth > li > a.cominfo {
-    padding: 32px 6px 36px;    
+    padding: 12px 6px 36px;    
 }
 .navbar .nav.masshealth > li > a.cominfo:hover {
     /*padding-top: 26px; */   

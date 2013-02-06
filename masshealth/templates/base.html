@@ -31,24 +31,7 @@
                   <div class="logo"><a href="/">Our <span class="healthy">Healthy</span> Massachusetts</a></div>
             </div>
             <div class="span7">
-              <div class="nav-collapse">
-                <ul class="nav masshealth">
-                  <li class="town-list"><label>Choose a Town:</label>
-                      <select id='town_selector'>
-                        {% places as towns %}
-                        {% for town in towns %}<option 
-                         {% if place %}{% ifequal place.slug town.0 %} SELECTED=SELECTED{% endifequal %}{% endif %}
-                         value="{{ placeless.0 }}{{ town.0 }}{{ placeless.1 }}">{{town.1}}</option>
-                        {% endfor %}
-                    </select>
-                  </li>
-                  <li><a class="home" href="/">HOME</a></li>
-                  <li><a class="cominfo" href="/place/summary/massachusetts/">COMMUNITY<br>INFORMATION</a></li>
-                  <li><a class="maptool" href="/layers/">DATA</a></li>
-                  <li><a class="maptool" href="/maps/">MAPS</a></li>
-                  <li><a class="about" href="/about/about-the-website/">ABOUT</a></li>
-                </ul>
-              </div>
+
               <div class="nav-collapse pull-right">
                 <div class="pull-right">
                   <ul class="nav pull-right account-bar">
@@ -72,13 +55,6 @@
                           <li class="divider"></li>
                           <li><a href="{% url account_logout %}"><i class="icon-off"></i> {% trans "Log out" %}</a></li>
                         </ul>
-                      </li>
-                      <li class="divider-v">|</li>
-                      <li class="actions">
-                        <!--a href="#" rel="tooltip" title="{% trans 'Notifications' %}"><i class="icon-bullhorn"></i></a>
-                        <a href="#" rel="tooltip" title="{% trans 'Messages' %}"><i class="icon-envelope"></i></a-->
-                        <a href="{% url layer_upload %}" rel="tooltip" title="{% trans 'Upload' %}"><i class="icon-upload-alt"></i></a>
-                        <a href="{% url help %}" rel="tooltip" title="{% trans 'Help' %}"><i class="icon-question-sign"></i></a>
                       </li>
                     {% else %}
                         <li class="dropdown">
@@ -108,6 +84,25 @@
                     {% endif %}
                   </ul>
                 </div>
+              </div>
+
+              <div class="nav-collapse">
+                <ul class="nav masshealth">
+                  <li class="town-list"><label>Choose a Town:</label>
+                      <select id='town_selector'>
+                        {% places as towns %}
+                        {% for town in towns %}<option 
+                         {% if place %}{% ifequal place.slug town.0 %} SELECTED=SELECTED{% endifequal %}{% endif %}
+                         value="{{ placeless.0 }}{{ town.0 }}{{ placeless.1 }}">{{town.1}}</option>
+                        {% endfor %}
+                    </select>
+                  </li>
+                  <li><a class="home" href="/">HOME</a></li>
+                  <li><a class="cominfo" href="/place/summary/massachusetts/">COMMUNITY<br>INFORMATION</a></li>
+                  <li><a class="maptool" href="/layers/">DATA</a></li>
+                  <li><a class="maptool" href="/maps/">MAPS</a></li>
+                  <li><a class="about" href="/about/about-the-website/">ABOUT</a></li>
+                </ul>
               </div>
               
             </div>
