@@ -67,8 +67,6 @@ jQuery(document).ready(function() {
 {% block content %}  
 
     <div class="span10">
-    	<h2>Data Stories: {{ place.name }}</h2>
-    	<p><em>These data stories provide insight into health topics particularly of interest in your community</em></p>
     
         <ul id="featured_stories" class="story_links jcarousel-skin-tango">         
             {% for story in datastories %}
@@ -100,13 +98,15 @@ jQuery(document).ready(function() {
 				</div>
            {% endif %}
    
-		<h4 class="storytitle">{{ story.title }}</h4>
+		<h2 class="storytitle">Data Story: {{ story.title }}</h2>
 		
 			{% if page %}
 				    <div class="story-abstract">{{ story.abstract|safe }}</div>
 					<div class="page">
 
 					  {% if page.visualization %}
+
+                        <div class="readmore"><a href="#readmore">Read more about this visualization</a></div>
 					  
 					    <div id="visualization">
 					      {% if page.visualization.thumbnail %}
@@ -118,11 +118,11 @@ jQuery(document).ready(function() {
 						   </a> to interact with this visualization.
 						 </p>
 					    </div>
-                        <div class="page-text visualization-text">{{ page.text|safe }}</div>
+                        <div class="page-text visualization-text"><a id="readmore"></a>{{ page.text|safe }}</div>
 
                       {% elif page.map %}
-					  
-                      <div class="page-text"></div>
+
+                      <div class="readmore"><a href="#readmore">Read more about this map</a></div>
 
                       <div id="embedded_map">
                         <div id="the_map" width="100%"></div>
@@ -131,10 +131,10 @@ jQuery(document).ready(function() {
                       <div class="page-text visualization-text">{{ page.text|safe }}</div>
 
                       {% else %}
-					  <div class="page-text">{{ page.text|safe }}</div>
 					  	{% if page.image %}
-							<img src="{{ MEDIA_URL }}{{ page.image }}">
+							<div><img src="{{ MEDIA_URL }}{{ page.image }}"></div>
 					  	{% endif %}
+                        <div class="page-text visualization-text">{{ page.text|safe }}</div>
 					  {% endif %}
 					</div>
 					
