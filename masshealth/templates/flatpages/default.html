@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'masshealth/base.html' %}
 
 <title>{% block title %}{{flatpage.title}}{% endblock %}</title>
 
@@ -18,7 +18,7 @@
 {% get_flatpages '/about/' as flatpages %}
          {% for page in flatpages %}
 		<li class="summary{% ifequal page.id flatpage.id%} current{% endifequal%}">
-		    <a href="{{page.url}}"> {{page.title}} </a>
+		    <a href="/pages{{page.url}}"> {{page.title}} </a>
 		</li>
          {% endfor%}
 		
@@ -39,8 +39,7 @@
 {% block content %}  
 
     <div class="span9">
+        {{flatpage.content}}
+    </div>
 
-{{flatpage.content}}
-
-</div>
 {% endblock %}
