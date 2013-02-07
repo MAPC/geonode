@@ -187,5 +187,34 @@
 
     <script type="text/javascript" src="{% url django.views.i18n.javascript_catalog %}"></script>
     <script type="text/javascript" src="{% url lang %}"></script>
+
+
+<script>
+  var $ = jQuery;
+    $(function(){
+      // bind change event to select
+      $('#town_selector').bind('change', function () {
+          var url = $(this).val(); // get selected value
+          if (url) { // require a URL
+              window.location = url; // redirect
+          }
+          return false;
+      });
+      $('#town_selector_side').bind('change', function () {
+          var url = $(this).val(); // get selected value
+          if (url) { // require a URL
+              window.location = url; // redirect
+          }
+          return false;
+      });
+      
+    $("a[href$='.pdf']").addClass("pdf");
+   
+  });
+    
+</script>
+
+
+
   </body>
 </html>
