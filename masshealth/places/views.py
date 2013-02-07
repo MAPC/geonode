@@ -4,6 +4,7 @@ from django.http import Http404
 from django.conf import settings
 from django.middleware.csrf import get_token
 from django.core.urlresolvers import reverse
+from django.contrib.sites.models import get_current_site
 
 from models import Place
 from masshealth.visualizations.models import Slot
@@ -49,6 +50,8 @@ def profiles(request, place_slug):
     else:
         csrf_token_value = ''
 
+    current_site = get_current_site(request)
+        
     return render_to_response(
         'places/profiles.html',
         dict(place=place,
@@ -60,7 +63,8 @@ def profiles(request, place_slug):
              same_place_parts=InOtherPlace.get_split(
         'profiles', 'XXX', 'XXX'),
              GDAL_AVAILABLE=GDAL_AVAILABLE,
-             WEAVE_URL=settings.WEAVE_URL,),
+             WEAVE_URL=settings.WEAVE_URL,
+             current_site=current_site,),
         context_instance=RequestContext(request))
 
 def programs(request, place_slug):
