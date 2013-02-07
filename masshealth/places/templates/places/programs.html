@@ -15,7 +15,7 @@
 
 <div class="span10">
 <h2>Health Promotion Programs</h2>
-<div id="program_map_container"><div id="program_map"></div></div>
+{% if place.program_set.all %}<div id="program_map_container"><div id="program_map"></div></div>{% endif %}
 <div class="place_program_desc">{{place.program_desc|safe}}</div>
 
 {% for program in place.program_set.all %}
@@ -32,6 +32,7 @@
 
 {% block javascript %}
   {{ block.super }}
+  {% if place.program_set.all %}
   {% include "masshealth/_map_inc.html" %}
   <script type="text/javascript">
 
@@ -78,7 +79,13 @@
               // render GeoJSON layer
               var programLayer = L.geoJson(data, {
                   pointToLayer: pointToLayer,
-                  onEachFeature: onEachFeature
+                  onEachFeature: onEachFeature,
+                  style: {
+                      "weight": 1,
+                      "opacity": 0.9,
+                      "color": "#F35A20",
+                      "fillOpacity": 0.4
+                  }
               });
               programLayer.addTo(map);
 
@@ -89,4 +96,5 @@
     });
 
   </script>
+  {% endif %}
 {% endblock %}
