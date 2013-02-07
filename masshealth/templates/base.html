@@ -90,6 +90,7 @@
                 <ul class="nav masshealth">
                   <li class="town-list"><label>Choose a Town:</label>
                       <select id='town_selector'>
+                        <option{% if not place %} SELECTED=SELECTED{% endif %} value="">Select a Town</option>
                         {% places as towns %}
                         {% for town in towns %}<option 
                          {% if place %}{% ifequal place.slug town.0 %} SELECTED=SELECTED{% endifequal %}{% endif %}
