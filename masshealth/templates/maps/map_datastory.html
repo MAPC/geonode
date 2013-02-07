@@ -1,0 +1,42 @@
+{% include "geonode/ext_header.html" %}
+{% include "geonode/app_header.html" %}
+{% include "geonode/geo_header.html" %}
+<script type="text/javascript">
+var app;
+Ext.onReady(function() {
+{% autoescape off %}
+    var config = Ext.apply({
+        // tools: [{
+        //     ptype: "gxp_wmsgetfeatureinfo",
+        //     format: "grid",
+        //     actionTarget: "main.tbar",
+        //     outputConfig: {width: 400, height: 200, panIn: false}
+        // }],
+        useCapabilities: false,
+        useToolbar: false,
+        proxy: "/proxy/?url=",
+        printService: "{{GEOSERVER_BASE_URL}}pdf/",
+        rest: "/maps/",
+
+        // tell the map viewer where and how to be rendered
+        portalConfig: {
+            height: 480,
+            renderTo: "the_map"
+        }
+
+        // useCapabilities: false,
+        // useToolbar: false,
+        // proxy: "/proxy/?url=",
+
+        //  The URL to a REST map configuration service.  This service 
+        //  * provides listing and, with an authenticated user, saving of 
+        //  * maps on the server for sharing and editing.
+         
+        // rest: "/maps/"
+
+    }, {{ config }});
+app = new GeoExplorer.Viewer(config);
+{% endautoescape %}
+});
+</script>
+

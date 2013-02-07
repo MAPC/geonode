@@ -3,10 +3,14 @@ from django.http import HttpResponse, Http404
 from django.template import RequestContext
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.conf import settings
+from django.utils import simplejson as json
 
 from models import Story
 from masshealth.places.models import Place
 from masshealth.places.views import InOtherPlace
+
+from geonode.utils import default_map_config
+from geonode.maps.views import _resolve_map
 
 def story(request, place_slug, story_slug=None):
     page_type = "story"
@@ -48,16 +52,26 @@ def story(request, place_slug, story_slug=None):
         page_next = 0
         page_prev = 0
         page_count = 0
+        config = default_map_config()[0]
+
     else:
         page = pgpg.object_list[0]
         page_num = pgpg.number
         page_next = pgpg.next_page_number() if pgpg.has_next() else 0
         page_prev = pgpg.previous_page_number() if pgpg.has_previous() else 0
 
+        # map config
+        if page.map is None:
+            config = default_map_config()[0]
+        else:
+            map_obj = _resolve_map(request, page.map.id, 'geonode.maps.view_map')
+            config = map_obj.viewer_json()
+
     if story:
         spp = InOtherPlace.get_split('story', 'XXX', 'XXX', story.slug)
     else:
         spp = InOtherPlace.get_split('story', 'XXX', 'XXX')
+
 
     return render_to_response(
         'datastories/story.html',
@@ -74,6 +88,7 @@ def story(request, place_slug, story_slug=None):
              datastories=place_stories,
              same_place_parts=spp,
              WEAVE_URL=settings.WEAVE_URL,
+             config = json.dumps(config),
              ),
         context_instance=RequestContext(request))
 

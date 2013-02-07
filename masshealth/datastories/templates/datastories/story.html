@@ -55,6 +55,9 @@ jQuery(document).ready(function() {
 
 </script>
 
+
+{% include "maps/map_datastory.html" %}
+
 {% endblock %} 
 
 {% block bodyclass %}
@@ -116,7 +119,18 @@ jQuery(document).ready(function() {
 						 </p>
 					    </div>
                         <div class="page-text visualization-text">{{ page.text|safe }}</div>
-					  {% else %}
+
+                      {% elif page.map %}
+					  
+                      <div class="page-text"></div>
+
+                      <div id="embedded_map">
+                        <div id="the_map" width="100%"></div>
+                      </div>
+                      
+                      <div class="page-text visualization-text">{{ page.text|safe }}</div>
+
+                      {% else %}
 					  <div class="page-text">{{ page.text|safe }}</div>
 					  	{% if page.image %}
 							<img src="{{ MEDIA_URL }}{{ page.image }}">

@@ -1,7 +1,9 @@
 from django.utils.translation import ugettext as _
 from django.db import models
 from django.contrib.auth.models import User
+
 from masshealth.visualizations.models import Visualization
+from geonode.maps.models import Map
     		
 class Page(models.Model):
     """A Story page
@@ -9,7 +11,7 @@ class Page(models.Model):
     Pages always have text, whether you think of it as an
     abstract or a caption.
 
-    Pages may also have a weave visualization OR a an image.
+    Pages may also have a weave visualization, an image or a map.
     Any restriction against having both will probably be
     implemented in the admin form definition
     """
@@ -31,8 +33,8 @@ class Page(models.Model):
                               max_length=255,
                               blank=True,
                               default='')
-    visualization = models.ForeignKey(Visualization,
-                                      blank=True, null=True)
+    visualization = models.ForeignKey(Visualization, blank=True, null=True)
+    map = models.ForeignKey(Map, blank=True, null=True)
 
     def __unicode__(self):
         return self.title
