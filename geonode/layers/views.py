@@ -88,8 +88,12 @@ def _resolve_layer(request, typename, permission='layers.change_layer',
     '''
     Resolve the layer by the provided typename and check the optional permission.
     '''
-    return resolve_object(request, Layer, {'typename':typename, 'sites': get_current_site(request).id},
-                          permission = permission, permission_msg=msg, **kwargs)
+    return resolve_object(request, Layer, 
+        {
+            'typename':typename, 
+            'sites': get_current_site(request).id, 
+        }, 
+        permission = permission, permission_msg=msg, **kwargs)
 
 
 #### Basic Layer Views ####
