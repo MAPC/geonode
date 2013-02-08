@@ -38,6 +38,7 @@ from django.utils import simplejson as json
 from django.views.generic.list import ListView
 from django.db.models import Q
 from django.views.decorators.http import require_POST
+from django.contrib.sites.models import get_current_site
 
 from geonode.utils import _split_query, http_client
 from geonode.layers.models import Layer, TopicCategory
@@ -78,8 +79,12 @@ def _resolve_map(request, id, permission='maps.change_map',
     '''
     Resolve the Map by the provided typename and check the optional permission.
     '''
-    return resolve_object(request, Map, {'pk':id}, permission = permission,
-                          permission_msg=msg, **kwargs)
+    return resolve_object(request, Map, 
+        {
+            'pk':id, 
+            'sites': get_current_site(request).id, 
+        }, 
+        permission = permission, permission_msg=msg, **kwargs)
 
 
 def bbox_to_wkt(x0, x1, y0, y1, srid="4326"):
@@ -91,7 +96,7 @@ def bbox_to_wkt(x0, x1, y0, y1, srid="4326"):
 class MapListView(ListView):
 
     map_filter = "last_modified"
-    queryset = Map.objects.all()
+    queryset = Map.on_site.all()
 
     def __init__(self, *args, **kwargs):
         self.map_filter = kwargs.pop("map_filter", "last_modified")
@@ -105,7 +110,7 @@ class MapListView(ListView):
 
 def maps_category(request, slug, template='maps/map_list.html'):
     category = get_object_or_404(TopicCategory, slug=slug)
-    map_list = category.map_set.all()
+    map_list = Map.on_site.filter(category=category)
     return render_to_response(
         template,
         RequestContext(request, {
@@ -117,7 +122,7 @@ def maps_category(request, slug, template='maps/map_list.html'):
 
 
 def maps_tag(request, slug, template='maps/map_list.html'):
-    map_list = Map.objects.filter(keywords__slug__in=[slug])
+    map_list = Map.on_site.filter(keywords__slug__in=[slug])
     return render_to_response(
         template,
         RequestContext(request, {
@@ -286,6 +291,7 @@ def new_map_json(request):
                       center_x=0, center_y=0)
         map_obj.save()
         map_obj.set_default_permissions()
+        map_obj.sites.add(get_current_site(request).id)
         try:
             map_obj.update_from_viewer(request.raw_post_data)
         except ValueError, e:
