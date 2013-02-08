@@ -97,7 +97,7 @@ def _resolve_layer(request, typename, permission='layers.change_layer',
 class LayerListView(ListView):
 
     layer_filter = "date"
-    queryset = Layer.objects.all()
+    queryset = Layer.on_site.all()
 
     def __init__(self, *args, **kwargs):
         self.layer_filter = kwargs.pop("layer_filter", "date")
@@ -111,7 +111,8 @@ class LayerListView(ListView):
 
 def layer_category(request, slug, template='layers/layer_list.html'):
     category = get_object_or_404(TopicCategory, slug=slug)
-    layer_list = category.layer_set.all()
+    # layer_list = category.layer_set.all()
+    layer_list = Layer.on_site.filter(category=category)
     return render_to_response(
         template,
         RequestContext(request, {
@@ -123,7 +124,7 @@ def layer_category(request, slug, template='layers/layer_list.html'):
 
 
 def layer_tag(request, slug, template='layers/layer_list.html'):
-    layer_list = Layer.objects.filter(keywords__slug__in=[slug])
+    layer_list = Layer.on_site.filter(keywords__slug__in=[slug])
     return render_to_response(
         template,
         RequestContext(request, {
@@ -500,7 +501,7 @@ def layer_search(request):
     ]}
     """
     query_string = ''
-    found_entries = Layer.objects.all()
+    found_entries = Layer.on_site.all()
     result = {}
 
     if ('q' in request.GET) and request.GET['q'].strip():
@@ -508,7 +509,7 @@ def layer_search(request):
 
         entry_query = get_query(query_string, ['title', 'abstract',])
 
-        found_entries = Layer.objects.filter(entry_query)
+        found_entries = Layer.on_site.filter(entry_query)
 
     result['total'] = len(found_entries)
 
