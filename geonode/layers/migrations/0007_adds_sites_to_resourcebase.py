@@ -8,19 +8,19 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
         
-        # Adding M2M table for field site on 'Layer'
-        db.create_table('layers_layer_site', (
+        # Adding M2M table for field sites on 'Layer'
+        db.create_table('layers_layer_sites', (
             ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
             ('layer', models.ForeignKey(orm['layers.layer'], null=False)),
             ('site', models.ForeignKey(orm['sites.site'], null=False))
         ))
-        db.create_unique('layers_layer_site', ['layer_id', 'site_id'])
+        db.create_unique('layers_layer_sites', ['layer_id', 'site_id'])
 
 
     def backwards(self, orm):
         
         # Removing M2M table for field site on 'Layer'
-        db.delete_table('layers_layer_site')
+        db.delete_table('layers_layer_sites')
 
 
     models = {
@@ -129,7 +129,7 @@ class Migration(SchemaMigration):
             'popular_count': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
             'purpose': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             'share_count': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
-            'site': ('django.db.models.fields.related.ManyToManyField', [], {'default': '1', 'to': "orm['sites.Site']", 'symmetrical': 'False'}),
+            'sites': ('django.db.models.fields.related.ManyToManyField', [], {'default': '1', 'to': "orm['sites.Site']", 'symmetrical': 'False'}),
             'spatial_representation_type': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
             'srid': ('django.db.models.fields.CharField', [], {'default': "'EPSG:4326'", 'max_length': '255'}),
             'store': ('django.db.models.fields.CharField', [], {'max_length': '128'}),

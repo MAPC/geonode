@@ -9,12 +9,12 @@ class Migration(SchemaMigration):
     def forwards(self, orm):
         
         # Adding M2M table for field site on 'Document'
-        db.create_table('documents_document_site', (
+        db.create_table('documents_document_sites', (
             ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
             ('document', models.ForeignKey(orm['documents.document'], null=False)),
             ('site', models.ForeignKey(orm['sites.site'], null=False))
         ))
-        db.create_unique('documents_document_site', ['document_id', 'site_id'])
+        db.create_unique('documents_document_sites', ['document_id', 'site_id'])
 
 
     def backwards(self, orm):
@@ -118,7 +118,7 @@ class Migration(SchemaMigration):
             'object_id': ('django.db.models.fields.PositiveIntegerField', [], {'null': 'True', 'blank': 'True'}),
             'owner': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['auth.User']", 'null': 'True', 'blank': 'True'}),
             'purpose': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
-            'site': ('django.db.models.fields.related.ManyToManyField', [], {'default': '1', 'to': "orm['sites.Site']", 'symmetrical': 'False'}),
+            'sites': ('django.db.models.fields.related.ManyToManyField', [], {'default': '1', 'to': "orm['sites.Site']", 'symmetrical': 'False'}),
             'spatial_representation_type': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'blank': 'True'}),
             'srid': ('django.db.models.fields.CharField', [], {'default': "'EPSG:4326'", 'max_length': '255'}),
             'supplemental_information': ('django.db.models.fields.TextField', [], {'default': "u'No information provided'"}),

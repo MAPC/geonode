@@ -76,7 +76,7 @@ def documentdetail(request, docid):
     """
     The view that show details of each document
     """
-    document = get_object_or_404(Document, pk=docid, site__id__exact=get_current_site(request).id)
+    document = get_object_or_404(Document, pk=docid, sites__id__exact=get_current_site(request).id)
     if not request.user.has_perm('documents.view_document', obj=document):
         return HttpResponse(loader.render_to_string('401.html',
             RequestContext(request, {'error_message':
