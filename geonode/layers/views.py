@@ -43,6 +43,7 @@ from django.views.generic.list import ListView
 from django.template.defaultfilters import slugify
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
+from django.contrib.sites.models import get_current_site
 
 from geonode.utils import http_client, _split_query, _get_basic_auth_info
 from geonode.layers.forms import LayerForm, LayerUploadForm, NewLayerUploadForm, LayerAttributeForm
@@ -87,7 +88,7 @@ def _resolve_layer(request, typename, permission='layers.change_layer',
     '''
     Resolve the layer by the provided typename and check the optional permission.
     '''
-    return resolve_object(request, Layer, {'typename':typename},
+    return resolve_object(request, Layer, {'typename':typename, 'site': get_current_site(request).id},
                           permission = permission, permission_msg=msg, **kwargs)
 
 
