@@ -117,7 +117,7 @@ class ResourceBase(models.Model, PermissionLevelMixin):
     owner = models.ForeignKey(User, blank=True, null=True)
 
     # support for Sites framework
-    sites = models.ManyToManyField(Site, default=1)
+    sites = models.ManyToManyField(Site)
     objects = models.Manager()
     on_site = CurrentSiteManager()
 
