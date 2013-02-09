@@ -38,6 +38,8 @@ from django.contrib.contenttypes.models import ContentType
 from django.utils.translation import ugettext_lazy as _
 from django.utils.safestring import mark_safe
 from django.core.urlresolvers import reverse
+from django.contrib.sites.models import Site
+from django.contrib.sites.managers import CurrentSiteManager
 
 from geonode import GeoNodeException
 from geonode.utils import _wms, _user, _password, get_wms, bbox_to_wkt
@@ -113,6 +115,11 @@ class ResourceBase(models.Model, PermissionLevelMixin):
     # internal fields
     uuid = models.CharField(max_length=36)
     owner = models.ForeignKey(User, blank=True, null=True)
+
+    # support for Sites framework
+    sites = models.ManyToManyField(Site)
+    objects = models.Manager()
+    on_site = CurrentSiteManager()
 
     # section 1
     title = models.CharField(_('title'), max_length=255, help_text=_('name by which the cited resource is known'))

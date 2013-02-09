@@ -266,6 +266,7 @@ def gs_slurp(self, ignore_errors=True, verbosity=1, console=None, owner=None, wo
             })
 
             layer.save()
+            layer.sites.add(settings.SITE_ID)
         except Exception, e:
             if ignore_errors:
                 status = 'failed'
