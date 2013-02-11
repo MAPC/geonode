@@ -308,7 +308,7 @@ SOUTH_TESTS_MIGRATE=False
 
 # Settings for Social Apps
 AUTH_PROFILE_MODULE = 'people.Profile'
-REGISTRATION_OPEN = False
+REGISTRATION_OPEN = True
 
 #
 # Test Settings
