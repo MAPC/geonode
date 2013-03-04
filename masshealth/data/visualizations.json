@@ -1,0 +1,400 @@
+[
+    {
+        "pk": 16, 
+        "model": "visualizations.visualization", 
+        "fields": {
+            "name": "Table: Risk Factors", 
+            "template": "visualizations/XML/Table_RiskFactors_1.xml", 
+            "thumbnail": "visualizations/thumbnails/Table_RiskFactors_2.png"
+        }
+    }, 
+    {
+        "pk": 32, 
+        "model": "visualizations.visualization", 
+        "fields": {
+            "name": "Profile: Healthy Eating", 
+            "template": "visualizations/XML/Profile_Healthy_Eating_1.xml", 
+            "thumbnail": "visualizations/thumbnails/Profile_Healthy_Eating_1.png"
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "visualizations.visualization", 
+        "fields": {
+            "name": "2.1 Healthy Eating: Combining Clinical and Community-based efforts", 
+            "template": "visualizations/XML/DataStory_2_1_map_2.xml", 
+            "thumbnail": ""
+        }
+    }, 
+    {
+        "pk": 31, 
+        "model": "visualizations.visualization", 
+        "fields": {
+            "name": "Profile: Commuting to Work", 
+            "template": "visualizations/XML/profile_transp_means_2.xml", 
+            "thumbnail": "visualizations/thumbnails/profile_transp_means_1.png"
+        }
+    }, 
+    {
+        "pk": 13, 
+        "model": "visualizations.visualization", 
+        "fields": {
+            "name": "Profile: Heart Attack Hospitalizations by Gender", 
+            "template": "visualizations/XML/profile_HeartAttack_1.xml", 
+            "thumbnail": "visualizations/thumbnails/profile_HeartAttack.png"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "visualizations.visualization", 
+        "fields": {
+            "name": "1.2 Obesity and Access to a Public Recreation Program", 
+            "template": "visualizations/XML/DataStory_1_2_sp_3.xml", 
+            "thumbnail": ""
+        }
+    }, 
+    {
+        "pk": 30, 
+        "model": "visualizations.visualization", 
+        "fields": {
+            "name": "Profile: Groceries", 
+            "template": "visualizations/XML/profile_grocery_map_2.xml", 
+            "thumbnail": "visualizations/thumbnails/profile_grocery_map_1.png"
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "visualizations.visualization", 
+        "fields": {
+            "name": "1.4 hospitalization rates and obesity", 
+            "template": "visualizations/XML/DataStory_1_4_sp_3.xml", 
+            "thumbnail": ""
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "visualizations.visualization", 
+        "fields": {
+            "name": "1.3 Community Subtypes and public recreation programs", 
+            "template": "visualizations/XML/DataStory_1_3_map_5.xml", 
+            "thumbnail": ""
+        }
+    }, 
+    {
+        "pk": 11, 
+        "model": "visualizations.visualization", 
+        "fields": {
+            "name": "3.3 Smoke Free Living and SHI Bar Chart and map", 
+            "template": "visualizations/XML/DataStory_3_3_bc_map_2.xml", 
+            "thumbnail": ""
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "visualizations.visualization", 
+        "fields": {
+            "name": " 1.1 Obesity and Physical Activity", 
+            "template": "visualizations/XML/DataStory_1_1_map_2.xml", 
+            "thumbnail": ""
+        }
+    }, 
+    {
+        "pk": 7, 
+        "model": "visualizations.visualization", 
+        "fields": {
+            "name": "2.2 Grocery Stores vs. Convenience Stores with % Obesity (not including Boston)", 
+            "template": "visualizations/XML/DataStory_2_2_sp_2.xml", 
+            "thumbnail": ""
+        }
+    }, 
+    {
+        "pk": 8, 
+        "model": "visualizations.visualization", 
+        "fields": {
+            "name": "2.3 Community Health Center Patients", 
+            "template": "visualizations/XML/DataStory_2_3_bc_1.xml", 
+            "thumbnail": ""
+        }
+    }, 
+    {
+        "pk": 9, 
+        "model": "visualizations.visualization", 
+        "fields": {
+            "name": "3.1 Smoke Free Living", 
+            "template": "visualizations/XML/DataStory_3_1_map_1.xml", 
+            "thumbnail": ""
+        }
+    }, 
+    {
+        "pk": 29, 
+        "model": "visualizations.visualization", 
+        "fields": {
+            "name": "Profile: Smoking vs Exercise", 
+            "template": "visualizations/XML/profile_smoke_exrcs_sc_5.xml", 
+            "thumbnail": "visualizations/thumbnails/profile_smoke_exrcs_sc.png"
+        }
+    }, 
+    {
+        "pk": 10, 
+        "model": "visualizations.visualization", 
+        "fields": {
+            "name": "3.2 Smoking and Multi-Family Housing", 
+            "template": "visualizations/XML/DataStory_3_2_sp_2.xml", 
+            "thumbnail": ""
+        }
+    }, 
+    {
+        "pk": 33, 
+        "model": "visualizations.visualization", 
+        "fields": {
+            "name": "Profile: Educational Attainment", 
+            "template": "visualizations/XML/profile_educ_attain_1.xml", 
+            "thumbnail": "visualizations/thumbnails/profile_educ_attain.png"
+        }
+    }, 
+    {
+        "pk": 12, 
+        "model": "visualizations.visualization", 
+        "fields": {
+            "name": "3.4 Smoke Free Living and SHI", 
+            "template": "visualizations/XML/DataStory_3_4_sp_1.xml", 
+            "thumbnail": ""
+        }
+    }, 
+    {
+        "pk": 28, 
+        "model": "visualizations.visualization", 
+        "fields": {
+            "name": "Profile Linguistic map", 
+            "template": "visualizations/XML/profile_linguistic_map_5.xml", 
+            "thumbnail": "visualizations/thumbnails/profile_linguistic_map_1.png"
+        }
+    }, 
+    {
+        "pk": 15, 
+        "model": "visualizations.visualization", 
+        "fields": {
+            "name": "Profile: Coronary Heart Disease Hospitalizations, Total and Gender by Year", 
+            "template": "visualizations/XML/profile_CoronaryHeartDisease_3.xml", 
+            "thumbnail": "visualizations/thumbnails/profile_CoronaryHeartDisease_1.png"
+        }
+    }, 
+    {
+        "pk": 34, 
+        "model": "visualizations.visualization", 
+        "fields": {
+            "name": "Table: LCA", 
+            "template": "visualizations/XML/Table_LCA_1.xml", 
+            "thumbnail": "visualizations/thumbnails/Table_LCA_1.png"
+        }
+    }, 
+    {
+        "pk": 17, 
+        "model": "visualizations.visualization", 
+        "fields": {
+            "name": "Table: Environment", 
+            "template": "visualizations/XML/Table_Environment_3.xml", 
+            "thumbnail": "visualizations/thumbnails/Table_Environment_1.png"
+        }
+    }, 
+    {
+        "pk": 18, 
+        "model": "visualizations.visualization", 
+        "fields": {
+            "name": "Table: Social Indicators", 
+            "template": "visualizations/XML/Table_SocialIndicators_1.xml", 
+            "thumbnail": "visualizations/thumbnails/Table_SocialIndicators_1.png"
+        }
+    }, 
+    {
+        "pk": 14, 
+        "model": "visualizations.visualization", 
+        "fields": {
+            "name": "Table: Health Outcomes", 
+            "template": "visualizations/XML/Table_HealthOutcomes_1.xml", 
+            "thumbnail": "visualizations/thumbnails/Table_HealthOutcomes_1.png"
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "visualizations.slot", 
+        "fields": {
+            "visualization": 14, 
+            "name": "Table: Health Outcomes", 
+            "title": "Health Outcomes", 
+            "rank": 1, 
+            "slot_type": "table", 
+            "new_row": true, 
+            "shown_on": "profile", 
+            "vistitle": ""
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "visualizations.slot", 
+        "fields": {
+            "visualization": 13, 
+            "name": "Heart Attack Hospitalizations by Gender", 
+            "title": "", 
+            "rank": 2, 
+            "slot_type": "chart", 
+            "new_row": true, 
+            "shown_on": "profile", 
+            "vistitle": "Heart Attack Hospitalizations by Gender"
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "visualizations.slot", 
+        "fields": {
+            "visualization": 15, 
+            "name": "Coronary Heart Disease Hospitalizations, Total and Gender by Year", 
+            "title": "", 
+            "rank": 3, 
+            "slot_type": "chart", 
+            "new_row": false, 
+            "shown_on": "profile", 
+            "vistitle": "Coronary Heart Disease Hospitalizations"
+        }
+    }, 
+    {
+        "pk": 7, 
+        "model": "visualizations.slot", 
+        "fields": {
+            "visualization": 16, 
+            "name": "Table: Risk Factors", 
+            "title": "Risk Factors", 
+            "rank": 4, 
+            "slot_type": "table", 
+            "new_row": true, 
+            "shown_on": "profile", 
+            "vistitle": ""
+        }
+    }, 
+    {
+        "pk": 12, 
+        "model": "visualizations.slot", 
+        "fields": {
+            "visualization": 29, 
+            "name": "Smoking vs Exercise", 
+            "title": "", 
+            "rank": 5, 
+            "slot_type": "chart", 
+            "new_row": true, 
+            "shown_on": "profile", 
+            "vistitle": "% Smoking vs No Exercise"
+        }
+    }, 
+    {
+        "pk": 14, 
+        "model": "visualizations.slot", 
+        "fields": {
+            "visualization": 32, 
+            "name": "Healthy Eating", 
+            "title": "", 
+            "rank": 6, 
+            "slot_type": "chart", 
+            "new_row": false, 
+            "shown_on": "profile", 
+            "vistitle": "Healthy Eating"
+        }
+    }, 
+    {
+        "pk": 8, 
+        "model": "visualizations.slot", 
+        "fields": {
+            "visualization": 17, 
+            "name": "Table: Environment", 
+            "title": "Environment", 
+            "rank": 7, 
+            "slot_type": "table", 
+            "new_row": true, 
+            "shown_on": "profile", 
+            "vistitle": ""
+        }
+    }, 
+    {
+        "pk": 11, 
+        "model": "visualizations.slot", 
+        "fields": {
+            "visualization": 30, 
+            "name": "Grocery Stores per 100,000", 
+            "title": "", 
+            "rank": 8, 
+            "slot_type": "chart", 
+            "new_row": true, 
+            "shown_on": "profile", 
+            "vistitle": "Grocery Stores per 100,000"
+        }
+    }, 
+    {
+        "pk": 13, 
+        "model": "visualizations.slot", 
+        "fields": {
+            "visualization": 31, 
+            "name": "Commuting to Work", 
+            "title": "", 
+            "rank": 9, 
+            "slot_type": "chart", 
+            "new_row": false, 
+            "shown_on": "profile", 
+            "vistitle": "Commuting to Work"
+        }
+    }, 
+    {
+        "pk": 9, 
+        "model": "visualizations.slot", 
+        "fields": {
+            "visualization": 18, 
+            "name": "Table: Social Indicators", 
+            "title": "Social Indicators", 
+            "rank": 10, 
+            "slot_type": "table", 
+            "new_row": true, 
+            "shown_on": "profile", 
+            "vistitle": ""
+        }
+    }, 
+    {
+        "pk": 10, 
+        "model": "visualizations.slot", 
+        "fields": {
+            "visualization": 28, 
+            "name": "Linguistic Isolation", 
+            "title": "", 
+            "rank": 11, 
+            "slot_type": "chart", 
+            "new_row": true, 
+            "shown_on": "profile", 
+            "vistitle": "Linguistic Isolation"
+        }
+    }, 
+    {
+        "pk": 15, 
+        "model": "visualizations.slot", 
+        "fields": {
+            "visualization": 33, 
+            "name": "Profile: Educational Attainment", 
+            "title": "", 
+            "rank": 12, 
+            "slot_type": "chart", 
+            "new_row": false, 
+            "shown_on": "profile", 
+            "vistitle": "Educational Attainment"
+        }
+    }, 
+    {
+        "pk": 16, 
+        "model": "visualizations.slot", 
+        "fields": {
+            "visualization": 34, 
+            "name": "Table: LCA", 
+            "title": "", 
+            "rank": 13, 
+            "slot_type": "table", 
+            "new_row": true, 
+            "shown_on": "summary", 
+            "vistitle": "Key Outcome Indicators"
+        }
+    }
+]
