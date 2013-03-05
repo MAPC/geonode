@@ -63,7 +63,7 @@ from agon_ratings.models import OverallRating
 logger = logging.getLogger("geonode.layers.models")
 
 def get_default_category():
-    return TopicCategory.objects.get(slug='location')
+    return TopicCategory.objects.get(pk=1)
 
 class Style(models.Model):
     """Model for storing styles.
