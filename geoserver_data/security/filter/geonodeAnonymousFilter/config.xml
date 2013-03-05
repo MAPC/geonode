@@ -1,5 +1,0 @@
-<org.geonode.security.GeoNodeAnonymousAuthFilterConfig>
-  <id>2032ce8d:13c81f40037:-7fed</id>
-  <name>geonodeAnonymousFilter</name>
-  <className>org.geonode.security.GeoNodeAnonymousProcessingFilter</className>
-</org.geonode.security.GeoNodeAnonymousAuthFilterConfig>
