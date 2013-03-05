@@ -1,0 +1,900 @@
+[
+    {
+        "pk": 12, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Restaurants are a vital part of many communities&rsquo; economic bases and draw visitors from around the Metro Boston region. Local restaurants rather than chain establishments dominate the market in these municipalities. Partnering with local restaurants to offer healthier options in a healthy dining program will improve nutrition for residents and visitors. By September 29, 2014, Everett will increase the number of full service restaurants that offer and promote healthier dining options (including fresh fruits and vegetables, whole grains, lower sodium/no salt added meals, smaller portions) through an established healthy dining program. This strategy will improve residents&rsquo; access to healthy, affordable fresh fruits and vegetables, increasing the number of people who consume the recommended amount of produce each day.</p>", 
+            "title": "Healthy Dining Program", 
+            "geometry": "POINT (237178.2607335993961897 907778.6649566697888076)", 
+            "image": "programs/img/1226/Restaurant.jpg", 
+            "place": 25, 
+            "date": "2012-06-26T14:33:25.679", 
+            "order": 2, 
+            "icon": 5
+        }
+    }, 
+    {
+        "pk": 10, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Corner stores and other small neighborhood markets are important shopping destinations for many residents particularly for residents unable to travel to grocery stores and farmers markets. The goal of this initiative is to add healthier options to these smaller markets. The goal of this initiative by September 29, 2014,is to increase the number of convenience stores (as defined by Standard Industry Classification Codes) within Everett that will offer and promote healthier food and beverages (including fresh fruits and vegetables, whole grain products, lower sodium options, and low fat dairy) through an established healthy neighborhood market program. This strategy will improve residents&rsquo; access to healthy, affordable fresh fruits and vegetables, increasing the number of people who consume the recommended amount of produce each day.</p>", 
+            "title": "Healthy Corner Stores Initiative", 
+            "geometry": "POINT (237701.0327549620415084 906458.1331447102129459)", 
+            "image": "", 
+            "place": 25, 
+            "date": "2012-06-26T14:32:26.423", 
+            "order": 3, 
+            "icon": 5
+        }
+    }, 
+    {
+        "pk": 17, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>The goal of this initiative is to identify potential walking routes that would connect neighborhoods with the lower Mystic River and its tributaries to create new opportunities for the community to access and enjoy the Mystic River. Everett will work to establish walking routes to the Mystic River and biking routes to the coast. There is ongoing work with MAPC and Bike to the Seas on identifying and promoting Walk to the River and Bike to Sea routes. The Northern Strand Community Trail Cleanup took place on May 5, 2012.</p>", 
+            "title": "Walking Routes to the Mystic River", 
+            "geometry": "POINT (235286.3404033529805019 906121.7543557648314163)", 
+            "image": "programs/img/1226/Mystic_River_image_1.jpg", 
+            "place": 25, 
+            "date": "2012-06-26T14:35:46.591", 
+            "order": 4, 
+            "icon": 1
+        }
+    }, 
+    {
+        "pk": 13, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>The goal of this initiative is to improve nutritional quality of foods and beverages served or available in schools consistent with the Massachusetts School Nutrition Standards based on the Institute of Medicine&rsquo;s Nutrition Standards for Foods in Schools. By September 29, 2016, Everett will increase the number of school districts that have implemented nutritional guidelines that exceed the basic MDPH guidelines. This strategy will improve nutrition for the children enrolled in the Everett schools.</p>", 
+            "title": "School Nutrition", 
+            "geometry": "POINT (236747.5176109298190568 906396.7609915029024705)", 
+            "image": "", 
+            "place": 25, 
+            "date": "2012-06-26T14:33:53.267", 
+            "order": 5, 
+            "icon": 5
+        }
+    }, 
+    {
+        "pk": 14, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Safe routes to School programs promote healthy alternative ways for children to get to and from school. Implementation of a safe routes to school program provides more opportunities for children to walk and cycle more to improve their physical health. By September 29, 2014, Everett will increase the number of schools in Everett with an active safe routes to school program. Waltham currently has three active Safe Routes to School programs and looks to expand this to five more elementary schools.</p>", 
+            "title": "Increasing the Number of Schools with an Active Safe Routes to School Program", 
+            "geometry": "POINT (236008.9695720626332331 907125.0193090743850917)", 
+            "image": "", 
+            "place": 25, 
+            "date": "2012-06-26T14:34:17.548", 
+            "order": 6, 
+            "icon": 2
+        }
+    }, 
+    {
+        "pk": 11, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Farmers markets that are located in convenient areas and that feature culturally appropriate options can promote better nutrition for lower income and urban residents in these communities. The goal of this initiative is to reduce barriers to access and increase utilization of farmer&rsquo;s markets for low income residents. By September 29, 2014, Everett will increase the number of purchases by participants of SNAP and Massachusetts Farmers Market Coupons at farmer&rsquo;s markets. This strategy will improve residents&rsquo; access to healthy, affordable fresh fruits and vegetables, increasing the number of people who consume the recommended amount of produce each day. (<a href=\"http://www.flickr.com/photos/usdagov/7159268220/in/photostream/\" target=\"_blank\">Image credit</a>)</p>", 
+            "title": "Increasing SNAP Purchases at Farmers Markets", 
+            "geometry": "POINT (237182.1001942814618815 907053.7058521196013317)", 
+            "image": "programs/img/1226/farmers_market.jpg", 
+            "place": 25, 
+            "date": "2012-06-26T14:32:58.500", 
+            "order": 7, 
+            "icon": 4
+        }
+    }, 
+    {
+        "pk": 9, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Many residents currently access municipal buildings for services, recreation, and other uses. Changes to municipal vending procurement policies in these municipalities, which struggle with high rates of obesity and hypertension, will reduce exposure for all residents to unhealthy foods. By September 30, 2014, Everett will increase the number of vending machines in government buildings that will be stocked with 100% healthy beverage options (water, sparkling water, 100% fruit juice in small portions) and healthy, lower sodium food options. This strategy will improve residents&rsquo; access to healthy, affordable fresh fruits and vegetables, increasing the number of people who consume the recommended amount of produce each day.</p>", 
+            "title": "Healthy Vending Machines in Municipal Buildings", 
+            "geometry": "POINT (236090.1794383258675225 905069.7749619637615979)", 
+            "image": "", 
+            "place": 25, 
+            "date": "2012-06-26T14:32:03.903", 
+            "order": 8, 
+            "icon": 5
+        }
+    }, 
+    {
+        "pk": 15, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Everett's Mass in Motion program will meet with municipal leaders and Everett Public Schools Superintendent about expanding community recreational facilities to include neighborhood schools.</p>", 
+            "title": "Increase Joint Use Agreements that Gives Schools Access to City Buildings", 
+            "geometry": "POINT (236792.7866573138162494 905847.8844013669295236)", 
+            "image": "", 
+            "place": 25, 
+            "date": "2012-06-26T14:34:52.499", 
+            "order": 9, 
+            "icon": 1
+        }
+    }, 
+    {
+        "pk": 16, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Establishing community design standards or &ldquo;complete streets&rdquo; can make streets safe for all users, including pedestrians, bicyclists and users of public transit. The goal of this initiative, by September 29, 2014, is to develop &ldquo;Complete Streets&rdquo; guidelines. This strategy will improve the health of all with a particular benefit to carless residents who are disproportionately low income.</p>", 
+            "title": "Complete Streets Guidelines", 
+            "geometry": "POINT (237930.6873713521054015 907106.9831894367234781)", 
+            "image": "", 
+            "place": 25, 
+            "date": "2012-06-26T14:35:23.268", 
+            "order": 10, 
+            "icon": 3
+        }
+    }, 
+    {
+        "pk": 18, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Increasing healthy and safe physical environments through the implementation a youth community safety audit using the PhotoVoice technique, a process in which community members use pictures and/or video to capture elements of the environment and experience to share with others.</p>\r\n<p><a href=\"http://www.photovoice.org\" target=\"_blank\">PhotoVoice</a></p>", 
+            "title": "Community Empowerment for Healthy Environments", 
+            "geometry": "POINT (235479.5301970554282889 905643.9981373774353415)", 
+            "image": "programs/img/1228/099_sm_2.PNG", 
+            "place": 25, 
+            "date": "2012-06-26T14:36:21.236", 
+            "order": 11, 
+            "icon": 6
+        }
+    }, 
+    {
+        "pk": 8, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Increasing healthy and safe physical environments through the implementation a youth community safety audit using the PhotoVoice technique, a process in which community members use pictures and video to capture and share with others their experience of the urban environment.</p>\r\n<p><strong><a href=\"http://www.photovoice.org\" target=\"_blank\">PhotoVoice</a></strong></p>\r\n<p class=\"MsoNormal\">This summer, eleven Cambridge youth ages 15-23 took part in a Community Safety Photovoice project facilitated by the Cambridge Police Department, which highlighted aspects of the community that made the youth action researchers feel safe or unsafe. They presented their findings to City Official on September 10, 2012 in the Sullivan Chambers at Cambridge City Hall.&nbsp; The six themes that the youth presented were: city maintenance, residential maintenance, health, crime, homelessness, and positive prevention.</p>\r\n<p><object width=\"700\" height=\"525\" data=\"http://www.flickr.com/apps/slideshow/show.swf?v=109615\" type=\"application/x-shockwave-flash\"><param name=\"flashvars\" value=\"offsite=true&amp;lang=en-us&amp;page_show_url=%2Fphotos%2F34902263%40N06%2Fsets%2F72157631574290730%2Fshow%2F&amp;page_show_back_url=%2Fphotos%2F34902263%40N06%2Fsets%2F72157631574290730%2F&amp;set_id=72157631574290730&amp;jump_to=\" /><param name=\"allowFullScreen\" value=\"true\" /><param name=\"src\" value=\"http://www.flickr.com/apps/slideshow/show.swf?v=109615\" /><param name=\"allowfullscreen\" value=\"true\" /></object></p>\r\n<p class=\"MsoNormal\"><a href=\"https://www.facebook.com/CambridgePolice\" target=\"_blank\">Cambridge Police on Facebook</a></p>\r\n<p class=\"MsoNormal\"><a href=\"http://www.cambridgema.gov/cpd/newsandalerts/Archives/2012/09/photovoiceexhibit.aspx\" target=\"_blank\">Cambride News</a></p>", 
+            "title": "Community Empowerment for Healthy Environments", 
+            "geometry": "POINT (228919.6616477193019819 904750.1467609448591247)", 
+            "image": "programs/img/1228/099_sm.PNG", 
+            "place": 14, 
+            "date": "2012-06-26T14:21:12.772", 
+            "order": 100, 
+            "icon": 6
+        }
+    }, 
+    {
+        "pk": 35, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Restaurants are a vital part of many communities&rsquo; economic bases and draw visitors from around the Metro Boston region. Local restaurants rather than chain establishments dominate the market in these municipalities. Partnering with local restaurants to offer healthier options in a healthy dining program will improve nutrition for residents and visitors. The goal of this initiative by September 29, 2014, is to increase the number of full service restaurants in Medford that offer and promote healthier dining options (including fresh fruits and vegetables, whole grains, lower sodium/no salt added meals, smaller portions) through an established healthy dining program. This strategy will improve residents&rsquo; access to healthy, affordable fresh fruits and vegetables.</p>", 
+            "title": "Healthy Dining Program", 
+            "geometry": "POINT (233930.5909831224707887 906569.6509794835001230)", 
+            "image": "", 
+            "place": 51, 
+            "date": "2012-06-26T15:08:01.071", 
+            "order": 500, 
+            "icon": 5
+        }
+    }, 
+    {
+        "pk": 48, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Farmers markets that are located in convenient areas and that feature culturally appropriate options can promote better nutrition for lower income and urban residents in these communities. The goal of this initiative is to reduce barriers to access and increase utilization of farmer&rsquo;s markets for low income residents. By September 29, 2014, Melrose-Wakefield will increase the number of purchases by participants of SNAP and Massachusetts Farmers Market Coupons at farmer&rsquo;s markets. This strategy will improve residents&rsquo; access to healthy, affordable fresh fruits and vegetables, increasing the number of people who consume the recommended amount of produce each day.</p>\r\n<p><a href=\"http://www.wakefieldfarmersmarket.com/\" target=\"_blank\">Wakefield Farmers Market</a></p>\r\n<p><a href=\"http://www.wakefieldfarmersmarket.com/\" target=\"_blank\">(</a><a href=\"http://www.wakefieldfarmersmarket.com/\" target=\"_blank\">Image credit</a><a href=\"http://www.wakefieldfarmersmarket.com/\" target=\"_blank\">)</a></p>", 
+            "title": "Increasing SNAP Purchases at Farmers Markets", 
+            "geometry": "POINT (235702.1566147817939054 917088.6465821820311248)", 
+            "image": "programs/img/1226/farmers_market_4.jpg", 
+            "place": 87, 
+            "date": "2012-06-26T15:18:38.026", 
+            "order": 500, 
+            "icon": 4
+        }
+    }, 
+    {
+        "pk": 36, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>The goal of this initiative is to identify potential walking routes that would connect neighborhoods with the lower Mystic River and its tributaries to create new opportunities for the community to access and enjoy the Mystic River. Medford will work to establish walking routes to the Mystic River and biking routes to the coast.</p>", 
+            "title": "Walking Routes to the Mystic River", 
+            "geometry": "POINT (231368.2890353650727775 907613.5719917968381196)", 
+            "image": "programs/img/1226/Mystic_River_image_1_2.jpg", 
+            "place": 51, 
+            "date": "2012-06-26T15:08:40.523", 
+            "order": 500, 
+            "icon": 1
+        }
+    }, 
+    {
+        "pk": 43, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Restaurants are a vital part of many communities&rsquo; economic bases and draw visitors from around the Metro Boston region. Local restaurants rather than chain establishments dominate the market in these municipalities. Partnering with local restaurants to offer healthier options in a healthy dining program will improve nutrition for residents and visitors. The goal of this initiative, by September 29, 2014, is to increase the number of full service restaurants in Somerville that offer and promote healthier dining options (including fresh fruits and vegetables, whole grains, lower sodium/no salt added meals, smaller portions) through an established healthy dining program. This strategy will improve residents&rsquo; access to healthy, affordable fresh fruits and vegetables, increasing the number of people who consume the recommended amount of produce each day.</p>", 
+            "title": "Healthy Dining Program", 
+            "geometry": "POINT (231905.8190406413632445 905148.2460927122738212)", 
+            "image": "", 
+            "place": 79, 
+            "date": "2012-06-26T15:13:26.509", 
+            "order": 500, 
+            "icon": 5
+        }
+    }, 
+    {
+        "pk": 44, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Hubway is a bike sharing system that offers residents an accessible option and opportunity to engage in physical activity. The Hubway program will be expanded into Somerville at the end of the summer of 2012.</p>\r\n<p><a href=\"http://thehubway.com/\" target=\"_blank\">Hubway</a></p>", 
+            "title": "Hubway Expansion", 
+            "geometry": "POINT (234417.4585107282327954 903103.8788426356622949)", 
+            "image": "programs/img/1226/Biker_Photo_sm_1.PNG", 
+            "place": 79, 
+            "date": "2012-06-26T15:14:09.185", 
+            "order": 500, 
+            "icon": 3
+        }
+    }, 
+    {
+        "pk": 45, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>The goal of this initiative is to identify potential walking routes that would connect neighborhoods with the lower Mystic River and its tributaries to create new opportunities for the community to access and enjoy the Mystic River. The new walking routes provide additional opportunities for residents to engage in physical activity. Somerville will work to establish walking routes to the Mystic River and biking routes to the coast.</p>", 
+            "title": "Walking Routes to the Mystic River", 
+            "geometry": "POINT (234548.7153701690258458 905160.7509886506013572)", 
+            "image": "programs/img/1226/Mystic_River_image_1_3.jpg", 
+            "place": 79, 
+            "date": "2012-06-26T15:14:37.034", 
+            "order": 500, 
+            "icon": 1
+        }
+    }, 
+    {
+        "pk": 49, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>The goal of this initiative is to improve nutritional quality of foods and beverages served or available in schools consistent with the Massachusetts School Nutrition Standards based on the Institute of Medicine&rsquo;s Nutrition Standards for Foods in Schools. By September 29, 2016, Melrose-Wakefield will increase the number of school districts that have implemented nutritional guidelines that exceed the basic MDPH guidelines. This strategy will improve nutrition for the children enrolled in the Melrose and Wakefield school districts. The revised guidelines should have more stringent standards and/or expanded hours and settings covered by guidelines.</p>", 
+            "title": "School Nutrition", 
+            "geometry": "POINT (237364.1842835164861754 917631.4916393351741135)", 
+            "image": "", 
+            "place": 87, 
+            "date": "2012-06-26T15:19:08.816", 
+            "order": 500, 
+            "icon": 5
+        }
+    }, 
+    {
+        "pk": 50, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Safe routes to School programs promote healthy alternative ways for children to get to and from school. Implementation of a safe routes to school program provides more opportunities for children to walk and cycle more to improve their physical health. The goal of this initiative, by September 29, 2014, is to increase the number of schools in Melrose, and Wakefield with an active safe routes to school program. Melrose/Wakefield currently has seven active Safe Routes to School programs and looks to expand this to four more elementary schools.</p>", 
+            "title": "Increasing the Number of Schools with an Active Safe Routes to School Program", 
+            "geometry": "POINT (235600.5608520333480556 914866.6186296235537156)", 
+            "image": "", 
+            "place": 87, 
+            "date": "2012-06-26T15:19:34.842", 
+            "order": 500, 
+            "icon": 2
+        }
+    }, 
+    {
+        "pk": 46, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Somerville is increasing healthy and safe physical environments through the implementation a youth community safety audit using the photovoice technique, a process in which community members use pictures and/or video to capture elements of the environment and experience to share with others.</p>\r\n<p><a href=\"http://www.photovoice.org\" target=\"_blank\">PhotoVoice</a></p>", 
+            "title": "Community Empowerment for Healthy Environments", 
+            "geometry": "POINT (232862.8859935418004170 902983.7469817346427590)", 
+            "image": "programs/img/1228/099_sm_1.PNG", 
+            "place": 79, 
+            "date": "2012-06-26T15:15:14.464", 
+            "order": 500, 
+            "icon": 6
+        }
+    }, 
+    {
+        "pk": 34, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Farmers markets that are located in convenient areas and that feature culturally appropriate options can promote better nutrition for lower income and urban residents in these communities. The goal of this initiative is to reduce barriers to access and increase utilization of farmer&rsquo;s markets for low income residents. By September 29, 2014, Medford will increase the number of purchases by participants of SNAP and Massachusetts Farmers Market Coupons at farmer&rsquo;s markets. This strategy will improve residents&rsquo; access to healthy, affordable fresh fruits and vegetables, increasing the number of people who consume the recommended amount of produce each day.</p>\r\n<p><a href=\"http://www.medfordfarmersmarket.org/\" target=\"_blank\">Medford Farmers&rsquo; Market</a></p>\r\n<p>(<a href=\"http://www.flickr.com/photos/usdagov/7159268220/in/photostream/\" target=\"_blank\">Image credit</a>)</p>", 
+            "title": "Increasing SNAP Purchases at Farmers Markets", 
+            "geometry": "POINT (232170.8214812200458255 908222.4791521283332258)", 
+            "image": "programs/img/1226/farmers_market_1.jpg", 
+            "place": 51, 
+            "date": "2012-06-26T15:07:32.385", 
+            "order": 500, 
+            "icon": 4
+        }
+    }, 
+    {
+        "pk": 51, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Farmers markets that are located in convenient areas and that feature culturally appropriate options can promote better nutrition for lower income and urban residents in these communities. The goal of this initiative is to reduce barriers to access and increase utilization of farmer&rsquo;s markets for low income residents. The goal of this initiative, by September 29, 2014, is to increase the number of purchases by participants of SNAP and Massachusetts Farmers Market Coupons at farmer&rsquo;s markets within Waltham. This strategy will improve residents&rsquo; access to healthy, affordable fresh fruits and vegetables, increasing the number of people who consume the recommended amount of produce each day.</p>\r\n<p><a href=\"http://walthamfarmersmarket.org/\" target=\"_blank\">Waltham Farmers Market</a></p>\r\n<p><a href=\"http://walthamfarmersmarket.org/\" target=\"_blank\">(</a><a href=\"http://walthamfarmersmarket.org/\" target=\"_blank\">Image credit</a><a href=\"http://walthamfarmersmarket.org/\" target=\"_blank\">)</a></p>", 
+            "title": "Increasing SNAP Purchases at Farmers Markets", 
+            "geometry": "POINT (221220.0031323135772254 904298.5793745256960392)", 
+            "image": "programs/img/1226/farmers_market_5.jpg", 
+            "place": 89, 
+            "date": "2012-06-26T15:20:09.402", 
+            "order": 500, 
+            "icon": 4
+        }
+    }, 
+    {
+        "pk": 57, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>The Boston Public Health Commission, the country&rsquo;s oldest health department, is an independent public agency providing a wide range of health services and programs. Public service and access to quality health care are the cornerstones of our mission - to protect, preserve, and promote the health and well-being of all Boston residents, particularly those who are most vulnerable. Visit <a href=\"http://www.bphc.org\" target=\"_blank\">the BPH website</a> to learn more about the more than 40 programs they operate in Boston.</p>", 
+            "title": "Boston Public Health Commission", 
+            "geometry": "POINT (233758.8704316935036331 896190.5195531803183258)", 
+            "image": "programs/img/1226/Boston_Public_Health_Commission_Logo.PNG", 
+            "place": 9, 
+            "date": "2012-06-29T16:37:20.095", 
+            "order": 500, 
+            "icon": 6
+        }
+    }, 
+    {
+        "pk": 30, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>The goal of this initiative is to identify potential walking routes that would connect neighborhoods with the lower Mystic River and its tributaries to create new opportunities for the community to access and enjoy the Mystic River. The new walking routes provide additional opportunities for residents to engage in physical activity. Malden will work to establish walking routes to the Mystic River and biking routes to the coast. The photo is from a river walk event held in April 2012, view the complete <a href=\"http://www.flickr.com/photos/44747327@N04/sets/72157629838723103/with/6941501476/\" target=\"_blank\">set of photos from the event here</a>.</p>", 
+            "title": "Walking Routes to the Mystic River", 
+            "geometry": "POINT (235171.3549322013568599 907541.4740091208368540)", 
+            "image": "programs/img/1226/malden_walk.jpg", 
+            "place": 44, 
+            "date": "2012-06-26T15:04:21.962", 
+            "order": 500, 
+            "icon": 1
+        }
+    }, 
+    {
+        "pk": 53, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>The goal of this initiative is to improve nutritional quality of foods and beverages served or available in schools consistent with the Massachusetts School Nutrition Standards based on the Institute of Medicine&rsquo;s Nutrition Standards for Foods in Schools. By September 29, 2016, Waltham will increase the number of school districts that have implemented nutritional guidelines that exceed the basic MDPH guidelines. This strategy will improve nutrition for the children enrolled in the Waltham school districts. The revised guidelines should have more stringent standards and/or expanded hours and settings covered by guidelines.</p>", 
+            "title": "School Nutrition", 
+            "geometry": "POINT (219578.9456819102342706 904800.7899978341301903)", 
+            "image": "", 
+            "place": 89, 
+            "date": "2012-06-26T15:21:06.162", 
+            "order": 500, 
+            "icon": 5
+        }
+    }, 
+    {
+        "pk": 54, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Safe routes to School programs promote healthy alternative ways for children to get to and from school. Implementation of a safe routes to school program provides more opportunities for children to walk and cycle more to improve their physical health. The goal of this initiative, by September 29, 2014, is to increase the number of schools in Waltham with an active safe routes to school program. Waltham currently has three active Safe Routes to School programs and looks to expand this to five more elementary schools.</p>", 
+            "title": "Increasing the Number of Schools with an Active Safe Routes to School Program", 
+            "geometry": "POINT (222176.1924057608994190 905878.6778784343041480)", 
+            "image": "", 
+            "place": 89, 
+            "date": "2012-06-26T15:21:37.431", 
+            "order": 500, 
+            "icon": 1
+        }
+    }, 
+    {
+        "pk": 55, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Waltham will recruit at least 8 Food and Fitness Policy council members through one-on-one meetings, ensuring targeted recruitment efforts of low-income populations, youth and elders, and organizations serving low income populations, youth and elders. In the process, Waltham will build community understanding and support for the work of Food and Fitness Policy Council through various communications channels; one television feature and at least three print media stories earned.</p>", 
+            "title": "Food and Fitness Policy Council", 
+            "geometry": "POINT (221195.4731210302852560 903059.0742468147072941)", 
+            "image": "", 
+            "place": 89, 
+            "date": "2012-06-26T15:22:06.355", 
+            "order": 500, 
+            "icon": 6
+        }
+    }, 
+    {
+        "pk": 61, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>The Community Transformation Grant (CTG) is a five year $1.6 million grant awarded by the Centers for Disease Control and Prevention (CDC). It is designed to help communities tackle the root causes of chronic disease such as smoking, poor diet and lack of physical activity, with an additional focus on reducing health disparities among lower-income Americans, racial and ethnic minorities, and other underserved populations that often have higher rates of disease. As a Community Transformation Grantee, Middlesex County will demonstrate improvements in body mass index, nutrition, physical activity, tobacco control, and emotional well-being. The CTG funding expands the Mass in Motion program, Massachusetts&rsquo; state-wide obesity prevention initiative, to 12 communities within Middlesex County.</p>\r\n<p><a href=\"http://mapc.org/community-transformation\" target=\"_blank\">MAPC&rsquo;s Community Transformation Grant Website</a></p>", 
+            "title": "Community Transformation Grant", 
+            "geometry": "POINT (254762.6887805657752324 906648.6344876058865339)", 
+            "image": "", 
+            "place": 102, 
+            "date": "2012-07-09T10:35:26.642", 
+            "order": 500, 
+            "icon": 6
+        }
+    }, 
+    {
+        "pk": 31, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Many residents currently access municipal buildings for services, recreation, and other uses. Changes to municipal vending procurement policies in these municipalities, which struggle with high rates of obesity and hypertension, will reduce exposure for all residents to unhealthy foods. The goal of this initiative, by September 30, 2014, is to increase the number of vending machines in government buildings in Framingham, Hudson, and Marlborough that will be stocked with 100% healthy beverage options (water, sparkling water, 100% fruit juice in small portions) and healthy, lower sodium food options. This strategy will improve residents&rsquo; access to healthy, affordable fresh fruits and vegetables, increasing the number of people who consume the recommended amount of produce each day.</p>", 
+            "title": "Healthy Vending Machines in Municipal Buildings", 
+            "geometry": "POINT (196131.6195378658012487 899876.8944668124895543)", 
+            "image": "", 
+            "place": 47, 
+            "date": "2012-06-26T15:05:14.502", 
+            "order": 500, 
+            "icon": 5
+        }
+    }, 
+    {
+        "pk": 59, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>With three children in college and a 50-hour work week, Mike Deprino, 54, doesn&rsquo;t have extra time or money for a gym membership. &ldquo;I used to go for a 30 minute walk every morning before work. Last Fall, I tripped on a huge patch of broken up concrete, and that put a stop to my workouts real quick.&rdquo; Deprino, like many others in Gloucester, became well aware of Gloucester&rsquo;s many missing curbs, narrow and damaged sidewalks and broken patches of concrete and asphalt.&nbsp; While walking, biking and jogging are among some of the easiest ways to be active, taking a stroll along these streets just wasn&rsquo;t as safe and accessible as it needed to be.</p>\r\n<p>With town Mayor Kirk&rsquo;s enthusiastic support, Get Fit Gloucester! Mass in Motion Project Manager Stephen Winslow, the Community Development Department, MassHighway and DPW Engineers worked together to come up with solutions for these much-needed sidewalk improvements for major streets serving low and moderate income residents.&nbsp; These included new concrete sidewalks, widened sidewalks, curb repairs, re-paving, bicycle-friendly storm drain installations, and new ramps that met ADA regulations.</p>\r\n<p>One of the biggest improvements includes a new sidewalk that closes the gap between Downtown Gloucester and the Riverdale neighborhood. &ldquo;I&rsquo;m using that sidewalk Monday through Friday now. Getting outside in the morning before work helps me clear my head and feel ready for the day. Not to mention I&rsquo;m getting my workouts in again, without having to watch each and every step carefully so I don&rsquo;t trip or fall.&rdquo; Deprino isn&rsquo;t the only one making use of these new improvements! Many Gloucester residents have been enthusiastic about the number of sidewalk improvements and are able to walk, run, or ride about the beautiful town of Gloucester much more easily!</p>\r\n<p><em>(Personal details are illustrative.)</em></p>\r\n<p>&nbsp;</p>", 
+            "title": "Improving Gloucester's Sidewalks", 
+            "geometry": "POINT (266460.4441291124676354 930801.5165601039770991)", 
+            "image": "", 
+            "place": 29, 
+            "date": "2012-07-02T13:26:15.564", 
+            "order": 500, 
+            "icon": 1
+        }
+    }, 
+    {
+        "pk": 23, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Community leaders in Gloucester have long sought to connect the city&rsquo;s waterfront promenade with the waterfront along the downtown. The Community Development office, along with local residents, developed a new Harbor Economic Development Plan in 2010. This Plan identified the need for pedestrian connections along the waterfront and between the Harbor and Downtown to connect these three sectors and improve the economic viability of Gloucester&rsquo;s working waterfront. Get Fit Gloucester! (Gloucester&rsquo;s Mass in Motion program) Project Manager Stephen Winslow worked with other Community Development staff to plan out the next segment of the Harborwalk. staff plotted out practical segments of the harborwalk extension and developed cost-estimates. The Seaport Advisory Council granted the City of Gloucester $500,000 to design and construct the Harbor Walk extension. The City recently hired Cambridge 7 Associates to design and build the extension by the end of 2011.</p>\r\n<p>- Read more about the Harborwalk extension project (coming soon)</p>\r\n<p>(<a href=\"http://www.flickr.com/photos/0260mkg/6073059591/\" target=\"_blank\">Photo credit</a>)</p>", 
+            "title": "Harborwalk Expansion Part of Pedestrian Improvements", 
+            "geometry": "POINT (267919.9639593381434679 929149.6649953947635368)", 
+            "image": "programs/img/1226/gloucester_walk.jpg", 
+            "place": 29, 
+            "date": "2012-06-26T14:39:55.440", 
+            "order": 500, 
+            "icon": 3
+        }
+    }, 
+    {
+        "pk": 37, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>All fourth and fifth graders at Medford's Brooks Elementary School spent one month improving their fitness and having fun, by participating in the month-long Brooks Walking Challenge. The students received free pedometers, provided by Medford Health Matters and Safe Routes to Schools, to keep track of their steps for a month. They celebrated their achievement Friday morning, May 25th. The Brooks Walking Challenge is part of Walk/Ride Days, a program that celebrates and promotes the use of sustainable, active transportation in Medford and other communities. Syrah McGivern, Community Transformation Grant Coordinator for the Medford Board of Health, emceed the event. <a href=\"http://greenmedford.blogspot.com/2012/05/brooks-school-students-celebrate-month.html\" target=\"_blank\">Read more about the event at Green Medford</a></p>", 
+            "title": "Elementary School Students Take Walking Challenge", 
+            "geometry": "POINT (233364.6541484461631626 909691.7607382084243000)", 
+            "image": "", 
+            "place": 51, 
+            "date": "2012-06-26T15:09:49.244", 
+            "order": 500, 
+            "icon": 2
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Corner stores and other small neighborhood markets are important shopping destinations for many residents particularly for residents unable to travel to grocery stores and farmers markets. The goal of this initiative is to add healthier options to these smaller markets. The goal of this initiative ,by September 29, 2014, is to increase the number of convenience stores (as defined by Standard Industry Classification Codes) within Cambridge that will offer and promote healthier food and beverages (including fresh fruits and vegetables, whole grain products, lower sodium options, and low fat dairy) through an established healthy neighborhood market program. This strategy will improve residents&rsquo; access to healthy, affordable fresh fruits and vegetables, increasing the number of people who consume the recommended amount of produce each day.</p>", 
+            "title": "Healthy Corner Stores Initiative", 
+            "geometry": "POINT (230438.2183084193093237 903320.0100408390862867)", 
+            "image": "", 
+            "place": 14, 
+            "date": "2012-06-26T14:17:19.302", 
+            "order": 500, 
+            "icon": 5
+        }
+    }, 
+    {
+        "pk": 25, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Restaurants are a vital part of many communities&rsquo; economic bases and draw visitors from around the Metro Boston region. Local restaurants, rather than chain establishments, dominate the market in these municipalities. Partnering with local restaurants to offer healthier options in a healthy dining program will improve nutrition for residents and visitors. The goal of this initiative, by September 29, 2014, is to increase the number of full service restaurants in Framingham, Hudson, and Marlborough that offer and promote healthier dining options (including fresh fruits and vegetables, whole grains, lower sodium/no salt added meals, smaller portions) through an established healthy dining program. This strategy will improve residents&rsquo; access to healthy, affordable fresh fruits and vegetables, increasing the number of people who consume the recommended amount of produce each day.</p>", 
+            "title": "Healthy Dining Program", 
+            "geometry": "POINT (197077.5108836042054463 904994.4505478541832417)", 
+            "image": "", 
+            "place": 36, 
+            "date": "2012-06-26T15:01:32.448", 
+            "order": 500, 
+            "icon": 5
+        }
+    }, 
+    {
+        "pk": 42, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Farmers markets that are located in convenient areas and that feature culturally appropriate options can promote better nutrition for lower income and urban residents in these communities. The goal of this initiative is to reduce barriers to access and increase utilization of farmer&rsquo;s markets for low income residents. The aim of this initiative is for Somerville to increase the number of purchases by participants of SNAP and Massachusetts Farmers Market Coupons at farmer&rsquo;s markets Somerville by September 29, 2014. This strategy will improve residents&rsquo; access to healthy, affordable fresh fruits and vegetables, increasing the number of people who consume the recommended amount of produce each day.</p>\r\n<p><a href=\"http://www.farmfresh.org/food/farmersmarkets_details.php?market=142\" target=\"_blank\">Davis Square Farmers Market</a></p>\r\n<p><a href=\"http://unionsquaremain.org/food/farmers-market/\" target=\"_blank\">Union Square Farmers Market</a></p>\r\n<p>(<a href=\"http://www.flickr.com/photos/usdagov/6761643687/\" target=\"_blank\">Image credit</a>)</p>", 
+            "title": "Increasing SNAP Purchases at Farmers Markets", 
+            "geometry": "POINT (230842.2454380623530596 905960.1842632731422782)", 
+            "image": "programs/img/1226/somerville_winter_market.jpg", 
+            "place": 79, 
+            "date": "2012-06-26T15:12:57.240", 
+            "order": 500, 
+            "icon": 4
+        }
+    }, 
+    {
+        "pk": 58, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Jamie Valdez, 38, is a working mother of two living in Fitchburg. With two active and curious boys, Joseph and Trudy, Jamie is in constant need of fun, safe places the three of them can visit to be active and outdoors.</p>\r\n<p>But while Fitchburg has 39 different parks offering many activities for youth, these haven&rsquo;t always been viable options for the Valdez family. Most of them remain untouched due to what many consider an unsafe image (used needles and syringes, graffiti, burnt trash cans, and isolated park areas). Safety, however, wasn&rsquo;t the only issue keeping people like Jamie away. A lot of people don&rsquo;t even know these parks exist. &ldquo;The children living here are in desperate need of safe options for physical activity that are close to their neighborhoods,&rdquo; stated AynYeagle, the Fun n&rsquo; FITchburg Mass in Motion coordinator.</p>\r\n<p>Fun n&rsquo; FITchburg conducted an in-depth park assessment, and then ran a long-term media campaign, encouraging community members to learn about these parks and volunteer for an adopt-a-park program to keep the areas safe and clean. Jamie Valdez was one of the first to volunteer for the adopt-a-park program. &ldquo;I wanted to help out with the community, but selfishly, I also wanted a safe place for my kids to play,&rdquo; says Jamie. Since then, they&rsquo;ve been catching, tagging, and Simon says-ing on the weekends and several week days after school. &ldquo;Not only do I not have to worry about my kids being safe, but I also don&rsquo;t have to worry that they&rsquo;re spending all their free time in front of the TV and video games.&rdquo;</p>", 
+            "title": "Pumping up Park Safety in Fitchburg", 
+            "geometry": "POINT (174462.1220994150789920 926613.8264363687485456)", 
+            "image": "", 
+            "place": 517, 
+            "date": "2012-07-02T13:25:07.610", 
+            "order": 500, 
+            "icon": 1
+        }
+    }, 
+    {
+        "pk": 19, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Many residents currently access municipal buildings for services, recreation, and other uses. Changes to municipal vending procurement policies in these municipalities, which struggle with high rates of obesity and hypertension, will reduce exposure for all residents to unhealthy foods. The goal of this initiative, by September 30, 2014, is to increase the number of vending machines in government buildings in Framingham, Hudson, and Marlborough that will be stocked with 100% healthy beverage options (water, sparkling water, 100% fruit juice in small portions) and healthy, lower sodium food options. This strategy will improve residents&rsquo; access to healthy, affordable fresh fruits and vegetables, increasing the number of people who consume the recommended amount of produce each day.</p>", 
+            "title": "Healthy Vending Machines in Municipal Buildings", 
+            "geometry": "POINT (203629.3149578878364991 898019.9286065164487809)", 
+            "image": "", 
+            "place": 27, 
+            "date": "2012-06-26T14:37:08.556", 
+            "order": 500, 
+            "icon": 5
+        }
+    }, 
+    {
+        "pk": 27, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Restaurants are a vital part of many communities&rsquo; economic bases and draw visitors from around the Metro Boston region. Local restaurants rather than chain establishments dominate the market in these municipalities. Partnering with local restaurants to offer healthier options in a healthy dining program will improve nutrition for residents and visitors. The goal of this initiative, by September 29, 2014, is to increase the number of full service restaurants in Malden that offer and promote healthier dining options (including fresh fruits and vegetables, whole grains, lower sodium/no salt added meals, smaller portions) through an established healthy dining program. This strategy will improve residents&rsquo; access to healthy, affordable fresh fruits and vegetables, increasing the number of people who consume the recommended amount of produce each day. Health Dining Malden&rsquo;s goal is to help the consumer make healthier dining choices and reward restaurant for creating healthier options. Participating restaurants will display a &ldquo;Malden is Moving&rdquo; window decal.</p>", 
+            "title": "Healthy Dining Program", 
+            "geometry": "POINT (235196.2238558657118119 908217.2614214114146307)", 
+            "image": "", 
+            "place": 44, 
+            "date": "2012-06-26T15:02:46.019", 
+            "order": 500, 
+            "icon": 5
+        }
+    }, 
+    {
+        "pk": 32, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Restaurants are a vital part of many communities&rsquo; economic bases and draw visitors from around the Metro Boston region. Local restaurants, rather than chain establishments, dominate the market in these municipalities. Partnering with local restaurants to offer healthier options in a healthy dining program will improve nutrition for residents and visitors. The goal of this initiative, by September 29, 2014, is to increase the number of full service restaurants in Framingham, Hudson, and Marlborough that offer and promote healthier dining options (including fresh fruits and vegetables, whole grains, lower sodium/no salt added meals, smaller portions) through an established healthy dining program. This strategy will improve residents&rsquo; access to healthy, affordable fresh fruits and vegetables, increasing the number of people who consume the recommended amount of produce each day.</p>", 
+            "title": "Healthy Dining Program", 
+            "geometry": "POINT (192625.1516272796434350 901006.9610200109891593)", 
+            "image": "", 
+            "place": 47, 
+            "date": "2012-06-26T15:05:43.009", 
+            "order": 500, 
+            "icon": 5
+        }
+    }, 
+    {
+        "pk": 38, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Corner stores and other small neighborhood markets are important shopping destinations for many residents particularly for residents unable to travel to grocery stores and farmers markets. The goal of this initiative is to add healthier options to these smaller markets. By September 29, 2014, Melrose-Wakefield will increase the number of convenience stores (as defined by Standard Industry Classification Codes) that will offer and promote healthier food and beverages (including fresh fruits and vegetables, whole grain products, lower sodium options, and low fat dairy) through an established healthy neighborhood market program. This strategy will improve residents&rsquo; access to healthy, affordable fresh fruits and vegetables, increasing the number of people who consume the recommended amount of produce each day.</p>", 
+            "title": "Healthy Corner Stores Initiative", 
+            "geometry": "POINT (236750.4055801468202844 912675.1691879322752357)", 
+            "image": "", 
+            "place": 53, 
+            "date": "2012-06-26T15:10:16.875", 
+            "order": 500, 
+            "icon": 5
+        }
+    }, 
+    {
+        "pk": 47, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Corner stores and other small neighborhood markets are important shopping destinations for many residents particularly for residents unable to travel to grocery stores and farmers markets. The goal of this initiative is to add healthier options to these smaller markets. By September 29, 2014, Melrose-Wakefield will increase the number of convenience stores (as defined by Standard Industry Classification Codes) that will offer and promote healthier food and beverages (including fresh fruits and vegetables, whole grain products, lower sodium options, and low fat dairy) through an established healthy neighborhood market program. This strategy will improve residents&rsquo; access to healthy, affordable fresh fruits and vegetables, increasing the number of people who consume the recommended amount of produce each day.</p>", 
+            "title": "Healthy Corner Stores Initiative", 
+            "geometry": "POINT (234659.1934924927190877 916858.4815550108905882)", 
+            "image": "", 
+            "place": 87, 
+            "date": "2012-06-26T15:17:52.123", 
+            "order": 500, 
+            "icon": 5
+        }
+    }, 
+    {
+        "pk": 52, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Restaurants are a vital part of many communities&rsquo; economic bases and draw visitors from around the Metro Boston region. Local restaurants rather than chain establishments dominate the market in these municipalities. Partnering with local restaurants to offer healthier options in a healthy dining program will improve nutrition for residents and visitors. By September 29, 2014, Waltham aims to increase the number of full service restaurants that offer and promote healthier dining options (including fresh fruits and vegetables, whole grains, lower sodium/no salt added meals, smaller portions) through an established healthy dining program. This strategy will improve residents&rsquo; access to healthy, affordable fresh fruits and vegetables, increasing the number of people who consume the recommended amount of produce each day.</p>", 
+            "title": "Healthy Dining Program", 
+            "geometry": "POINT (220592.0400114755320828 906352.5596405155956745)", 
+            "image": "", 
+            "place": 89, 
+            "date": "2012-06-26T15:20:37.427", 
+            "order": 500, 
+            "icon": 5
+        }
+    }, 
+    {
+        "pk": 62, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Launched in 2009 by the Massachusetts Department of Public Health, Mass in Motion is a state-wide obesity prevention&nbsp; initiative that stresses the importance of healthy eating and physical activity. Key elements of this initiative are:</p>\r\n<ul>\r\n<li>Mass in Motion: A Call to&nbsp; Action &ndash; a Massachusetts obesity burden document.</li>\r\n<li>Regulatory changes promoting healthy eating and physical activity, including Body Mass Index (BMI) testing of public <br />school students in grades 1, 4, 7, and 10.</li>\r\n<li>An Executive Order (EO509) by Governor Patrick which requires state agencies which provide food as part of their client and patient services to follow specific nutrition standards when purchasing and serving foods and beverages.</li>\r\n<li>Grants to cities and towns to make wellness a priority &ndash; funding comes from five major health-funding foundations and other leading health organizations in Massachusetts.</li>\r\n<li>The&nbsp; Worksite Wellness Program, which creates environments that encourage healthy behaviors while reducing absenteeism and health insurance costs.</li>\r\n<li>The Mass in Motion website, which features simple, cost-effective ways for residents to eat better and be more acive.</li>\r\n<li>The MA Children at Play Initative and the 2000-Calorie Campaign, both funded by federal stimulus (ARRA) grants.</li>\r\n</ul>", 
+            "title": "Mass In Motion", 
+            "geometry": "POINT (260006.8232189689297229 901508.3996736876433715)", 
+            "image": "", 
+            "place": 102, 
+            "date": "2012-07-09T10:41:44.372", 
+            "order": 500, 
+            "icon": 6
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>The Cambridge Food and Fitness Policy Council was established in 2011 to make healthy foods and fitness opportunities available to more residents. The council, led by the Cambridge Public Health Department, represents a major step forward in creating a comprehensive approach for addressing obesity at the municipal level. It is also an opportunity for city and community partners to join together to achieve common goals&mdash;namely reducing diet-related chronic diseases and hunger.</p>\r\n<p><strong>Update</strong></p>\r\n<p>The Food and Fitness Policy Council was established and has held three meetings.&nbsp; The membership includes staff from city departments, schools, community-based organizations, and members of the community.</p>\r\n<p><a href=\"http://www.cambridgepublichealth.org/policy-practice/food-fitness-policy-council.php\" target=\"_blank\">Cambridge Food and Fitness Policy Council</a></p>", 
+            "title": "Establish a Food and Fitness Policy Council", 
+            "geometry": "POINT (232882.7197954166622367 902070.2799174059182405)", 
+            "image": "", 
+            "place": 14, 
+            "date": "2012-06-26T14:19:37.686", 
+            "order": 500, 
+            "icon": 1
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Farmers markets that are located in convenient areas and that feature culturally appropriate options can promote better nutrition for lower income and urban residents in these communities. The goal of this initiative is to reduce barriers to access and increase utilization of farmer&rsquo;s markets for low income residents. By September 29, 2014, Cambridge will increase the number of purchases by participants of SNAP and Massachusetts Farmers Market Coupons at farmer&rsquo;s markets. This strategy will improve residents&rsquo; access to healthy, affordable fresh fruits and vegetables, increasing the number of people who consume the recommended amount of produce each day. The Cambridge Community Center successfully launched the Cambridge Winter Farmers Market, which had a successful first season (January to April 2012).</p>\r\n<p><strong>Update</strong></p>\r\n<p>Of Cambridge&rsquo;s six farmers&rsquo; markets, two farmers&rsquo; markets that accept SNAP/WIC in the summer and one farmers&rsquo; market accepting in the winter.</p>\r\n<p>The First Winter Farmers&rsquo; Market in Cambridge opened at the Cambridge Community Center (CCC) in January 2012 with 22 vendors drawing between 400 and 800 visitors per week. This coming winter, CCC wants to build on the market&rsquo;s success by increasing outreach and advertising, including to low-income populations.&nbsp; An outreach campaign is planned for this fall. <a href=\"http://articles.boston.com/2012-01-11/food-dining/30610766_1_winter-markets-vegetables-squash\" target=\"_blank\">Article on boston.com</a>.</p>\r\n<p><a href=\"http://www.facebook.com/cambridgefarmersmarkets\" target=\"_blank\">Cambridge Farmers Markets</a></p>\r\n<p>(<a href=\"http://www.flickr.com/photos/usdagov/7159268220/in/photostream/\" target=\"_blank\">Image credit</a>)</p>", 
+            "title": "Increasing SNAP Purchases at Farmers Markets", 
+            "geometry": "POINT (231939.5711258517112583 902699.8522647675126791)", 
+            "image": "programs/img/1226/farmers_market_2.jpg", 
+            "place": 14, 
+            "date": "2012-06-26T14:18:03.512", 
+            "order": 500, 
+            "icon": 4
+        }
+    }, 
+    {
+        "pk": 40, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>The goal of this initiative is to improve nutritional quality of foods and beverages served or available in schools consistent with the Massachusetts School Nutrition Standards based on the Institute of Medicine&rsquo;s Nutrition Standards for Foods in Schools. By September 29, 2016, Melrose-Wakefield will increase the number of schools that have implemented nutritional guidelines that exceed the basic MDPH guidelines. This strategy will improve nutrition for the children enrolled in the Melrose and Wakefield school districts. The revised guidelines should have more stringent standards and/or expanded hours and settings covered by guidelines.</p>\r\n<p>As of September 2012, Melrose Public Schools have implemented the nutritional guidelines throughout the district!&nbsp; Thank you to Superintendent Taymore's office, Food Service Director&nbsp;Ken Dolce and his staff, including Dr. Heather Josephson, and the School Wellness Advisory Committee.</p>", 
+            "title": "School Nutrition", 
+            "geometry": "POINT (235204.1302034995460417 911330.7686502373544499)", 
+            "image": "programs/img/1243/babaghanoush-farmfoodcoop-liz.JPG", 
+            "place": 53, 
+            "date": "2012-06-26T15:11:17.151", 
+            "order": 500, 
+            "icon": 5
+        }
+    }, 
+    {
+        "pk": 41, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Safe Routes to School programs promote healthy alternative ways for children to get to and from school. Implementation of a safe routes to school program provides more opportunities for children to walk and cycle more to improve their physical health. The goal of this initiative, by September 29, 2014, is to increase the number of schools in Melrose, and Wakefield with an active safe routes to school program.</p>\r\n<p>As of March 2012, 3/5 public elementary schools in Melrose, 4/4 elementary schools in Wakefield were enrolled and considered SRTS partners.&nbsp; The middle schools and 2 Melrose elementaries were not yet enrolled.</p>\r\n<p>As of May 2012, the Melrose Veterans Memorial Middle School and 2 additional elementaries became partners!</p>\r\n<p>For more photos and information, visit <a href=\"http://www.MiMmelrosewakefield.com\" target=\"_blank\">www.MiMmelrosewakefield.com</a>.</p>", 
+            "title": "Increasing the Number of Schools with an Active Safe Routes to School Program", 
+            "geometry": "POINT (236275.0484430918586440 911772.3631157664349303)", 
+            "image": "programs/img/1243/HooverWalkOct3-2.jpg", 
+            "place": 53, 
+            "date": "2012-06-26T15:11:46.344", 
+            "order": 500, 
+            "icon": 1
+        }
+    }, 
+    {
+        "pk": 20, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Restaurants are a vital part of many communities&rsquo; economic bases and draw visitors from around the Metro Boston region. Local restaurants, rather than chain establishments, dominate the market in these municipalities. Partnering with local restaurants to offer healthier options in a healthy dining program will improve nutrition for residents and visitors. The goal of this initiative, by September 29, 2014, is to increase the number of full service restaurants in Framingham, Hudson, and Marlborough that offer and promote healthier dining options (including fresh fruits and vegetables, whole grains, lower sodium/no salt added meals, smaller portions) through an established healthy dining program. This strategy will improve residents&rsquo; access to healthy, affordable fresh fruits and vegetables, increasing the number of people who consume the recommended amount of produce each day.</p>", 
+            "title": "Healthy Dining Program", 
+            "geometry": "POINT (201989.3859822089434601 893845.7517760879127309)", 
+            "image": "", 
+            "place": 27, 
+            "date": "2012-06-26T14:37:32.744", 
+            "order": 500, 
+            "icon": 5
+        }
+    }, 
+    {
+        "pk": 39, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Farmers markets that are located in convenient areas and that feature culturally appropriate options can promote better nutrition for lower income and urban residents in these communities. The goal of this initiative is to reduce barriers to access and increase utilization of farmer&rsquo;s markets for low income residents.&nbsp; By September 29, 2014, Melrose-Wakefield will increase the number of purchases by participants of SNAP and Massachusetts Farmers Market Coupons at farmer&rsquo;s markets. This strategy will improve residents&rsquo; access to healthy, affordable fresh fruits and vegetables, increasing the number of people who consume the recommended amount of produce each day.</p>\r\n<p>Thanks to MiM, a &ldquo;market money&rdquo; system for both Melrose &amp; Wakefield Farmers Markets has been established--both markets can now process SNAP/EBT and credit/debit.</p>\r\n<p>Melrose (Sally Franks) Farmers Market is thriving at its new location at Cedar Park.&nbsp; Wakefield Farmers Market won 1st place in MA in the Americal Farmland Trust Favorite Farmers Market Contest in 2012!&nbsp; Both locations have been outfitted with bike racks as of September 2012.</p>", 
+            "title": "Increasing SNAP Purchases at Farmers Markets", 
+            "geometry": "POINT (236275.0484430918586440 911772.3631157664349303)", 
+            "image": "programs/img/1243/SFFMOct11.jpg", 
+            "place": 53, 
+            "date": "2012-06-26T15:10:46.318", 
+            "order": 500, 
+            "icon": 4
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>The goal of this initiative is to improve nutritional quality of foods and beverages served or available in schools consistent with the Massachusetts School Nutrition Standards based on the Institute of Medicine&rsquo;s Nutrition Standards for Foods in Schools. By September 29, 2016, Cambridge will increase the number of school districts that have implemented nutritional guidelines that exceed the basic Massachusetts Department of Public Health guidelines. This strategy will improve nutrition for the children enrolled in the Cambridge school districts. The revised guidelines should have more stringent standards and/or expanded hours and settings covered by guidelines. Cambridge has introduced more fresh fruits, vegetables, whole grains, and beans on public school menus and aligning menus to meet new state and federal regulations.</p>\r\n<p><a href=\"http://www3.cpsd.us/sustainability/food\" target=\"_blank\">Cambridge Public Schools Food Initiatives</a></p>", 
+            "title": "School Nutrition", 
+            "geometry": "POINT (231424.8860178021423053 902394.6637693672673777)", 
+            "image": "", 
+            "place": 14, 
+            "date": "2012-06-26T14:18:47.501", 
+            "order": 500, 
+            "icon": 5
+        }
+    }, 
+    {
+        "pk": 22, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>We live in a time when oversized portions are the norm and obesity rates are through the roof &ndash; but don&rsquo;t be fooled. Not everyone has enough to eat. In Massachusetts, almost 1 in 10 households have trouble accessing healthy foods. People who don&rsquo;t have easy access to healthy food are more likely to be overweight, and have a higher risk for diabetes and heart disease. With this in mind, the Franklin Mass in Motion team, Healthy Futures Franklin, dug in their heels, picked up their shovels, and decided to build a community garden. A community garden would provide Franklin with fresh and affordable healthy fruits and veggies; a way to get to know friends and neighbors; and a learning experience for families struggling with poor nutrition.</p>\r\n<p>View Mass in Motion Update about Community Garden Project (coming soon)</p>\r\n<p>(<a href=\"http://www.flickr.com/photos/usdagov/3996515352/in/photostream/\" target=\"_blank\">Image credit</a>)</p>", 
+            "title": "Community Garden Expands Access to Fresh Foods", 
+            "geometry": "POINT (207346.5900291052239481 870653.5433860851917416)", 
+            "image": "programs/img/1226/community_garden.jpg", 
+            "place": 28, 
+            "date": "2012-06-26T14:38:56.847", 
+            "order": 500, 
+            "icon": 5
+        }
+    }, 
+    {
+        "pk": 21, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Establishing community design standards or &ldquo;complete streets&rdquo; can make streets safe for all users, including pedestrians, bicyclists and users of public transit. The goal of this initiative, by September 29, 2014, is to develop &ldquo;Complete Streets&rdquo; guidelines. This strategy will improve the health of all residents, with a particular benefit to carless residents, who are disproportionately low income.</p>", 
+            "title": "Complete Streets Guidelines", 
+            "geometry": "POINT (207059.1200318954361137 891930.6233496663626283)", 
+            "image": "", 
+            "place": 27, 
+            "date": "2012-06-26T14:38:00.801", 
+            "order": 500, 
+            "icon": 3
+        }
+    }, 
+    {
+        "pk": 7, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Establishing community design standards or &ldquo;complete streets&rdquo; can make streets safe for all users, including pedestrians, bicyclists and users of public transit. The goal of this initiative, by September 29, 2014, is to develop &ldquo;Complete Streets&rdquo; guidelines. This strategy will improve the health of all residents in these municipalities (273,000), with a particular benefit to carless residents (30,400), who are disproportionately low income</p>\r\n<p class=\"MsoNormal\">Cambridge has been using Complete Streets practices for a number of years. Cambridge has a process in place that bike lanes or cycle tracks are installed whenever roads are resurfaced, provided there is sufficient space. One current project is the Western Avenue Redesign. <a href=\"http://www.cambridgema.gov/CDD/Projects/Transportation/westernavenue.aspx\" target=\"_blank\">See more information</a>.</p>", 
+            "title": "Complete Streets Guidelines", 
+            "geometry": "POINT (233352.1935856007039547 901466.6903335873503238)", 
+            "image": "", 
+            "place": 14, 
+            "date": "2012-06-26T14:20:40.151", 
+            "order": 500, 
+            "icon": 3
+        }
+    }, 
+    {
+        "pk": 24, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Many residents currently access municipal buildings for services, recreation, and other uses. Changes to municipal vending procurement policies in these municipalities, which struggle with high rates of obesity and hypertension, will reduce exposure for all residents to unhealthy foods. The goal of this initiative, by September 30, 2014, is to increase the number of vending machines in government buildings in Framingham, Hudson, and Marlborough that will be stocked with 100% healthy beverage options (water, sparkling water, 100% fruit juice in small portions) and healthy, lower sodium food options. This strategy will improve residents&rsquo; access to healthy, affordable fresh fruits and vegetables, increasing the number of people who consume the recommended amount of produce each day.</p>", 
+            "title": "Healthy Vending Machines in Municipal Buildings", 
+            "geometry": "POINT (194363.7065264866978396 904770.7934065015288070)", 
+            "image": "", 
+            "place": 36, 
+            "date": "2012-06-26T14:40:29.940", 
+            "order": 500, 
+            "icon": 5
+        }
+    }, 
+    {
+        "pk": 26, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Establishing community design standards or &ldquo;complete streets&rdquo; can make streets safe for all users, including pedestrians, bicyclists and users of public transit. The goal of this initiative, by September 29, 2014, is to develop &ldquo;Complete Streets&rdquo; guidelines. This strategy will improve the health of all residents, with a particular benefit to carless residents, who are disproportionately low income.</p>", 
+            "title": "Complete Streets Guidelines", 
+            "geometry": "POINT (194644.9889651492703706 902939.6567759769968688)", 
+            "image": "", 
+            "place": 36, 
+            "date": "2012-06-26T15:02:04.340", 
+            "order": 500, 
+            "icon": 3
+        }
+    }, 
+    {
+        "pk": 28, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Safe routes to School programs promote healthy alternative ways for children to get to and from school. Implementation of a safe routes to school program provides more opportunities for children to walk and cycle more to improve their physical health. The goal of this initiative, by September 29, 2014, is to increase the number of schools in Malden with an active safe routes to school program. Malden currently has four active Safe Routes to School programs and looks to expand this to one more elementary school.</p>", 
+            "title": "Increasing the Number of Schools with an Active Safe Routes to School Program", 
+            "geometry": "POINT (235556.6798586044460535 909570.2102922175545245)", 
+            "image": "", 
+            "place": 44, 
+            "date": "2012-06-26T15:03:12.884", 
+            "order": 500, 
+            "icon": 2
+        }
+    }, 
+    {
+        "pk": 29, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Malden will increase awareness of healthy zoning regulations that are legally sound, beneficial to the business community and limit the density of fast food and other outlets featuring high calorie, high sodium, and low nutrition food via zoning that regulates the number of fast food outlets in a given area.</p>", 
+            "title": "Increase Awareness of Healthy Zoning Regulations", 
+            "geometry": "POINT (239060.2721323017030954 909448.1041854204377159)", 
+            "image": "", 
+            "place": 44, 
+            "date": "2012-06-26T15:03:44.523", 
+            "order": 500, 
+            "icon": 5
+        }
+    }, 
+    {
+        "pk": 33, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Establishing community design standards or &ldquo;complete streets&rdquo; can make streets safe for all users, including pedestrians, bicyclists and users of public transit. The goal of this initiative, by September 29, 2014, is to develop &ldquo;Complete Streets&rdquo; guidelines. This strategy will improve the health of all residents, with a particular benefit to carless residents, who are disproportionately low income.</p>", 
+            "title": "Complete Streets Guidelines", 
+            "geometry": "POINT (195792.8105732505500782 900947.9916073724161834)", 
+            "image": "", 
+            "place": 47, 
+            "date": "2012-06-26T15:06:16.576", 
+            "order": 500, 
+            "icon": 1
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "programs.program", 
+        "fields": {
+            "description": "<p>Hubway, is a bike sharing system that offers residents an accessible option and opportunity to engage in physical activity .Cambridge has joined the Hubway bike share program and bike stations will be installed during summer 2012.</p>\r\n<p><strong>Update</strong></p>\r\n<p>The kickoff event for the Hubway expansion took place on August 8, 2012.&nbsp; There are currently 11 of the 24 stations installed.</p>\r\n<p><a href=\"http://thehubway.com/\" target=\"_blank\">Hubway</a></p>", 
+            "title": "Hubway Expansion", 
+            "geometry": "POINT (230985.3439436490298249 902674.4487749763065949)", 
+            "image": "programs/img/1226/Biker_Photo_sm.PNG", 
+            "place": 14, 
+            "date": "2012-06-26T14:20:08.138", 
+            "order": 500, 
+            "icon": 3
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "programs.icon", 
+        "fields": {
+            "image": "programs/icons/1227/active-living-icon.png", 
+            "name": "Active Living", 
+            "map_icon": "programs/map_icons/1228/active-living-mapicon-orange.png"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "programs.icon", 
+        "fields": {
+            "image": "programs/icons/1227/safe-routes-icon.png", 
+            "name": "Safe Routes to School", 
+            "map_icon": "programs/map_icons/1228/safe-routes-mapicon-orange.png"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "programs.icon", 
+        "fields": {
+            "image": "programs/icons/1227/alternative-trans-icon.png", 
+            "name": "Alternative Transportation", 
+            "map_icon": "programs/map_icons/1228/alternative-transporation-mapicon-orange.png"
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "programs.icon", 
+        "fields": {
+            "image": "programs/icons/1227/farmers-market-icon.png", 
+            "name": "Farmers' Markets", 
+            "map_icon": "programs/map_icons/1228/farm-market-mapicon-orange.png"
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "programs.icon", 
+        "fields": {
+            "image": "programs/icons/1227/healthy-food-icon.png", 
+            "name": "Healthy Food", 
+            "map_icon": "programs/map_icons/1228/healthy-foods-mapicon-orange.png"
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "programs.icon", 
+        "fields": {
+            "image": "programs/icons/1227/other-icon.png", 
+            "name": "Other", 
+            "map_icon": "programs/map_icons/1228/other-mapicon-orange.png"
+        }
+    }, 
+    {
+        "pk": 7, 
+        "model": "programs.icon", 
+        "fields": {
+            "image": "programs/icons/1227/smoke-free-icon.png", 
+            "name": "Smoke Free Living", 
+            "map_icon": "programs/map_icons/1228/smoke-free-mapicon-orange.png"
+        }
+    }, 
+    {
+        "pk": 8, 
+        "model": "programs.icon", 
+        "fields": {
+            "image": "programs/icons/1228/local-stories-1.png", 
+            "name": "Local Stories", 
+            "map_icon": "programs/map_icons/1228/local-stories-mapicon-orange.png"
+        }
+    }
+]

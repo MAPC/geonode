@@ -1,0 +1,41 @@
+[
+    {
+        "pk": 2, 
+        "model": "heroes.hero", 
+        "fields": {
+            "description": "<p>Restaurants are a vital part of many communities&rsquo; economic bases, and working with local restaurants to offer healthier options provides a tremendous opportunity to improve nutrition for residents and visitors. The communities of <a href=\"../../../../place/programs/everett/#healthy-dining-program\" target=\"_blank\">Everett</a>, <a href=\"../../../../place/programs/malden/#healthy-dining-program\" target=\"_blank\">Malden</a>, <a href=\"../../../../place/programs/medford/#healthy-dining-program\" target=\"_blank\">Medford</a>, <a href=\"../../../../place/programs/framingham/#healthy-dining-program\" target=\"_blank\">Framingham</a>, <a href=\"../../../../place/programs/marlborough/#healthy-dining-program\" target=\"_blank\">Marlborough</a>, <a href=\"../../../../place/programs/everett/#healthy-dining-program\" target=\"_blank\">Hudson</a>, <a href=\"../../../../place/programs/somerville/#healthy-dining-program\" target=\"_blank\">Somerville </a>and <a href=\"../../../../place/programs/waltham/#healthy-dining-program\" target=\"_blank\">Waltham </a>are implementing a healthy dining initiative to increase residents&rsquo; access to healthy, affordable food options. This initiative was launched in spring 2012 with the development of guidelines restaurants must meet to participate in the program. (<a href=\"http://www.flickr.com/photos/22280677@N07/2166312133/\" target=\"_blank\">Image Credit</a>)</p>", 
+            "title": "Communities Expand Healthy Restaurant Choices", 
+            "show_in": "homepage", 
+            "image": "heroes/img/1226/restaurant.jpg", 
+            "rank": 500, 
+            "active": true, 
+            "type": " Program Update"
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "heroes.hero", 
+        "fields": {
+            "description": "<p>Corner stores and other small neighborhood markets are important shopping destinations, particularly for residents unable to travel to grocery stores and farmers markets. Several communities, including <a href=\"../../../../place/programs/everett/#healthy-corner-stores-initiative\" target=\"_blank\">Everett</a>, have launched programs to add healthier food options to these smaller stores. Programs like these can improve residents&rsquo; access to healthy, affordable fresh fruits and vegetables, increasing the number of people who consume the recommended amount of produce each day. Read about <a href=\"../../../../place/programs/everett/\" target=\"_blank\">this and other health promotion programs in Everett</a>. (<a href=\"http://www.flickr.com/photos/jeffk42/3082439471/in/photostream/\" target=\"_blank\">Image Credit</a>)</p>", 
+            "title": "Everett Launches Healthy Corner Store Initiative", 
+            "show_in": "homepage", 
+            "image": "heroes/img/1226/produce.jpg", 
+            "rank": 500, 
+            "active": true, 
+            "type": " Program Update"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "heroes.hero", 
+        "fields": {
+            "description": "<p>Many residents of Massachusetts are struggling with obesity. Although it has many causes, one of the important steps for maintaining a healthy weight is getting adequate physical activity, which can be encouraged by public recreation facilities and programs. This data story explores data about obesity rates in Massachusetts, and other data that may be useful for leaders considering creating or expanding public recreation opportunities in their community. <a href=\"../../../../story/massachusetts/obesity-physical-activity/\" target=\"_blank\">View this data story</a>.</p>", 
+            "title": "The Connection Between Obesity and Physical Activity", 
+            "show_in": "homepage", 
+            "image": "heroes/img/1226/WeaveMap_1.png", 
+            "rank": 500, 
+            "active": true, 
+            "type": " Data Story"
+        }
+    }
+]

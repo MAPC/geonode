@@ -43,7 +43,6 @@ from django.views.generic.list import ListView
 from django.template.defaultfilters import slugify
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
-from django.contrib.sites.models import get_current_site
 
 from geonode.utils import http_client, _split_query, _get_basic_auth_info
 from geonode.layers.forms import LayerForm, LayerUploadForm, NewLayerUploadForm, LayerAttributeForm
@@ -88,49 +87,21 @@ def _resolve_layer(request, typename, permission='layers.change_layer',
     '''
     Resolve the layer by the provided typename and check the optional permission.
     '''
-
-    return resolve_object(request, Layer, 
-        {
-            'typename':typename, 
-            'sites': get_current_site(request).id, 
-        }, 
-        permission = permission, permission_msg=msg, **kwargs)
+    return resolve_object(request, Layer, {'typename':typename},
+                          permission = permission, permission_msg=msg, **kwargs)
 
 
 #### Basic Layer Views ####
 
-
-class LayerListView(ListView):
-
-    layer_filter = "date"
-    queryset = Layer.on_site.all()
-
-    def __init__(self, *args, **kwargs):
-        self.layer_filter = kwargs.pop("layer_filter", "date")
-        self.queryset = self.queryset.order_by("-{0}".format(self.layer_filter))
-        super(LayerListView, self).__init__(*args, **kwargs)
-
-    def get_context_data(self, **kwargs):
-        kwargs.update({"layer_filter": self.layer_filter})
-        return kwargs
-
-
-def layer_category(request, slug, template='layers/layer_list.html'):
-    category = get_object_or_404(TopicCategory, slug=slug)
-    # layer_list = category.layer_set.all()
-    layer_list = Layer.on_site.filter(category=category)
-    return render_to_response(
-        template,
-        RequestContext(request, {
-            "object_list": layer_list,
-            "layer_category": category
-            }
-        )
-    )
-
+def layer_list(request, template='layers/layer_list.html'):
+    from geonode.search.views import search_page
+    post = request.POST.copy()
+    post.update({'type': 'layer'})
+    request.POST = post
+    return search_page(request, template=template)
 
 def layer_tag(request, slug, template='layers/layer_list.html'):
-    layer_list = Layer.on_site.filter(keywords__slug__in=[slug])
+    layer_list = Layer.objects.filter(keywords__slug__in=[slug])
     return render_to_response(
         template,
         RequestContext(request, {
@@ -139,7 +110,6 @@ def layer_tag(request, slug, template='layers/layer_list.html'):
             }
         )
     )
-
 
 @login_required
 def layer_upload(request, template='layers/layer_upload.html'):
@@ -193,8 +163,8 @@ def layer_detail(request, layername, template='layers/layer_detail.html'):
 
     maplayer = GXPLayer(name = layer.typename, ows_url = settings.GEOSERVER_BASE_URL + "wms", layer_params=json.dumps( layer.attribute_config()))
 
-    layer.srid_url = "http://www.spatialreference.org/ref/" + layer.srid.replace(':','/').lower() + "/"	
-	
+    layer.srid_url = "http://www.spatialreference.org/ref/" + layer.srid.replace(':','/').lower() + "/"
+
     #layer.popular_count += 1
     #layer.save()
 
@@ -507,7 +477,7 @@ def layer_search(request):
     ]}
     """
     query_string = ''
-    found_entries = Layer.on_site.all()
+    found_entries = Layer.objects.all()
     result = {}
 
     if ('q' in request.GET) and request.GET['q'].strip():
@@ -515,7 +485,7 @@ def layer_search(request):
 
         entry_query = get_query(query_string, ['title', 'abstract',])
 
-        found_entries = Layer.on_site.filter(entry_query)
+        found_entries = Layer.objects.filter(entry_query)
 
     result['total'] = len(found_entries)
 
