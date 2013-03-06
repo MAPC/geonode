@@ -24,9 +24,13 @@ class ProgramAdmin(_model_admin):
             'fields': ('place', 'geometry')
         }),
     )
-    list_display = ['title', place_name, 'order']
+    list_display = ['title', place_name, 'order', 'last_modified', 'user',]
     list_editable = ['order']
     ordering = ['place', 'order']
+
+    def save_model(self, request, obj, form, change):
+        obj.user = request.user
+        obj.save()
     
 class Commonmedia:
     js = (

@@ -1,6 +1,7 @@
 from django.utils.translation import ugettext as _
 from django.contrib.gis.db import models
 from django.template.defaultfilters import slugify
+from django.contrib.auth.models import User
 
 class Program(models.Model):
     title = models.CharField(max_length=100)
@@ -20,6 +21,9 @@ class Program(models.Model):
     geometry = models.PointField(_('Location'), srid=26986, null=True, blank=True)
 
     order = models.IntegerField(default=500, blank=True, null=True)
+
+    user = models.ForeignKey(User, verbose_name=u'Last modified by')
+    last_modified = models.DateTimeField(auto_now=True, editable=True)
 
     objects = models.GeoManager()
 
