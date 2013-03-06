@@ -1,5 +1,6 @@
 from django.utils.translation import ugettext as _
 from django.contrib.gis.db import models
+from django.contrib.auth.models import User
 
 REGION_TYPE_CHOICES = (
     ('cities-and-towns', 'Cities and Towns'),
@@ -19,6 +20,9 @@ class Place(models.Model):
     program_desc = models.TextField(_('Program Description'),
                                     blank=True, default='', help_text=_(
         'Shown at the top of the Health Programs page'))
+
+    user = models.ForeignKey(User, verbose_name=u'Last modified by')
+    last_modified = models.DateTimeField(auto_now=True, editable=True)
 
     geometry = models.MultiPolygonField(srid=26986, blank=True, null=True)
 
