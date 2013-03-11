@@ -101,7 +101,7 @@ class Visualization(models.Model):
 
 class Slot(models.Model):
     name = models.CharField(_('Name'), max_length=100)
-    visualization = models.ForeignKey(Visualization)
+    visualization = models.ForeignKey(Visualization, blank=True, null=True)
     rank = models.IntegerField(_('Relative order'), default=500)
     new_row = models.BooleanField(_('Starts new row'), default=True,
                                   help_text=_(
@@ -119,6 +119,10 @@ class Slot(models.Model):
                              help_text=_(
         'Optional title for the individual visualization (slots) '
         'within a row.'))
+    description = models.TextField(blank=True, null=True)
+
+    # TODO: add just text type
+
     # The first two values below are width and height.
     # Use a string if you need a suffix.  Integers will be turned into
     # strings later.
@@ -127,7 +131,8 @@ class Slot(models.Model):
     slot_params_by_type = {
         'Table': (772, 200),
         'Chart': (386, 300),
-        'Map':   (386, 300)
+        'Map':   (386, 300),
+        'Text':  (772, 0)
         }
     SLOT_TYPE_CHOICES = tuple(
         [(n.lower(), n) for n in slot_params_by_type.keys()]

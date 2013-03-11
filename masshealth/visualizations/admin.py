@@ -14,6 +14,12 @@ class SlotAdmin(admin.ModelAdmin):
                     slot_type, shown_on]
     list_editable = ['rank', 'new_row']
 
+class Commonmedia:
+    js = (
+        '/static/libs/tinymce/jscripts/tiny_mce/tiny_mce.js',
+        '/static/js/textareas.js',
+    )
+
 admin.site.register(Visualization)
 
-admin.site.register(Slot, SlotAdmin)
+admin.site.register(Slot, SlotAdmin, Media = Commonmedia,)

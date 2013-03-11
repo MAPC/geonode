@@ -51,6 +51,10 @@ def profiles(request, place_slug):
         csrf_token_value = ''
 
     current_site = get_current_site(request)
+
+    # slot type definitions, incl. layout dimensions
+    slot_types = Slot.slot_params_by_type
+    slot_types = zip( [t for t in slot_types] , [w for w,h in slot_types.itervalues()] )
         
     return render_to_response(
         'places/profiles.html',
@@ -64,7 +68,8 @@ def profiles(request, place_slug):
         'profiles', 'XXX', 'XXX'),
              GDAL_AVAILABLE=GDAL_AVAILABLE,
              WEAVE_URL=settings.WEAVE_URL,
-             current_site=current_site,),
+             current_site=current_site,
+             slot_types = slot_types,),
         context_instance=RequestContext(request))
 
 def programs(request, place_slug):

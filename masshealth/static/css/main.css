@@ -637,6 +637,13 @@ margin-right: 8px;
 margin-right: 0px;
 }
 
+.visualization-wrapper .meta {
+    text-align: left;
+    font-size: 13px;
+    text-align: left;
+    padding: 6px;
+}
+
 .row-of-visualizations h2
 {
 margin-bottom: 4px;
