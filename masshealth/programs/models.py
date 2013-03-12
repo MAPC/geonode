@@ -2,6 +2,7 @@ from django.utils.translation import ugettext as _
 from django.contrib.gis.db import models
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
+from django.conf import settings
 
 class Program(models.Model):
     title = models.CharField(max_length=100)
@@ -9,7 +10,7 @@ class Program(models.Model):
                                     blank=True, default='')
     date = models.DateTimeField(_('Created'), auto_now_add=True)
     image = models.ImageField(_('Image'),
-                              upload_to='programs/img/%y%U',
+                              upload_to=settings.FILEBROWSER_DIRECTORY + 'programs/img/%y%U',
                               max_length=255,
                               blank=True,
                               default='',
@@ -49,12 +50,12 @@ class Program(models.Model):
 class Icon(models.Model):
     name = models.CharField(_('Name'), max_length=100)
     image = models.ImageField(_('Image'),
-                              upload_to='programs/icons/%y%U',
+                              upload_to=settings.FILEBROWSER_DIRECTORY + 'programs/icons/%y%U',
                               max_length=255,
                               blank=True,
                               default='')
     map_icon = models.ImageField(_('Map Icon'),
-                              upload_to='programs/map_icons/%y%U',
+                              upload_to=settings.FILEBROWSER_DIRECTORY + 'programs/map_icons/%y%U',
                               max_length=255)
 
     def __unicode__(self):

@@ -92,6 +92,10 @@ execfile(os.path.join(PROJECT_ROOT,'global_settings.py'))
 # Location of url mappings
 ROOT_URLCONF = 'masshealth.urls'
 
+# STATIC_URL = "/static_masshealth/"
+
+FILEBROWSER_DIRECTORY = 'masshealth_filebrowser/'
+
 # Load more settings from a file called local_settings.py if it exists
 try:
     from local_settings import *
