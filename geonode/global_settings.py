@@ -482,3 +482,17 @@ DB_DATASTORE_NAME = ''
 LEAFLET_CONFIG = {
     'TILES_URL': 'http://{s}.tile2.opencyclemap.org/transport/{z}/{x}/{y}.png'
 }
+
+# Setting FILEBROWSER_DIRECTORY to MEDIA_ROOT is incorrect, see
+# comment in .../site-packages/filebrowser/settings.py
+# It must be a path relative to MEDIA_ROOT.  It may NOT begin with a
+# slash, and, unless it is empty, as below, it must end with a slash.
+# Making it an absolute path, like MEDIA_ROOT, messes up the URLs
+# generated for the images (as though MEDIA_URL+FILEBROWSER_DIRECTORY
+# were used, though that's no the way it works.)
+# FILEBROWSER_DIRECTORY = MEDIA_ROOT  # bogus, see above
+FILEBROWSER_DIRECTORY = 'filebrowser/'
+
+FILEBROWSER_URL_TINYMCE = STATIC_URL + 'libs/tinymce/jscripts/tiny_mce/'
+FILEBROWSER_PATH_TINYMCE = os.path.join(STATIC_ROOT,
+                                        'libs/tinymce/jscripts/tiny_mce/')
