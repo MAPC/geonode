@@ -57,13 +57,13 @@
        var basemap = new L.MAPCTileLayer("basemap");
 
       // map
-      var boston = new L.LatLng(42.357778, -71.061667);
+      var mass = new L.LatLng(42.2935, -71.3562);
       var map = new L.Map("program_map", {
         minZoom: 6,
         maxZoom: 17,
         attributionControl: false
       })
-      .setView(boston, 9)
+      .setView(mass, 8)
       .addLayer(basemap);
 
       {% if programs %}
@@ -98,7 +98,8 @@
           onEachFeature: onEachFeature
         });
         programLayer.addTo(map);
-        map.fitBounds(programLayer.getBounds());
+        {# FIXME #}{% if place.id != 102 %}map.fitBounds(programLayer.getBounds());
+        {% endif %}
       });
 
       // draw canvas circles in map legend
