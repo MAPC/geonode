@@ -7,12 +7,13 @@
     <title>{% block title %}{{ SITE_NAME }}{% endblock %}</title>
     {% block head %}
       <link href="{{ STATIC_URL }}libs/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+      {% block css-src %}
+      <link href="{{ STATIC_URL }}geonode/css/base.css" rel="stylesheet" />
+      {% endblock %}
       <link href='{{ STATIC_URL }}geonode/font/lato_font.css' rel='stylesheet' type='text/css' />
       <link href="{{ STATIC_URL }}geonode/css/ext-compatibility.css" rel="stylesheet" />
       <link href="{{ STATIC_URL }}libs/datatables/css/datatables.css" rel="stylesheet" />
-      <link href="{{ STATIC_URL }}geonode/css/base.css" rel="stylesheet" />
       <link href="{{ STATIC_URL }}libs/select2/select2.css" rel="stylesheet"/>
-      <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
       <link rel="stylesheet" href="{{ STATIC_URL }}css/geonode.css">
       {% block extra_head %}{% endblock %}
     {% endblock %}
@@ -77,10 +78,6 @@
                             </li>
                           </ul>
                         </li>
-                        {% if REGISTRATION_OPEN %}
-                          <li class="navbar-text">{% trans "or" %}</li>
-                          <li><a href="{% url registration_register %}">{% trans "Register" %}</a></li>
-                        {% endif %}
                     {% endif %}
                   </ul>
                 </div>
@@ -163,9 +160,7 @@
           </div>
 
           <div class="geonode-credit">
-              {% trans "Powered by" %} <a href="http://geonode.org">{% trans "GeoNode" %}</a> <em>{% trans "version" %} {{ VERSION }}</em> |
-              <a href="{% url developer %}">{% trans "Developers" %}</a> |
-              <a href="{% url about %}">{% trans "About" %}</a>
+              {% trans "Powered by" %} <a href="http://geonode.org">{% trans "GeoNode" %}</a>
           </div>
 
 

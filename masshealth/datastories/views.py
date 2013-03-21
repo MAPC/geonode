@@ -10,7 +10,7 @@ from masshealth.places.models import Place
 from masshealth.places.views import InOtherPlace
 
 from geonode.utils import default_map_config
-from geonode.maps.views import _resolve_map
+from geonode.maps.views import _resolve_map, _PERMISSION_MSG_VIEW
 
 def story(request, place_slug, story_slug=None):
     page_type = "story"
@@ -64,7 +64,7 @@ def story(request, place_slug, story_slug=None):
         if page.map is None:
             config = default_map_config()[0]
         else:
-            map_obj = _resolve_map(request, page.map.id, 'geonode.maps.view_map')
+            map_obj = _resolve_map(request, page.map.id, 'maps.view_map', _PERMISSION_MSG_VIEW)
             config = map_obj.viewer_json()
 
     if story:

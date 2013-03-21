@@ -83,6 +83,14 @@ STATICFILES_DIRS += [
     os.path.join(PROJECT_ROOT, "static"),
 ]
 
+# List of finder classes that know how to find static files in
+# various locations.
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+)
+
 # Note that Django automatically includes the "templates" dir in all the
 # INSTALLED_APPS, se there is no need to add maps/templates or admin/templates
 TEMPLATE_DIRS += (
@@ -143,16 +151,17 @@ INSTALLED_APPS = (
     'avatar',
     'dialogos',
     'agon_ratings',
-    #'notification',
+    'notification',
     'announcements',
     'actstream',
     'relationships',
     'user_messages',
 
     # GeoNode internal apps
-    'geonode.maps',
-    'geonode.layers',
     'geonode.people',
+    'geonode.layers',
+    'geonode.upload',
+    'geonode.maps',
     'geonode.proxy',
     'geonode.security',
     'geonode.search',
@@ -233,7 +242,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.static",
     'django.core.context_processors.request',
     'django.contrib.messages.context_processors.messages',
-    'announcements.context_processors.site_wide_announcements',
     'account.context_processors.account',
     # The context processor below adds things like SITEURL
     # and GEOSERVER_BASE_URL to all pages that use a RequestContext
@@ -308,7 +316,7 @@ SOUTH_TESTS_MIGRATE=False
 
 # Settings for Social Apps
 AUTH_PROFILE_MODULE = 'people.Profile'
-REGISTRATION_OPEN = False
+REGISTRATION_OPEN = True
 
 #
 # Test Settings
@@ -474,3 +482,17 @@ DB_DATASTORE_NAME = ''
 LEAFLET_CONFIG = {
     'TILES_URL': 'http://{s}.tile2.opencyclemap.org/transport/{z}/{x}/{y}.png'
 }
+
+# Setting FILEBROWSER_DIRECTORY to MEDIA_ROOT is incorrect, see
+# comment in .../site-packages/filebrowser/settings.py
+# It must be a path relative to MEDIA_ROOT.  It may NOT begin with a
+# slash, and, unless it is empty, as below, it must end with a slash.
+# Making it an absolute path, like MEDIA_ROOT, messes up the URLs
+# generated for the images (as though MEDIA_URL+FILEBROWSER_DIRECTORY
+# were used, though that's no the way it works.)
+# FILEBROWSER_DIRECTORY = MEDIA_ROOT  # bogus, see above
+FILEBROWSER_DIRECTORY = 'filebrowser/'
+
+FILEBROWSER_URL_TINYMCE = STATIC_URL + 'libs/tinymce/jscripts/tiny_mce/'
+FILEBROWSER_PATH_TINYMCE = os.path.join(STATIC_ROOT,
+                                        'libs/tinymce/jscripts/tiny_mce/')

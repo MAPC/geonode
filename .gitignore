@@ -49,3 +49,4 @@ local_settings.py
 */data/*
 geoserver_data/*
 masshealth/visualizations/templates/visualizations/XML/*.xml
+notes.md

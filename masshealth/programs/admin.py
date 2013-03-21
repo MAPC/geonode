@@ -1,4 +1,6 @@
 from django.contrib.gis import admin
+from django.conf import settings
+
 from models import Program, Icon
 
 try:
@@ -10,6 +12,7 @@ except AttributeError:
 admin.GeoModelAdmin.default_lon = -7912100
 admin.GeoModelAdmin.default_lat = 5210000
 admin.GeoModelAdmin.default_zoom = 9
+admin.GeoModelAdmin.openlayers_url = "%s/libs/openlayers/OpenLayers.js" % (settings.STATIC_URL)
 
 def place_name(obj):
     return obj.place.name
@@ -24,9 +27,13 @@ class ProgramAdmin(_model_admin):
             'fields': ('place', 'geometry')
         }),
     )
-    list_display = ['title', place_name, 'order']
+    list_display = ['title', place_name, 'order', 'last_modified', 'user',]
     list_editable = ['order']
     ordering = ['place', 'order']
+
+    def save_model(self, request, obj, form, change):
+        obj.user = request.user
+        obj.save()
     
 class Commonmedia:
     js = (

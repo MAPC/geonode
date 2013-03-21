@@ -13,7 +13,6 @@ from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db.models import Q
 from django.views.generic.list import ListView
-from django.contrib.sites.models import get_current_site
 
 from geonode.maps.views import _perms_info
 from geonode.security.models import AUTHENTICATED_USERS, ANONYMOUS_USERS
@@ -34,35 +33,15 @@ DOCUMENT_LEV_NAMES = {
     Document.LEVEL_ADMIN : _('Administrative')
 }
 
-class DocumentListView(ListView):
-
-    document_filter = "date"
-    queryset = Document.on_site.all()
-
-    def __init__(self, *args, **kwargs):
-        self.layer_filter = kwargs.pop("document_filter", "date")
-        self.queryset = self.queryset.order_by("-{0}".format(self.document_filter))
-        super(DocumentListView, self).__init__(*args, **kwargs)
-
-    def get_context_data(self, **kwargs):
-        kwargs.update({"document_filter": self.document_filter})
-        return kwargs
-
-def document_category(request, slug, template='documents/document_list.html'):
-    category = get_object_or_404(TopicCategory, slug=slug)
-    document_list = Document.on_site.filter(category=category)
-    return render_to_response(
-        template,
-        RequestContext(request, {
-            "object_list": document_list,
-            "document_category": category
-            }
-        )
-    )
-
+def document_list(request, template='documents/document_list.html'):
+    from geonode.search.views import search_page
+    post = request.POST.copy()
+    post.update({'type': 'document'})
+    request.POST = post
+    return search_page(request, template=template)
 
 def document_tag(request, slug, template='documents/document_list.html'):
-    document_list = Document.on_site.filter(keywords__slug__in=[slug])
+    document_list = Document.objects.filter(keywords__slug__in=[slug])
     return render_to_response(
         template,
         RequestContext(request, {
@@ -72,11 +51,11 @@ def document_tag(request, slug, template='documents/document_list.html'):
         )
     )
 
-def documentdetail(request, docid):
+def document_detail(request, docid):
     """
     The view that show details of each document
     """
-    document = get_object_or_404(Document, pk=docid, sites__id__exact=get_current_site(request).id)
+    document = get_object_or_404(Document, pk=docid)
     if not request.user.has_perm('documents.view_document', obj=document):
         return HttpResponse(loader.render_to_string('401.html',
             RequestContext(request, {'error_message':

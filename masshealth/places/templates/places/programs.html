@@ -1,7 +1,7 @@
 {% extends 'masshealth/base.html' %}
 {% load markup %}
 
-<title>{% block title %}{{ place.name }} Health Propmotion Programs{% endblock %}</title>
+{% block title %}{{ place.name }} Health Promotion Programs{% endblock %}
 
 {% block head_javascript %}
 {{ block.super }}
@@ -15,7 +15,21 @@
 
 <div class="span10">
 <h2>Health Promotion Programs</h2>
-{% if place.program_set.all %}<div id="program_map_container"><div id="program_map"></div></div>{% endif %}
+<div class="row-fluid">
+  <div id="program_map_container" class="span8"><div id="program_map"></div></div>
+  <div id="program_map_legend" class="span2">
+    {% if programs %}
+    <ul>
+    {% for icon in icons %}
+      <!-- li style="background-image: url('{{ icon.map_icon.url }}')">{{ icon.name }}</li -->
+      <li><canvas id="icon{{ icon.id }}" width="20" height="20"></canvas>{{ icon.name }}</li>
+    {% endfor %}
+    </ul>
+    {% else %}
+    No programs found.
+    {% endif %}
+  </div>
+</div>
 <div class="place_program_desc">{{place.program_desc|safe}}</div>
 
 {% for program in place.program_set.all %}
@@ -32,69 +46,93 @@
 
 {% block javascript %}
   {{ block.super }}
-  {% if place.program_set.all %}
   {% include "masshealth/_map_inc.html" %}
   <script type="text/javascript">
-
-    // background layers
-    var basemap = new L.MAPCTileLayer("basemap");
-    
-    // map
-    var boston = new L.LatLng(42.357778, -71.061667);
-    var map = new L.Map("program_map",{
-        minZoom: 6,
-        maxZoom: 17,
-        attributionControl: false
-    })
-    .setView(boston, 9)
-    .addLayer(basemap);
 
     var $ = jQuery;
 
     $(document).ready(function() {
 
+      // background layers
+       var basemap = new L.MAPCTileLayer("basemap");
 
-        $.getJSON(
-            "/program/geojson/{{ place.slug }}",  
-            function(data) {
-              function pointToLayer(feature, latlng){    
-                  var programIcon = L.icon({ 
-                      iconUrl: feature.properties.map_icon,
-                      iconSize: [32, 37],
-                      iconAnchor: [16, 37],
-                      popupAnchor: [2, -32],
-                      shadowUrl: null
-                  });
-                  marker = L.marker(latlng, {icon:programIcon});
-                  return marker; 
-              } 
+      // map
+      var mass = new L.LatLng(42.2935, -71.3562);
+      var map = new L.Map("program_map", {
+        minZoom: 6,
+        maxZoom: 17,
+        attributionControl: false
+      })
+      .setView(mass, 8)
+      .addLayer(basemap);
 
-              function onEachFeature(feature, layer) {
-                  var popupContent = "<h4>" + feature.properties["title"] + "</h4>";
-                  if (feature.properties["image_url"]) popupContent += "<p><img src=" + feature.properties["image_url"] + " class=\"map-thumb\" alt=\"" + feature.properties["title"] + "\"></p>";
-                  if (feature.properties["description"] !== "") popupContent += "<p>" + feature.properties["description"] + "<a href=\"" + feature.properties["absolute_url"] + "\"><br>read more</a></p>";
-                  layer.bindPopup(popupContent);
-              } 
+      {% if programs %}
+      // get programs
+      $.getJSON("/program/geojson/{{ place.slug }}", function(data) {
 
-              // render GeoJSON layer
-              var programLayer = L.geoJson(data, {
-                  pointToLayer: pointToLayer,
-                  onEachFeature: onEachFeature,
-                  style: {
-                      "weight": 1,
-                      "opacity": 0.9,
-                      "color": "#F35A20",
-                      "fillOpacity": 0.4
-                  }
-              });
-              programLayer.addTo(map);
+        // point style
+        var circleStyle = {
+          radius: 8,
+          fillColor: "#f35a20",
+          color: "#fff",
+          weight: 1,
+          opacity: 0.6,
+          fillOpacity: 0.8
+        };
 
-              map.fitBounds(programLayer.getBounds());
+        function pointToLayer(feature, latlng) {
+          circleStyle.fillColor = feature.properties.point_color;
+          return L.circleMarker(latlng, circleStyle)
+        }
 
+        // bind popup
+        function onEachFeature(feature, layer) {
+          var popupContent = "<h4>" + feature.properties["title"] + "</h4>";
+          if (feature.properties["image_url"]) popupContent += "<p><img src=" + feature.properties["image_url"] + " class=\"map-thumb\" alt=\"" + feature.properties["title"] + "\"></p>";
+          if (feature.properties["description"] !== "") popupContent += "<p>" + feature.properties["description"] + "<a href=\"" + feature.properties["absolute_url"] + "\"><br>read more</a></p>";
+          layer.bindPopup(popupContent);
+        }
+        // render GeoJSON layer
+        var programLayer = L.geoJson(data, {
+          pointToLayer: pointToLayer,
+          onEachFeature: onEachFeature
         });
+        programLayer.addTo(map);
+        {# FIXME #}{% if place.id != 102 %}map.fitBounds(programLayer.getBounds());
+        {% endif %}
+      });
+
+      // draw canvas circles in map legend
+      var legendCircles = {};
+      {% for icon in icons %}legendCircles.icon{{ icon.id }} = "{{ icon.map_point_color }}";
+      {% endfor %}
+      for (var circleId in legendCircles) {
+        // console.log( legendCircles[circleId] );
+        var canvas = document.getElementById(circleId);
+        var context = canvas.getContext("2d");
+        var centerX = canvas.width / 2;
+        var centerY = canvas.height / 2;
+        var radius = 8;
+        context.beginPath();
+        context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+        context.fillStyle = legendCircles[circleId];
+        context.fill();
+      }
+
+      {% else %}
+      // add place overlay
+      var place = new L.GeoJSON({{ place.geometry.geojson|safe }}, {
+          style: {
+              "weight": 0,
+              "opacity": 0,
+              "fillOpacity": 0
+          }
+      });
+      map.addLayer(place);
+      map.fitBounds(place.getBounds());
+      {% endif %}
 
     });
 
   </script>
-  {% endif %}
 {% endblock %}

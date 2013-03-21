@@ -86,7 +86,7 @@ GeoNode.Composer = Ext.extend(GeoExplorer.Composer, {
      *  Construct the composer.
      */
     constructor: function(config) {
-        this.titleTemplate = new Ext.Template("<a class='maplist' href='" + this.rest + "'>Maps</a> / <strong>{title}");
+        this.titleTemplate = new Ext.Template("<a class='maplist' href='" + config.rest + "'>Maps</a> / <strong>{title}");
         // global request proxy and error handling
         OpenLayers.Request.events.on({
             "failure": function(evt) {
@@ -174,6 +174,7 @@ GeoNode.Composer = Ext.extend(GeoExplorer.Composer, {
             if (config.tools[i].ptype === "gxp_addlayers") {
                 config.tools[i].search = true;
                 config.tools[i].catalogSourceKey = catalogSourceKey;
+                config.tools[i].feeds = true;
                 break;
             }
         }
@@ -189,6 +190,8 @@ GeoNode.Composer = Ext.extend(GeoExplorer.Composer, {
         }, {
             ptype: "gn_layerinfo",
             actionTarget: ["layers.contextMenu"]
+        }, {
+            ptype: "gxp_getfeedfeatureinfo"
         });
         GeoNode.Composer.superclass.loadConfig.apply(this, arguments);
         for (key in this.tools) {

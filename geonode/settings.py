@@ -9,6 +9,9 @@ DEBUG = TEMPLATE_DEBUG = True
 # It is used for relative settings elsewhere.
 PROJECT_ROOT = os.path.dirname(geonode.__file__)
 
+# Activate the Documents application
+DOCUMENTS_APP = True
+
 #
 # Default GeoNode Site settings
 #

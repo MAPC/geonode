@@ -38,7 +38,6 @@ from django.utils import simplejson as json
 from django.views.generic.list import ListView
 from django.db.models import Q
 from django.views.decorators.http import require_POST
-from django.contrib.sites.models import get_current_site
 
 from geonode.utils import _split_query, http_client
 from geonode.layers.models import Layer, TopicCategory
@@ -49,9 +48,10 @@ from geonode.utils import DEFAULT_ABSTRACT
 from geonode.utils import default_map_config
 from geonode.utils import resolve_object
 from geonode.maps.forms import MapForm
-from geonode.people.models import Profile 
+from geonode.people.models import Profile
 from geonode.security.models import AUTHENTICATED_USERS, ANONYMOUS_USERS
 from geonode.security.views import _perms_info
+
 
 logger = logging.getLogger("geonode.maps.views")
 
@@ -79,13 +79,8 @@ def _resolve_map(request, id, permission='maps.change_map',
     '''
     Resolve the Map by the provided typename and check the optional permission.
     '''
-
-    return resolve_object(request, Map, 
-        {
-            'pk':id, 
-            'sites': get_current_site(request).id, 
-        }, 
-        permission = permission, permission_msg=msg, **kwargs)
+    return resolve_object(request, Map, {'pk':id}, permission = permission,
+                          permission_msg=msg, **kwargs)
 
 
 def bbox_to_wkt(x0, x1, y0, y1, srid="4326"):
@@ -94,36 +89,15 @@ def bbox_to_wkt(x0, x1, y0, y1, srid="4326"):
 
 #### BASIC MAP VIEWS ####
 
-class MapListView(ListView):
-
-    map_filter = "last_modified"
-    queryset = Map.on_site.all()
-
-    def __init__(self, *args, **kwargs):
-        self.map_filter = kwargs.pop("map_filter", "last_modified")
-        self.queryset = self.queryset.order_by("-{0}".format(self.map_filter))
-        super(MapListView, self).__init__(*args, **kwargs)
-
-    def get_context_data(self, **kwargs):
-        kwargs.update({"map_filter": self.map_filter})
-        return kwargs
-
-
-def maps_category(request, slug, template='maps/map_list.html'):
-    category = get_object_or_404(TopicCategory, slug=slug)
-    map_list = Map.on_site.filter(category=category)
-    return render_to_response(
-        template,
-        RequestContext(request, {
-            "object_list": map_list,
-            "layer_category": category
-            }
-        )
-    )
-
+def map_list(request, template='maps/map_list.html'):
+    from geonode.search.views import search_page
+    post = request.POST.copy()
+    post.update({'type': 'map'})
+    request.POST = post
+    return search_page(request, template=template)
 
 def maps_tag(request, slug, template='maps/map_list.html'):
-    map_list = Map.on_site.filter(keywords__slug__in=[slug])
+    map_list = Map.objects.filter(keywords__slug__in=[slug])
     return render_to_response(
         template,
         RequestContext(request, {
@@ -139,10 +113,10 @@ def map_detail(request, mapid, template='maps/map_detail.html'):
     The view that show details of each map
     '''
     map_obj = _resolve_map(request, mapid, 'maps.view_map', _PERMISSION_MSG_VIEW)
-	
+
     map_obj.popular_count += 1
     map_obj.save()
-	
+
     config = map_obj.viewer_json()
     config = json.dumps(config)
     layers = MapLayer.objects.filter(map=map_obj.id)
@@ -234,7 +208,7 @@ def map_view(request, mapid, template='maps/map_view.html'):
 
 def map_view_js(request, mapid):
     map_obj = _resolve_map(request, mapid, 'maps.view_map')
-    config = map.viewer_json()
+    config = map_obj.viewer_json()
     return HttpResponse(json.dumps(config), mimetype="application/javascript")
 
 def map_json(request, mapid):
@@ -292,7 +266,6 @@ def new_map_json(request):
                       center_x=0, center_y=0)
         map_obj.save()
         map_obj.set_default_permissions()
-        map_obj.sites.add(get_current_site(request).id)
         try:
             map_obj.update_from_viewer(request.raw_post_data)
         except ValueError, e:
@@ -399,7 +372,6 @@ def new_map_config(request):
 
 #### MAPS DOWNLOAD ####
 
-@login_required
 def map_download(request, mapid, template='maps/map_download.html'):
     """
     Download all the layers of a map as a batch
@@ -413,9 +385,17 @@ def map_download(request, mapid, template='maps/map_download.html'):
         url = "%srest/process/batchDownload/launch/" % settings.GEOSERVER_BASE_URL
 
         def perm_filter(layer):
-            return request.user.has_perm('maps.view_layer', obj=layer)
+            return request.user.has_perm('layers.view_layer', obj=layer)
 
         mapJson = mapObject.json(perm_filter)
+
+        # we need to remove duplicate layers
+        j_map = json.loads(mapJson)
+        j_layers = j_map["layers"]
+        for j_layer in j_layers:
+            if(len([l for l in j_layers if l == j_layer]))>1:
+                j_layers.remove(j_layer)
+        mapJson = json.dumps(j_map)
 
         resp, content = http_client.request(url, 'POST', body=mapJson)
 
@@ -435,10 +415,12 @@ def map_download(request, mapid, template='maps/map_download.html'):
                 remote_layers.append(lyr)
             else:
                 ownable_layer = Layer.objects.get(typename=lyr.name)
-                if not request.user.has_perm('maps.view_layer', obj=ownable_layer):
+                if not request.user.has_perm('layers.view_layer', obj=ownable_layer):
                     locked_layers.append(lyr)
                 else:
-                    downloadable_layers.append(lyr)
+                    # we need to add the layer only once
+                    if len([l for l in downloadable_layers if l.name == lyr.name]) == 0:
+                        downloadable_layers.append(lyr)
 
     return render_to_response(template, RequestContext(request, {
          "map_status" : map_status,

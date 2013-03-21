@@ -4,7 +4,7 @@ from django.template.defaultfilters import truncatewords
 
 from models import Program
 
-def build_program_geojson(programs):
+def program_geojson(programs):
     """ 
     Takes a Program Queryset and returns a GeoJSON object 
     with title, description and image-url properties. 
@@ -14,11 +14,16 @@ def build_program_geojson(programs):
 
     for program in programs:
         # truncatewords
-        properties = dict(title=program.title, description=truncatewords(program.description,20), absolute_url=program.get_absolute_url(), map_icon='layer-0')
+        properties = dict(
+            title=program.title, 
+            description=truncatewords(program.description,20), 
+            absolute_url=program.get_absolute_url(), 
+            map_icon='layer-0',
+        )
         if program.image:
             properties['image_url'] = program.image.url
         if program.icon:
-            properties['map_icon'] = program.icon.map_icon.url
+            properties['point_color'] = program.icon.map_point_color
         geometry = simplejson.loads(program.geometry.geojson)
         feature = dict(type='Feature', geometry=geometry, properties=properties)
         features.append(feature)
@@ -38,7 +43,7 @@ def all_geojson(request):
     except Program.DoesNotExist:
       raise Http404
 
-    geojson = build_program_geojson(programs)
+    geojson = program_geojson(programs)
 
     return HttpResponse(geojson, mimetype='application/json')
 
@@ -53,6 +58,6 @@ def place_geojson(request, place_slug):
     except Program.DoesNotExist:
         raise Http404
 
-    geojson = build_program_geojson(programs)
+    geojson = program_geojson(programs)
 
     return HttpResponse(geojson, mimetype='application/json')

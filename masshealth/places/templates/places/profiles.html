@@ -14,87 +14,33 @@ jQuery(document).ready(function($) {
 
 {% if slots.count %}
 
-{% for slot in slots %}
-    {% with vis=slot.visualization %}
-    // $("#profile-swf-div-{{ forloop.counter0 }}").click(function() {
-	swfobject.embedSWF(
-	  "{{ WEAVE_URL }}weave.swf", 
-	  "profile-swf-div-{{ forloop.counter0 }}", 
-	  {{ slot.width }}, {{ slot.height }}, 
-	  "10.0.0",
-	  "expressInstall.swf", 
-	  {
-		    file: "http://{{ current_site.domain }}{% url visualizations.views.visualization_xml vis.id place.id %}"
-	      }, 
-	  HEMA.swfobject.params,
-	  {
-	    id: "profile-swf-div-{{ forloop.counter0 }}",
-	    name: "profile-swf-div-{{ forloop.counter0 }}"
-	  }
-	);
-    // });
-    {% endwith %}
-{% endfor %}
+    {% for slot in slots %}
 
-{% if can_update_thumbnails %}
-    {% url visualizations.views.ajax_thumbnails_post as ajax_url %}
-    $('form#submit-new-thumbnails').submit(function(e) {
+        {% if slot.visualization %}
 
-        var holders = [{% for slot in slots %}
-	  {
-	    vid: {{ slot.visualization.id }},
-            has_thumbnail: {% if slot.visualization.has_thumbnail %}true{% else %}false{% endif %}
-	  }{% if not forloop.last %},{% endif %}{% endfor %}
-        ];
-	var do_all = ! ! $(
-	  'form#submit-new-thumbnails input[name=update-which-thumbnails]'
-	  ).attr('checked');
+                {% with vis=slot.visualization %}
+                // $("#profile-swf-div-{{ forloop.counter0 }}").click(function() {
+            	swfobject.embedSWF(
+            	  "{{ WEAVE_URL }}weave.swf", 
+            	  "profile-swf-div-{{ forloop.counter0 }}", 
+            	  {{ slot.width }}, {{ slot.height }}, 
+            	  "10.0.0",
+            	  "expressInstall.swf", 
+            	  {
+            		    file: "http://{{ current_site.domain }}{% url visualizations.views.visualization_xml vis.id place.id %}"
+            	      }, 
+            	  HEMA.swfobject.params,
+            	  {
+            	    id: "profile-swf-div-{{ forloop.counter0 }}",
+            	    name: "profile-swf-div-{{ forloop.counter0 }}"
+            	  }
+            	);
+                // });
+                {% endwith %}
 
-	var sendables = [];
+        {% endif %}
 
-	for (var i = 0; i < holders.length; i++) {
-	  var h = holders[i];
-	  if (h.has_thumbnail && ! do_all) continue;
-	  var weave = swfobject.getObjectById('profile-swf-div-' + i);
-	  if ( ! weave ) continue;
-	  //if ( weave.getTaskCount() ) continue; // If Andy Dufilie is right
-	  try {
-	    var new_image = weave.evaluateExpression(
-	      null,
-	      'getBase64Image(Application.application.visDesktop)',
-	      null,
-	      ['weave.utils.BitmapUtils', 'mx.core.Application']);
-	  } catch(error) {
-	    alert(error);
-	    continue;
-	  }
-	  sendables.push({vid: h.vid, img: new_image});
-	};
-
-	if (sendables.length > 0) {
-	  $(document).ajaxSend(function(event, xhr, settings) {
-	    /* We presume that we're the only ajax here, and don't
-	       check same origin or method.  If it comes down to
-	       it we could compare against the template ajax_url
-	       variable, as well as method.
-	    */
-	    xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token_value }}");
-	  });
-
-	  $.post("{{ ajax_url }}",
-	         { visualization_thumbnails: JSON.stringify(sendables) },
-		 function(data) {
-		   if (data) alert(data);
-		 },
-		 "json");
-	} else {
-	  alert("Found nothing to send");
-	};
-
-        return false;  // Don't actually let the form submit
-    });
-{% endif %}
-
+    {% endfor %}
 
 {% endif %}
 
@@ -102,11 +48,24 @@ jQuery(document).ready(function($) {
     if (swfobject.getFlashPlayerVersion()["major"] > 0) {
         $("body").addClass("flash-is-present");
     }
+
 });
 
 </script>
 
 {% endblock %} 
+
+{% block head %}
+
+{{ block.super }}
+
+<style type="text/css">
+{%  for type in slot_types %}
+.slot-type-{{ type.0 }} { width: {{ type.1 }}px; }
+{% endfor %}
+</style>
+
+{% endblock %}
 
 {% block bodyclass %}
 <body class="profile">
@@ -131,40 +90,26 @@ jQuery(document).ready(function($) {
 <div class="row-of-visualizations clearfix">
 {% endif %}
 {% if slot.new_row and slot.title %}<h2>{{ slot.title }}</h2>{% endif %}
+
 {% with vis=slot.visualization %}
 <div class="visualization-wrapper profile-slot-{{ slot.name|slugify }} slot-type-{{ slot.slot_type|slugify }}">
 {% if slot.vistitle %}<h3>{{ slot.vistitle }}</h3>{% endif %}
+{% if vis %}
   <div id="profile-swf-div-{{ forloop.counter0 }}"
    class="swfobject-container-div profile-slot-{{ slot.name|slugify }} slot-type-{{ slot.slot_type|slugify }}">
-{# {% if vis.thumbnail %}
-<img src="{{ MEDIA_URL }}{{ vis.thumbnail }}" alt="">
-<p class="if-flash">Click image for interactive Weave Visualization</p>
-{% else %}
-<p class="if-flash">Click here for interactive
-  {{ slot.get_slot_type_display }} Weave Visualization</p>
-{% endif %} #}
 <p class="if-no-flash">Please install the
 <a href="http://get.adobe.com/flashplayer/">Adobe Flash Player</a>
 to interact with this visualization.</p>
   </div>
+{% endif %}
+{% if slot.description %}<div class="meta">{{ slot.description|safe }}</div>{% endif %}
 </div>
 {% endwith %}
+
+
+
 {% endfor %}
 </div>
-{% if can_update_thumbnails %}
-<hr />
-<div class="submit-new-thumbnails">
-  <form method="POST" action="#" id="submit-new-thumbnails">
-    <div>
-      <input type="checkbox" name="update-which-thumbnails" value="all" />
-	Update thumbnails for all rendered visualizations<br />
-	(versus just those that don't already have a thumbnail).<br />
-	Wait for visualization rendering to be complete before submitting.
-      <input type="submit" />
-    </div>
-  </form>
-</div>
-{% endif %}
 
 {% else %}
 
