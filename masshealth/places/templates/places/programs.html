@@ -67,21 +67,23 @@
 
       {% if programs %}
       // get programs
-      $.getJSON( "/program/geojson/{{ place.slug }}", function(data) {
-        // make marker
+      $.getJSON("/program/geojson/{{ place.slug }}", function(data) {
+
+        // point style
+        var circleStyle = {
+          radius: 8,
+          fillColor: "#f35a20",
+          color: "#fff",
+          weight: 1,
+          opacity: 0.6,
+          fillOpacity: 0.6
+        };
+
         function pointToLayer(feature, latlng) {
-          var programIcon = L.icon({
-            iconUrl: feature.properties.map_icon,
-            iconSize: [32, 37],
-            iconAnchor: [16, 37],
-            popupAnchor: [2, -32],
-            shadowUrl: null
-          });
-          marker = L.marker(latlng, {
-            icon: programIcon
-          });
-          return marker;
+          circleStyle.fillColor = feature.properties.point_color;
+          return L.circleMarker(latlng, circleStyle)
         }
+
         // bind popup
         function onEachFeature(feature, layer) {
           var popupContent = "<h4>" + feature.properties["title"] + "</h4>";
@@ -92,7 +94,7 @@
         // render GeoJSON layer
         var programLayer = L.geoJson(data, {
           pointToLayer: pointToLayer,
-          onEachFeature: onEachFeature,
+          onEachFeature: onEachFeature
         });
         programLayer.addTo(map);
         map.fitBounds(programLayer.getBounds());

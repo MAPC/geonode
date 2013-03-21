@@ -89,6 +89,10 @@
     {% include "masshealth/_map_inc.html" %}
     <script type="text/javascript">
 
+      var $ = jQuery;
+
+      $(document).ready(function() {
+
         // background layers
         var basemap = new L.MAPCTileLayer("basemap");
 
@@ -100,86 +104,40 @@
         .setView(boston, 9)
         .addLayer(basemap);
 
-  /*      
+        // load program locations on map
+        $.getJSON("/program/geojson/", function(data) {
 
-        // project layers
-        {% get_icons "all" as icons %}
+          // point style
+          var circleStyle = {
+            radius: 6,
+            fillColor: "#f35a20",
+            color: "#fff",
+            weight: 1,
+            opacity: 0.6,
+            fillOpacity: 0.6
+          };
 
-        // default generic marker
-        var projects = {
-          "layer-0": {
-            layer: new L.GeoJSON()
+          function pointToLayer(feature, latlng) {
+            circleStyle.fillColor = feature.properties.point_color;
+            return L.circleMarker(latlng, circleStyle)
           }
-        };
-        map.addLayer(projects["layer-0"].layer);
 
-        // categorized markers
-        {% for icon in icons %}
-        projects["layer-{{ icon.id }}"] = {
-          icon: new L.Icon({
-            iconUrl: '{{ icon.map_icon.url }}',
-            shadowUrl: null,
-            iconSize: new L.Point(32, 37),
-            shadowSize: null,
-            iconAnchor: new L.Point(16, 37),
-            popupAnchor: new L.Point(2, -32)
-        }),
-        layer: new L.GeoJSON(null, {
-            pointToLayer: function(latlng) {
-                  return new L.Marker(latlng, {
-                      icon: projects["layer-{{ icon.id }}"].icon
-                });
-            }
-        })
-        };
-      projects["layer-{{ icon.id }}"].layer.on("featureparse", function(e) {  
-            if (e.properties) {
-                popupContent = "<h4>" + e.properties["title"] + "</h4>";
-                if (e.properties["image_url"]) popupContent += "<p><img src=" + e.properties["image_url"] + " class=\"map-thumb\" alt=\"" + e.properties["title"] + "\"></p>";
-                if (e.properties["description"] !== "") popupContent += "<p>" + e.properties["description"] + "<a href=\"" + e.properties["absolute_url"] + "\"><br>read more</a></p>";
-                e.layer.bindPopup(popupContent);
-            }
+          function onEachFeature(feature, layer) {
+            var popupContent = "<h4>" + feature.properties["title"] + "</h4>";
+            if (feature.properties["image_url"]) popupContent += "<p><img src=" + feature.properties["image_url"] + " class=\"map-thumb\" alt=\"" + feature.properties["title"] + "\"></p>";
+            if (feature.properties["description"] !== "") popupContent += "<p>" + feature.properties["description"] + "<a href=\"" + feature.properties["absolute_url"] + "\"><br>read more</a></p>";
+            layer.bindPopup(popupContent);
+          }
+
+          // render GeoJSON layer
+          var programLayer = L.geoJson(data, {
+            pointToLayer: pointToLayer,
+            onEachFeature: onEachFeature
+          });
+          programLayer.addTo(map);
+          map.fitBounds(programLayer.getBounds());
         });
-      map.addLayer(projects["layer-{{ icon.id }}"].layer);
-        {% endfor %}
-*/
-        // TODO: project layer prototype function
-
-        jQuery(function() {
-            // load program locations on map
-            $.getJSON(
-                "/program/geojson/",  
-                function(data) {
-                  function pointToLayer(feature, latlng){    
-                      var programIcon = L.icon({ 
-                          iconUrl: feature.properties.map_icon,
-                          iconSize: [32, 37],
-                          iconAnchor: [16, 37],
-                          popupAnchor: [2, -32],
-                          shadowUrl: null
-                      });
-                      marker = L.marker(latlng, {icon:programIcon});
-                      return marker; 
-                  } 
-
-                  function onEachFeature(feature, layer) {
-                      var popupContent = "<h4>" + feature.properties["title"] + "</h4>";
-                      if (feature.properties["image_url"]) popupContent += "<p><img src=" + feature.properties["image_url"] + " class=\"map-thumb\" alt=\"" + feature.properties["title"] + "\"></p>";
-                      if (feature.properties["description"] !== "") popupContent += "<p>" + feature.properties["description"] + "<a href=\"" + feature.properties["absolute_url"] + "\"><br>read more</a></p>";
-                      layer.bindPopup(popupContent);
-                  } 
-
-                  // render GeoJSON layer
-                  var programLayer = L.geoJson(data, {
-                      pointToLayer: pointToLayer,
-                      onEachFeature: onEachFeature
-                  });
-                  programLayer.addTo(map);
-
-                  map.fitBounds(programLayer.getBounds());
-
-            });
-    });
+      });
 
     </script>
 {% endblock %}

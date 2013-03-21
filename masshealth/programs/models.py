@@ -58,6 +58,9 @@ class Icon(models.Model):
                               upload_to=settings.FILEBROWSER_DIRECTORY + 'programs/map_icons/%y%U',
                               max_length=255)
 
+    map_point_color = models.CharField(default='#f35a20', max_length=25, 
+      help_text='Provide a CSS color value (eg. #f35a20, rgb(243,90,32), ...).')
+
     def __unicode__(self):
         return self.name
 
