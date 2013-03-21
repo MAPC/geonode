@@ -19,7 +19,7 @@ class Program(models.Model):
 
     icon = models.ForeignKey('programs.Icon', blank=True, null=True)
 
-    geometry = models.PointField(_('Location'), srid=26986, null=True, blank=True)
+    geometry = models.MultiPointField(_('Location'), srid=26986, null=True, blank=True)
 
     order = models.IntegerField(default=500, blank=True, null=True)
 
