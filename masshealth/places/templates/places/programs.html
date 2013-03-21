@@ -15,7 +15,20 @@
 
 <div class="span10">
 <h2>Health Promotion Programs</h2>
-{% if place.program_set.all %}<div id="program_map_container"><div id="program_map"></div></div>{% endif %}
+<div class="row-fluid">
+  <div id="program_map_container" class="span8"><div id="program_map"></div></div>
+  <div id="program_map_legend" class="span2">
+    {% if programs %}
+    <ul class="program-map_icon">
+    {% for icon in icons %}
+      <li style="background-image: url('{{ icon.map_icon.url }}')">{{ icon.name }}</li>
+    {% endfor %}
+    </ul>
+    {% else %}
+    No programs found.
+    {% endif %}
+  </div>
+</div>
 <div class="place_program_desc">{{place.program_desc|safe}}</div>
 
 {% for program in place.program_set.all %}
@@ -32,69 +45,72 @@
 
 {% block javascript %}
   {{ block.super }}
-  {% if place.program_set.all %}
   {% include "masshealth/_map_inc.html" %}
   <script type="text/javascript">
-
-    // background layers
-    var basemap = new L.MAPCTileLayer("basemap");
-    
-    // map
-    var boston = new L.LatLng(42.357778, -71.061667);
-    var map = new L.Map("program_map",{
-        minZoom: 6,
-        maxZoom: 17,
-        attributionControl: false
-    })
-    .setView(boston, 9)
-    .addLayer(basemap);
 
     var $ = jQuery;
 
     $(document).ready(function() {
 
+      // background layers
+       var basemap = new L.MAPCTileLayer("basemap");
 
-        $.getJSON(
-            "/program/geojson/{{ place.slug }}",  
-            function(data) {
-              function pointToLayer(feature, latlng){    
-                  var programIcon = L.icon({ 
-                      iconUrl: feature.properties.map_icon,
-                      iconSize: [32, 37],
-                      iconAnchor: [16, 37],
-                      popupAnchor: [2, -32],
-                      shadowUrl: null
-                  });
-                  marker = L.marker(latlng, {icon:programIcon});
-                  return marker; 
-              } 
+      // map
+      var boston = new L.LatLng(42.357778, -71.061667);
+      var map = new L.Map("program_map", {
+        minZoom: 6,
+        maxZoom: 17,
+        attributionControl: false
+      })
+      .setView(boston, 9)
+      .addLayer(basemap);
 
-              function onEachFeature(feature, layer) {
-                  var popupContent = "<h4>" + feature.properties["title"] + "</h4>";
-                  if (feature.properties["image_url"]) popupContent += "<p><img src=" + feature.properties["image_url"] + " class=\"map-thumb\" alt=\"" + feature.properties["title"] + "\"></p>";
-                  if (feature.properties["description"] !== "") popupContent += "<p>" + feature.properties["description"] + "<a href=\"" + feature.properties["absolute_url"] + "\"><br>read more</a></p>";
-                  layer.bindPopup(popupContent);
-              } 
-
-              // render GeoJSON layer
-              var programLayer = L.geoJson(data, {
-                  pointToLayer: pointToLayer,
-                  onEachFeature: onEachFeature,
-                  style: {
-                      "weight": 1,
-                      "opacity": 0.9,
-                      "color": "#F35A20",
-                      "fillOpacity": 0.4
-                  }
-              });
-              programLayer.addTo(map);
-
-              map.fitBounds(programLayer.getBounds());
-
+      {% if programs %}
+      // get programs
+      $.getJSON( "/program/geojson/{{ place.slug }}", function(data) {
+        // make marker
+        function pointToLayer(feature, latlng) {
+          var programIcon = L.icon({
+            iconUrl: feature.properties.map_icon,
+            iconSize: [32, 37],
+            iconAnchor: [16, 37],
+            popupAnchor: [2, -32],
+            shadowUrl: null
+          });
+          marker = L.marker(latlng, {
+            icon: programIcon
+          });
+          return marker;
+        }
+        // bind popup
+        function onEachFeature(feature, layer) {
+          var popupContent = "<h4>" + feature.properties["title"] + "</h4>";
+          if (feature.properties["image_url"]) popupContent += "<p><img src=" + feature.properties["image_url"] + " class=\"map-thumb\" alt=\"" + feature.properties["title"] + "\"></p>";
+          if (feature.properties["description"] !== "") popupContent += "<p>" + feature.properties["description"] + "<a href=\"" + feature.properties["absolute_url"] + "\"><br>read more</a></p>";
+          layer.bindPopup(popupContent);
+        }
+        // render GeoJSON layer
+        var programLayer = L.geoJson(data, {
+          pointToLayer: pointToLayer,
+          onEachFeature: onEachFeature,
         });
+        programLayer.addTo(map);
+        map.fitBounds(programLayer.getBounds());
+      });
+      {% else %}
+      // add place overlay
+      var place = new L.GeoJSON({{ place.geometry.geojson|safe }}, {
+          style: {
+              "weight": 0,
+              "opacity": 0,
+              "fillOpacity": 0
+          }
+      });
+      map.addLayer(place);
+      map.fitBounds(place.getBounds());
+      {% endif %}
 
     });
 
   </script>
-  {% endif %}
 {% endblock %}

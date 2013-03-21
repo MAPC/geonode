@@ -360,11 +360,6 @@ clear: both;
 	text-decoration: none;
 }
 
-.place_program_desc
-{
-    margin-top: 30px;
-}
-
 #program_map_container {
     padding: 5px;
     border: 1px solid #dfdfdf;
@@ -373,10 +368,32 @@ clear: both;
 }
 
 #program_map {
-    width: 400px; 
     height: 300px; 
     border: 1px solid #dfdfdf;
 }
+
+#program_map_legend {
+  margin-top: 30px;
+  text-align: left;
+}
+
+#program_map_legend ul {
+  list-style: none;
+  margin-left: 0px;
+}
+
+#program_map_legend ul li {
+  background-position: left center;
+  background-repeat: no-repeat;
+  padding-left: 36px;
+  padding-top: 4px;
+  min-height: 37px;
+}
+
+/*#program_map_legend ul li img {
+  width: 20px;
+  height: 20px;
+}*/
 
 
 .program-image
@@ -743,9 +760,8 @@ margin: 10px 0;
     float: left;
 }
 
-img.program-icon
-{
-margin: 0 8px 0 0;
+img.program-icon {
+  margin: 0 8px 0 0;
 }
 
 /*  CAROUSEL */

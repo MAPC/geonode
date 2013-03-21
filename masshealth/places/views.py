@@ -74,14 +74,26 @@ def profiles(request, place_slug):
 
 def programs(request, place_slug):
     page_type = "programs"
-    place = get_object_or_404(Place, slug=place_slug)
+
+    try:
+      place = Place.objects.transform(4326).get(slug=place_slug)
+    except Place.DoesNotExist:
+      raise Http404
+
+    # list of icons for all programs in this place
+    programs = place.program_set.all()
+    icons = [p.icon for p in programs]
+    icons = list(set(icons)) # remove dupliates
+
     return render_to_response(
         'places/programs.html',
         dict(place=place,
-             page_type=page_type,
-             same_place_parts=InOtherPlace.get_split(
-        'programs', 'XXX', 'XXX'),
-             ),
+            page_type=page_type,
+            same_place_parts=InOtherPlace.get_split( 
+                'programs', 'XXX', 'XXX'),
+            programs=programs,
+            icons=icons,
+        ),
         context_instance=RequestContext(request))
     
 # Class to help us avoid calling reverse too often
