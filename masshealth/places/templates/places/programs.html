@@ -1,7 +1,7 @@
 {% extends 'masshealth/base.html' %}
 {% load markup %}
 
-<title>{% block title %}{{ place.name }} Health Promotion Programs{% endblock %}</title>
+{% block title %}{{ place.name }} Health Promotion Programs{% endblock %}
 
 {% block head_javascript %}
 {{ block.super }}
@@ -19,9 +19,10 @@
   <div id="program_map_container" class="span8"><div id="program_map"></div></div>
   <div id="program_map_legend" class="span2">
     {% if programs %}
-    <ul class="program-map_icon">
+    <ul>
     {% for icon in icons %}
-      <li style="background-image: url('{{ icon.map_icon.url }}')">{{ icon.name }}</li>
+      <!-- li style="background-image: url('{{ icon.map_icon.url }}')">{{ icon.name }}</li -->
+      <li><canvas id="icon{{ icon.id }}" width="20" height="20"></canvas>{{ icon.name }}</li>
     {% endfor %}
     </ul>
     {% else %}
@@ -76,7 +77,7 @@
           color: "#fff",
           weight: 1,
           opacity: 0.6,
-          fillOpacity: 0.6
+          fillOpacity: 0.8
         };
 
         function pointToLayer(feature, latlng) {
@@ -99,6 +100,24 @@
         programLayer.addTo(map);
         map.fitBounds(programLayer.getBounds());
       });
+
+      // draw canvas circles in map legend
+      var legendCircles = {};
+      {% for icon in icons %}legendCircles.icon{{ icon.id }} = "{{ icon.map_point_color }}";
+      {% endfor %}
+      for (var circleId in legendCircles) {
+        // console.log( legendCircles[circleId] );
+        var canvas = document.getElementById(circleId);
+        var context = canvas.getContext("2d");
+        var centerX = canvas.width / 2;
+        var centerY = canvas.height / 2;
+        var radius = 8;
+        context.beginPath();
+        context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+        context.fillStyle = legendCircles[circleId];
+        context.fill();
+      }
+
       {% else %}
       // add place overlay
       var place = new L.GeoJSON({{ place.geometry.geojson|safe }}, {
