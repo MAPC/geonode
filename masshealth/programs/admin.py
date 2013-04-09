@@ -12,7 +12,6 @@ except AttributeError:
 admin.GeoModelAdmin.default_lon = -7912100
 admin.GeoModelAdmin.default_lat = 5210000
 admin.GeoModelAdmin.default_zoom = 9
-admin.GeoModelAdmin.openlayers_url = "%s/libs/openlayers/OpenLayers.js" % (settings.STATIC_URL)
 
 def place_name(obj):
     return obj.place.name
