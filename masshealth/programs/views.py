@@ -23,7 +23,7 @@ def program_geojson(programs):
         if program.image:
             properties['image_url'] = program.image.url
         if program.icon:
-            properties['point_color'] = program.icon.map_point_color
+            properties['map_icon'] = program.icon.map_icon.url
         geometry = simplejson.loads(program.geometry.geojson)
         feature = dict(type='Feature', geometry=geometry, properties=properties)
         features.append(feature)

@@ -96,30 +96,29 @@
         // background layers
         var basemap = new L.MAPCTileLayer("basemap");
 
-        var boston = new L.LatLng(42.357778, -71.061667);
+        var mass = new L.LatLng(42.05, -71.6);
         var map = new L.Map("mamc_map",{
-            minZoom: 9,
+            minZoom: 6,
             maxZoom: 17
         })
-        .setView(boston, 9)
+        .setView(mass, 8)
         .addLayer(basemap);
 
         // load program locations on map
         $.getJSON("/program/geojson/", function(data) {
 
-          // point style
-          var circleStyle = {
-            radius: 6,
-            fillColor: "#f35a20",
-            color: "#fff",
-            weight: 1,
-            opacity: 0.6,
-            fillOpacity: 0.8
-          };
-
           function pointToLayer(feature, latlng) {
-            circleStyle.fillColor = feature.properties.point_color;
-            return L.circleMarker(latlng, circleStyle)
+            var programIcon = L.icon({
+              iconUrl: feature.properties.map_icon,
+              iconSize: [32, 37],
+              iconAnchor: [16, 37],
+              popupAnchor: [2, -32],
+              shadowUrl: null
+            });
+            marker = L.marker(latlng, {
+              icon: programIcon
+            });
+            return marker;
           }
 
           function onEachFeature(feature, layer) {
@@ -135,7 +134,7 @@
             onEachFeature: onEachFeature
           });
           programLayer.addTo(map);
-          map.fitBounds(programLayer.getBounds());
+          // map.fitBounds(programLayer.getBounds());
         });
       });
 
