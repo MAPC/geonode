@@ -76,9 +76,9 @@ def programs(request, place_slug):
     page_type = "programs"
 
     try:
-      place = Place.objects.transform(4326).get(slug=place_slug)
+        place = Place.objects.transform(4326).get(slug=place_slug)
     except Place.DoesNotExist:
-      raise Http404
+        raise Http404
 
     # list of icons for all programs in this place
     programs = place.program_set.all()

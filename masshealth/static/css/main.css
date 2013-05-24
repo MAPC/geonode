@@ -378,18 +378,16 @@ clear: both;
 }
 
 #program_map_legend ul {
-  list-style: none;
+  list-style-type: none;
   margin-left: 0px;
 }
 
-#program_map_legend li {
-  margin-bottom: 10px;
-  clear: both;
-}
-
-#program_map_legend canvas {
-  margin-right: 4px;
-  float: left;
+#program_map_legend ul li {
+  background-position: left center;
+  background-repeat: no-repeat;
+  padding-left: 36px;
+  padding-top: 4px;
+  min-height: 37px;
 }
 
 .program-image

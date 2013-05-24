@@ -21,8 +21,7 @@
     {% if programs %}
     <ul>
     {% for icon in icons %}
-      <!-- li style="background-image: url('{{ icon.map_icon.url }}')">{{ icon.name }}</li -->
-      <li><canvas id="icon{{ icon.id }}" width="20" height="20"></canvas>{{ icon.name }}</li>
+      <li style="background-image: url('{{ icon.map_icon.url }}')">{{ icon.name }}</li>
     {% endfor %}
     </ul>
     {% else %}
@@ -70,19 +69,18 @@
       // get programs
       $.getJSON("/program/geojson/{{ place.slug }}", function(data) {
 
-        // point style
-        var circleStyle = {
-          radius: 8,
-          fillColor: "#f35a20",
-          color: "#fff",
-          weight: 1,
-          opacity: 0.6,
-          fillOpacity: 0.8
-        };
-
         function pointToLayer(feature, latlng) {
-          circleStyle.fillColor = feature.properties.point_color;
-          return L.circleMarker(latlng, circleStyle)
+          var programIcon = L.icon({
+            iconUrl: feature.properties.map_icon,
+            iconSize: [32, 37],
+            iconAnchor: [16, 37],
+            popupAnchor: [2, -32],
+            shadowUrl: null
+          });
+          marker = L.marker(latlng, {
+            icon: programIcon
+          });
+          return marker;
         }
 
         // bind popup
