@@ -104,18 +104,18 @@
       var legendCircles = {};
       {% for icon in icons %}legendCircles.icon{{ icon.id }} = "{{ icon.map_point_color }}";
       {% endfor %}
-      for (var circleId in legendCircles) {
+      // for (var circleId in legendCircles) {
         // console.log( legendCircles[circleId] );
-        var canvas = document.getElementById(circleId);
-        var context = canvas.getContext("2d");
-        var centerX = canvas.width / 2;
-        var centerY = canvas.height / 2;
-        var radius = 8;
-        context.beginPath();
-        context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
-        context.fillStyle = legendCircles[circleId];
-        context.fill();
-      }
+        // var canvas = document.getElementById(circleId);
+        // var context = canvas.getContext("2d");
+        // var centerX = canvas.width / 2;
+        // var centerY = canvas.height / 2;
+        // var radius = 8;
+        // context.beginPath();
+        // context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+        // context.fillStyle = legendCircles[circleId];
+        // context.fill();
+      // }
 
       {% else %}
       // add place overlay
